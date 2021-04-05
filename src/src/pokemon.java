@@ -1,2 +1,3 @@
-public class pokemon {
+public abstract class pokemon {
+
 }

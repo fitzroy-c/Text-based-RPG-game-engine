@@ -1,3 +1,4 @@
+meeting time: 2-4p.m. on Sunday
 this is the meeting minute for first meeting:
 
 
