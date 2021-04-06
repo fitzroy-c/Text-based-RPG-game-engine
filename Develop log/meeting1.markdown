@@ -3,7 +3,7 @@ meeting time: 2 - 4 p.m. 2021.4.5
 What we achieve: 
 
 Introduce each other
-
+Scheduled a regular time to meet each week: 2~4p.m. Sunday. 
 Decide the game type we would like to develop: pokemon_like (chosen), card_game, interactive fiction, D&D Story adventure
 
 https://docs.google.com/document/d/1ZHoWsftaMdPTM9fMfk9azkS3EaNM2TLhEIIDIv6PVQU/edit?usp=sharing
