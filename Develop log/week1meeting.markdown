@@ -9,9 +9,10 @@ What we do:
 - The simplest game is several text scenes with index, while providing options, jump to the target index.
 The data stores in a json file. Our engine reads the index, print out the scene and its options, type the option number, 
 jump to the target one. Json structure (scene: index, option a: index, option b: index) etc.
- 
+- Assigned task to each group members
+
 https://docs.google.com/document/d/1ZHoWsftaMdPTM9fMfk9azkS3EaNM2TLhEIIDIv6PVQU/edit?usp=sharing
 
 What to do:
-- how to combine AI_fighting system and card system to a text_based game
-
+- Gui (Bill, Xiang)
+- Card game class & Json (Guanming, YiTao)
