@@ -1,4 +1,5 @@
 meeting time: 3 - 7 p.m. 2021.4.11
+              5 - 6 p.m. 2021.4.12
 
 What we do:
 - Discuss the Pokemon data structure 
