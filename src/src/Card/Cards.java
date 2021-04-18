@@ -8,7 +8,7 @@ public class Cards {
     Rarity rarity;
     String name;                        // the name of this card
     String description;                 // the description of this card
-//    Career.PlayerCareer career;         // enable for specific career
+    Career.PlayerCareer career;         // enable for specific career
 
     // Attributes
     int baseCost;                       // cost of playing this card
