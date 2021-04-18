@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-
+// contributed by Yixiang Yin
 public class Myframe extends JFrame {
     Myframe(){
         this.setTitle("Text Game Name");
