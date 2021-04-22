@@ -13,7 +13,7 @@ public class Gui {
         label.setIcon(image);
         label.setHorizontalTextPosition(JLabel.CENTER);
         label.setVerticalTextPosition(JLabel.TOP);
-        label.setForeground(new Color((0x00ff00)));
+        label.setForeground(new Color(0x00FF00));
         label.setFont(new Font("MV Boli",Font.PLAIN,20));
         label.setBackground(Color.black);
         label.setOpaque(true);
