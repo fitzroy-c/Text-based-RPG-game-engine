@@ -1,7 +1,12 @@
 package gui;
 
+import javafx.application.Application;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 // contributed by Yixiang Yin
 public class Gui {
     public static void main(String[] args) {
@@ -25,6 +30,20 @@ public class Gui {
         Myframe startFrame = new Myframe();
         startFrame.setLayout(null);
         startFrame.add(label);
+
+        /*
+         * created by Zihong Yuan.
+         * this listening to mouse click event and
+         * load into next scene.
+         */
+        startFrame.getContentPane().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Click");
+                startFrame.dispose();
+                Application.launch(InitialStage.class);
+            }
+        });
 
     }
 }
