@@ -9,6 +9,7 @@ public class Cards {
     int cardID;
     CardClass cardClass;                // the class of this class
     Rarity rarity;
+    String name;
     String description;                 // the name and description of this card
     String impactDescription;           // the impact of this card after player plays
     Career.PlayerCareer career;         // enable for specific career
@@ -22,10 +23,11 @@ public class Cards {
     /**
      * Constructor of a card (will have extends in subCards)
      */
-    public Cards(int cardID, CardClass cardClass, Rarity rarity, String description, String impactDescription, PlayerCareer career, int cardLevel, int maxCardLevel, int movementCost, int manaCost) {
+    public Cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description, String impactDescription, PlayerCareer career, int cardLevel, int maxCardLevel, int movementCost, int manaCost) {
         this.cardID = cardID;
         this.cardClass = cardClass;
         this.rarity = rarity;
+        this.name = name;
         this.description = description;
         this.impactDescription = impactDescription;
         this.career = career;

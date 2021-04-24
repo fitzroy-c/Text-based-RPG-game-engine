@@ -3,6 +3,14 @@ public class GameState {
     private static String[] enemyHands = new String[10];
 
 
+    /**
+     * Create the initial combat state for the game.
+     *
+     * @return The state array that begins the game.
+     */
+    public static String[] generateInitialState(){
+        return null;
+    }
 
     /**
      * End a turn of player and switch to another player

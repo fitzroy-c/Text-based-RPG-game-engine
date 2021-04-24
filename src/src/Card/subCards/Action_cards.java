@@ -14,11 +14,12 @@ public class Action_cards extends Cards {
     /**
      * Constructor of Action_cards extends from Card
      */
-    public Action_cards(int cardID, CardClass cardClass, Rarity rarity, String description,
+    public Action_cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description,
                         String impactDescription, Career.PlayerCareer career, int cardLevel,
                         int maxCardLevel, int movementCost, int manaCost,
                         int normalDamage, int pierceDamage, int continuous, int selfDamage, int drawCard) {
-        super(cardID, cardClass, rarity, description, impactDescription, career, cardLevel, maxCardLevel, movementCost, manaCost);
+
+        super(cardID, cardClass, rarity, name, description, impactDescription, career, cardLevel, maxCardLevel, movementCost, manaCost);
         this.normalDamage = normalDamage;
         this.pierceDamage = pierceDamage;
         this.continuous = continuous;
