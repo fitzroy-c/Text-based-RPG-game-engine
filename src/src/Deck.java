@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Deck {
-public static class PlayerDeck extends ArrayList<int> {
+public static class PlayerDeck extends ArrayList<Integer> {
 
     /**
      * Create player Deck for all current possible card that the player can play
@@ -15,7 +15,7 @@ public static class PlayerDeck extends ArrayList<int> {
     }
 }
 
-public static class EnemyDeck extends ArrayList<int>{
+public static class EnemyDeck extends ArrayList<Integer>{
     /**
      * Create enemy Deck for all current possible card that the player can play
      *
