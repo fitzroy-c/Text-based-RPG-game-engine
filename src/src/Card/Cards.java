@@ -4,26 +4,16 @@ package Card;
 public class Cards {
 
     // variables for each cards
+    int cardID;
     CardClass cardClass;                // the class of this class
     Rarity rarity;
-    String name;                        // the name of this card
-    String description;                 // the description of this card
+    String description;                 // the name and description of this card
+    String impactDescription;           // the impact of this card after player plays
     Career.PlayerCareer career;         // enable for specific career
+    int cardLevel;                      // upgradable cards
+    int maxCardLevel;                   // maximum upgradable level
 
     // Attributes
-    int baseCost;                       // cost of playing this card
-    int effectiveRound;                 // how many round it is effective (poison, healing)
-    int drawCard;                       // draw card from desk
-
-    // To enemy
-    int normalDamage;                   // normal attack damage (positive)
-    int magicDamage;                    // magic damage (positive)
-    int continuous;                     // (positive means healing, negative means damage)
-
-    // To self
-    int normalDamageSelf;               // normal attack damage (positive)
-    int magicDamageSelf;                // magic damage (positive)
-    int continuousSelf;                 // (positive means healing, negative means damage)
-
-
+    int movementCost;                   // cost of movement for playing this card
+    int manaCost;                       // cost of mana for playing this card
 }
