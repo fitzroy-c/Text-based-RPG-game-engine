@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+
 // contributed by Yixiang Yin
 public class Myframe extends JFrame {
     Myframe(){
@@ -14,5 +15,6 @@ public class Myframe extends JFrame {
         ImageIcon image = new ImageIcon("logo.png");   // logo goes here
         this.setIconImage(image.getImage());
         this.getContentPane().setBackground(Color.BLACK);
+
     }
 }
