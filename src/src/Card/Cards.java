@@ -1,5 +1,7 @@
 package Card;
 
+import Career.PlayerCareer;
+
 // Attributed by Guanming Ou
 public class Cards {
 
@@ -16,4 +18,40 @@ public class Cards {
     // Attributes
     int movementCost;                   // cost of movement for playing this card
     int manaCost;                       // cost of mana for playing this card
+
+    /**
+     * Constructor of a card (will have extends in subCards)
+     */
+    public Cards(int cardID, CardClass cardClass, Rarity rarity, String description, String impactDescription, PlayerCareer career, int cardLevel, int maxCardLevel, int movementCost, int manaCost) {
+        this.cardID = cardID;
+        this.cardClass = cardClass;
+        this.rarity = rarity;
+        this.description = description;
+        this.impactDescription = impactDescription;
+        this.career = career;
+        this.cardLevel = cardLevel;
+        this.maxCardLevel = maxCardLevel;
+        this.movementCost = movementCost;
+        this.manaCost = manaCost;
+    }
+
+    public CardClass getCardClass() { return cardClass; }
+
+    public int getCardID() { return cardID; }
+
+    public int getCardLevel() { return cardLevel; }
+
+    public int getManaCost() { return manaCost; }
+
+    public int getMaxCardLevel() { return maxCardLevel; }
+
+    public int getMovementCost() { return movementCost; }
+
+    public PlayerCareer getCareer() { return career; }
+
+    public Rarity getRarity() { return rarity; }
+
+    public String getDescription() { return description; }
+
+    public String getImpactDescription() { return impactDescription; }
 }

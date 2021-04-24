@@ -3,6 +3,10 @@
 //import com.google.gson.reflect.TypeToken;
 //import com.google.gson.stream.JsonReader;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,7 +14,10 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class Json {
+
+// load all Json file and information into here and modify so on
+
+//public class Json {
 //    /**
 //     * Saves this collection to the specified JSON file.
 //     *
@@ -48,4 +55,4 @@ public class Json {
 //        BookCollection bc = new BookCollection(gson.fromJson(jsonReader, CUS_LIST_TYPE));
 //        return bc;
 //    }
-}
+//}

@@ -1,6 +1,8 @@
 package Card.subCards;
 
+import Card.CardClass;
 import Card.Cards;
+import Card.Rarity;
 
 public class Action_cards extends Cards {
     int normalDamage;                   // normal attack damage (positive)
@@ -10,31 +12,31 @@ public class Action_cards extends Cards {
     int drawCard;                       // draw card from desk
 
     /**
-     * Get attributes from JSON file
+     * Constructor of Action_cards extends from Card
      */
-//    Action_cards createActionCards(TableName){
-//
-//    }
+    public Action_cards(int cardID, CardClass cardClass, Rarity rarity, String description,
+                        String impactDescription, Career.PlayerCareer career, int cardLevel,
+                        int maxCardLevel, int movementCost, int manaCost,
+                        int normalDamage, int pierceDamage, int continuous, int selfDamage, int drawCard) {
+        super(cardID, cardClass, rarity, description, impactDescription, career, cardLevel, maxCardLevel, movementCost, manaCost);
+        this.normalDamage = normalDamage;
+        this.pierceDamage = pierceDamage;
+        this.continuous = continuous;
+        this.selfDamage = selfDamage;
+        this.drawCard = drawCard;
+    }
+
+    public int getContinuous() { return continuous; }
+
+    public int getDrawCard() { return drawCard; }
+
+    public int getNormalDamage() { return normalDamage; }
+
+    public int getPierceDamage() { return pierceDamage; }
+
+    public int getSelfDamage() { return selfDamage; }
 
 
-//    public int getNormalDamage() {
-//        return getCardValue(Attribute.normalDamage);
-//    }
-//
-//    public int getPierceDamage() {
-//        return getCardValue(Attribute.pierceDamage);
-//    }
-//
-//    public int getContinuous() {
-//        return getCardValue(Attribute.continuous);
-//    }
-//
-//    public int getSelfDamage() {
-//        return getCardValue(Attribute.selfDamage);
-//    }
-//
-//    public int getDrawCard() {
-//        return getCardValue(Attribute.drawCard);
-//    }
+
 
 }
