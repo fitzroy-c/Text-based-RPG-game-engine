@@ -11,3 +11,8 @@ public class NPC {
         this.npcType = npcType;
     }
 }
+
+
+
+
+

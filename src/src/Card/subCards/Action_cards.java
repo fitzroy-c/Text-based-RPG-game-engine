@@ -36,8 +36,28 @@ public class Action_cards extends Cards {
     public int getPierceDamage() { return pierceDamage; }
 
     public int getSelfDamage() { return selfDamage; }
-
-
-
-
 }
+
+
+//hand: [0,1,2]    size 5
+//Deck: [0,1,2,3,4,5];
+//
+//hand: [0,1,2]    size 5;
+//Deck: [0,1,2,3,4,5]   ;
+//
+//arraylist: []
+//arraylist.add(3);
+//
+//randome.toInt(0,5) = 3       ;
+//arraylist.add(3);
+//arraylist.remove(2);
+//
+//Card 1   id 1   Rarity Normal
+//Card 2   id 2   Rarity Leng
+//
+//
+//randome.toInt(cardset.length)
+//
+//Normal Card set {1,1,1,1,1,1,1,1,1,2}
+//Knight Card set {2,2,2,3,4}
+
