@@ -31,6 +31,7 @@ public class InitialStage extends Application {
     StackPane hp = new StackPane();
     StackPane mp = new StackPane();
 
+
     TextField textField = new TextField("Please input your action");
     Rectangle hpBar = new Rectangle(300,30,Color.RED);
     Text hpText = new Text("HP");

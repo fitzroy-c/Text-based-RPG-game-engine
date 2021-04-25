@@ -1,0 +1,1 @@
+name：asda Career：ranger Attributes：Strength:32 Quick：39 Physical：12 Wisdom：17 HP：600 MP：352name：wawakaka Career：null Attributes：Strength:0 Quick：0 Physical：0 Wisdom：0 HP：0 MP：0name：wakawaka Career：Knight Attributes：Strength:36 Quick：25 Physical：34 Wisdom：5 HP：1700 MP：134
