@@ -12,7 +12,7 @@ public class Myframe extends JFrame {
         this.setSize(500,500);
         this.setVisible(true);
 
-        ImageIcon image = new ImageIcon("logo.png");   // logo goes here
+        ImageIcon image = new ImageIcon("src/logo.png");   // logo goes here
         this.setIconImage(image.getImage());
         this.getContentPane().setBackground(Color.BLACK);
 
