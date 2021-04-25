@@ -1,5 +1,5 @@
 package Career;
 
-public class Careers {
+public class Careers {//inherit PlayerCareer
 
 }
