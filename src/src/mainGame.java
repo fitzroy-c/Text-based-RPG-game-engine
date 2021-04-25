@@ -27,7 +27,7 @@ public class mainGame {
                 case 1:career="ranger";break;
                 case 2:career="Wizard";break;
                 case 3:career="Paladin";break;
-                default: System.out.print("wrong career");
+                default: System.out.print("wrong career"); // TODO: need to jump out of the program and reprint
             }
         }
         String setName() {
@@ -47,8 +47,8 @@ public class mainGame {
         int quick;//敏捷
         int phys;//体力
         int wisdom;//智慧
-        int hp;//生命值
-        int magic=wisdom*20+phys;//魔法值
+        int Hp;//生命值
+        int Mp=wisdom*20+phys;//魔法值
         void setAttribute(Base r){
             int sum=0;
             Random random=new Random();
