@@ -1,0 +1,1 @@
+name：asda Career：ranger Attributes：Strength:32 Quick：39 Physical：12 Wisdom：17 HP：600 MP：352
