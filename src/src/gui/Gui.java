@@ -22,27 +22,6 @@ public class Gui extends Application{
 
     public static void main(String[] args) {
         launch(args);
-        // the start frame
-
-//        ImageIcon image = new ImageIcon("logo.png");
-//        JLabel label = new JLabel();
-//        label.setText("Welcome to the world ...");
-//        label.setIcon(image);
-//        label.setHorizontalTextPosition(JLabel.CENTER);
-//        label.setVerticalTextPosition(JLabel.TOP);
-//        label.setForeground(new Color(0x00FF00));
-//        label.setFont(new Font("MV Boli",Font.PLAIN,20));
-//        label.setBackground(Color.black);
-//        label.setOpaque(true);
-//        label.setVerticalAlignment(JLabel.CENTER);
-//        label.setBounds(0,0,250,250);
-
-
-
-//        Myframe startFrame = new Myframe();
-//        startFrame.setLayout(null);
-//        startFrame.add(label);
-
         /*
          * created by Zihong Yuan.
          * this listening to mouse click event and
@@ -60,28 +39,7 @@ public class Gui extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
-        Stage popUpWindow = new Stage();
-        popUpWindow.initModality(Modality.APPLICATION_MODAL);
-        popUpWindow.setTitle("title");
-        popUpWindow.setMinWidth(250);
-        popUpWindow.setMinHeight(250);
-        Label label = new Label();
-
-        label.setText("message");
-
-
-
-        TextField textField = new TextField();
-        textField.setLayoutX(100);
-        textField.setLayoutY(100);
-        textField.setPrefSize(200,35);
-//        textField.requestFocus();
-
-        VBox layout = new VBox(10);
-        layout.getChildren().addAll(label,textField);
-        layout.setAlignment(Pos.CENTER);
-        Scene popUpScene = new Scene(layout);
-        popUpWindow.setScene(popUpScene);
+        Stage popUpWindow = gui.popUpWindow.popUpWindow("Welcome to the world","Please enter your name below");
         popUpWindow.showAndWait();
 
 
