@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -19,23 +20,6 @@ import javafx.stage.Stage;
 public class Gui extends Application{
 
 //    private final Group root = new Group();
-
-    public static void main(String[] args) {
-        launch(args);
-        /*
-         * created by Zihong Yuan.
-         * this listening to mouse click event and
-         * load into next scene.
-         */
-//        startFrame.getContentPane().addMouseListener(new MouseAdapter() {
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                System.out.println("Click");
-//                startFrame.dispose();
-//                Application.launch(InitialStage.class);
-//            }
-//        });
-    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -65,6 +49,16 @@ public class Gui extends Application{
         stage.setScene(scene);
         stage.show();
 
-
+        /*
+         * created by Zihong Yuan.
+         * this listening to mouse click event and
+         * load into next scene.
+         */
+        scene.setOnMouseClicked((MouseEvent event) -> {
+            stage.close();
+            Stage s = new Stage();
+            InitialStage ini = new InitialStage();
+            ini.start(s);
+        });
     }
 }
