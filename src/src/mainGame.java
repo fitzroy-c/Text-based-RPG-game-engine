@@ -18,7 +18,6 @@ public class mainGame {
         String name; //ID
         String career; //PlayerCareer 	0:Knight 1:Ranger 2:Wizard 3:Paladin
         void setCareer() {
-            @SuppressWarnings("resource")
             Scanner s=new Scanner(System.in);
             System.out.print("0 is Knight; 1 is ranger; 2 is Wizard; 3 is Paladin.  input your career:"+"\n");
             i=s.nextInt();
