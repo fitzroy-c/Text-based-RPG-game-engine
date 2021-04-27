@@ -37,23 +37,91 @@ public class Cards {
         this.manaCost = manaCost;
     }
 
-    public CardClass getCardClass() { return cardClass; }
+    public int getCardID() {
+        return cardID;
+    }
 
-    public int getCardID() { return cardID; }
+    public void setCardID(int cardID) {
+        this.cardID = cardID;
+    }
 
-    public int getCardLevel() { return cardLevel; }
+    public CardClass getCardClass() {
+        return cardClass;
+    }
 
-    public int getManaCost() { return manaCost; }
+    public void setCardClass(CardClass cardClass) {
+        this.cardClass = cardClass;
+    }
 
-    public int getMaxCardLevel() { return maxCardLevel; }
+    public Rarity getRarity() {
+        return rarity;
+    }
 
-    public int getMovementCost() { return movementCost; }
+    public void setRarity(Rarity rarity) {
+        this.rarity = rarity;
+    }
 
-    public PlayerCareer getCareer() { return career; }
+    public String getName() {
+        return name;
+    }
 
-    public Rarity getRarity() { return rarity; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public String getImpactDescription() { return impactDescription; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImpactDescription() {
+        return impactDescription;
+    }
+
+    public void setImpactDescription(String impactDescription) {
+        this.impactDescription = impactDescription;
+    }
+
+    public PlayerCareer getCareer() {
+        return career;
+    }
+
+    public void setCareer(PlayerCareer career) {
+        this.career = career;
+    }
+
+    public int getCardLevel() {
+        return cardLevel;
+    }
+
+    public void setCardLevel(int cardLevel) {
+        this.cardLevel = cardLevel;
+    }
+
+    public int getMaxCardLevel() {
+        return maxCardLevel;
+    }
+
+    public void setMaxCardLevel(int maxCardLevel) {
+        this.maxCardLevel = maxCardLevel;
+    }
+
+    public int getMovementCost() {
+        return movementCost;
+    }
+
+    public void setMovementCost(int movementCost) {
+        this.movementCost = movementCost;
+    }
+
+    public int getManaCost() {
+        return manaCost;
+    }
+
+    public void setManaCost(int manaCost) {
+        this.manaCost = manaCost;
+    }
 }
