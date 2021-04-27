@@ -70,18 +70,18 @@ public class Action_cards extends Cards {
     @Override
     public String toString() {
         return "Action_cards{" +
-                "cardID:" + getCardID() +
-                "cardClass:" + getCardClass() +
-                "rarity:" + getRarity() +
-                "name:" + getName() +
-                "description:" + getDescription() +
-                "impactDescription:" + getImpactDescription() +
-                "career:" + getCareer() +
-                "cardLevel:" + getCardLevel() +
-                "maxCardLevel:" + getMaxCardLevel() +
-                "movementCost:" + getMovementCost() +
-                "manaCost:" + getManaCost() +
-                "normalDamage:" + normalDamage +
+                "  cardID:" + getCardID() +
+                ", cardClass:" + getCardClass() +
+                ", rarity:" + getRarity() +
+                ", name:" + getName() +
+                ", description:" + getDescription() +
+                ", impactDescription:" + getImpactDescription() +
+                ", career:" + getCareer() +
+                ", cardLevel:" + getCardLevel() +
+                ", maxCardLevel:" + getMaxCardLevel() +
+                ", movementCost:" + getMovementCost() +
+                ", manaCost:" + getManaCost() +
+                ", normalDamage:" + normalDamage +
                 ", pierceDamage:" + pierceDamage +
                 ", continuous:" + continuous +
                 ", selfDamage:" + selfDamage +

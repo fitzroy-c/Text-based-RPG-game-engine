@@ -48,13 +48,13 @@ public class JsonSnL {
         jsonsnl.saveToJSONFile(file);
         System.out.println("saved");
 
-//        System.out.println("loading...");
-//        List<Action_cards> newCards = jsonsnl.loadFromJSONFile(file);
-//        System.out.println("loaded");
-//
-//        for (Action_cards c : newCards){
-//            System.out.println(c.toString());
-//        }
+        System.out.println("loading...");
+        List<Action_cards> newCards = jsonsnl.loadFromJSONFile(file);
+        System.out.println("loaded");
+
+        for (Action_cards c : newCards){
+            System.out.println(c.toString());
+        }
 
     }
     // This is just for testing, delete later --------------------------
@@ -94,15 +94,13 @@ public class JsonSnL {
         JsonReader jsonReader = null;
 
         final Type CUS_LIST_TYPE = new TypeToken<List<Action_cards>>() {}.getType();
-        //or TypeToken.getParameterized(ArrayList.class, PersonJSON.class).getType();
 
         try{
             jsonReader = new JsonReader(new FileReader(file));
         }catch (Exception e) {
             e.printStackTrace();
         }
-//        List<Action_cards> lc = new BookCollection(gson.fromJson(jsonReader, CUS_LIST_TYPE));
-//        return bc;
-        return null;
+//        return gson.fromJson(jsonReader, List<Action_cards>)
+        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
     }
 }
