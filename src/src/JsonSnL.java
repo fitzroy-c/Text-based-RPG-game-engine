@@ -63,7 +63,7 @@ public class JsonSnL {
 
     private List<Action_cards> cards;
     public JsonSnL() {
-        cards = new ArrayList<Action_cards>();
+        cards = new ArrayList<>();
     }
 
     /**
@@ -80,6 +80,7 @@ public class JsonSnL {
             e.printStackTrace();
         }
     }
+
 
 
     /**
