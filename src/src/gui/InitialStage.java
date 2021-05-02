@@ -68,13 +68,17 @@ public class InitialStage extends Application {
 
         root.getChildren().addAll(textField,hp,mp,monster);
         Scene scene = new Scene(root,WIDTH,HEIGHT, Color.BLACK);
+        // just to set it to not be resizable and open the full screen mode. (edited by Yixiang Yin)
+//        primaryStage.setResizable(true);
+        primaryStage.setFullScreen(true);
+
         primaryStage.setScene(scene);
         primaryStage.setTitle("Text Game Name");
         primaryStage.show();
 
         //Press Escape on keyboard to exit the program. For the test purpose.
-        scene.setOnKeyPressed(keyEvent -> {
-            if (keyEvent.getCode()== KeyCode.ESCAPE) {System.exit(0);}
-        });
+//        scene.setOnKeyPressed(keyEvent -> {
+//            if (keyEvent.getCode()== KeyCode.ESCAPE) {System.exit(0);}
+//        });
     }
 }
