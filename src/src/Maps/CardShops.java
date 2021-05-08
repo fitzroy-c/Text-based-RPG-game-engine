@@ -19,6 +19,8 @@ public class CardShops extends Rooms{
 
     // TODO: Create method that randomly draw three goods from the cardsForSell
 
+
+
     // This is the tuple that bundle cards and value together
     class Goods<Cards, Integer> {
         public final Cards cards;
@@ -37,6 +39,4 @@ public class CardShops extends Rooms{
             return value;
         }
     }
-
-    Goods<Cards, Integer> goods;
 }

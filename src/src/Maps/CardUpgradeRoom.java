@@ -50,8 +50,7 @@ public class CardUpgradeRoom extends Rooms{
      * This check if this card can be upgrade
      * - False: This card has already reached max level
      * @param card The card to be upgrade
-     * @param
-     * @return card that has been upgraded
+     * @return Boolean: True (can upgrade), false (cannot upgrade)
      */
     public static boolean canUpgrade(Cards card) {
         return (card.getCardLevel() < card.getMaxCardLevel() ? true : false);
@@ -75,7 +74,7 @@ public class CardUpgradeRoom extends Rooms{
 
         int cost = costList[currentNumberOfUpgrade];
 
-        return (wallet < cost ? true : false);
+        return (wallet >= cost ? true : false);
     }
 
 }
