@@ -8,7 +8,9 @@ package Maps;
  * - There are bad fairy, which will give good blessing that comes with a cost.
  */
 public class BlessingRoom extends Rooms {
+    int[] blessingSet;
     public BlessingRoom(String name, String description) {
         super(name, description);
     }
+
 }

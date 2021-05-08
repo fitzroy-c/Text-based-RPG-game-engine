@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Monster {
     String name;
-    NPCType npcType;
     Element element;
 
     int maxHP;
@@ -17,7 +16,6 @@ public class Monster {
     public Monster (String name, Element element, int maxHP,
                     int maxMP, int[] monsterCardSet, int aiLevel){
         this.name = name;
-        this.npcType = NPCType.Monster;
         this.element = element;
         this.maxHP = maxHP;
         this.maxMP = maxMP;
@@ -31,14 +29,6 @@ public class Monster {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public NPCType getNpcType() {
-        return npcType;
-    }
-
-    public void setNpcType(NPCType npcType) {
-        this.npcType = npcType;
     }
 
     public Element getElement() {

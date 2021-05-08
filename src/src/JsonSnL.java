@@ -99,9 +99,6 @@ public class JsonSnL {
         System.out.println("loading...");
         List<Environment> newEnvironments = loadEnvironmentFromJSONFile(file);
         System.out.println("loaded");
-
-
-
     }
     // This is just for testing, delete later --------------------------
 
