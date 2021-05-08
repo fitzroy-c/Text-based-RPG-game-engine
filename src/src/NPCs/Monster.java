@@ -10,7 +10,7 @@ public class Monster {
 
     int maxHP;
     int maxMP;
-    int[] monsterCardSet;
+    int[] monsterCardSet; // TODO: change to arraySet of cards later (just for demonstration yet)
     int aiLevel;
 
     public Monster (String name, Element element, int maxHP,
