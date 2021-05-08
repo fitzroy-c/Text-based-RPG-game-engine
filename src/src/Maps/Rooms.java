@@ -1,7 +1,5 @@
 package Maps;
 
-import NPCs.NPC;
-
 /**
  * Basically, player are given option to go which room out of three options
  * Initially the rooms are randommly draw with three option.

@@ -12,7 +12,7 @@ public class Cards {
     String name;
     String description;                 // the name and description of this card
     String impactDescription;           // the impact of this card after player plays
-    Career.PlayerCareer career;         // enable for specific career
+    String career;                      // enable for specific career
     int cardLevel;                      // upgradable cards
     int maxCardLevel;                   // maximum upgradable level
 
@@ -23,7 +23,7 @@ public class Cards {
     /**
      * Constructor of a card (will have extends in subCards)
      */
-    public Cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description, String impactDescription, PlayerCareer career, int cardLevel, int maxCardLevel, int movementCost, int manaCost) {
+    public Cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description, String impactDescription, String career, int cardLevel, int maxCardLevel, int movementCost, int manaCost) {
         this.cardID = cardID;
         this.cardClass = cardClass;
         this.rarity = rarity;
@@ -85,11 +85,11 @@ public class Cards {
         this.impactDescription = impactDescription;
     }
 
-    public PlayerCareer getCareer() {
+    public String getCareer() {
         return career;
     }
 
-    public void setCareer(PlayerCareer career) {
+    public void setCareer(String career) {
         this.career = career;
     }
 

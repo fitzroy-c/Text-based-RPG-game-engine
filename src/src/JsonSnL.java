@@ -1,5 +1,4 @@
 import Card.subCards.Action_cards;
-import Career.PlayerCareer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -31,12 +30,12 @@ public class JsonSnL {
 
         jsonsnl.cards.add(new Action_cards(1, CardClass.Action, Rarity.Common, "First Card",
                 "This card is for testing purpose", "Deal one damage to opponent with no cost",
-                PlayerCareer.Knight, 1, 1, 0,0,1,0,
+                "Knight", 1, 1, 0,0,1,0,
                 0,0,0));
 
         jsonsnl.cards.add(new Action_cards(2, CardClass.Action, Rarity.Common, "Second Card",
                 "This card is for testing purpose", "Deal two damage to opponent with 1 cost",
-                PlayerCareer.Knight, 1, 1, 1,0,2,0,
+                "Knight", 1, 1, 1,0,2,0,
                 0,0,0));
 
         File file = new File("json_files/testing.json");
@@ -80,8 +79,6 @@ public class JsonSnL {
             e.printStackTrace();
         }
     }
-
-
 
     /**
      * Load a pre-existing book collection from a JSON file.

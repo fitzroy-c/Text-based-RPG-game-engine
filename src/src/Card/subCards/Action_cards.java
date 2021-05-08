@@ -15,7 +15,7 @@ public class Action_cards extends Cards {
      * Constructor of Action_cards extends from Card
      */
     public Action_cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description,
-                        String impactDescription, Career.PlayerCareer career, int cardLevel,
+                        String impactDescription, String career, int cardLevel,
                         int maxCardLevel, int movementCost, int manaCost,
                         int normalDamage, int pierceDamage, int continuous, int selfDamage, int drawCard) {
 
