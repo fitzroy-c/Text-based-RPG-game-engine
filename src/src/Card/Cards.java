@@ -1,7 +1,5 @@
 package Card;
 
-import Career.PlayerCareer;
-
 // Attributed by Guanming Ou
 public class Cards {
 

@@ -1,4 +1,4 @@
-import Career.Careers;
+
 
 import java.util.Random;
 
@@ -11,10 +11,10 @@ public class Game {
 
 
 
-    public int drawCards(int[] hands, Careers playerCareer){
+    public int drawCards(int[] hands, String playerCareer){
         pDeck = new Deck.PlayerDeck(hands);
 
-        // draws a random tile from the availables
+        // draws a random tile from the available
         Random r = new Random();
 
         //TODO: get the card id from certain range (for specific player/enemy class)

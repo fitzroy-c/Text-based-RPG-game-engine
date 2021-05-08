@@ -3,7 +3,6 @@ package Card.subCards;
 import Card.CardClass;
 import Card.Cards;
 import Card.Rarity;
-import Career.PlayerCareer;
 
 public class Normal_Attack_cards extends Cards {
     /**
@@ -21,7 +20,7 @@ public class Normal_Attack_cards extends Cards {
      * @param movementCost
      * @param manaCost
      */
-    public Normal_Attack_cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description, String impactDescription, PlayerCareer career, int cardLevel, int maxCardLevel, int movementCost, int manaCost) {
+    public Normal_Attack_cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description, String impactDescription, String career, int cardLevel, int maxCardLevel, int movementCost, int manaCost) {
         super(cardID, cardClass, rarity, name, description, impactDescription, career, cardLevel, maxCardLevel, movementCost, manaCost);
     }
 }

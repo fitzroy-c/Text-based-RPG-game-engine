@@ -5,9 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import Career.Careers;
-import Career.PlayerCareer;
-
 /**
  * this file is to test the fundamental elements of the game
  * detail data can be replaced by other files
