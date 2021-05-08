@@ -63,7 +63,8 @@ public class CardDestroyRoom extends Rooms{
      * This check if this card can be Destroy
      * - False: This is the last card inside the card list
      * @param currentCardList The current set of card that the player holds
-     * @return Boolean: True (not the last card, and card inside the list), false (it is the last card or card not inside the list)
+     * @return Boolean: True (not the last card, and card inside the list),
+     *                  False (it is the last card or card not inside the list)
      */
     public static boolean canDestroy(Cards card, ArrayList<Cards> currentCardList) {
         int countTrue = 0;

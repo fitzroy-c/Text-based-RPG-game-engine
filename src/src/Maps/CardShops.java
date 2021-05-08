@@ -17,6 +17,14 @@ public class CardShops extends Rooms{
         this.cardsForSell = cardsForSell;
     }
 
+    public List<Goods> getCardsForSell() {
+        return cardsForSell;
+    }
+
+    public void setCardsForSell(List<Goods> cardsForSell) {
+        this.cardsForSell = cardsForSell;
+    }
+
     // TODO: Create method that randomly draw three goods from the cardsForSell
 
 
