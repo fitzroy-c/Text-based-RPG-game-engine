@@ -17,10 +17,10 @@ public class Counter_cards extends Cards {
      * @param career
      * @param cardLevel
      * @param maxCardLevel
-     * @param movementCost
+     * @param actionCost
      * @param manaCost
      */
-    public Counter_cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description, String impactDescription, String career, int cardLevel, int maxCardLevel, int movementCost, int manaCost) {
-        super(cardID, cardClass, rarity, name, description, impactDescription, career, cardLevel, maxCardLevel, movementCost, manaCost);
+    public Counter_cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description, String impactDescription, String career, int cardLevel, int maxCardLevel, int actionCost, int manaCost) {
+        super(cardID, cardClass, rarity, name, description, impactDescription, career, cardLevel, maxCardLevel, actionCost, manaCost);
     }
 }

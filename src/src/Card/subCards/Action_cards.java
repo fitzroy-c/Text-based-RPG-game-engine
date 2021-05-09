@@ -12,10 +12,10 @@ public class Action_cards extends Cards {
      */
     public Action_cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description,
                         String impactDescription, String career, int cardLevel,
-                        int maxCardLevel, int movementCost, int manaCost,
+                        int maxCardLevel, int actionCost, int manaCost,
                         int normalDamage, int pierceDamage, int continuous, int selfDamage, int drawCard) {
 
-        super(cardID, cardClass, rarity, name, description, impactDescription, career, cardLevel, maxCardLevel, movementCost, manaCost);
+        super(cardID, cardClass, rarity, name, description, impactDescription, career, cardLevel, maxCardLevel, actionCost, manaCost);
 
     }
 

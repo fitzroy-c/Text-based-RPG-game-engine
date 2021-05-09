@@ -4,10 +4,14 @@ import Card.CardClass;
 import Card.Cards;
 import Card.Rarity;
 
+/**
+ * The attack card that deal damage to opponent with the cost of action points
+ */
 public class Normal_Attack_cards extends Cards {
     int normalDamage;                   // normal attack damage (positive)
     int pierceDamage;                   // damage that penetrate armor
     int continuous;                     // (positive means healing, negative means damage)
+    int effectiveRound;                 // determines how many rounds 'continous' is effective
     int selfDamage;                     // damage to self when playing this card
     int drawCard;                       // draw card from desk
 
@@ -16,13 +20,14 @@ public class Normal_Attack_cards extends Cards {
      */
     public Normal_Attack_cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description,
                         String impactDescription, String career, int cardLevel,
-                        int maxCardLevel, int movementCost, int manaCost,
-                        int normalDamage, int pierceDamage, int continuous, int selfDamage, int drawCard) {
+                        int maxCardLevel, int actionCost, int manaCost, int normalDamage,
+                        int pierceDamage, int continuous, int effectiveRound, int selfDamage, int drawCard) {
 
-        super(cardID, cardClass, rarity, name, description, impactDescription, career, cardLevel, maxCardLevel, movementCost, manaCost);
+        super(cardID, cardClass, rarity, name, description, impactDescription, career, cardLevel, maxCardLevel, actionCost, manaCost);
         this.normalDamage = normalDamage;
         this.pierceDamage = pierceDamage;
         this.continuous = continuous;
+        this.effectiveRound = effectiveRound;
         this.selfDamage = selfDamage;
         this.drawCard = drawCard;
     }
@@ -50,6 +55,10 @@ public class Normal_Attack_cards extends Cards {
     public void setContinuous(int continuous) {
         this.continuous = continuous;
     }
+
+    public int getEffectiveRound() { return effectiveRound; }
+
+    public void setEffectiveRound(int effectiveRound) { this.effectiveRound = effectiveRound; }
 
     public int getSelfDamage() {
         return selfDamage;
@@ -79,7 +88,7 @@ public class Normal_Attack_cards extends Cards {
                 ", career:" + getCareer() +
                 ", cardLevel:" + getCardLevel() +
                 ", maxCardLevel:" + getMaxCardLevel() +
-                ", movementCost:" + getMovementCost() +
+                ", actionCost:" + getMovementCost() +
                 ", manaCost:" + getManaCost() +
                 ", normalDamage:" + normalDamage +
                 ", pierceDamage:" + pierceDamage +

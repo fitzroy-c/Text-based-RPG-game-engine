@@ -15,13 +15,14 @@ public class Cards {
     int maxCardLevel;                   // maximum upgradable level
 
     // Attributes
-    int movementCost;                   // cost of movement for playing this card
+    int actionCost;                   // cost of movement for playing this card
     int manaCost;                       // cost of mana for playing this card
 
     /**
      * Constructor of a card (will have extends in subCards)
      */
-    public Cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description, String impactDescription, String career, int cardLevel, int maxCardLevel, int movementCost, int manaCost) {
+    public Cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description,
+                 String impactDescription, String career, int cardLevel, int maxCardLevel, int actionCost, int manaCost) {
         this.cardID = cardID;
         this.cardClass = cardClass;
         this.rarity = rarity;
@@ -31,7 +32,7 @@ public class Cards {
         this.career = career;
         this.cardLevel = cardLevel;
         this.maxCardLevel = maxCardLevel;
-        this.movementCost = movementCost;
+        this.actionCost = actionCost;
         this.manaCost = manaCost;
     }
 
@@ -108,11 +109,11 @@ public class Cards {
     }
 
     public int getMovementCost() {
-        return movementCost;
+        return actionCost;
     }
 
-    public void setMovementCost(int movementCost) {
-        this.movementCost = movementCost;
+    public void setMovementCost(int actionCost) {
+        this.actionCost = actionCost;
     }
 
     public int getManaCost() {
