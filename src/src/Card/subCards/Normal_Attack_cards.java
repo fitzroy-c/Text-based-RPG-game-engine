@@ -13,7 +13,6 @@ public class Normal_Attack_cards extends Cards {
     int continuous;                     // (positive means healing, negative means damage)
     int effectiveRound;                 // determines how many rounds 'continous' is effective
     int selfDamage;                     // damage to self when playing this card
-    int drawCard;                       // draw card from desk
 
     /**
      * Constructor of Normal_Attack_cards extends from Card
@@ -21,7 +20,7 @@ public class Normal_Attack_cards extends Cards {
     public Normal_Attack_cards(int cardID, CardClass cardClass, Rarity rarity, String name, String description,
                         String impactDescription, String career, int cardLevel,
                         int maxCardLevel, int actionCost, int manaCost, int normalDamage,
-                        int pierceDamage, int continuous, int effectiveRound, int selfDamage, int drawCard) {
+                        int pierceDamage, int continuous, int effectiveRound, int selfDamage) {
 
         super(cardID, cardClass, rarity, name, description, impactDescription, career, cardLevel, maxCardLevel, actionCost, manaCost);
         this.normalDamage = normalDamage;
@@ -29,7 +28,6 @@ public class Normal_Attack_cards extends Cards {
         this.continuous = continuous;
         this.effectiveRound = effectiveRound;
         this.selfDamage = selfDamage;
-        this.drawCard = drawCard;
     }
 
     public int getNormalDamage() {
@@ -68,14 +66,6 @@ public class Normal_Attack_cards extends Cards {
         this.selfDamage = selfDamage;
     }
 
-    public int getDrawCard() {
-        return drawCard;
-    }
-
-    public void setDrawCard(int drawCard) {
-        this.drawCard = drawCard;
-    }
-
     @Override
     public String toString() {
         return "Normal_Attack_cards{" +
@@ -94,7 +84,6 @@ public class Normal_Attack_cards extends Cards {
                 ", pierceDamage:" + pierceDamage +
                 ", continuous:" + continuous +
                 ", selfDamage:" + selfDamage +
-                ", drawCard:" + drawCard +
                 '}';
     }
 }

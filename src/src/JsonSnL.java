@@ -1,4 +1,5 @@
 import Card.subCards.Action_cards;
+import Card.subCards.Normal_Attack_cards;
 import Maps.Environment;
 import Maps.MonsterRoom;
 import Maps.Rooms;
@@ -37,12 +38,12 @@ public class JsonSnL {
 
         List<Cards> cards = new ArrayList<Cards>();
 
-        cards.add(new Action_cards(1, CardClass.Action, Rarity.Common, "First Card",
+        cards.add(new Normal_Attack_cards(1, CardClass.Normal_Attack, Rarity.Common, "First Card",
                 "This card is for testing purpose", "Deal one damage to opponent with no cost",
                 "Knight", 1, 1, 0,0,1,0,
                 0,0,0));
 
-        cards.add(new Action_cards(2, CardClass.Action, Rarity.Common, "Second Card",
+        cards.add(new Normal_Attack_cards(2, CardClass.Normal_Attack, Rarity.Common, "Second Card",
                 "This card is for testing purpose", "Deal ten damage to opponent with 1 cost",
                 "Knight", 1, 1, 1,0,10,0,
                 0,0,0));
