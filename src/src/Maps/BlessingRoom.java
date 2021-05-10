@@ -13,4 +13,8 @@ public class BlessingRoom extends Rooms {
         super(name, description);
     }
 
+
+    class blessing {
+
+    }
 }
