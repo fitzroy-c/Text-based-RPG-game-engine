@@ -97,5 +97,20 @@ public class Gui extends Application{
 //            InitialStage ini = new InitialStage();
 //            ini.start(s);
 //        });
+
+        /**
+         * Build a game
+         * - A variable to say whether this is a fresh game or already played game
+         * - Create player instance ( or load player instance from json (blank))
+         * -
+         *
+         *
+         * - Main game:
+         * -  enter rooms (various rooms (blessing, destroy, upgrade))
+         * -  enter fight scene
+         * -
+         */
+
+
     }
 }

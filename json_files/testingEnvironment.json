@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Forrest",
+    "description": "The light fades as you enter the forest, turning into a strange dark and quiet place, the sounds have all but vanished. The smell of animal or beast hangs in a still air, no flowers seem to help the uneasy odor. In the dim light you see shadows dart about, you barely hear the sound of things moving, and you feel as if everything is watching you.",
+    "listOfRooms": [
+      {
+        "monster": {
+          "name": "Goblin worker",
+          "element": "Normal",
+          "maxHP": 8,
+          "maxMP": 0,
+          "monsterCardSet": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "aiLevel": 0
+        },
+        "name": "Goblin worker",
+        "description": "small, malicious and greedy goblin worker.  Beware..."
+      },
+      {
+        "monster": {
+          "name": "Goblin soldier",
+          "element": "Normal",
+          "maxHP": 20,
+          "maxMP": 0,
+          "monsterCardSet": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "aiLevel": 0
+        },
+        "name": "Goblin soldier",
+        "description": "Strong, malicious and greedy goblin soldier.  Beware..."
+      }
+    ]
+  }
+]

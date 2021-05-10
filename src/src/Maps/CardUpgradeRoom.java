@@ -56,6 +56,8 @@ public class CardUpgradeRoom extends Rooms{
         return (card.getCardLevel() < card.getMaxCardLevel() ? true : false);
     }
 
+    // 0 (lv1),1(lv2),2(lv3)   ,3,4,5
+
     /**
      * This check if player have enough gold to upgrade the card
      * - False: Player cannot afford with current gold in wallet

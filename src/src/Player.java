@@ -20,6 +20,8 @@ public class Player {
     int normalArmor;
     int magicArmor;
 
+    int wallet; // (how many gold he has)
+
     // Cards
     ArrayList<Cards> currentHand;       // the cards on the hands, during battle maximum 6 cards
     ArrayList<Cards> currentCardSet;    // the cards that player owns

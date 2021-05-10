@@ -6,6 +6,7 @@ public class Environment {
     String name;
     String description;
     List<Rooms> listOfRooms;
+    // next environment
 
 
     public Environment(String name, String description, List<Rooms> listOfRooms) {
