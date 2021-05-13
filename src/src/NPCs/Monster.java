@@ -2,16 +2,21 @@ package NPCs;
 
 import Card.Element;
 
-import java.util.ArrayList;
-
 public class Monster {
-    String name;
+    private String name;
+    private String intro; //describe the monster
+
     Element element;
 
     int maxHP;
     int maxMP;
-
-    int aiLevel;
+    int level;
+    private int strength;
+    private int intelligence;
+    private int dexterity;
+    private int luck;
+    private int stealth;
+    private int gold;
 
     public Monster (String name, Element element, int maxHP,
                     int maxMP, int aiLevel){
@@ -19,7 +24,7 @@ public class Monster {
         this.element = element;
         this.maxHP = maxHP;
         this.maxMP = maxMP;
-        this.aiLevel = aiLevel;
+        this.level = aiLevel;
     }
 
     public String getName() {
@@ -54,11 +59,11 @@ public class Monster {
         this.maxMP = maxMP;
     }
 
-    public int getAiLevel() {
-        return aiLevel;
+    public int getLevel() {
+        return level;
     }
 
-    public void setAiLevel(int aiLevel) {
-        this.aiLevel = aiLevel;
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
