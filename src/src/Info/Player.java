@@ -1,3 +1,5 @@
+package Info;
+
 import Card.Cards;
 
 import java.util.ArrayList;

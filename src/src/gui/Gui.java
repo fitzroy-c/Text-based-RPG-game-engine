@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 Main gui class
 */
 // contributed by Yixiang Yin
-public class Gui extends Application{
+public class Gui extends DefaultRoom{  ///修改部分
     Stage window1;
     Stage window2;
 
@@ -26,7 +26,8 @@ public class Gui extends Application{
     Scene Scene2;
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
+        super.start(stage);  ///修改部分
         window1 =stage;
         Label introText = new Label("Background: You are the Little Red Riding Hood. Recently, your grandma seems to be lost. You've been all the places in the town " +
                 "except the black forest in front of you and finally decide to walk into the forest to find your grandma");
@@ -51,8 +52,9 @@ public class Gui extends Application{
         window1.setScene(Scene1);
 
         window1.setTitle("game title");
-        window1.setWidth(1500);
-        window1.setHeight(1500);
+        ///修改部分
+//        window1.setWidth(1500);
+//        window1.setHeight(1500);
         window1.show();
 
         // set up scene2

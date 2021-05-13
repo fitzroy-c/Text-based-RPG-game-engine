@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  * It's just a rough design at this stage, but can be implemented
  * more functionalities in the future.
  */
-public class InitialStage extends Application {
+public class InitialStage extends DefaultRoom {
 
     int WIDTH = 1280, HEIGHT = 720;
     int HP = 100, MP = 100;
@@ -53,6 +53,7 @@ public class InitialStage extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        super.start(primaryStage);
         textField.setLayoutX(400);
         textField.setLayoutY(600);
         textField.setPrefSize(450,35);
@@ -73,7 +74,6 @@ public class InitialStage extends Application {
 //        primaryStage.setFullScreen(true);
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Text Game Name");
         primaryStage.show();
 
         //Press Escape on keyboard to exit the program. For the test purpose.
