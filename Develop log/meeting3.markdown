@@ -27,3 +27,4 @@ What to do:
 
 - Bill  : Outside features, switch between rooms, 
           - (enter room, interaction in shops/card upgrade/card destroy/blessing)
+          

@@ -19,6 +19,8 @@ Main gui class
 */
 // contributed by Yixiang Yin
 public class Gui extends Application{
+
+
     Stage window1;
     Stage window2;
 
