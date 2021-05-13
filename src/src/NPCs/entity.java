@@ -16,6 +16,7 @@ public abstract class entity {
     private int health;
     private int level;
     private int strength;
+    private int armour;
 
     private int intelligence;
     private int luck;
@@ -43,6 +44,26 @@ public abstract class entity {
         }
         this.health = health;
     }
+
+    public int getHealthMax() {
+        return healthMax;
+    }
+
+    public void setHealthMax(int healthMax) {
+        this.healthMax = healthMax;
+        if (health > healthMax) {
+            health = healthMax;
+        }
+    }
+
+    public double getDamage() {
+        return damage;
+    }
+
+    public void setDamage(double damage) {
+        this.damage = damage;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -75,6 +96,14 @@ public abstract class entity {
         this.strength = strength;
     }
 
+    public int getArmour() {
+        return armour;
+    }
+
+    public void setArmour(int armour) {
+        this.armour = armour;
+    }
+
     public int getIntelligence() {
         return intelligence;
     }
@@ -89,5 +118,21 @@ public abstract class entity {
 
     public void setLuck(int luck) {
         this.luck = luck;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public double getCritChance() {
+        return critChance;
+    }
+
+    public void setCritChance(double critChance) {
+        this.critChance = critChance;
     }
 }

@@ -1,5 +1,7 @@
 package NPCs;
 
+//may can be replaced
+
 import Card.Element;
 
 public class Monster {

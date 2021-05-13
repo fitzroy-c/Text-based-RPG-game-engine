@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class deals with Non Player Character (NPC) and all of their properties.
+ * This class deals with NPC and all of their properties.(aka monsters)
  * Any method that changes a NPC interacts with it should be placed within this class.
  * supplement for entity
  * @author yitao chen
@@ -16,6 +16,12 @@ public class npc extends entity{
     private int xpGain;
     private String id;
     private Element element;//characteristic;
+
+    public String monsterType;
+
+    public npc(){
+    }
+
     public npc(String npcID, Element npcElement) {
         this.id = npcID;
         this.element = npcElement;
@@ -45,7 +51,7 @@ public class npc extends entity{
         }
         if (obj instanceof npc) {
             npc Npc = (npc) obj;
-            return Npc.getId().equals(id);
+            return Npc.monsterType.equals(this.monsterType);
         }
         return false;
     }
