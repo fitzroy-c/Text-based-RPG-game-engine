@@ -7,7 +7,6 @@ import Card.Element;
  */
 
 public class Wolf extends npc{
-    Element element = Element.Normal;
 
     public Wolf(int playerLevel) {
         this.monsterType = "Wolf";
@@ -19,7 +18,7 @@ public class Wolf extends npc{
         this.setIntelligence(2);
         this.setXPGain(25 + playerLevel * 3);
         this.setGold(playerLevel * 2);
-        this.setElement(element);
+        this.setElement(Element.Normal);
     }
     public Wolf(int playerLevel, Element element1) {
         this.monsterType = "Wolf";

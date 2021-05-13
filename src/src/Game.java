@@ -1,5 +1,7 @@
 
 
+import Info.Player;
+
 import java.util.Random;
 
 public class Game {
@@ -8,7 +10,7 @@ public class Game {
     // current card(choice) in front of the user
     Boolean isInCombatSystem;
     Player player;
-    
+
 
 
 

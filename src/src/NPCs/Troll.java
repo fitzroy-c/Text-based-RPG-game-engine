@@ -7,7 +7,6 @@ import Card.Element;
  * @author yitao chen
  */
 public class Troll extends npc{
-    Element element = Element.Normal;
     public Troll(int playerLevel){
         this.monsterType = "Troll";
         this.setHealthMax(70 + playerLevel * 11);
@@ -18,7 +17,7 @@ public class Troll extends npc{
         this.setIntelligence(1);
         this.setXPGain(75 + playerLevel * 3);
         this.setGold(25 + playerLevel * 10);
-        this.setElement(element);
+        this.setElement(Element.Normal);
     }
     public Troll(int playerLevel, Element element1){
         this.monsterType = "Troll";

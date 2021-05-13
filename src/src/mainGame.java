@@ -6,7 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * this file is to test the fundamental elements of the game
+ * this file is to test the fundamental functions of the game
+ * instance for further development.
  * detail data can be replaced by other files
  * @author yitao chen
  */
@@ -41,7 +42,6 @@ public class mainGame {
     }
     static class Attribute extends Base{
         int strength;//力量
-        int quick;//敏捷
         int phys;//体力
         int wisdom;//智慧
         int Hp;//生命值
@@ -54,45 +54,38 @@ public class mainGame {
                 case(0): //Knight
                     do{
                         strength=random.nextInt(45)+35;
-                        quick=random.nextInt(25)+(15);//敏捷
                         phys=random.nextInt(35)+(25);//体力
                         wisdom=random.nextInt(5)+(5);//智慧
-                        sum=strength+quick+phys+wisdom;
+                        sum=strength+phys+wisdom;
                     } while(sum!=100);break;
                 case(1)://Ranger
                     do{
                         strength=random.nextInt(30)+10;
-                        quick=random.nextInt(40)+(30);//敏捷
                         phys=random.nextInt(20)+(10);//体力
                         wisdom=random.nextInt(10)+(10);//智慧
-                        sum=strength+quick+phys+wisdom;
+                        sum=strength+phys+wisdom;
                     } while(sum!=100);
                     break;
                 case(2)://Wizard
                     do{
                         strength=random.nextInt(25)+15;
-                        quick=random.nextInt(40)+(30);//敏捷
                         phys=random.nextInt(25)+(15);//体力
                         wisdom=random.nextInt(25)+(15);//智慧
-                        sum=strength+quick+phys+wisdom;
+                        sum=strength+phys+wisdom;
                     } while(sum!=100);
                     break;
                 case(3)://Paladin ???
                     do{
                         strength=random.nextInt(20)+10;
-                        quick=random.nextInt(45)+(35);//敏捷
                         phys=random.nextInt(20)+(10);//体力
                         wisdom=random.nextInt(25)+(15);//智慧
-                        sum=strength+quick+phys+wisdom;
+                        sum=strength+phys+wisdom;
                     } while(sum!=100);
                     break;
             }
         }
         public int getStrength() {
             return strength;
-        }
-        public int getQuick() {
-            return quick;
         }
         public int getPhys() {
             return phys;
@@ -111,7 +104,7 @@ public class mainGame {
                 FileWriter desFile=new FileWriter("game.txt",true);
                 BufferedWriter out=new BufferedWriter(desFile);
                 out.write("name："+base.getName()+" Career："+base.getCareer()+
-                        " Attributes："+"Strength:"+this.getStrength()+" Quick："+this.getQuick()+" Physical："+this.getPhys()+
+                        " Attributes："+"Strength:"+this.getStrength()+" Physical："+this.getPhys()+
                         " Wisdom："+this.getWisdom()+" HP："+this.getHp()+
                         " MP："+this.getMagic());out.close();
             } catch(FileNotFoundException e) {e.printStackTrace();}
@@ -128,7 +121,7 @@ public class mainGame {
         Attribute attribute=new Attribute();
         attribute.setAttribute(base);
         System.out.println("The specific attributes of your role are：\n"+"Name："+base.getName()+" Career："+base.getCareer()+
-                "   Attributes："+"Strength:"+attribute.getStrength()+" Quick："+attribute.getQuick()+" Physical："+attribute.getPhys()+
+                "   Attributes："+"Strength:"+attribute.getStrength()+" Physical："+attribute.getPhys()+
                 " Wisdom："+attribute.getWisdom()+" HP："+attribute.getHp()+
                 " MP："+attribute.getMagic());
         attribute.save(base);
