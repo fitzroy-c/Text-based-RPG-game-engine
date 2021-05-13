@@ -28,5 +28,5 @@ public enum Element {
         return false;
     }
 
-    //TODO: still need string to element?
+    //TODO: still need string to element? or override the equal function
 }
