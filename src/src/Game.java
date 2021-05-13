@@ -8,7 +8,7 @@ public class Game {
     // current card(choice) in front of the user
     Boolean isInCombatSystem;
     Player player;
-    
+
 
 
 
