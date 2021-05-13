@@ -51,7 +51,7 @@ public class JsonSnL {
         file = new File("json_files/testingCard.json");
 
         // To ensure there is no file previous named the same
-        file.delete();
+        //file.delete();
 
         System.out.println("Cards json");
 
@@ -71,11 +71,11 @@ public class JsonSnL {
         List<Rooms> forrestRooms = new ArrayList<Rooms>();
 
         int[] goblinCardSet1 = {1,1,1,1,1,1,1,1,2};
-        Monster goblinWorker = new Monster("Goblin worker", Element.Normal, 8, 0, goblinCardSet1, 0);
-        Monster goblinSoldier = new Monster("Goblin soldier", Element.Normal, 20, 0, goblinCardSet1, 0);
+        Monster goblinWorker = new Monster("Wolf worker", Element.Normal, 8, 0, 0);
+        Monster goblinSoldier = new Monster("Wolf soldier", Element.Normal, 20, 0, 0);
 
-        forrestRooms.add(new MonsterRoom("Goblin worker", "small, malicious and greedy goblin worker.  Beware...", goblinWorker));
-        forrestRooms.add(new MonsterRoom("Goblin soldier","Strong, malicious and greedy goblin soldier.  Beware...", goblinSoldier));
+        forrestRooms.add(new MonsterRoom("Wolf worker", "small, malicious and greedy goblin worker.  Beware...", goblinWorker));
+        forrestRooms.add(new MonsterRoom("Wolf soldier","Strong, malicious and greedy goblin soldier.  Beware...", goblinSoldier));
 
         Environment forrest = new Environment("Forrest",
                 "The light fades as you enter the forest, turning into a strange dark and quiet place, " +
