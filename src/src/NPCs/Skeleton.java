@@ -1,7 +1,10 @@
 package NPCs;
 
 import Card.Element;
-
+/**
+ * A quite weak monster.
+ * @author yitao chen
+ */
 public class Skeleton extends npc{
     Element element = Element.Normal;
 
