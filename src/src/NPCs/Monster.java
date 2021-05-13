@@ -1,26 +1,32 @@
 package NPCs;
 
+//may can be replaced
+
 import Card.Element;
 
-import java.util.ArrayList;
-
 public class Monster {
-    String name;
+    private String name;
+    private String intro; //describe the monster
+
     Element element;
 
     int maxHP;
     int maxMP;
-    int[] monsterCardSet; // TODO: change to arraySet of cards later (just for demonstration yet)
-    int aiLevel;
+    int level;
+    private int strength;
+    private int intelligence;
+    private int dexterity;
+    private int luck;
+    private int stealth;
+    private int gold;
 
     public Monster (String name, Element element, int maxHP,
-                    int maxMP, int[] monsterCardSet, int aiLevel){
+                    int maxMP, int aiLevel){
         this.name = name;
         this.element = element;
         this.maxHP = maxHP;
         this.maxMP = maxMP;
-        this.monsterCardSet = monsterCardSet;
-        this.aiLevel = aiLevel;
+        this.level = aiLevel;
     }
 
     public String getName() {
@@ -55,19 +61,11 @@ public class Monster {
         this.maxMP = maxMP;
     }
 
-    public int[] getMonsterCardSet() {
-        return monsterCardSet;
+    public int getLevel() {
+        return level;
     }
 
-    public void setMonsterCardSet(int[] monsterCardSet) {
-        this.monsterCardSet = monsterCardSet;
-    }
-
-    public int getAiLevel() {
-        return aiLevel;
-    }
-
-    public void setAiLevel(int aiLevel) {
-        this.aiLevel = aiLevel;
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

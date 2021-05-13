@@ -27,4 +27,6 @@ public enum Element {
         // TODO: Finish this function to calculate is a counter by b.
         return false;
     }
+
+    //TODO: still need string to element? or override the equal function
 }
