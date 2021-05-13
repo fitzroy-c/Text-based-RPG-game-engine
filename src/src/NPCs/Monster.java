@@ -10,16 +10,15 @@ public class Monster {
 
     int maxHP;
     int maxMP;
-    int[] monsterCardSet; // TODO: change to arraySet of cards later (just for demonstration yet)
+
     int aiLevel;
 
     public Monster (String name, Element element, int maxHP,
-                    int maxMP, int[] monsterCardSet, int aiLevel){
+                    int maxMP, int aiLevel){
         this.name = name;
         this.element = element;
         this.maxHP = maxHP;
         this.maxMP = maxMP;
-        this.monsterCardSet = monsterCardSet;
         this.aiLevel = aiLevel;
     }
 
@@ -53,14 +52,6 @@ public class Monster {
 
     public void setMaxMP(int maxMP) {
         this.maxMP = maxMP;
-    }
-
-    public int[] getMonsterCardSet() {
-        return monsterCardSet;
-    }
-
-    public void setMonsterCardSet(int[] monsterCardSet) {
-        this.monsterCardSet = monsterCardSet;
     }
 
     public int getAiLevel() {
