@@ -9,6 +9,7 @@ public class Skeleton extends npc{
     Element element = Element.Normal;
 
     public Skeleton(int playerLevel) {
+        this.monsterType = "Skeleton";
         this.setHealthMax(50 + (int) Math.pow(playerLevel, 3));
         this.setHealth(50 + (int) Math.pow(playerLevel, 3));
         this.setArmour(0);
