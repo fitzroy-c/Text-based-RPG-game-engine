@@ -9,7 +9,13 @@ import java.util.List;
 /**
  * This class deals with NPC and all of their properties.(aka monsters)
  * Any method that changes a NPC interacts with it should be placed within this class.
- * supplement for entity
+ * supplement for entity.(For simplify, we consider all NPCs evil, no friend with main character )
+ *
+ * Mainly function:
+ * a NPC should have an ID to identify
+ * 5 extended monster kinds: Giant, Troll, Wolf, Skeleton, Goblin
+ * default characteristic: normal (details can be seen in Card.Element)
+ * xp, gold to get if we defeat one npc.
  * @author yitao chen
  */
 public class npc extends entity{
