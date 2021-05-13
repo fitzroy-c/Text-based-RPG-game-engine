@@ -8,6 +8,7 @@ import java.io.IOException;
 /**
  * this file is to test the fundamental elements of the game
  * detail data can be replaced by other files
+ * @author yitao chen
  */
 public class mainGame {
     static class Base {

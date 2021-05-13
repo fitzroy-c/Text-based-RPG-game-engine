@@ -5,6 +5,8 @@ import java.util.Map;
 
 /**
  * superclass for all entities (monsters...)
+ * quite basic
+ * @author yitao chen
  */
 public abstract class entity {
     // All entities can attack, have health, have names
