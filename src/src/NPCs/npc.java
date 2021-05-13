@@ -15,16 +15,17 @@ import java.util.List;
 public class npc extends entity{
     private int xpGain;
     private String id;
-    private Element element;//characteristic;
+    public Element element;//characteristic;
 
     public String monsterType;
 
     public npc(){
+        element = Element.Normal;
     }
 
-    public npc(String npcID, Element npcElement) {
+    public npc(String npcID) {
         this.id = npcID;
-        this.element = npcElement;
+        element = Element.Normal;
     }
     public int getXPGain() {
         return xpGain;

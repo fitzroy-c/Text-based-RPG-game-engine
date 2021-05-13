@@ -1,5 +1,7 @@
 
 
+import Info.Player;
+
 import java.util.Random;
 
 public class Game {

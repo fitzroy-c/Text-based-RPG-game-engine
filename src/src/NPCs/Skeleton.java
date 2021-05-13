@@ -6,7 +6,6 @@ import Card.Element;
  * @author yitao chen
  */
 public class Skeleton extends npc{
-    Element element = Element.Normal;
 
     public Skeleton(int playerLevel) {
         this.monsterType = "Skeleton";
@@ -18,7 +17,7 @@ public class Skeleton extends npc{
         this.setIntelligence(3);
         this.setXPGain(10 + playerLevel * 3);
         this.setGold(playerLevel * 3);
-        this.setElement(element);
+        this.setElement(Element.Normal);
     }
     public Skeleton(int playerLevel, Element element1) {
         this.monsterType = "Skeleton";

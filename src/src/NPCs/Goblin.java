@@ -8,7 +8,6 @@ import Card.Element;
  * @author yitao chen
  */
 public class Goblin extends npc{
-    Element element = Element.Normal;
 
     public Goblin(int playerLevel) {
         this.monsterType = "Goblin";
@@ -20,7 +19,7 @@ public class Goblin extends npc{
         this.setCritChance(0.02);
         this.setXPGain(10 + playerLevel * 3);
         this.setGold(playerLevel * 5);
-        this.setElement(element);
+        this.setElement(Element.Normal);
     }
     public Goblin(int playerLevel, Element element1) {
         this.monsterType = "Goblin";

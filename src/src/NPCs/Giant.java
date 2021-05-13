@@ -7,7 +7,6 @@ import Card.Element;
  * @author yitao chen
  */
 public class Giant extends npc{
-    Element element = Element.Normal;
 
     public Giant(int playerLevel) {
         this.monsterType = "Giant";
@@ -19,7 +18,7 @@ public class Giant extends npc{
         this.setCritChance(0.03);
         this.setXPGain(50 + playerLevel * 3);
         this.setGold(15 + playerLevel * 11);
-        this.setElement(element);
+        this.setElement(Element.Normal);
     }
     public Giant(int playerLevel,Element element1) {
         this.monsterType = "Giant";

@@ -9,6 +9,9 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
+/**
+ * @author yitao chen
+ */
 public class NPCsTest {
 
     private npc dummyMonster;
@@ -65,5 +68,28 @@ public class NPCsTest {
         Goblin goblin2 = new Goblin(playerLevel,Element.Dark);
         assertEquals(Element.Dark, goblin2.element);
 
+        Troll troll = new Troll(playerLevel);
+        assertEquals(Element.Normal, troll.element);
+
+        Troll troll2 = new Troll(playerLevel,Element.Dark);
+        assertEquals(Element.Dark, troll2.element);
+
+        Skeleton skeleton = new Skeleton(playerLevel);
+        assertEquals(Element.Normal,skeleton.element);
+
+        Skeleton skeleton2 = new Skeleton(playerLevel,Element.Light);
+        assertEquals(Element.Light,skeleton2.element);
+
+        Wolf wolf = new Wolf(playerLevel);
+        assertEquals(Element.Normal,wolf.element);
+
+        Wolf wolf2 = new Wolf(playerLevel,Element.Earth);
+        assertEquals(Element.Earth,wolf2.element);
+
+        Giant giant = new Giant(playerLevel);
+        assertEquals(Element.Normal,giant.element);
+
+        Giant giant2 = new Giant(playerLevel,Element.Nature);
+        assertEquals(Element.Nature,giant2.element);
     }
 }
