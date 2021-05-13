@@ -70,7 +70,7 @@ public class InitialStage extends Application {
         Scene scene = new Scene(root,WIDTH,HEIGHT, Color.BLACK);
         // just to set it to not be resizable and open the full screen mode. (edited by Yixiang Yin)
 //        primaryStage.setResizable(true);
-        primaryStage.setFullScreen(true);
+//        primaryStage.setFullScreen(true);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Text Game Name");

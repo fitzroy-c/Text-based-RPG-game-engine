@@ -5,6 +5,10 @@ import java.util.Random;
 public class Game {
     static Deck.PlayerDeck pDeck; // Initialise the Wake Deck
     static Deck.EnemyDeck dDeck; // Initialise the Daikaiju Deck
+    // current card(choice) in front of the user
+    Boolean isInCombatSystem;
+    Player player;
+    
 
 
 
