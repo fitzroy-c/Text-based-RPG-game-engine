@@ -7,26 +7,34 @@ import Player.Bag;
 import java.util.List;
 
 /**
+ * Grammar:
  * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
- *              <attack-command>|<retreat-command>|<defence-command>|<view-command>
+ *              <attack-command>|<retreat-command>|<defence-command>|<view-command>|<help-command>
  * <save>    := save | save game
  * <exit>    := exit | exit game
  * <detect>  := detect
  * <move-command> := <move_action> <direction> | <direction>
  * <move_action> := go | move | head
  * <direction> := north | south | east | west
- * <take-command> := <take_action> <item-name> | <take_action> gold
+ * <take-command> := <take_action> <item-name> | <take_action> <gold | golds | money>
  * <item-name> := "item inside the room"
  * <take_action> := take | pick
  * <drop-command> := <drop_action> <item-name>
  * <drop_action> := drop | put down | abandon
  * <talk-command> := talk | chat | speak
- * <view-command> := <look-action> stats | <look-action> backpack
+ * <view-command> := <look-action> <stat> | <look-action> <bag> | <stat> | <bag>
+ * <stat>         := <stat | stats | statistic>
+ * <bag>          := <backpack | bag>
  * <look-action> := look | view | see | browse
  * <attack-command> := attack
  * <retreat-command> := retreat | run away | escape
  * <defence-command> := defence
+ * <help-command> := help
+ *
+ * Specification
+ * - Will only execute the first command if there are two command inside the user input
  */
+
 
 public class Parser {
     Player player;
