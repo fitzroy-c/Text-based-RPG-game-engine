@@ -29,6 +29,26 @@ public class Parser {
         _tokenizer = tokenizer;
     }
 
+    // <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
+    //              <attack-command>|<retreat-command>|<defence-command>|<view-command>
+    public Command parseCommand() {
+
+        if (this._tokenizer.current().type()==Token.Type.SAVE)
+
+
+
+
+
+
+
+//        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ADD){
+//            this._tokenizer.next();
+//            Exp exp = this.parseExp();
+//            return new AddExp(term, exp);
+//        }
+
+
+    }
 
 
 
@@ -37,6 +57,11 @@ public class Parser {
 
 
 
+    public static void main(String[] args) {
+        CommandTokenizer mathTokenizer = new CommandTokenizer("2+1");
+        Command t1 = new Parser(mathTokenizer).parseCommand();
+        System.out.println(t1.show());
 
+    }
 
 }
