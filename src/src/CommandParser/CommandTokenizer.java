@@ -1,7 +1,5 @@
 package CommandParser;
 
-import java.util.Locale;
-
 public class CommandTokenizer {
 
     private String _buffer;		//save text
@@ -29,10 +27,11 @@ public class CommandTokenizer {
             return;
         }
         char firstChar = _buffer.charAt(0);
+        StringBuilder createString = new StringBuilder();
+        StringBuilder createNextString = new StringBuilder();
 
         if (Character.isLetter(firstChar)) {
             // create the first word
-            StringBuilder createString = new StringBuilder();
             int count = 0;
             while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
                 createString.append(_buffer.charAt(count));
@@ -43,123 +42,133 @@ public class CommandTokenizer {
             // SAVE <save | save game>
             if (createString.toString().equals("save")) {
                 count++; // skip white space
-                StringBuilder creatNextString = new StringBuilder();
                 while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
-                    creatNextString.append(_buffer.charAt(count));
+                    createNextString.append(_buffer.charAt(count));
                     count++;
                 }
-                creatNextString = new StringBuilder(creatNextString.toString().toLowerCase());
+                createNextString = new StringBuilder(createNextString.toString().toLowerCase());
 
-                if (creatNextString.toString().equals("game"))
-                    currentToken = new Token(createString+" "+creatNextString,Token.Type.SAVE);
-                else
+                // save only if the command is 'save'
+                if (createNextString.length() == 0)
                     currentToken = new Token(createString.toString(),Token.Type.SAVE);
+                // save only if the command is 'save game'
+                if (createNextString.toString().equals("game"))
+                    currentToken = new Token(createString+" "+createNextString,Token.Type.SAVE);
             }
 
             // EXIT <exit | exit game>
-            if (createString.toString().equals("exit")){
+            else if (createString.toString().equals("exit")){
                 count++; // skip white space
-                StringBuilder creatNextString = new StringBuilder();
                 while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
-                    creatNextString.append(_buffer.charAt(count));
+                    createNextString.append(_buffer.charAt(count));
                     count++;
                 }
-                creatNextString = new StringBuilder(creatNextString.toString().toLowerCase());
+                createNextString = new StringBuilder(createNextString.toString().toLowerCase());
 
-                if (creatNextString.toString().equals("game"))
-                    currentToken = new Token(createString+" "+creatNextString,Token.Type.EXIT);
-                else
+                // save only if the command is 'exit'
+                if (createNextString.length() == 0)
                     currentToken = new Token(createString.toString(),Token.Type.EXIT);
+                // save only if the command is 'exit game'
+                if (createNextString.toString().equals("game"))
+                    currentToken = new Token(createString+" "+createNextString,Token.Type.EXIT);
             }
 
             // DETECT <detect>
-            if (createString.toString().equals("detect"))
+            else if (createString.toString().equals("detect"))
                 currentToken = new Token(createString.toString(),Token.Type.DETECT);
 
             // DIRECTION_ACTION <go | move | head>
-            if (createString.toString().equals("go") | createString.toString().equals("move") | createString.toString().equals("head"))
+            else if (createString.toString().equals("go") | createString.toString().equals("move") | createString.toString().equals("head"))
                 currentToken = new Token(createString.toString(),Token.Type.DIRECTION_ACTION);
 
             // DIRECTION <north | south | east | west>
-            if (createString.toString().equals("north") | createString.toString().equals("south") | createString.toString().equals("east")| createString.toString().equals("west"))
+            else if (createString.toString().equals("north") | createString.toString().equals("south") | createString.toString().equals("east")| createString.toString().equals("west"))
                 currentToken = new Token(createString.toString(),Token.Type.DIRECTION);
 
             // TAKE_ACTION <pick | pick up>
-            if (createString.toString().equals("take") | createString.toString().equals("pick"))
+            else if (createString.toString().equals("take") | createString.toString().equals("pick"))
                 currentToken = new Token(createString.toString(),Token.Type.TAKE_ACTION);
 
-            if (createString.toString().equals("gold") | createString.toString().equals("golds") | createString.toString().equals("money"))
+            else if (createString.toString().equals("gold") | createString.toString().equals("golds") | createString.toString().equals("money"))
                 currentToken = new Token(createString.toString(),Token.Type.GOLD);
-                // TODO: make checkHasItem, return true if this is a valid item name
+
+            else if (createString.toString().equals("item")) // TODO: make checkHasItem, return true if this is a valid item name
+                currentToken = new Token(createString.toString(),Token.Type.ITEM);
 //            if (checkHasItem(createString))
 //                currentToken = new Token(createString,Token.Type.ITEM);
 
             // DROP_ACTION <drop | put down | abandon>
-            if (createString.toString().equals("drop") | createString.toString().equals("abandon") | createString.toString().equals("put")){
+            else if (createString.toString().equals("drop") | createString.toString().equals("abandon") | createString.toString().equals("put")){
                 count++; // skip white space
-                StringBuilder creatNextString = new StringBuilder();
                 while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
-                    creatNextString.append(_buffer.charAt(count));
+                    createNextString.append(_buffer.charAt(count));
                     count++;
                 }
-                creatNextString = new StringBuilder(creatNextString.toString().toLowerCase());
+                createNextString = new StringBuilder(createNextString.toString().toLowerCase());
 
-                if (creatNextString.toString().equals("down"))
-                    currentToken = new Token(createString+" "+creatNextString,Token.Type.DROP_ACTION);
-                else
+                // save only if the command is 'drop | abandon'
+                if (createString.toString().equals("drop")| createString.toString().equals("abandon") | createNextString.length() == 0)
                     currentToken = new Token(createString.toString(),Token.Type.DROP_ACTION);
+                // save only if the command is 'put down'
+                if (createString.toString().equals("put") && createNextString.toString().equals("down"))
+                    currentToken = new Token(createString+" "+createNextString,Token.Type.DROP_ACTION);
             }
 
             // TALK <talk | chat | speak>
-            if (createString.toString().equals("talk") | createString.toString().equals("chat") | createString.toString().equals("speak"))
+            else if (createString.toString().equals("talk") | createString.toString().equals("chat") | createString.toString().equals("speak"))
                 currentToken = new Token(createString.toString(),Token.Type.TALK);
 
             // VIEW_ACTION
-            if (createString.toString().equals("look") | createString.toString().equals("view") | createString.toString().equals("see") | createString.toString().equals("browse"))
+            else if (createString.toString().equals("look") | createString.toString().equals("view") | createString.toString().equals("see") | createString.toString().equals("browse"))
                 currentToken = new Token(createString.toString(),Token.Type.VIEW_ACTION);
 
             // STAT
-            if (createString.toString().equals("stat"))
+            else if (createString.toString().equals("stats") | createString.toString().equals("stat") | createString.toString().equals("statistic"))
                 currentToken = new Token(createString.toString(),Token.Type.STAT);
 
             // BACKPACK
-            if (createString.toString().equals("backpack"))
+            else if (createString.toString().equals("backpack") | createString.toString().equals("bag") )
                 currentToken = new Token(createString.toString(),Token.Type.BACKPACK);
 
             // ATTACK
-            if (createString.toString().equals("attack"))
+            else if (createString.toString().equals("attack"))
                 currentToken = new Token(createString.toString(),Token.Type.ATTACK);
 
-            // RETREAT
-            if (createString.toString().equals("retreat") | createString.toString().equals("run") | createString.toString().equals("escape")){
+            // RETREAT <retreat| run away | escape | escape away>
+            else if (createString.toString().equals("retreat") | createString.toString().equals("run") | createString.toString().equals("escape")){
                 count++; // skip white space
-                StringBuilder creatNextString = new StringBuilder();
                 while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
-                    creatNextString.append(_buffer.charAt(count));
+                    createNextString.append(_buffer.charAt(count));
                     count++;
                 }
-                creatNextString = new StringBuilder(creatNextString.toString().toLowerCase());
+                createNextString = new StringBuilder(createNextString.toString().toLowerCase());
 
-                if (creatNextString.toString().equals("away"))
-                    currentToken = new Token(createString+" "+creatNextString,Token.Type.RETREAT);
-                else
+                // RETREAT only if the command is <retreat| escape>
+                if (createNextString.length() == 0 && !createString.toString().equals("run"))
                     currentToken = new Token(createString.toString(),Token.Type.RETREAT);
+                // RETREAT only if the command is <run away | retreat away | escape away>
+                if (createNextString.toString().equals("away"))
+                    currentToken = new Token(createString+" "+createNextString,Token.Type.RETREAT);
             }
 
             // DEFENCE
-            if (createString.toString().equals("defence"))
+            else if (createString.toString().equals("defence"))
                 currentToken = new Token(createString.toString(),Token.Type.DEFENCE);
 
             // HELP
-            if (createString.toString().equals("help"))
+            else if (createString.toString().equals("help"))
                 currentToken = new Token(createString.toString(),Token.Type.HELP);
 
             else
                 currentToken = new Token(createString.toString(),Token.Type.ERROR);
-
         }
-
-        // ########## YOUR CODE ENDS HERE ##########
+        // if there is no other type match, it is a unknown command
+        if (currentToken == null){
+            if (createNextString.length()==0)
+                currentToken = new Token(createString.toString(),Token.Type.ERROR);
+            else
+                currentToken = new Token(createString+" "+createNextString.toString(),Token.Type.ERROR);
+        }
 
         // Remove the extracted token from buffer
         int tokenLen = currentToken.token().length();
@@ -168,7 +177,6 @@ public class CommandTokenizer {
 
     /**
      *  returned the current token extracted by {@code next()}
-     *  **** please do not modify this part ****
      *
      * @return type: Token
      */
@@ -178,7 +186,6 @@ public class CommandTokenizer {
 
     /**
      *  check whether there still exists another tokens in the buffer or not
-     *  **** please do not modify this part ****
      *
      * @return type: boolean
      */

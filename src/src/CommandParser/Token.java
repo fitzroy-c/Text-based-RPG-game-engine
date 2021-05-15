@@ -9,13 +9,15 @@ package CommandParser;
  * <move-command> := <move_action> <direction> | <direction>
  * <move_action> := go | move | head
  * <direction> := north | south | east | west
- * <take-command> := <take_action> <item-name> | <take_action> gold
+ * <take-command> := <take_action> <item-name> | <take_action> <gold | golds | money>
  * <item-name> := "item inside the room"
  * <take_action> := take | pick
  * <drop-command> := <drop_action> <item-name>
  * <drop_action> := drop | put down | abandon
  * <talk-command> := talk | chat | speak
- * <view-command> := <look-action> stats | <look-action> backpack
+ * <view-command> := <look-action> <stat> | <look-action> <bag> | <stat> | <bag>
+ * <stat>         := <stat | stats | statistic>
+ * <bag>          := <backpack | bag>
  * <look-action> := look | view | see | browse
  * <attack-command> := attack
  * <retreat-command> := retreat | run away | escape
