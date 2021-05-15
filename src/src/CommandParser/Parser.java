@@ -40,26 +40,31 @@ public class Parser {
     // <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
     //              <attack-command>|<retreat-command>|<defence-command>|<view-command>
     public void parseCommand() {
+        boolean cmdExecuted = false; // allow only one command to execute per command
         // <save>    := save | save game
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.SAVE){
-            if (!this._tokenizer.hasNext()){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.SAVE){
+            this._tokenizer.next();
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 //            player.save();
                 System.out.println("game saved");
+                cmdExecuted = true;
             }
         }
 
         // <exit>    := exit | exit game
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.EXIT) {
-            if (!this._tokenizer.hasNext()){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.EXIT) {
+            this._tokenizer.next();
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: save the game and back to the main menu
 //               player.save();
                 System.out.println("exited game");
+                cmdExecuted = true;
             }
         }
 
         // <detect>  := detect
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DETECT) {
-            if (!this._tokenizer.hasNext()){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DETECT) {
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: save the game and back to the main menu, need player to have location that stores monster
 //            Monster monster = new Monster();
 //            if (monster == null) {
@@ -68,19 +73,23 @@ public class Parser {
 //                System.out.println("There is no monster near you, phew～");
 //            }
                 System.out.println("detected monster");
+                cmdExecuted = true;
             } else {
                 callError();
             }
         }
 
         // <move-command> := <move_action> <direction> | <direction>
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DIRECTION){
-            if (!this._tokenizer.hasNext()){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DIRECTION){
+            cmdExecuted = true;
+            this._tokenizer.next();
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: complete this method which make the player go to the direction.
                 System.out.println("headed to "+this._tokenizer.current().token()+" direction");
             }
         }
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DIRECTION_ACTION){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DIRECTION_ACTION){
+            cmdExecuted = true;
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.DIRECTION){
@@ -95,7 +104,8 @@ public class Parser {
         }
 
         // <take-command> := <take_action> <item-name> | <take_action> gold
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TAKE_ACTION){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TAKE_ACTION){
+            cmdExecuted = true;
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.GOLD){
@@ -114,7 +124,8 @@ public class Parser {
         }
 
         // <drop-command> := <drop_action> <item-name>
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DROP_ACTION){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DROP_ACTION){
+            cmdExecuted = true;
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.ITEM){
@@ -129,27 +140,34 @@ public class Parser {
         }
 
         // <talk-command> := talk | chat | speak
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TALK){
-            if (!this._tokenizer.hasNext()){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TALK){
+            this._tokenizer.next();
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: complete this method which talk to NPC at the coordinate
                 System.out.println("player talked to npc");
+                cmdExecuted = true;
             }
         }
 
         // <view-command> := <look-action> <stat> | <look-action> <bag> | <stat> | <bag>
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.STAT){
-            if (!this._tokenizer.hasNext()){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.STAT){
+            this._tokenizer.next();
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: complete this method which print out player's stat
                 System.out.println("player stat");
+                cmdExecuted = true;
             }
         }
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BACKPACK){            this._tokenizer.next();
-            if (!this._tokenizer.hasNext()){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BACKPACK){
+            this._tokenizer.next();
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: complete this method which print out player's backpack
                 System.out.println("player backpack");
+                cmdExecuted = true;
             }
         }
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.VIEW_ACTION){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.VIEW_ACTION){
+            cmdExecuted = true;
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.STAT){
@@ -168,36 +186,43 @@ public class Parser {
         }
 
         // <attack-command> := attack
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ATTACK){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ATTACK){
             this._tokenizer.next();
-            if (!this._tokenizer.hasNext()){
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: complete this method which attack to the monster
                 System.out.println("player attacked");
+                cmdExecuted = true;
             }
         }
 
         // <retreat-command> := retreat | run away | escape
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.RETREAT){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.RETREAT){
             this._tokenizer.next();
-            if (!this._tokenizer.hasNext()){
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: complete this method which may let player escape from the fight
                 System.out.println("player escaped");
+                cmdExecuted = true;
             }
         }
 
         // <defence-command> := defence
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DEFENCE){
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DEFENCE){
             this._tokenizer.next();
-            if (!this._tokenizer.hasNext()){
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: complete this method which let player defense
                 System.out.println("player defenced");
+                cmdExecuted = true;
             }
         }
 
         // <help-command> := help
-        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.HELP){
-            // TODO: complete this method which print out help menu
-            System.out.println("help menu");
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.HELP){
+            this._tokenizer.next();
+            if (!(this._tokenizer.current().type()==Token.Type.ERROR)){
+                // TODO: complete this method which print out help menu
+                System.out.println("help menu");
+                cmdExecuted = true;
+            }
         }
 
         // this is printed when the command is not recognised.
@@ -245,9 +270,13 @@ public class Parser {
          * - help       -> help menue
          * - defence    -> player defenced
          * - defence de -> error
+         * - retreat defence -> error
+         * - go defence
+         * - save game exit game -> game saved
+         * - go defence -> error
          */
         Player ply = new Player("testname", 10,10,0);
-        String cmd = "save game exit game";
+        String cmd = "go defence";
         CommandTokenizer mt = new CommandTokenizer(cmd);
         new Parser(mt, ply).parseCommand();
     }
