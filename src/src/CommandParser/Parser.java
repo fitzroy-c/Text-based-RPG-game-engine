@@ -1,4 +1,10 @@
 package CommandParser;
+
+import NPCs.Monster;
+import Player.Player;
+
+import java.util.List;
+
 /**
  * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
  *              <attack-command>|<retreat-command>|<defence-command>|<view-command>
@@ -22,46 +28,103 @@ package CommandParser;
  */
 
 public class Parser {
-
+    Player player;
     CommandTokenizer _tokenizer;
 
-    public Parser(CommandTokenizer tokenizer) {
+    public Parser(CommandTokenizer tokenizer, Player player) {
+        this.player = player;
         _tokenizer = tokenizer;
     }
 
     // <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
     //              <attack-command>|<retreat-command>|<defence-command>|<view-command>
-    public Command parseCommand() {
-
+    public void parseCommand() {
+        // <save>    := save | save game
         if (this._tokenizer.current().type()==Token.Type.SAVE)
+            player.save();
 
+        // <exit>    := exit | exit game
+        if (this._tokenizer.current().type()==Token.Type.EXIT) {
+            // TODO: save the game and back to the main menu
+            player.save();
+        }
 
+        // <detect>  := detect
+        if (this._tokenizer.current().type()==Token.Type.DETECT) {
+            // TODO: save the game and back to the main menu, need player to have location that stores monster
+//            Monster monster = new Monster();
+//            if (monster == null) {
+//                System.out.println("There is a "+ monster.getName() +" around you, WATCH OUT!");
+//            } else {
+//                System.out.println("There is no monster near you, phew～");
+//            }
+        }
 
+        // <move-command> := <move_action> <direction> | <direction>
+        if (this._tokenizer.current().type()==Token.Type.DIRECTION){
+            // TODO: complete this method which make the player go to the direction.
+        }
 
+        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DIRECTION_ACTION){
+            this._tokenizer.next();
+            if (this._tokenizer.current().type()==Token.Type.DIRECTION){
+                // TODO: complete this method which make the player go to the direction.
+            }
+        }
 
+        // <take-command> := <take_action> <item-name> | <take_action> gold
+        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TAKE_ACTION){
+            this._tokenizer.next();
+            if (this._tokenizer.current().type()==Token.Type.GOLD){
+                // TODO: complete this method which make the player gain the gold inside the room
+            }
+            if (this._tokenizer.current().type()==Token.Type.ITEM){
+                // TODO: complete this method which make the player pick up the item inside the room
+            }
+        }
 
+        // <drop-command> := <drop_action> <item-name>
+        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DROP_ACTION){
+            this._tokenizer.next();
+            if (this._tokenizer.current().type()==Token.Type.ITEM){
+                // TODO: complete this method which make the player put back the item inside the room
+            }
+        }
 
-//        if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ADD){
-//            this._tokenizer.next();
-//            Exp exp = this.parseExp();
-//            return new AddExp(term, exp);
-//        }
+        // <talk-command> := talk | chat | speak
+        if (this._tokenizer.current().type()==Token.Type.TALK){
+            // TODO: complete this method which talk to NPC at the coordinate
+        }
 
+        // <view-command> := <look-action> stats | <look-action> backpack
+        if (this._tokenizer.current().type()==Token.Type.VIEW_ACTION){
+            this._tokenizer.next();
+            if (this._tokenizer.current().type()==Token.Type.STAT){
+                // TODO: complete this method which print out player's stat
+            }
+            if (this._tokenizer.current().type()==Token.Type.BACKPACK){
+                // TODO: complete this method which print out player's backpack
+            }
+        }
+
+        // <attack-command> := attack
+        if (this._tokenizer.current().type()==Token.Type.ATTACK){
+            // TODO: complete this method which attack to the monster
+        }
+
+        // <retreat-command> := retreat | run away | escape
+        if (this._tokenizer.current().type()==Token.Type.RETREAT){
+            // TODO: complete this method which may let player escape from the fight
+        }
+
+        // <defence-command> := defence
+        if (this._tokenizer.current().type()==Token.Type.DEFENCE){
+            // TODO: complete this method which let player defense
+        }
+
+        if (this._tokenizer.current().type()==Token.Type.ERROR){
+            // TODO: return the error message
+        }
 
     }
-
-
-
-
-
-
-
-
-    public static void main(String[] args) {
-        CommandTokenizer mathTokenizer = new CommandTokenizer("2+1");
-        Command t1 = new Parser(mathTokenizer).parseCommand();
-        System.out.println(t1.show());
-
-    }
-
 }

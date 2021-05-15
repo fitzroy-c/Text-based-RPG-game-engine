@@ -32,126 +32,126 @@ public class CommandTokenizer {
 
         if (Character.isLetter(firstChar)) {
             // create the first word
-            String createString = "";
+            StringBuilder createString = new StringBuilder();
             int count = 0;
             while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
-                createString = createString+""+_buffer.charAt(count);
+                createString.append(_buffer.charAt(count));
                 count++;
             }
-            createString = createString.toLowerCase();
+            createString = new StringBuilder(createString.toString().toLowerCase());
 
             // SAVE <save | save game>
-            if (createString.equals("save")) {
+            if (createString.toString().equals("save")) {
                 count++; // skip white space
-                String creatNextString = "";
+                StringBuilder creatNextString = new StringBuilder();
                 while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
-                    creatNextString = creatNextString+""+_buffer.charAt(count);
+                    creatNextString.append(_buffer.charAt(count));
                     count++;
                 }
-                creatNextString = creatNextString.toLowerCase();
+                creatNextString = new StringBuilder(creatNextString.toString().toLowerCase());
 
-                if (creatNextString.equals("game"))
+                if (creatNextString.toString().equals("game"))
                     currentToken = new Token(createString+" "+creatNextString,Token.Type.SAVE);
                 else
-                    currentToken = new Token(createString,Token.Type.SAVE);
+                    currentToken = new Token(createString.toString(),Token.Type.SAVE);
             }
 
             // EXIT <exit | exit game>
-            if (createString.equals("exit")){
+            if (createString.toString().equals("exit")){
                 count++; // skip white space
-                String creatNextString = "";
+                StringBuilder creatNextString = new StringBuilder();
                 while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
-                    creatNextString = creatNextString+""+_buffer.charAt(count);
+                    creatNextString.append(_buffer.charAt(count));
                     count++;
                 }
-                creatNextString = creatNextString.toLowerCase();
+                creatNextString = new StringBuilder(creatNextString.toString().toLowerCase());
 
-                if (creatNextString.equals("game"))
+                if (creatNextString.toString().equals("game"))
                     currentToken = new Token(createString+" "+creatNextString,Token.Type.EXIT);
                 else
-                    currentToken = new Token(createString,Token.Type.EXIT);
+                    currentToken = new Token(createString.toString(),Token.Type.EXIT);
             }
 
             // DETECT <detect>
-            if (createString.equals("detect"))
-                currentToken = new Token(createString,Token.Type.DETECT);
+            if (createString.toString().equals("detect"))
+                currentToken = new Token(createString.toString(),Token.Type.DETECT);
 
             // DIRECTION_ACTION <go | move | head>
-            if (createString.equals("go") | createString.equals("move") | createString.equals("head"))
-                currentToken = new Token(createString,Token.Type.DIRECTION_ACTION);
+            if (createString.toString().equals("go") | createString.toString().equals("move") | createString.toString().equals("head"))
+                currentToken = new Token(createString.toString(),Token.Type.DIRECTION_ACTION);
 
             // DIRECTION <north | south | east | west>
-            if (createString.equals("north") | createString.equals("south") | createString.equals("east")| createString.equals("west"))
-                currentToken = new Token(createString,Token.Type.DIRECTION);
+            if (createString.toString().equals("north") | createString.toString().equals("south") | createString.toString().equals("east")| createString.toString().equals("west"))
+                currentToken = new Token(createString.toString(),Token.Type.DIRECTION);
 
             // TAKE_ACTION <pick | pick up>
-            if (createString.equals("take") | createString.equals("pick"))
-                currentToken = new Token(createString,Token.Type.TAKE_ACTION);
+            if (createString.toString().equals("take") | createString.toString().equals("pick"))
+                currentToken = new Token(createString.toString(),Token.Type.TAKE_ACTION);
 
-            if (createString.equals("gold"))
-                currentToken = new Token(createString,Token.Type.GOLD);
+            if (createString.toString().equals("gold") | createString.toString().equals("golds") | createString.toString().equals("money"))
+                currentToken = new Token(createString.toString(),Token.Type.GOLD);
                 // TODO: make checkHasItem, return true if this is a valid item name
 //            if (checkHasItem(createString))
 //                currentToken = new Token(createString,Token.Type.ITEM);
 
             // DROP_ACTION <drop | put down | abandon>
-            if (createString.equals("drop") | createString.equals("abandon") | createString.equals("put")){
+            if (createString.toString().equals("drop") | createString.toString().equals("abandon") | createString.toString().equals("put")){
                 count++; // skip white space
-                String creatNextString = "";
+                StringBuilder creatNextString = new StringBuilder();
                 while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
-                    creatNextString = creatNextString+""+_buffer.charAt(count);
+                    creatNextString.append(_buffer.charAt(count));
                     count++;
                 }
-                creatNextString = creatNextString.toLowerCase();
+                creatNextString = new StringBuilder(creatNextString.toString().toLowerCase());
 
-                if (creatNextString.equals("down"))
+                if (creatNextString.toString().equals("down"))
                     currentToken = new Token(createString+" "+creatNextString,Token.Type.DROP_ACTION);
                 else
-                    currentToken = new Token(createString,Token.Type.DROP_ACTION);
+                    currentToken = new Token(createString.toString(),Token.Type.DROP_ACTION);
             }
 
             // TALK <talk | chat | speak>
-            if (createString.equals("talk") | createString.equals("chat") | createString.equals("speak"))
-                currentToken = new Token(createString,Token.Type.TALK);
+            if (createString.toString().equals("talk") | createString.toString().equals("chat") | createString.toString().equals("speak"))
+                currentToken = new Token(createString.toString(),Token.Type.TALK);
 
             // VIEW_ACTION
-            if (createString.equals("look") | createString.equals("view") | createString.equals("see") | createString.equals("browse"))
-                currentToken = new Token(createString,Token.Type.VIEW_ACTION);
+            if (createString.toString().equals("look") | createString.toString().equals("view") | createString.toString().equals("see") | createString.toString().equals("browse"))
+                currentToken = new Token(createString.toString(),Token.Type.VIEW_ACTION);
 
             // STAT
-            if (createString.equals("stat"))
-                currentToken = new Token(createString,Token.Type.STAT);
+            if (createString.toString().equals("stat"))
+                currentToken = new Token(createString.toString(),Token.Type.STAT);
 
             // BACKPACK
-            if (createString.equals("backpack"))
-                currentToken = new Token(createString,Token.Type.BACKPACK);
+            if (createString.toString().equals("backpack"))
+                currentToken = new Token(createString.toString(),Token.Type.BACKPACK);
 
             // ATTACK
-            if (createString.equals("attack"))
-                currentToken = new Token(createString,Token.Type.ATTACK);
+            if (createString.toString().equals("attack"))
+                currentToken = new Token(createString.toString(),Token.Type.ATTACK);
 
             // RETREAT
-            if (createString.equals("retreat") | createString.equals("run") | createString.equals("escape")){
+            if (createString.toString().equals("retreat") | createString.toString().equals("run") | createString.toString().equals("escape")){
                 count++; // skip white space
-                String creatNextString = "";
+                StringBuilder creatNextString = new StringBuilder();
                 while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
-                    creatNextString = creatNextString+""+_buffer.charAt(count);
+                    creatNextString.append(_buffer.charAt(count));
                     count++;
                 }
-                creatNextString = creatNextString.toLowerCase();
+                creatNextString = new StringBuilder(creatNextString.toString().toLowerCase());
 
-                if (creatNextString.equals("away"))
+                if (creatNextString.toString().equals("away"))
                     currentToken = new Token(createString+" "+creatNextString,Token.Type.RETREAT);
                 else
-                    currentToken = new Token(createString,Token.Type.RETREAT);
+                    currentToken = new Token(createString.toString(),Token.Type.RETREAT);
             }
 
             // DEFENCE
-            if (createString.equals("defence"))
-                currentToken = new Token(createString,Token.Type.DEFENCE);
+            if (createString.toString().equals("defence"))
+                currentToken = new Token(createString.toString(),Token.Type.DEFENCE);
 
             else
-                currentToken = new Token(createString,Token.Type.ERROR);
+                currentToken = new Token(createString.toString(),Token.Type.ERROR);
         }
 
         // ########## YOUR CODE ENDS HERE ##########
