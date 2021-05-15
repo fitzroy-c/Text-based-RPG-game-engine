@@ -32,4 +32,5 @@ public class Giant extends npc{
         this.setGold(15 + playerLevel * 11);
         this.setElement(element1);
     }
+
 }
