@@ -1,7 +1,8 @@
 package Player;
 
 import java.util.Map;
-
+// todo item.json
+// todo test for these functions in player, bag,item.class
 public class Item {
     public final String id;
     public final String type;
