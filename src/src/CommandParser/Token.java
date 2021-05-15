@@ -16,7 +16,7 @@ package CommandParser;
  * <drop_action> := drop | put down | abandon
  * <talk-command> := talk | chat | speak
  * <view-command> := <look-action> <stat> | <look-action> <bag> | <stat> | <bag>
- * <stat>         := <stat | stats | statistic>
+ * <stat>         := stat | stats | statistic
  * <bag>          := <backpack | bag>
  * <look-action> := look | view | see | browse
  * <attack-command> := attack
