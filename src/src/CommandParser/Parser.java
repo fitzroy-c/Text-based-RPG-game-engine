@@ -1,10 +1,6 @@
 package CommandParser;
 
-import NPCs.Monster;
 import Player.Player;
-import Player.Bag;
-
-import java.util.List;
 
 /**
  * Grammar:
@@ -174,11 +170,11 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
                 // TODO: complete this method which talk to NPC at the coordinate
-                System.out.println("player talked to npc");
+                System.out.println("player talked to AbnormalPoint");
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: complete this method which talk to NPC at the coordinate
-                System.out.println("player talked to npc");
+                System.out.println("player talked to AbnormalPoint");
                 cmdExecuted = true;
             }
         }
@@ -340,7 +336,7 @@ public class Parser {
          * - drop dbsdbs-> error
          * - put down item -> player dropped the item
          * - put abandon item -> error
-         * - talk       -> player talked to npc
+         * - talk       -> player talked to AbnormalPoint
          * - look       -> error
          * - look stats -> player stat
          * - look backpack -> player backpack

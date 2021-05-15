@@ -1,4 +1,4 @@
-package NPCs;
+package AbnormalPoints;
 
 import Card.Element;
 
@@ -6,7 +6,7 @@ import Card.Element;
  * @author yitao chen
  */
 
-public class Wolf extends npc{
+public class Wolf extends AbnormalPoint {
 
     public Wolf(int playerLevel) {
         this.monsterType = "Wolf";

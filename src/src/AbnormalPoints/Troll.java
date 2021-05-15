@@ -1,4 +1,4 @@
-package NPCs;
+package AbnormalPoints;
 
 import Card.Element;
 
@@ -6,7 +6,7 @@ import Card.Element;
  * A monster without low damage, but high health and armour.
  * @author yitao chen
  */
-public class Troll extends npc {
+public class Troll extends AbnormalPoint {
     public Troll(int playerLevel){
         this.monsterType = "Troll";
         this.setHealthMax(70 + playerLevel * 11);

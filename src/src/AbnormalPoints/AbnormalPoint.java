@@ -1,10 +1,7 @@
-package NPCs;
+package AbnormalPoints;
 
 
 import Card.Element;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This class deals with NPC and all of their properties.(aka monsters)
@@ -15,22 +12,22 @@ import java.util.List;
  * a NPC should have an ID to identify
  * 5 extended monster kinds: Giant, Troll, Wolf, Skeleton, Goblin
  * default characteristic: normal (details can be seen in Card.Element)
- * xp, gold to get if we defeat one npc.
+ * xp, gold to get if we defeat one AbnormalPoint.
  * @author yitao chen
  */
-public class npc extends entity{
+public class AbnormalPoint extends entity{
     private int xpGain;
     private String id;
     public Element element;//characteristic;
 
     public String monsterType;
 
-    public npc(){
+    public AbnormalPoint(){
         element = Element.Normal;
     }
 
-    public npc(String npcID) {
-        this.id = npcID;
+    public AbnormalPoint(String abnormalPointID) {
+        this.id = abnormalPointID;
         element = Element.Normal;
     }
     public int getXPGain() {
@@ -56,9 +53,9 @@ public class npc extends entity{
         if (obj == null) {
             return false;
         }
-        if (obj instanceof npc) {
-            npc Npc = (npc) obj;
-            return Npc.monsterType.equals(this.monsterType);
+        if (obj instanceof AbnormalPoint) {
+            AbnormalPoint AbnormalPoint = (AbnormalPoint) obj;
+            return AbnormalPoint.monsterType.equals(this.monsterType);
         }
         return false;
     }

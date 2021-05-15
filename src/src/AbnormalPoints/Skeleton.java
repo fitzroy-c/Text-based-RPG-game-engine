@@ -1,11 +1,11 @@
-package NPCs;
+package AbnormalPoints;
 
 import Card.Element;
 /**
  * A quite weak monster.
  * @author yitao chen
  */
-public class Skeleton extends npc{
+public class Skeleton extends AbnormalPoint {
 
     public Skeleton(int playerLevel) {
         this.monsterType = "Skeleton";

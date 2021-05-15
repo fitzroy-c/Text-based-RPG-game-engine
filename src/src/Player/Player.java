@@ -25,7 +25,7 @@ public class Player {
         this.HP = HP;
         this.maxHP = maxHP;
         this.money = money;
-        bag = new Bag();
+        bag = new Bag();//default bag
     }
 
     /*

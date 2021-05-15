@@ -1,4 +1,4 @@
-package NPCs;
+package AbnormalPoints;
 
 import Card.Element;
 
@@ -7,7 +7,7 @@ import Card.Element;
  * A normal monster , with slight armour.
  * @author yitao chen
  */
-public class Goblin extends npc{
+public class Goblin extends AbnormalPoint {
 
     public Goblin(int playerLevel) {
         this.monsterType = "Goblin";

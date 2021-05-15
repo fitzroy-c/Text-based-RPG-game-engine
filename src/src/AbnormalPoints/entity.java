@@ -1,7 +1,4 @@
-package NPCs;
-
-import java.util.HashMap;
-import java.util.Map;
+package AbnormalPoints;
 
 /**
  * superclass for all entities (monsters...)
