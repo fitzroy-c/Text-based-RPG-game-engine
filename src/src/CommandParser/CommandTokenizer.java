@@ -150,8 +150,13 @@ public class CommandTokenizer {
             if (createString.toString().equals("defence"))
                 currentToken = new Token(createString.toString(),Token.Type.DEFENCE);
 
+            // HELP
+            if (createString.toString().equals("help"))
+                currentToken = new Token(createString.toString(),Token.Type.HELP);
+
             else
                 currentToken = new Token(createString.toString(),Token.Type.ERROR);
+
         }
 
         // ########## YOUR CODE ENDS HERE ##########
