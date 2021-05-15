@@ -21,6 +21,7 @@ public class Goblin extends npc{
         this.setGold(playerLevel * 5);
         this.setElement(Element.Normal);
     }
+
     public Goblin(int playerLevel, Element element1) {
         this.monsterType = "Goblin";
         this.setHealthMax(55 + playerLevel * 6);
