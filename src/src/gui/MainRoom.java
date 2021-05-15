@@ -1,6 +1,6 @@
 package gui;
 
-import Info.Player;
+import Player.Player;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
