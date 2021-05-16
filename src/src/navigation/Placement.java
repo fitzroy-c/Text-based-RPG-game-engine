@@ -12,6 +12,7 @@ public class Placement {
     private Coordinate coordinate;
     private String description;
     private int dangerRate; //calculate the chance we meet a monster
+
     private Bag bag = new Bag(); //TODO maybe conflict with player.class
     private List<AbnormalPoint> abnormalPoints = new ArrayList<>();
 
@@ -80,11 +81,14 @@ public class Placement {
         //refer: https://www.javatpoint.com
         return Collections.unmodifiableList(abnormalPoints);
     }
+
     public Item removeItem(Item item) {
-        return Bag.drop(item);
+        Bag bag = getBag();
+        return bag.drop(item);
     }
     public void addItem(Item item) {
-        Bag.put(item);
+        Bag bag = getBag();
+        bag.put(item);
     }
     public void print() {
         // TODO: need a function to print out all we have in this real location (description + npc + ?)

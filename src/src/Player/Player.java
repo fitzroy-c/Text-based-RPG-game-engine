@@ -7,7 +7,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import navigation.Placement;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -117,5 +116,7 @@ public class Player {
         this.money = money;
     }
 
-    public Bag getBag() { return bag; }
+    public Bag getBag() {
+        return bag;
+    }
 }
