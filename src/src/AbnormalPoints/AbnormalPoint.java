@@ -19,9 +19,11 @@ public class AbnormalPoint extends entity{
     private int xpGain;
     private String id;
     public Element element;  //characteristic;
-
     public String monsterType;
 
+    /**
+     * Constructor of AbnormalPoint
+     */
     public AbnormalPoint(){
         element = Element.Normal;
     }
@@ -30,6 +32,7 @@ public class AbnormalPoint extends entity{
         this.id = abnormalPointID;
         element = Element.Normal;
     }
+
     public int getXPGain() {
         return xpGain;
     } //if card game remove?

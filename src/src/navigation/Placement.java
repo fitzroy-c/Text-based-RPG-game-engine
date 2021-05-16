@@ -7,14 +7,16 @@ import Player.Item;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Placement {
     private Coordinate coordinate;
     private String description;
     private int dangerRate; //calculate the chance we meet a monster
+    private Bag bag;        // the bag which contains item inside a room
+    private List<AbnormalPoint> abnormalPoints;
 
-    private Bag bag = new Bag(5);
-    private List<AbnormalPoint> abnormalPoints = new ArrayList<>();
+    Random random = new Random();
 
     public Placement() {
     }
@@ -22,6 +24,69 @@ public class Placement {
     public Placement(Coordinate coordinate, String description) {
         this.coordinate = coordinate;
         this.description = description;
+        this.dangerRate = random.nextInt(4) + 1; // 5 level, 1(easy) - 5 (extremely dangerous)
+        this.bag = new Bag(100);
+        this.abnormalPoints = new ArrayList<>();
+    }
+
+    /**
+     * add AbnormalPoint
+     * @param abnormalPoint
+     */
+    public void addAbnormalPoint(AbnormalPoint abnormalPoint) {
+        abnormalPoints.add(abnormalPoint);
+    }
+
+    /**
+     * add list of AbnormalPoint
+     * @param abnormalPoints list of AbnormalPoint
+     */
+    public void addAbnormalPoints(List<AbnormalPoint> abnormalPoints) {
+        for (AbnormalPoint abnormalPoint : abnormalPoints) {
+            addAbnormalPoint(abnormalPoint);
+        }
+    }
+
+    /**
+     * Remove AbnormalPoint
+     * @param abnormalPoint
+     */
+    public void removeAbnormalPoint(AbnormalPoint abnormalPoint) {
+        for (int i = 0; i < abnormalPoints.size(); i++) {
+            if (abnormalPoints.get(i).equals(abnormalPoint)) {
+                abnormalPoints.remove(i);
+            }
+        }
+    }
+
+    /**
+     * return a un-changeable list
+     * @return list of AbnormalPoints
+     */
+    public List<AbnormalPoint> getAbnormalPoints() {
+        //refer: https://www.javatpoint.com
+        return Collections.unmodifiableList(abnormalPoints);
+    }
+
+    /**
+     * drop a item from this placement
+     */
+    public Item removeItem(Item item) {
+        return getBag().drop(item);
+    }
+
+    /**
+     * Insert a item into this placement
+     */
+    public void addItem(Item item) {
+        getBag().put(item);
+    }
+
+    /**
+     * Print out the information of current placement
+     */
+    public void printPlacement() {
+        // TODO: need a function to print out all we have in this real location (description + npc + ?)
     }
 
     public void setCoordinate(Coordinate coordinate) {
@@ -54,44 +119,6 @@ public class Placement {
 
     public List<Item> getItems() {
         return bag.getItems();
-    }
-
-    public void addAbnormalPoints(List<AbnormalPoint> abnormalPoints) {
-        for (AbnormalPoint abnormalPoint : abnormalPoints) {
-            addAbnormalPoint(abnormalPoint);
-        }
-    }
-
-    public void addAbnormalPoint(AbnormalPoint abnormalPoint) {
-        abnormalPoints.add(abnormalPoint);
-    }
-
-    public void remove(AbnormalPoint abnormalPoint) {
-            removeAbnormalPoint(abnormalPoint);
-    }
-    public void removeAbnormalPoint(AbnormalPoint abnormalPoint) {
-        for (int i = 0; i < abnormalPoints.size(); i++) {
-            if (abnormalPoints.get(i).equals(abnormalPoint)) {
-                abnormalPoints.remove(i);
-            }
-        }
-    }
-    public List<AbnormalPoint> getAbnormalPoints() {
-        //return a un changeable list
-        //refer: https://www.javatpoint.com
-        return Collections.unmodifiableList(abnormalPoints);
-    }
-
-    public Item removeItem(Item item) {
-        Bag bag = getBag();
-        return bag.drop(item);
-    }
-    public void addItem(Item item) {
-        Bag bag = getBag();
-        bag.put(item);
-    }
-    public void print() {
-        // TODO: need a function to print out all we have in this real location (description + npc + ?)
     }
 
 }

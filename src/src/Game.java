@@ -17,6 +17,8 @@ public class Game {
         System.out.println("What's your name?");
         String name = s.next();
         player.setName(name);
+        //Player player = new Player(name);
+        //gameInteractionLoop(player);
     }
 
 

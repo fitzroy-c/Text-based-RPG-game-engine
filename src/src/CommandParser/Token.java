@@ -29,7 +29,7 @@ package CommandParser;
 
 public class Token {
     public enum Type {UNKNOWN, ERROR, SAVE, EXIT, DETECT, DIRECTION_ACTION, DIRECTION, CONSUME_ACTION, TAKE_ACTION, DROP_ACTION,
-        ITEM, TALK, VIEW_ACTION, STAT, BACKPACK, ATTACK, RETREAT, DEFENCE, HELP};
+        ITEM, TALK, VIEW_ACTION, STAT, BACKPACK, ATTACK, RETREAT_ACTION, DEFENCE, HELP};
 
     private String _token = "";
     private Type _type = Type.UNKNOWN;

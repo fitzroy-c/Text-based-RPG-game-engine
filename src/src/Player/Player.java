@@ -57,29 +57,29 @@ public class Player {
         this.HP = maxHP;
     }
     //CHANGE A PLAYER
-//    public Player(String name,int xp, int money, int level, int health, int maxHP){
-//        this.name = name;
-//
-//        Random random=new Random();
-//
-//
-//        this.xp = 100;//default 0
-//        this.money = random.nextInt(20);
-//        this.level = (int)xp /100;
-//        this.bag = new Bag(5); //default bag capacity 5
-//
-//        //TODO don't know if it is right.
-//        Coordinate coordinate = new Coordinate(0,0);
-//        this.placement = new Placement(coordinate,"player location");
-//
-//        this.maxHP = random.nextInt(50)+(level*50);
-//        this.armour = random.nextInt(10)+(level*5);
-//        this.damage = random.nextInt(10)+(level*30);
-//        this.criticalChance = level*0.01; //all these 4 may cause a problem that 1 level up may cause different change
-//
-//        this.HP = maxHP;
-//
-//    }
+    public Player(String name,int xp, int money, int level, int health, int maxHP){
+        this.name = name;
+
+        Random random=new Random();
+
+
+        this.xp = 100;//default 0
+        this.money = random.nextInt(20);
+        this.level = (int)xp /100;
+        this.bag = new Bag(5); //default bag capacity 5
+
+        //TODO don't know if it is right.
+        Coordinate coordinate = new Coordinate(0,0);
+        this.placement = new Placement(coordinate,"player location");
+
+        this.maxHP = random.nextInt(50)+(level*50);
+        this.armour = random.nextInt(10)+(level*5);
+        this.damage = random.nextInt(10)+(level*30);
+        this.criticalChance = level*0.01; //all these 4 may cause a problem that 1 level up may cause different change
+
+        this.HP = maxHP;
+
+    }
 
     /**
     Consume an consumable item
