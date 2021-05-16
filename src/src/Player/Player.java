@@ -20,13 +20,14 @@ public class Player {
     int maxHP;
     int money; // (how many gold he has)
     Bag bag;
-
+    Placement placement;
     public Player(String name, int HP, int maxHP, int money){
         this.name = name;
         this.HP = HP;
         this.maxHP = maxHP;
         this.money = money;
         bag = new Bag();//default bag
+        placement = new Placement();
     }
 
     /*
@@ -74,6 +75,13 @@ public class Player {
             e.printStackTrace();
         }
         return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+    }
+
+    public String showPlayerStat() {
+        return "Player name: "+ getName() +"\n"+
+               "CurrentHP: "  + getHP() +"\n"+
+               "MaxHP: "      + getMaxHP() +"\n"+
+               "Money: "      + getMoney();
     }
 
     public String getName() {
