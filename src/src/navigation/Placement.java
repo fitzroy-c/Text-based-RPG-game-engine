@@ -13,7 +13,7 @@ public class Placement {
     private String description;
     private int dangerRate; //calculate the chance we meet a monster
 
-    private Bag bag = new Bag();
+    private Bag bag = new Bag(5);
     private List<AbnormalPoint> abnormalPoints = new ArrayList<>();
 
     public Placement() {

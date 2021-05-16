@@ -14,7 +14,6 @@ public class Troll extends AbnormalPoint {
         this.setArmour(playerLevel + 12);
         this.setDamage(20 + playerLevel * 3);
         this.setCritChance(0.05);
-        this.setIntelligence(1);
         this.setXPGain(75 + playerLevel * 3);
         this.setGold(25 + playerLevel * 10);
         this.setElement(Element.Normal);
@@ -26,7 +25,6 @@ public class Troll extends AbnormalPoint {
         this.setArmour(playerLevel + 12);
         this.setDamage(20 + playerLevel * 3);
         this.setCritChance(0.05);
-        this.setIntelligence(1);
         this.setXPGain(75 + playerLevel * 3);
         this.setGold(25 + playerLevel * 10);
         this.setElement(element1);

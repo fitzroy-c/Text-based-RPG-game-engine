@@ -139,6 +139,21 @@ public class Parser {
             }
         }
 
+        // <consume-command> := <consume-action> <item-name>
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.CONSUME_ACTION){
+            cmdExecuted = true;
+            this._tokenizer.next();
+            if (this._tokenizer.hasNext()){
+                if (this._tokenizer.current().type()==Token.Type.ITEM){
+                    System.out.println(player.consumeByItemName(this._tokenizer.current().token()));
+                } else {
+                    callError();
+                }
+            } else {
+                callError();
+            }
+        }
+
         // <take-command> := <take_action> <item-name>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TAKE_ACTION){
             cmdExecuted = true;
@@ -361,7 +376,7 @@ public class Parser {
          * - save game exit game -> game saved
          * - go defence -> error
          */
-        Player ply = new Player("testname", 10,10,0);
+        Player ply = new Player("testname");
         String cmd = "north go east";
         CommandTokenizer mt = new CommandTokenizer(cmd);
         new Parser(mt, ply).parseCommand();

@@ -4,25 +4,84 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import navigation.Coordinate;
 import navigation.Placement;
 
 import java.io.*;
 import java.lang.reflect.Type;
-//todo attack and defense (by Yixiang Yin)
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+/**
+ * similar to a extended class from entity
+ */
 public class Player {
-    String name;
-    int HP;
-    int maxHP;
-    int money; // (how many gold he has)
+
+    private String name;
+    private int HP;
+    private int maxHP;
+    private int money; // (how many gold he has)
+    private int xp; //level=(int)xp/10 + 1
+    private int level;
+    private int armour; //defense
+    private int damage;
+    private double criticalChance;
+
+    private int factor = 2; //critical hit factor
+
+
     Bag bag;
-    Placement placement;
-    public Player(String name, int HP, int maxHP, int money){
+    Placement placement;//Coordinate
+    //NEW A PLAYER
+    //TODO need fix
+    public Player(String name){
         this.name = name;
-        this.HP = HP;
-        this.maxHP = maxHP;
-        this.money = money;
-        bag = new Bag();//default bag
-        placement = new Placement();
+
+        Random random=new Random();
+
+
+        this.xp = 100;//default 0
+        this.money = random.nextInt(20);
+        this.level = (int)xp /100;
+        this.bag = new Bag(5); //default bag capacity 5
+
+        //TODO don't know if it is right.
+        Coordinate coordinate = new Coordinate(0,0);
+        this.placement = new Placement(coordinate,"player location");
+
+        this.maxHP = random.nextInt(50)+(level*50);
+        this.armour = random.nextInt(10)+(level*5);
+        this.damage = random.nextInt(10)+(level*30);
+        this.criticalChance = level*0.01; //all these 4 may cause a problem that 1 level up may cause different change
+
+        this.HP = maxHP;
+
+    }
+    //CHANGE A PLAYER
+    public Player(String name,int xp, int money, int level, int health, int maxHP){
+        this.name = name;
+
+        Random random=new Random();
+
+
+        this.xp = 100;//default 0
+        this.money = random.nextInt(20);
+        this.level = (int)xp /100;
+        this.bag = new Bag(5); //default bag capacity 5
+
+        //TODO don't know if it is right.
+        Coordinate coordinate = new Coordinate(0,0);
+        this.placement = new Placement(coordinate,"player location");
+
+        this.maxHP = random.nextInt(50)+(level*50);
+        this.armour = random.nextInt(10)+(level*5);
+        this.damage = random.nextInt(10)+(level*30);
+        this.criticalChance = level*0.01; //all these 4 may cause a problem that 1 level up may cause different change
+
+        this.HP = maxHP;
+
     }
 
     /*
@@ -73,7 +132,7 @@ public class Player {
     }
 
     /**
-     * Check if this room has a mosnter,
+     * Check if this room has a monster,
      * - if yes, return the danger level and name of the monster
      * - else, return there is no monster
      * @return
@@ -88,7 +147,7 @@ public class Player {
      * @param name
      * @return
      */
-    public Boolean getItemFromRoom(String name){
+    public boolean getItemFromRoom(String name){
         Item item = this.placement.getBag().getItemByName(name);
         if (item == null){
             return false;
@@ -104,7 +163,7 @@ public class Player {
      * @param name
      * @return
      */
-    public Boolean dropItemFromBag(String name){
+    public boolean dropItemFromBag(String name){
         Item item = this.bag.getItemByName(name);
         if (item == null){
             return false;
@@ -113,6 +172,12 @@ public class Player {
             this.bag.drop(item);
             return true;
         }
+    }
+
+    public boolean goToDirection(String direction){
+
+
+        return false;
     }
 
     public String showPlayerStat() {

@@ -11,7 +11,7 @@ import java.io.IOException;
  * detail data can be replaced by other files
  * @author yitao chen
  */
-public class mainGame {
+public class testGame1 {
     static class Base {
         int i;
         String name; //ID

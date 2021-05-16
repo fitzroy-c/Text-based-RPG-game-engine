@@ -14,8 +14,7 @@ public class Goblin extends AbnormalPoint {
         this.setHealthMax(55 + playerLevel * 6);
         this.setHealth(55 + playerLevel * 6);
         this.setArmour(playerLevel + 3);
-        this.setDamage(12 + playerLevel * 2.5);
-        this.setIntelligence(1);
+        this.setDamage(12 + playerLevel * 2);
         this.setCritChance(0.02);
         this.setXPGain(10 + playerLevel * 3);
         this.setGold(playerLevel * 5);
@@ -27,8 +26,7 @@ public class Goblin extends AbnormalPoint {
         this.setHealthMax(55 + playerLevel * 6);
         this.setHealth(55 + playerLevel * 6);
         this.setArmour(playerLevel + 3);
-        this.setDamage(12 + playerLevel * 2.5);
-        this.setIntelligence(1);
+        this.setDamage(12 + playerLevel * 2);
         this.setCritChance(0.02);
         this.setXPGain(10 + playerLevel * 3);
         this.setGold(playerLevel * 5);
