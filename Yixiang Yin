@@ -1,0 +1,31 @@
+{
+  "name": "Yixiang Yin",
+  "HP": 55,
+  "maxHP": 55,
+  "money": 2,
+  "xp": 100,
+  "level": 1,
+  "armour": 13,
+  "damage": 37,
+  "criticalChance": 0.01,
+  "factor": 2,
+  "bag": {
+    "currentWeight": 0,
+    "maxWeight": 5,
+    "itemList": []
+  },
+  "placement": {
+    "coordinate": {
+      "x": 0,
+      "y": 0
+    },
+    "description": "player location",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 0,
+      "maxWeight": 5,
+      "itemList": []
+    },
+    "abnormalPoints": []
+  }
+}
