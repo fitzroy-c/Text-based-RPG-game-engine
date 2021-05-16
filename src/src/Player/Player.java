@@ -53,7 +53,7 @@ public class Player {
     int initRandomDamage =  3;
     int initBaseDamage = 2;
     double initCriticalChance = 0.01;
-    double initMaxCriticalChance = 30.00;
+    double initMaxCriticalChance = 1.00;
     int initBagWeight;
     int initXCoordinate = 0;
     int initYCoordinate = 0;
