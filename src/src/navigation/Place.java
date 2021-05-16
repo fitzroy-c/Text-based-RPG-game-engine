@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Placement {
+public class Place {
     private Coordinate coordinate;
     private String description;
     private int dangerRate; //calculate the chance we meet a monster
@@ -18,10 +18,10 @@ public class Placement {
 
     Random random = new Random();
 
-    public Placement() {
+    public Place() {
     }
 
-    public Placement(Coordinate coordinate, String description) {
+    public Place(Coordinate coordinate, String description) {
         this.coordinate = coordinate;
         this.description = description;
         this.dangerRate = random.nextInt(4) + 1; // 5 level, 1(easy) - 5 (extremely dangerous)

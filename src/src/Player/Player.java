@@ -5,13 +5,10 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
-import navigation.Placement;
+import navigation.Place;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -32,7 +29,7 @@ public class Player {
     private double criticalChance;
     private final double maxCriticalChance;
     Bag bag;
-    Placement placement;//Coordinate
+    Place place;//Coordinate
 
     /**
      * Some variables
@@ -75,7 +72,7 @@ public class Player {
         this.criticalChance = initCriticalChance;
         this.maxCriticalChance = initMaxCriticalChance;
         this.bag = new Bag(initBagWeight); //default bag capacity 5
-        this.placement = new Placement(new Coordinate(initXCoordinate,initYCoordinate),"player location");
+        this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
     }
 
     /**
@@ -134,10 +131,10 @@ public class Player {
         }
         return gson.fromJson(jsonReader, CUS_LIST_TYPE);
     }
-
     /**
-     Consume an consumable item
-     */
+     * Consume an consumable item
+     * @author: Yixiang Yin
+     **/
     public String consume(Item i){
         if (i.type.equals("consumable") && bag.inMyBag(i)){
             HP+=i.properties.get("health").intValue();
@@ -178,7 +175,7 @@ public class Player {
      */
     public String checkMonsterType() {
         // TODO: save the game and back to the main menu, need player to have location that stores monster
-        this.getPlacement().getAbnormalPoints();
+        this.getPlace().getAbnormalPoints();
         //            Monster monster = new Monster();
 //            if (monster == null) {
 //                System.out.println("There is a "+ monster.getName() +" around you, WATCH OUT!");
@@ -195,12 +192,12 @@ public class Player {
      * @author: Guanming Ou
      */
     public String getItemFromRoom(String name){
-        Item item = this.placement.getBag().getItemByName(name);
+        Item item = this.place.getBag().getItemByName(name);
         if (item == null){
             return "There is no item named "+name+" inside current room";
         } else {
             if (this.bag.put(item)){
-                this.placement.getBag().drop(item);
+                this.place.getBag().drop(item);
                 return item.name+" is added to your bag";
             }
             return "Can't add item to your bag as the weight of your bag will exceeded";
@@ -218,7 +215,7 @@ public class Player {
         if (item == null){
             return false;
         } else {
-            this.placement.getBag().put(item);
+            this.place.getBag().put(item);
             this.bag.drop(item);
             return true;
         }
@@ -228,11 +225,24 @@ public class Player {
      * Update player's placement given a direction
      * @param direction north | east | south | west
      * @return true: update successful, false: update unsuccessful
+     * @author Yixiang Yin
      */
-    public String goToDirection(String direction){
+    public boolean goToDirection(String direction){
         // TODO: complete this method which make the player go to the direction.
+        switch (direction){
+            case "north":this.place.getCoordinate().goNorth();
+            break;
+            case "east":this.place.getCoordinate().goEast();
+            break;
 
-        return null;
+            case "south":this.place.getCoordinate().goSouth();
+            break;
+
+            case "west":this.place.getCoordinate().goWest();
+            break;
+
+        }
+        return true;
     }
 
     /**
@@ -285,7 +295,7 @@ public class Player {
                 "Armor: "      + getArmour()+"\n"+
                 "Criticle Chance: " + getCriticalChance()+"/"+getMaxCriticalChance()+"\n"+
                 "Money: "      + getMoney()+"\n"+
-                "Coordinate"   + this.placement.getCoordinate().toString();
+                "Coordinate"   + this.place.getCoordinate().toString();
     }
 
     public String getName() {
@@ -324,8 +334,8 @@ public class Player {
         return bag;
     }
 
-    public Placement getPlacement() {
-        return placement;
+    public Place getPlace() {
+        return place;
     }
 
     public int getXp() {

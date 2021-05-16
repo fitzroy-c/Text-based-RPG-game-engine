@@ -6,8 +6,8 @@ package navigation;
  * @author yitao chen
  */
 public class Coordinate {
-    public final int x;
-    public final int y;
+    public int x;
+    public int y;
 
     /**
      * a 2D coordinate based on a String.
@@ -44,7 +44,18 @@ public class Coordinate {
         return y;
     }
 
-
+    public void goNorth(){
+        y+=1;
+    }
+    public void goSouth(){
+        y-=1;
+    }
+    public void goEast(){
+        x+=1;
+    }
+    public void goWest(){
+        x-=1;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
