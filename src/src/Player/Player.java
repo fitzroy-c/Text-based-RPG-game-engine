@@ -7,6 +7,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import navigation.Placement;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -77,6 +78,12 @@ public class Player {
         return gson.fromJson(jsonReader, CUS_LIST_TYPE);
     }
 
+    public String checkMonsterType() {
+        this.getPlacement().getAbnormalPoints();
+        return null;
+    };
+
+
     public String showPlayerStat() {
         return "Player name: "+ getName() +"\n"+
                "CurrentHP: "  + getHP() +"\n"+
@@ -118,5 +125,9 @@ public class Player {
 
     public Bag getBag() {
         return bag;
+    }
+
+    public Placement getPlacement() {
+        return placement;
     }
 }

@@ -18,7 +18,7 @@ import Card.Element;
 public class AbnormalPoint extends entity{
     private int xpGain;
     private String id;
-    public Element element;//characteristic;
+    public Element element;  //characteristic;
 
     public String monsterType;
 
