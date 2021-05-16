@@ -31,19 +31,6 @@ public class Player {
         placement = new Placement();
     }
 
-    /*
-    Consume an consumable item
-     */
-    public String consume(Item i){
-        if (i.type.equals("consumable") && bag.inMyBag(i)){
-            HP+=i.properties.get("health").intValue();
-            bag.drop(i);
-            return "You've successfully consume "+i.name+" .";
-        }
-        else if (!i.type.equals("consumable")) return "You can't consume "+i.name+" .";
-        else return "You don't have "+i.name+" .";
-    }
-
     /**
      * Save player as json
      */
@@ -79,7 +66,7 @@ public class Player {
     }
 
     /**
-     * Check if this room has a mosnter,
+     * Check if this room has a monster,
      * - if yes, return the danger level and name of the monster
      * - else, return there is no monster
      * @return
@@ -87,14 +74,49 @@ public class Player {
     public String checkMonsterType() {
         this.getPlacement().getAbnormalPoints();
         return null;
-    };
+    }
+
+    /**
+     * Consume an consumable item
+     */
+    public String consumeByItem(Item i){
+        if (!bag.inMyBag(i)) // item not in bag
+            return  "You don't have "+i.name+" in your bag.";
+        if (i.type.equals("consumable")){
+            this.HP += i.properties.get("health").intValue();
+            this.bag.drop(i);
+            return "You've successfully consume "+i.name+" .";
+        }
+        else if (!i.type.equals("consumable"))
+            return "You can't consume "+i.name+" .";
+        else
+            return "You don't have "+i.name+" .";
+    }
+
+    /**
+     * Consume an consumable item
+     */
+    public String consumeByItemName(String itemName){
+        Item item = this.bag.getItemByName(name);
+        if (item == null)
+            return "You don't have "+itemName+" in your bag.";
+        else {
+            if (item.type.equals("consumable")){
+                this.HP += item.properties.get("health").intValue();
+                this.bag.drop(item);
+                return "You've successfully consume "+item.name+" .";
+            } else {
+                return "You can't consume "+itemName+" .";
+            }
+        }
+    }
 
     /**
      * Take a item from current room, given an item name
      * @param name
      * @return
      */
-    public Boolean getItemFromRoom(String name){
+    public boolean getItemFromRoom(String name){
         Item item = this.placement.getBag().getItemByName(name);
         if (item == null){
             return false;
@@ -110,7 +132,7 @@ public class Player {
      * @param name
      * @return
      */
-    public Boolean dropItemFromBag(String name){
+    public boolean dropItemFromBag(String name){
         Item item = this.bag.getItemByName(name);
         if (item == null){
             return false;
@@ -119,6 +141,12 @@ public class Player {
             this.bag.drop(item);
             return true;
         }
+    }
+
+    public boolean goToDirection(String direction){
+
+
+        return false;
     }
 
     public String showPlayerStat() {
