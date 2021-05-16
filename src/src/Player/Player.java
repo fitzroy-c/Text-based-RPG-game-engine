@@ -84,7 +84,7 @@ public class Player {
 
     }
 
-    /*
+    /**
     Consume an consumable item
      */
     public String consume(Item i){
@@ -95,6 +95,28 @@ public class Player {
         }
         else if (!i.type.equals("consumable")) return "You can't consume "+i.name+" .";
         else return "You don't have "+i.name+" .";
+    }
+
+    /**
+     * Consume a consumable item, given a item name
+     * - Consumable item increases the HP of player.
+     * @param itemName
+     * @return
+     */
+    public String consumeByItemName(String itemName){
+        Item item = this.bag.getItemByName(itemName);
+        if (item == null)
+            return "You don't have "+ itemName +" in your bag.";
+        else {
+            if (item.type.equals("consumable")){
+                this.HP += item.properties.get("health").intValue();
+                this.bag.drop(item);
+                return "You've successfully consume "+itemName+" .";
+            }
+            else {
+                return itemName+" is not consumable.";
+            }
+        }
     }
 
     /**
