@@ -47,34 +47,41 @@ public class Parser {
 
     // <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
     //              <attack-command>|<retreat-command>|<defence-command>|<view-command>
-    public void parseCommand() {
+    public boolean parseCommand() {
         boolean cmdExecuted = false; // allow only one command to execute per command
+
+        // Save the game
         // <save>    := save | save game
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.SAVE){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                System.out.println("game saved");
+                System.out.println("saving...");
+                player.save();
+                System.out.println("game saved!");
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                //            player.save();
-                System.out.println("game saved");
+                System.out.println("saving...");
+                player.save();
+                System.out.println("game saved!");
                 cmdExecuted = true;
             }
         }
-
+        // Save the game, and back to the main menu
         // <exit>    := exit | exit game
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.EXIT) {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                // TODO: save the game and back to the main menu
-//               player.save();
-                System.out.println("exited game");
+                System.out.println("saving...");
+                player.save();
+                System.out.println("game exited");
                 cmdExecuted = true;
+                return false;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: save the game and back to the main menu
-//               player.save();
-                System.out.println("exited game");
+                System.out.println("saving...");
+                player.save();
+                System.out.println("game exited");
                 cmdExecuted = true;
+                return false;
             }
         }
 
@@ -184,6 +191,7 @@ public class Parser {
         }
 
         // <view-command> := <look-action> <stat> | <look-action> <bag> | <stat> | <bag>
+        // Look at player's stat with <stat>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.STAT){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
@@ -196,6 +204,7 @@ public class Parser {
                 cmdExecuted = true;
             }
         }
+        // Look at player's bag with <bag>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BACKPACK){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
@@ -208,6 +217,7 @@ public class Parser {
                 cmdExecuted = true;
             }
         }
+        // look at player's stat or bag via <look-action> <stat> | <look-action> <bag>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.VIEW_ACTION){
             cmdExecuted = true;
             this._tokenizer.next();
@@ -273,36 +283,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.HELP){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                // TODO: complete this method which let player defense
-                System.out.println("help menu");
+                printHelpMenu();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: complete this method which print out help menu
-                System.out.println("Help menu: \n" +
-                                    "<save | save game>: Save current game\n"+
-                                    "<exit | exit game>: Exit current game\n"+
-                                    "<detect>: detect if monster is near\n"+
-                                    "<talk | chat | speak>: Talk to npc\n"+
-                                    "<move-command><direction>: move to given direction\n"+
-                                    "   <move-command>:= go | move | head\n"+
-                                    "   <direction>   := north | south | east | west\n"+
-                                    "<take_action><item-name>: take a item inside current coordinate (if any)\n"+
-                                    "   <take_action> := take | pick\n"+
-                                    "   <item-name>   := the available item name\n"+
-                                    "<take_action><gold>: take the gold inside current coordinate (if any)\n"+
-                                    "   <gold>        := gold | golds | money\n"+
-                                    "<drop_action><item-name>: put back item inside current coordinate (if any)\n"+
-                                    "   <drop_action> := drop | put down | abandon\n"+
-                                    "   <item-name>   := the available item name\n"+
-                                    "<look_action><stat> | <stat> : view player's stat\n"+
-                                    "   <look_action> := look | view | see | browse\n"+
-                                    "   <stat>        := stat | stats | statistic\n"+
-                                    "<look_action><bag> | <bag> : view player's bag\n"+
-                                    "<attack>: attack enemy\n"+
-                                    "<defence>: defence \n"+
-                                    "<retreat | run away | escape>: escape from combat\n"+
-                                    "<help>: Prints this info\n");
-
+                printHelpMenu();
                 cmdExecuted = true;
             }
         }
@@ -311,10 +295,39 @@ public class Parser {
         if (this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ERROR){
             callError();
         }
+
+        return true;
     }
 
     public void callError() {
         System.out.println("message not recognised, please try again or use 'help'");
+    }
+
+    public void printHelpMenu(){
+        System.out.println("Help menu: \n" +
+                "<save | save game>: Save current game\n"+
+                "<exit | exit game>: Exit current game\n"+
+                "<detect>: detect if monster is near\n"+
+                "<talk | chat | speak>: Talk to npc\n"+
+                "<move-command><direction>: move to given direction\n"+
+                "   <move-command>:= go | move | head\n"+
+                "   <direction>   := north | south | east | west\n"+
+                "<take_action><item-name>: take a item inside current coordinate (if any)\n"+
+                "   <take_action> := take | pick\n"+
+                "   <item-name>   := the available item name\n"+
+                "<take_action><gold>: take the gold inside current coordinate (if any)\n"+
+                "   <gold>        := gold | golds | money\n"+
+                "<drop_action><item-name>: put back item inside current coordinate (if any)\n"+
+                "   <drop_action> := drop | put down | abandon\n"+
+                "   <item-name>   := the available item name\n"+
+                "<look_action><stat> | <stat> : view player's stat\n"+
+                "   <look_action> := look | view | see | browse\n"+
+                "   <stat>        := stat | stats | statistic\n"+
+                "<look_action><bag> | <bag> : view player's bag\n"+
+                "<attack>: attack enemy\n"+
+                "<defence>: defence \n"+
+                "<retreat | run away | escape>: escape from combat\n"+
+                "<help>: Prints this info\n");
     }
 
     // test only, delete later

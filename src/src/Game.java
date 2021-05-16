@@ -1,11 +1,15 @@
 
 
+import CommandParser.CommandTokenizer;
+import CommandParser.Parser;
 import Player.Player;
 
 import java.util.Scanner;
 
 public class Game {
     private static Player player;
+    public CommandTokenizer cmdTok;
+    public Parser parser;
 
     public static void main(String[] args) {
         Scanner s=new Scanner(System.in);
@@ -14,6 +18,22 @@ public class Game {
         String name = s.next();
         player.setName(name);
     }
+
+
+    /**
+     * This continuously ask for player's input to keep the game running,
+     * It terminate when player input a 'exit | exit game' command
+     * @param player
+     */
+    public void gameInteractionLoop(Player player) {
+        boolean continueOn = true;
+        Scanner s = new Scanner(System.in);
+        while (continueOn){
+            cmdTok = new CommandTokenizer(s.next());
+            continueOn = new Parser(cmdTok, player).parseCommand();
+        }
+    }
+
 }
 //public class Game {
 //    static Deck.PlayerDeck pDeck; // Initialise the Wake Deck
