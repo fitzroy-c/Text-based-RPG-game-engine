@@ -107,5 +107,7 @@ public class Player {
         this.money = money;
     }
 
-
+    public Bag getBag() {
+        return bag;
+    }
 }

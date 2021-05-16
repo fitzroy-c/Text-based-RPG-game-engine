@@ -209,8 +209,7 @@ public class Parser {
                 System.out.println("player backpack");
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: complete this method which print out player's backpack
-                System.out.println("player backpack");
+                player.getBag().showMyBag();
                 cmdExecuted = true;
             }
         }
@@ -224,8 +223,7 @@ public class Parser {
                     System.out.println("player stat");
                 }
                 else if (this._tokenizer.current().type()==Token.Type.BACKPACK){
-                    // TODO: complete this method which print out player's backpack
-                    player. ;
+                    player.getBag().showMyBag();
                 } else {
                     callError();
                 }
