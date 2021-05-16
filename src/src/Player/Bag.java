@@ -61,15 +61,15 @@ public class Bag {
     /**
      * put an item in the bag (Yixiang Yin, modified by Yitao)
      */
-    public void put(Item i){
+    public boolean put(Item i){
         int weightOfItem = i.getWeight();
         if (currentWeight + weightOfItem <= maxWeight) {
             itemList.add(i);
             currentWeight += weightOfItem;
+            return true;
         }
+        return false;
     }
-
-
 
     /**
      * drop things out of the bag (Yixiang Yin, modified by Yitao)

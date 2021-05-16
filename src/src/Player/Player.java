@@ -191,14 +191,13 @@ public class Player {
         if (item == null){
             return "There is no item named "+name+" inside current room";
         } else {
-            if ((this.bag.currentWeight + item.getWeight()) > this.bag.maxWeight)
-                return "Can't add item to your bag as the weight of your bag will exceeded";
-            this.bag.put(item);
-            this.bag.currentWeight += item.getWeight();
-            this.placement.getBag().drop(item);
-            return item.name+" is added to your bag";
+            if (this.bag.put(item)){
+                this.placement.getBag().drop(item);
+                return item.name+" is added to your bag";
+            }
+            return "Can't add item to your bag as the weight of your bag will exceeded";
+            }
         }
-    }
 
     /**
      * Put back a item from player's bag to room, given an item name
@@ -212,7 +211,6 @@ public class Player {
         } else {
             this.placement.getBag().put(item);
             this.bag.drop(item);
-            this.bag.currentWeight -= item.getWeight();
             return true;
         }
     }
