@@ -30,6 +30,7 @@ public class Bag {
     //TODO :I think the out put should be list<item>, the strings can be called when the method is called
     //TODO :i am confused about why the following 2 function presents this way
     //TODO : the function still can't call correctly in Placement.java
+
     /*
     Put things in the bag
 

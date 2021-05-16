@@ -6,7 +6,7 @@ import Card.Element;
 /**
  * This class deals with NPC and all of their properties.(aka monsters)
  * Any method that changes a NPC interacts with it should be placed within this class.
- * supplement for entity.(For simplify, we consider all NPCs evil, no friend with main character )
+ * supplement for entity.(For simplicity, we consider all NPCs evil, no friend with main character )
  *
  * Mainly function:
  * a NPC should have an ID to identify
