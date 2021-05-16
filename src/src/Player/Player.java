@@ -31,7 +31,6 @@ public class Player {
 
     private int factor = 2; //critical hit factor
 
-
     Bag bag;
     Placement placement;//Coordinate
     //NEW A PLAYER
@@ -40,7 +39,6 @@ public class Player {
         this.name = name;
 
         Random random=new Random();
-
 
         this.xp = 100;//default 0
         this.money = random.nextInt(20);
@@ -57,7 +55,6 @@ public class Player {
         this.criticalChance = level*0.01; //all these 4 may cause a problem that 1 level up may cause different change
 
         this.HP = maxHP;
-
     }
     //CHANGE A PLAYER
     public Player(String name,int xp, int money, int level, int health, int maxHP){
@@ -169,14 +166,17 @@ public class Player {
      * @param name
      * @return
      */
-    public boolean getItemFromRoom(String name){
+    public String getItemFromRoom(String name){
         Item item = this.placement.getBag().getItemByName(name);
         if (item == null){
-            return false;
+            return "There is no item named "+name+" inside current room";
         } else {
+            if ((this.bag.currentWeight + item.getWeight()) > this.bag.maxWeight)
+                return "Can't add item to your bag as the weight of your bag will exceeded";
             this.bag.put(item);
+            this.bag.currentWeight += item.getWeight();
             this.placement.getBag().drop(item);
-            return true;
+            return item.name+" is added to your bag";
         }
     }
 
@@ -192,6 +192,7 @@ public class Player {
         } else {
             this.placement.getBag().put(item);
             this.bag.drop(item);
+            this.bag.currentWeight -= item.getWeight();
             return true;
         }
     }
