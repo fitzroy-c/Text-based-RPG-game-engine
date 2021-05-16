@@ -1,4 +1,4 @@
-package NPCs;
+package AbnormalPoints;
 
 import Card.Element;
 
@@ -6,7 +6,7 @@ import Card.Element;
  * A monster with high health and damage, but low armour.
  * @author yitao chen
  */
-public class Giant extends npc{
+public class Giant extends AbnormalPoint {
 
     public Giant(int playerLevel) {
         this.monsterType = "Giant";

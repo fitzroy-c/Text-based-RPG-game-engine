@@ -1,4 +1,4 @@
-package NPCs;
+package AbnormalPoints;
 
 import Card.Element;
 import org.junit.Before;
@@ -11,15 +11,16 @@ import static org.junit.Assert.assertFalse;
 
 /**
  * @author yitao chen
+ * test all npcs(monsters)
  */
 public class NPCsTest {
 
-    private npc dummyMonster;
+    private AbnormalPoint dummyMonster;
     private int playerLevel;
 
     @Before
     public void setUp() {
-        dummyMonster = new npc() { };
+        dummyMonster = new AbnormalPoint() { };
         playerLevel = 5;
     }
 

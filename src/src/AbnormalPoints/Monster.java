@@ -1,4 +1,4 @@
-package NPCs;
+package AbnormalPoints;
 
 //may can be replaced
 

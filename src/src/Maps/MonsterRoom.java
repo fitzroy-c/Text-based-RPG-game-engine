@@ -1,6 +1,6 @@
 package Maps;
 
-import NPCs.Monster;
+import AbnormalPoints.Monster;
 
 /**
  * Monster room is where player take combat with monsters

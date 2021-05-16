@@ -1,5 +1,6 @@
 package Player;
 
+import java.util.Collections;
 import java.util.Map;
 // todo item.json
 // todo test for these functions in player, bag,item.class
@@ -17,8 +18,43 @@ public class Item {
         this.description = description;
         this.properties = properties;
     }
+    public String getName() {
+        return name;
+    }
+    public String getId() {
+        return id;
+    }
+    public String getDescription(){ return description; }
+    public Integer getWeight() {
+        if (properties.containsKey("weight")) {
+            return properties.get("weight");
+        }
+        return Integer.valueOf(0);//in case some special item don't have weight(ability card)
+    }
+    public int getProperty(String property) {
+        if (! properties.containsKey(property)) {
+            return 0;
+        }
+        return properties.get(property);
+    }
+    public Map<String, Integer> getProperties() {
+        return Collections.unmodifiableMap(properties);// for safe reason unchangeable map
+    }
+    public boolean containsProperty(String key) {
+        return properties.containsKey(key);
+    }
 
-    public String getDescription(){
-        return description;
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj instanceof Item) {
+            Item i = (Item) obj;
+            return name.equals(i.name);
+        }
+        return false;
+    }
+    public void print() {
+        // TODO: need a function to print out all we have in this real location (name + description?)
     }
 }
