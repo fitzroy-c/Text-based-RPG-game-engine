@@ -6,52 +6,50 @@ package AbnormalPoints;
  * @author yitao chen
  */
 public abstract class entity {
-    // All entities can attack, have health, have names
+    // All entities can attack, have HP, have names
     private String name;
     private String intro; //describe the monster
-    private int healthMax;
-    private int health;
+    private int maxHP;
+    private int HP;
     private int level;
-    private int strength;
+    private int damage;
     private int armour;
 
     private int gold;
-
-    private int damage = 30;
     private double critChance = 0.0; //critical hit chance
 
     public entity() {
         this(100, 100, "default", 0);
     }
-    public entity(int healthMax, int health, String name, int gold) {
-        this.healthMax = healthMax;
-        this.health = health;
+    public entity(int maxHP, int HP, String name, int gold) {
+        this.maxHP = maxHP;
+        this.HP = HP;
         this.name = name;
         this.gold = gold;
     }
-    public int getHealth() {
-        return this.health;
+    public int getHP() {
+        return this.HP;
     }
 
-    public void setHealth(int health) {
-        if (health > healthMax) {
-            health = healthMax;
+    public void setHP(int HP) {
+        if (HP > maxHP) {
+            HP = maxHP;
         }
-        this.health = health;
+        this.HP = HP;
     }
 
-    public int getHealthMax() {
-        return healthMax;
+    public int getMaxHP() {
+        return maxHP;
     }
 
-    public void setHealthMax(int healthMax) {
-        this.healthMax = healthMax;
-        if (health > healthMax) {
-            health = healthMax;
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+        if (HP > maxHP) {
+            HP = maxHP;
         }
     }
 
-    public double getDamage() {
+    public int getDamage() {
         return damage;
     }
 
@@ -81,14 +79,6 @@ public abstract class entity {
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
     }
 
     public int getArmour() {

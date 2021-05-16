@@ -13,7 +13,7 @@ public class Placement {
     private Coordinate coordinate;
     private String description;
     private int dangerRate; //calculate the chance we meet a monster
-    private Bag bag; // the bag which contains item inside a room
+    private Bag bag;        // the bag which contains item inside a room
     private List<AbnormalPoint> abnormalPoints;
 
     Random random = new Random();
@@ -24,7 +24,7 @@ public class Placement {
     public Placement(Coordinate coordinate, String description) {
         this.coordinate = coordinate;
         this.description = description;
-        this.dangerRate = random.nextInt(4) + 1;
+        this.dangerRate = random.nextInt(4) + 1; // 5 level, 1(easy) - 5 (extremely dangerous)
         this.bag = new Bag(100);
         this.abnormalPoints = new ArrayList<>();
     }

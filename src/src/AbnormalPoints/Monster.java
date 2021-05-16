@@ -1,71 +1,50 @@
 package AbnormalPoints;
-
+import Card.Element;
 //be replaced and divided by 5 specific monsters
 
-import Card.Element;
+public class Monster extends AbnormalPoint {
 
-public class Monster {
-    private String name;
-    private String intro; //describe the monster
-
-    Element element;
-
-    int maxHP;
-    int maxMP;
-    int level;
-    private int strength;
-    private int intelligence;
-    private int dexterity;
-    private int luck;
-    private int stealth;
-    private int gold;
-
-    public Monster (String name, Element element, int maxHP,
-                    int maxMP, int aiLevel){
-        this.name = name;
-        this.element = element;
-        this.maxHP = maxHP;
-        this.maxMP = maxMP;
-        this.level = aiLevel;
+    public Monster(MonsterAttributes ma, int playerLevel){
+        this.monsterType = ma.setMonsterType;
+        this.setMaxHP(ma.setBaseMaxHP + playerLevel * ma.setByLevelMaxHP);
+        this.setHP(this.getMaxHP());
+        this.setArmour(ma.setBaseArmor + playerLevel * ma.setByLevelArmor);
+        this.setDamage(ma.setBaseDamage + playerLevel * ma.setByLevelDamage);
+        this.setCritChance(ma.setCritChance);
+        this.setXPGain(ma.setBaseXPGain + playerLevel * ma.setByLevelXPGain);
+        this.setGold(ma.setBaseGold + playerLevel * ma.setByLevelGold);
+        this.setElement(ma.setElement);
     }
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * A monster with high health and damage, but low armour.
+     */
+    MonsterAttributes giant = new MonsterAttributes("giant", 150, 8,
+            6, 3,40,3,0.03,50,
+            3,15, 11, Element.Normal);
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    /**
+     * A normal monster , with slight armour.
+     */
+    MonsterAttributes goblin = new MonsterAttributes("goblin", 55,6,
+            0,3,12,2,0.02,10,
+            3,0,5, Element.Normal);
 
-    public Element getElement() {
-        return element;
-    }
+    /**
+     * A quite weak monster.
+     */
+    MonsterAttributes skeleton = new MonsterAttributes("skeleton", 50,3,
+            0, 1, 8,1,0.02,10,
+            3, 0,3,Element.Normal);
 
-    public void setElement(Element element) {
-        this.element = element;
-    }
+    /**
+     * A monster without low damage, but high health and armour.
+     */
+    MonsterAttributes troll = new MonsterAttributes("troll", 70,11,
+            0,12,20,3,0.05,75,
+            3,25,10,Element.Normal);
 
-    public int getMaxHP() {
-        return maxHP;
-    }
-
-    public void setMaxHP(int maxHP) {
-        this.maxHP = maxHP;
-    }
-
-    public int getMaxMP() {
-        return maxMP;
-    }
-
-    public void setMaxMP(int maxMP) {
-        this.maxMP = maxMP;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
+    MonsterAttributes wolf = new MonsterAttributes("wolf", 35,3,
+            0,0,15,2,0.04,25,
+            3,0,2,Element.Normal);
 }

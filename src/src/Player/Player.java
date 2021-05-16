@@ -227,7 +227,7 @@ public class Player {
     /**
      * Update player's placement given a direction
      * @param direction north | east | south | west
-     * @return true: update successfu, false: update unsuccessful
+     * @return true: update successful, false: update unsuccessful
      */
     public String goToDirection(String direction){
     // TODO: complete this method which make the player go to the direction.

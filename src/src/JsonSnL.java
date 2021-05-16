@@ -1,3 +1,4 @@
+import AbnormalPoints.MonsterAttributes;
 import Card.subCards.Normal_Attack_cards;
 import Maps.Environment;
 import Maps.MonsterRoom;
@@ -66,8 +67,13 @@ public class JsonSnL {
         List<Rooms> forrestRooms = new ArrayList<Rooms>();
 
         int[] goblinCardSet1 = {1,1,1,1,1,1,1,1,2};
-        Monster goblinWorker = new Monster("Wolf worker", Element.Normal, 8, 0, 0);
-        Monster goblinSoldier = new Monster("Wolf soldier", Element.Normal, 20, 0, 0);
+
+        Monster goblinWorker = new Monster( new MonsterAttributes("goblin", 55,6,
+                0,3,12,2,0.02,10,
+                3,0,5, Element.Normal), 5);
+        Monster goblinSoldier = new Monster(new MonsterAttributes("goblin", 55,6,
+                0,3,12,2,0.02,10,
+                3,0,5, Element.Normal) , 10);
 
         forrestRooms.add(new MonsterRoom("Wolf worker", "small, malicious and greedy goblin worker.  Beware...", goblinWorker));
         forrestRooms.add(new MonsterRoom("Wolf soldier","Strong, malicious and greedy goblin soldier.  Beware...", goblinSoldier));
