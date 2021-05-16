@@ -32,5 +32,4 @@ public class Giant extends AbnormalPoint {
         this.setGold(15 + playerLevel * 11);
         this.setElement(element1);
     }
-
 }

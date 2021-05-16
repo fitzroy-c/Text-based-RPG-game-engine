@@ -75,7 +75,6 @@ public class Bag {
         return null;
     }
 
-
     /*
     check if one item is in the bag
     */
@@ -84,6 +83,24 @@ public class Bag {
             if (i.equals(item)) return true;
         }
         return false;
+    }
+
+    /**
+     * Check if a bag contains a item of given item name (String)
+     * @param itemName
+     * @return The corresponding item (Item)
+     */
+    public Item getItemByName(String itemName){
+        // if the bag is empty
+        if (this.itemList.isEmpty())
+            return null;
+
+        for (Item i : this.itemList){
+            if (i.name.equals(itemName))
+                return i;
+        }
+        // did not find a item
+        return null;
     }
 
     public List<Item> getItems() {

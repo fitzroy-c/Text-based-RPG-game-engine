@@ -35,7 +35,5 @@ public class Environment {
         return listOfRooms;
     }
 
-    public void setListOfRooms(List<Rooms> listOfRooms) {
-        this.listOfRooms = listOfRooms;
-    }
+    public void setListOfRooms(List<Rooms> listOfRooms) { this.listOfRooms = listOfRooms; }
 }
