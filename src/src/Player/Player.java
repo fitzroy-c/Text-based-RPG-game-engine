@@ -1,20 +1,14 @@
 package Player;
 
-import Maps.Environment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Placement;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+//todo attack and defense (by Yixiang Yin)
 public class Player {
     String name;
     int HP;
