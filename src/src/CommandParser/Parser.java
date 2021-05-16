@@ -116,7 +116,7 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
                 // TODO: complete this method which make the player go to the direction.
-                System.out.println("headed to "+this._tokenizer.current().token()+" direction");
+                System.out.println("headed to "+current.token()+" direction");
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
                 // TODO: complete this method which make the player go to the direction.
@@ -160,10 +160,7 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.ITEM){
-                    if (player.getItemFromRoom(this._tokenizer.current().token()))
-                        System.out.println(this._tokenizer.current().token()+" is added to your bag");
-                    else
-                        System.out.println("Item of "+this._tokenizer.current().token()+" is not found");
+                    System.out.println(player.getItemFromRoom(this._tokenizer.current().token()));
                 } else {
                     callError();
                 }
@@ -377,7 +374,7 @@ public class Parser {
          * - go defence -> error
          */
         Player ply = new Player("testname");
-        String cmd = "north go east";
+        String cmd = "north";
         CommandTokenizer mt = new CommandTokenizer(cmd);
         new Parser(mt, ply).parseCommand();
     }
