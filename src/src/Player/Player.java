@@ -7,6 +7,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import navigation.Placement;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -20,12 +21,14 @@ public class Player {
     int maxHP;
     int money; // (how many gold he has)
     Bag bag;
+    Placement placement;
     public Player(String name, int HP, int maxHP, int money){
         this.name = name;
         this.HP = HP;
         this.maxHP = maxHP;
         this.money = money;
         bag = new Bag();//default bag
+        placement = new Placement();
     }
 
     /*
@@ -75,6 +78,13 @@ public class Player {
         return gson.fromJson(jsonReader, CUS_LIST_TYPE);
     }
 
+    public String showPlayerStat() {
+        return "Player name: "+ getName() +"\n"+
+               "CurrentHP: "  + getHP() +"\n"+
+               "MaxHP: "      + getMaxHP() +"\n"+
+               "Money: "      + getMoney();
+    }
+
     public String getName() {
         return name;
     }
@@ -107,7 +117,5 @@ public class Player {
         this.money = money;
     }
 
-    public Bag getBag() {
-        return bag;
-    }
+    public Bag getBag() { return bag; }
 }

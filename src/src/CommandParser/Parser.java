@@ -192,12 +192,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.STAT){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                // TODO: complete this method which print out player's stat
-                System.out.println("player stat");
+                player.showPlayerStat();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: complete this method which print out player's stat
-                System.out.println("player stat");
+                player.showPlayerStat();
                 cmdExecuted = true;
             }
         }
@@ -205,8 +203,7 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BACKPACK){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                // TODO: complete this method which print out player's backpack
-                System.out.println("player backpack");
+                player.getBag().showMyBag();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
                 player.getBag().showMyBag();
@@ -219,8 +216,7 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.STAT){
-                    // TODO: complete this method which print out player's stat
-                    System.out.println("player stat");
+                    player.showPlayerStat();
                 }
                 else if (this._tokenizer.current().type()==Token.Type.BACKPACK){
                     player.getBag().showMyBag();
