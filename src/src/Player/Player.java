@@ -20,6 +20,7 @@ public class Player {
     int maxHP;
     int money; // (how many gold he has)
     Bag bag;
+
     public Player(String name, int HP, int maxHP, int money){
         this.name = name;
         this.HP = HP;
