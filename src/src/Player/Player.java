@@ -25,12 +25,12 @@ public class Player {
     private int money; // (how many gold he has)
     private int xp;    // current xp
     private int maxXP; // max xp that upgrade a player's level once reached
-    private double xpFactor;
+    private final double xpFactor;
     private int level;
     private int armour; //defense
     private int damage;
     private double criticalChance;
-    private double maxCriticalChance;
+    private final double maxCriticalChance;
     Bag bag;
     Placement placement;//Coordinate
 
@@ -53,7 +53,7 @@ public class Player {
     int initRandomDamage =  3;
     int initBaseDamage = 2;
     double initCriticalChance = 0.01;
-    double initmaxCriticalChance = 30.00;
+    double initMaxCriticalChance = 30.00;
     int initBagWeight;
     int initXCoordinate = 0;
     int initYCoordinate = 0;
@@ -73,7 +73,7 @@ public class Player {
         this.armour = random.nextInt(initRandomArmor)+ initBaseArmor;
         this.damage = random.nextInt(initRandomDamage)+ initBaseDamage;
         this.criticalChance = initCriticalChance;
-        this.maxCriticalChance = initmaxCriticalChance;
+        this.maxCriticalChance = initMaxCriticalChance;
         this.bag = new Bag(initBagWeight); //default bag capacity 5
         this.placement = new Placement(new Coordinate(initXCoordinate,initYCoordinate),"player location");
     }
@@ -117,8 +117,8 @@ public class Player {
     /**
      * Consume a consumable item, given a item name
      * - Consumable item increases the HP of player.
-     * @param itemName
-     * @return
+     * @param itemName item name in string
+     * @return string of hint
      */
     public String consumeByItemName(String itemName){
         Item item = this.bag.getItemByName(itemName);
@@ -177,14 +177,22 @@ public class Player {
      * @return
      */
     public String checkMonsterType() {
+        // TODO: save the game and back to the main menu, need player to have location that stores monster
         this.getPlacement().getAbnormalPoints();
+        //            Monster monster = new Monster();
+//            if (monster == null) {
+//                System.out.println("There is a "+ monster.getName() +" around you, WATCH OUT!");
+//            } else {
+//                System.out.println("There is no monster near you, phew～");
+//            }
         return null;
     };
 
     /**
      * Take a item from current room, given an item name
      * @param name
-     * @return
+     * @return String
+     * @author: Guanming Ou
      */
     public String getItemFromRoom(String name){
         Item item = this.placement.getBag().getItemByName(name);
@@ -202,7 +210,8 @@ public class Player {
     /**
      * Put back a item from player's bag to room, given an item name
      * @param name
-     * @return
+     * @return true: successfully droped item, false: item not exist.
+     * @author: Guanming Ou
      */
     public boolean dropItemFromBag(String name){
         Item item = this.bag.getItemByName(name);
@@ -215,17 +224,32 @@ public class Player {
         }
     }
 
+    /**
+     * Update player's placement given a direction
+     * @param direction north | east | south | west
+     * @return true: update successfu, false: update unsuccessful
+     */
     public boolean goToDirection(String direction){
 
 
         return false;
     }
 
+    /**
+     * Display a player's current stat
+     * @return String that display all this player's current stat
+     * @author: Guanming Ou
+     */
     public String showPlayerStat() {
-        return "Player name: "+ getName() +"\n"+
-               "CurrentHP: "  + getHP() +"\n"+
-               "MaxHP: "      + getMaxHP() +"\n"+
-               "Money: "      + getMoney();
+        return "Player name: "+ getName()+"\n"+
+               "Level: "      + getLevel()+"\n"+
+               "XP: "         + getXp()+"/"+getMaxXP()+"\n"+
+               "HP: "         + getHP()+"/"+getMaxHP()+"\n"+
+               "Damage: "     + getDamage()+"\n"+
+               "Armor: "      + getArmour()+"\n"+
+               "Criticle Chance: " + getCriticalChance()+"/"+getMaxCriticalChance()+"\n"+
+               "Money: "      + getMoney()+"\n"+
+               "Coordinate"   + this.placement.getCoordinate().toString();
     }
 
     public String getName() {
@@ -266,5 +290,33 @@ public class Player {
 
     public Placement getPlacement() {
         return placement;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public int getMaxXP() {
+        return maxXP;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getArmour() {
+        return armour;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public double getCriticalChance() {
+        return criticalChance;
+    }
+
+    public double getMaxCriticalChance() {
+        return maxCriticalChance;
     }
 }

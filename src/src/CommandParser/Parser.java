@@ -86,26 +86,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DETECT) {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                // TODO: save the game and back to the main menu, need player to have location that stores monster
-//
-//                Monster monster = new Monster();
-//                if (monster == null) {
-//                    System.out.println("There is a "+ monster.getName() +" around you, WATCH OUT!");
-//                } else {
-//                    System.out.println("There is no monster near you, phew～");
-//                }
-
-                System.out.println("detected monster");
+                System.out.println(player.checkMonsterType());
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: save the game and back to the main menu, need player to have location that stores monster
-//            Monster monster = new Monster();
-//            if (monster == null) {
-//                System.out.println("There is a "+ monster.getName() +" around you, WATCH OUT!");
-//            } else {
-//                System.out.println("There is no monster near you, phew～");
-//            }
-                System.out.println("detected monster");
+                System.out.println(player.checkMonsterType());
                 cmdExecuted = true;
             }
         }
