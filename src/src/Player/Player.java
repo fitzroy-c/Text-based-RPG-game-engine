@@ -23,96 +23,81 @@ public class Player {
     private int HP;
     private int maxHP;
     private int money; // (how many gold he has)
-    private int xp; //level=(int)xp/10 + 1
+    private int xp;    // current xp
+    private int maxXP; // max xp that upgrade a player's level once reached
+    private final double xpFactor;
     private int level;
     private int armour; //defense
     private int damage;
     private double criticalChance;
-
-    private int factor = 2; //critical hit factor
-
+    private final double maxCriticalChance;
     Bag bag;
     Placement placement;//Coordinate
-    //NEW A PLAYER
-    //TODO need fix
+
+    /**
+     * Some variables
+     */
+    Random random = new Random();
+    int maxHPIncreasePerLv = 10;
+    int armorIncreasePerLv = 2;
+    int damageIncreasePerLv = 2;
+    double criticalChanceIncreasePerLv = 0.005;
+    int initRandomMaxHP = 15;
+    int initBaseMaxHP = 10;
+    int initRandomMoney =  5;
+    int initBaseMoney = 10;
+    int initMaxXP = 10;
+    double initXPFactor = 1.1;
+    int initRandomArmor =  5;
+    int initBaseArmor = 1;
+    int initRandomDamage =  3;
+    int initBaseDamage = 2;
+    double initCriticalChance = 0.01;
+    double initMaxCriticalChance = 1.00;
+    int initBagWeight;
+    int initXCoordinate = 0;
+    int initYCoordinate = 0;
+
+    /**
+     * Constructor of new player by giving a name
+     */
     public Player(String name){
         this.name = name;
-
-        Random random=new Random();
-
-        this.xp = 100;//default 0
-        this.money = random.nextInt(20);
-        this.level = (int)xp /100;
-        this.bag = new Bag(5); //default bag capacity 5
-
-        //TODO don't know if it is right.
-        Coordinate coordinate = new Coordinate(0,0);
-        this.placement = new Placement(coordinate,"player location");
-
-        this.maxHP = random.nextInt(50)+(level*50);
-        this.armour = random.nextInt(10)+(level*5);
-        this.damage = random.nextInt(10)+(level*30);
-        this.criticalChance = level*0.01; //all these 4 may cause a problem that 1 level up may cause different change
-
+        this.maxHP = random.nextInt(initRandomMaxHP) + initBaseMaxHP;
         this.HP = maxHP;
-    }
-    //CHANGE A PLAYER
-    public Player(String name,int xp, int money, int level, int health, int maxHP){
-        this.name = name;
-
-        Random random=new Random();
-
-
-        this.xp = 100;//default 0
-        this.money = random.nextInt(20);
-        this.level = (int)xp /100;
-        this.bag = new Bag(5); //default bag capacity 5
-
-        //TODO don't know if it is right.
-        Coordinate coordinate = new Coordinate(0,0);
-        this.placement = new Placement(coordinate,"player location");
-
-        this.maxHP = random.nextInt(50)+(level*50);
-        this.armour = random.nextInt(10)+(level*5);
-        this.damage = random.nextInt(10)+(level*30);
-        this.criticalChance = level*0.01; //all these 4 may cause a problem that 1 level up may cause different change
-
-        this.HP = maxHP;
-
+        this.money = random.nextInt(initRandomMoney) + initBaseMoney;
+        this.xp = 0; // default 0
+        this.maxXP = initMaxXP;
+        this.xpFactor = initXPFactor;
+        this.level = 1;
+        this.armour = random.nextInt(initRandomArmor)+ initBaseArmor;
+        this.damage = random.nextInt(initRandomDamage)+ initBaseDamage;
+        this.criticalChance = initCriticalChance;
+        this.maxCriticalChance = initMaxCriticalChance;
+        this.bag = new Bag(initBagWeight); //default bag capacity 5
+        this.placement = new Placement(new Coordinate(initXCoordinate,initYCoordinate),"player location");
     }
 
     /**
-    Consume an consumable item
+     * calculate player's new attribute as level increases, given a player
      */
-    public String consume(Item i){
-        if (i.type.equals("consumable") && bag.inMyBag(i)){
-            HP+=i.properties.get("health").intValue();
-            bag.drop(i);
-            return "You've successfully consume "+i.name+" .";
-        }
-        else if (!i.type.equals("consumable")) return "You can't consume "+i.name+" .";
-        else return "You don't have "+i.name+" .";
-    }
+    public void UpdatePlayerAttribute(){
+        if(this.xp >= this.maxXP){
+            this.xp -= this.maxXP; // reset xp
+            this.level += 1; // increase level
+            this.maxXP *= xpFactor; // increase xpFactor
 
-    /**
-     * Consume a consumable item, given a item name
-     * - Consumable item increases the HP of player.
-     * @param itemName
-     * @return
-     */
-    public String consumeByItemName(String itemName){
-        Item item = this.bag.getItemByName(itemName);
-        if (item == null)
-            return "You don't have "+ itemName +" in your bag.";
-        else {
-            if (item.type.equals("consumable")){
-                this.HP += item.properties.get("health").intValue();
-                this.bag.drop(item);
-                return "You've successfully consume "+itemName+" .";
-            }
-            else {
-                return itemName+" is not consumable.";
-            }
+            // update other attributes (maxHP, armor, damage, criticalChance, HP)
+            this.maxHP += maxHPIncreasePerLv;
+            this.armour += armorIncreasePerLv;
+            this.damage += damageIncreasePerLv;
+
+            if (this.criticalChance + criticalChanceIncreasePerLv > this.maxCriticalChance)
+                this.criticalChance = this.maxCriticalChance;
+            else
+                this.criticalChance += criticalChanceIncreasePerLv;
+
+            this.HP = maxHP; // recover all hp once upgraded
         }
     }
 
@@ -151,39 +136,82 @@ public class Player {
     }
 
     /**
+     Consume an consumable item
+     */
+    public String consume(Item i){
+        if (i.type.equals("consumable") && bag.inMyBag(i)){
+            HP+=i.properties.get("health").intValue();
+            bag.drop(i);
+            return "You've successfully consume "+i.name+" .";
+        }
+        else if (!i.type.equals("consumable")) return "You can't consume "+i.name+" .";
+        else return "You don't have "+i.name+" .";
+    }
+
+    /**
+     * Consume a consumable item, given a item name
+     * - Consumable item increases the HP of player.
+     * @param itemName item name in string
+     * @return string of hint
+     */
+    public String consumeByItemName(String itemName){
+        Item item = this.bag.getItemByName(itemName);
+        if (item == null)
+            return "You don't have "+ itemName +" in your bag.";
+        else {
+            if (item.type.equals("consumable")){
+                this.HP += item.properties.get("health").intValue();
+                this.bag.drop(item);
+                return "You've successfully consume "+itemName+" .";
+            }
+            else {
+                return itemName+" is not consumable.";
+            }
+        }
+    }
+
+    /**
      * Check if this room has a monster,
      * - if yes, return the danger level and name of the monster
      * - else, return there is no monster
      * @return
      */
     public String checkMonsterType() {
+        // TODO: save the game and back to the main menu, need player to have location that stores monster
         this.getPlacement().getAbnormalPoints();
+        //            Monster monster = new Monster();
+//            if (monster == null) {
+//                System.out.println("There is a "+ monster.getName() +" around you, WATCH OUT!");
+//            } else {
+//                System.out.println("There is no monster near you, phew～");
+//            }
         return null;
     };
 
     /**
      * Take a item from current room, given an item name
      * @param name
-     * @return
+     * @return String
+     * @author: Guanming Ou
      */
     public String getItemFromRoom(String name){
         Item item = this.placement.getBag().getItemByName(name);
         if (item == null){
             return "There is no item named "+name+" inside current room";
         } else {
-            if ((this.bag.currentWeight + item.getWeight()) > this.bag.maxWeight)
-                return "Can't add item to your bag as the weight of your bag will exceeded";
-            this.bag.put(item);
-            this.bag.currentWeight += item.getWeight();
-            this.placement.getBag().drop(item);
-            return item.name+" is added to your bag";
+            if (this.bag.put(item)){
+                this.placement.getBag().drop(item);
+                return item.name+" is added to your bag";
+            }
+            return "Can't add item to your bag as the weight of your bag will exceeded";
         }
     }
 
     /**
      * Put back a item from player's bag to room, given an item name
      * @param name
-     * @return
+     * @return true: successfully droped item, false: item not exist.
+     * @author: Guanming Ou
      */
     public boolean dropItemFromBag(String name){
         Item item = this.bag.getItemByName(name);
@@ -192,22 +220,72 @@ public class Player {
         } else {
             this.placement.getBag().put(item);
             this.bag.drop(item);
-            this.bag.currentWeight -= item.getWeight();
             return true;
         }
     }
 
-    public boolean goToDirection(String direction){
+    /**
+     * Update player's placement given a direction
+     * @param direction north | east | south | west
+     * @return true: update successful, false: update unsuccessful
+     */
+    public String goToDirection(String direction){
+        // TODO: complete this method which make the player go to the direction.
 
-
-        return false;
+        return null;
     }
 
+    /**
+     * This talk to the npc at the given coordinate
+     * @return
+     */
+    public String talk(){
+        // TODO: complete this method which talk to NPC at the coordinate
+        return null;
+    }
+
+    /**
+     * This attacks the monster at the player's current placement, and monster will attack by respond
+     * @return
+     */
+    public String attack(){
+        // TODO: complete this method which attack to the monster
+        return null;
+    }
+
+    /**
+     * player defence, which increase his armor temperally, and monster will attack by respond
+     * @return
+     */
+    public String defence(){
+        // TODO: complete this method which let player defense
+        return null;
+    }
+
+    /**
+     * player retreat, which allow player to escape from current fight and move to next coordinate
+     * @return
+     */
+    public String retreat(String direction){
+        // TODO: complete this method which may let player escape from the fight
+        return null;
+    }
+
+    /**
+     * Display a player's current stat
+     * @return String that display all this player's current stat
+     * @author: Guanming Ou
+     */
     public String showPlayerStat() {
-        return "Player name: "+ getName() +"\n"+
-               "CurrentHP: "  + getHP() +"\n"+
-               "MaxHP: "      + getMaxHP() +"\n"+
-               "Money: "      + getMoney();
+        return "Player name: "+ getName()+"\n"+
+                "Level: "      + getLevel()+"\n"+
+                "XP: "         + getXp()+"/"+getMaxXP()+"\n"+
+                "HP: "         + getHP()+"/"+getMaxHP()+"\n"+
+                "Damage: "     + getDamage()+"\n"+
+                "Armor: "      + getArmour()+"\n"+
+                "Criticle Chance: " + getCriticalChance()+"/"+getMaxCriticalChance()+"\n"+
+                "Money: "      + getMoney()+"\n"+
+                "Coordinate"   + this.placement.getCoordinate().toString();
     }
 
     public String getName() {
@@ -248,5 +326,33 @@ public class Player {
 
     public Placement getPlacement() {
         return placement;
+    }
+
+    public int getXp() {
+        return xp;
+    }
+
+    public int getMaxXP() {
+        return maxXP;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getArmour() {
+        return armour;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public double getCriticalChance() {
+        return criticalChance;
+    }
+
+    public double getMaxCriticalChance() {
+        return maxCriticalChance;
     }
 }

@@ -34,10 +34,14 @@ public class Bag {
     //TODO :i am confused about why the following 2 function presents this way
     //TODO : the function still can't call correctly in Placement.java
 
-    /*
-    Put things in the bag
 
-    public String put(Item i){
+    /**
+     * put an item in the bag, output string to indicate if it succeed.
+     * @param i
+     * @return String
+     * @author: Yixiang Yin
+     */
+    public String putS(Item i){
         int weightOfItem = i.getWeight();
         if (currentWeight + weightOfItem <= maxWeight) {
             this.itemList.add(i);
@@ -48,16 +52,20 @@ public class Bag {
             return "Your bag is out of storage.(You may drop or consume some items or extend your storage)";
         }
     }
-    //drop things out of the bag
 
-    public String drop(Item i){
+    /**
+     * drop things out of the bag, output string to indicate if it succeed.
+     * @param i
+     * @return String
+     * @author: Yixiang Yin
+     */
+    public String dropS(Item i){
         int weightOfItem = i.properties.get("weight");
         this.itemList.remove(i);
         currentWeight-=weightOfItem;
         return "You've removed "+i.name+" .";
     }
 
-     */
     /**
      * put an item in the bag (Yixiang Yin, modified by Yitao)
      */
