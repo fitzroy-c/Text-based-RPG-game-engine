@@ -1,6 +1,7 @@
 package CommandParser;
 
 import Player.Player;
+import Player.Bag;
 
 /**
  * Grammar:
@@ -224,7 +225,7 @@ public class Parser {
                 }
                 else if (this._tokenizer.current().type()==Token.Type.BACKPACK){
                     // TODO: complete this method which print out player's backpack
-                    System.out.println("player backpack");
+                    player. ;
                 } else {
                     callError();
                 }
