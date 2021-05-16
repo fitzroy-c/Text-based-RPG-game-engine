@@ -89,9 +89,6 @@ public class CommandTokenizer {
             else if (createString.toString().equals("take") | createString.toString().equals("pick"))
                 currentToken = new Token(createString.toString(),Token.Type.TAKE_ACTION);
 
-            else if (createString.toString().equals("gold") | createString.toString().equals("golds") | createString.toString().equals("money"))
-                currentToken = new Token(createString.toString(),Token.Type.GOLD);
-
             else if (createString.toString().equals("item")) // TODO: make checkHasItem, return true if this is a valid item name
                 currentToken = new Token(createString.toString(),Token.Type.ITEM);
 //            if (checkHasItem(createString))

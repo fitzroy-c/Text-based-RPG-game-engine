@@ -13,7 +13,7 @@ import Player.Bag;
  * <move-command> := <move_action> <direction> | <direction>
  * <move_action> := go | move | head
  * <direction> := north | south | east | west
- * <take-command> := <take_action> <item-name> | <take_action> <gold | golds | money>
+ * <take-command> := <take_action> <item-name>
  * <item-name> := "item inside the room"
  * <take_action> := take | pick
  * <drop-command> := <drop_action> <item-name>
@@ -139,18 +139,16 @@ public class Parser {
             }
         }
 
-        // <take-command> := <take_action> <item-name> | <take_action> gold
+        // <take-command> := <take_action> <item-name>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TAKE_ACTION){
             cmdExecuted = true;
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
-                if (this._tokenizer.current().type()==Token.Type.GOLD){
-                    // TODO: complete this method which make the player gain the gold inside the room
-                    System.out.println("player took the gold");
-                }
-                else if (this._tokenizer.current().type()==Token.Type.ITEM){
-                    // TODO: complete this method which make the player pick up the item inside the room
-                    System.out.println("player took "+this._tokenizer.current().token());
+                if (this._tokenizer.current().type()==Token.Type.ITEM){
+                    if (player.getItemFromRoom(this._tokenizer.current().token()))
+                        System.out.println(this._tokenizer.current().token()+" is added to your bag");
+                    else
+                        System.out.println("Item of "+this._tokenizer.current().token()+" is not found");
                 } else {
                     callError();
                 }
@@ -165,8 +163,10 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.ITEM){
-                    // TODO: complete this method which make the player put back the item inside the room
-                    System.out.println("player dropped the item");
+                    if (player.dropItemFromBag(this._tokenizer.current().token()))
+                        System.out.println(this._tokenizer.current().token()+" is dropped");
+                    else
+                        System.out.println("Item of "+this._tokenizer.current().token()+" is not found from you bag");
                 } else {
                     callError();
                 }
@@ -308,8 +308,6 @@ public class Parser {
                 "<take_action><item-name>: take a item inside current coordinate (if any)\n"+
                 "   <take_action> := take | pick\n"+
                 "   <item-name>   := the available item name\n"+
-                "<take_action><gold>: take the gold inside current coordinate (if any)\n"+
-                "   <gold>        := gold | golds | money\n"+
                 "<drop_action><item-name>: put back item inside current coordinate (if any)\n"+
                 "   <drop_action> := drop | put down | abandon\n"+
                 "   <item-name>   := the available item name\n"+
@@ -340,7 +338,6 @@ public class Parser {
          * - north go east -> headed to north direction
          * - xx south   -> error
          * - take       -> error
-         * - take gold  -> player took the gold
          * - pick item  -> player took item
          * - drop item  -> player dropped the item
          * - drop dbsdbs-> error

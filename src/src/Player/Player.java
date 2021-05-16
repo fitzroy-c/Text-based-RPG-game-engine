@@ -78,11 +78,48 @@ public class Player {
         return gson.fromJson(jsonReader, CUS_LIST_TYPE);
     }
 
+    /**
+     * Check if this room has a mosnter,
+     * - if yes, return the danger level and name of the monster
+     * - else, return there is no monster
+     * @return
+     */
     public String checkMonsterType() {
         this.getPlacement().getAbnormalPoints();
         return null;
     };
 
+    /**
+     * Take a item from current room, given an item name
+     * @param name
+     * @return
+     */
+    public Boolean getItemFromRoom(String name){
+        Item item = this.placement.getBag().getItemByName(name);
+        if (item == null){
+            return false;
+        } else {
+            this.bag.put(item);
+            this.placement.getBag().drop(item);
+            return true;
+        }
+    }
+
+    /**
+     * Put back a item from player's bag to room, given an item name
+     * @param name
+     * @return
+     */
+    public Boolean dropItemFromBag(String name){
+        Item item = this.bag.getItemByName(name);
+        if (item == null){
+            return false;
+        } else {
+            this.placement.getBag().put(item);
+            this.bag.drop(item);
+            return true;
+        }
+    }
 
     public String showPlayerStat() {
         return "Player name: "+ getName() +"\n"+
