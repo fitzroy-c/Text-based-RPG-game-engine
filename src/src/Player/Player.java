@@ -1,10 +1,7 @@
 package Player;
 
-import Maps.Environment;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
@@ -135,7 +132,7 @@ public class Player {
     }
 
     /**
-     * Check if this room has a mosnter,
+     * Check if this room has a monster,
      * - if yes, return the danger level and name of the monster
      * - else, return there is no monster
      * @return
@@ -150,7 +147,7 @@ public class Player {
      * @param name
      * @return
      */
-    public Boolean getItemFromRoom(String name){
+    public boolean getItemFromRoom(String name){
         Item item = this.placement.getBag().getItemByName(name);
         if (item == null){
             return false;
@@ -166,7 +163,7 @@ public class Player {
      * @param name
      * @return
      */
-    public Boolean dropItemFromBag(String name){
+    public boolean dropItemFromBag(String name){
         Item item = this.bag.getItemByName(name);
         if (item == null){
             return false;
@@ -175,6 +172,12 @@ public class Player {
             this.bag.drop(item);
             return true;
         }
+    }
+
+    public boolean goToDirection(String direction){
+
+
+        return false;
     }
 
     public String showPlayerStat() {

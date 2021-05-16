@@ -139,6 +139,21 @@ public class Parser {
             }
         }
 
+        // <consume-command> := <consume-action> <item-name>
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.CONSUME_ACTION){
+            cmdExecuted = true;
+            this._tokenizer.next();
+            if (this._tokenizer.hasNext()){
+                if (this._tokenizer.current().type()==Token.Type.ITEM){
+                    System.out.println(player.consumeByItemName(this._tokenizer.current().token()));
+                } else {
+                    callError();
+                }
+            } else {
+                callError();
+            }
+        }
+
         // <take-command> := <take_action> <item-name>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TAKE_ACTION){
             cmdExecuted = true;

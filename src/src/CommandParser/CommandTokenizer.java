@@ -110,6 +110,9 @@ public class CommandTokenizer {
                 if (createString.toString().equals("put") && createNextString.toString().equals("down"))
                     currentToken = new Token(createString+" "+createNextString,Token.Type.DROP_ACTION);
             }
+            // CONSUME_ACTION <consume | eat | drink | use>
+            else if (createString.toString().equals("consume") | createString.toString().equals("eat") | createString.toString().equals("drink")|createString.toString().equals("use")
+                currentToken = new Token(createString.toString(),Token.Type.CONSUME_ACTION);
 
             // TALK <talk | chat | speak>
             else if (createString.toString().equals("talk") | createString.toString().equals("chat") | createString.toString().equals("speak"))

@@ -1,7 +1,7 @@
 package CommandParser;
 
 /**
- * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
+ * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|<consume-command>|
  *              <attack-command>|<retreat-command>|<defence-command>|<view-command>|<help-command>
  * <save>    := save | save game
  * <exit>    := exit | exit game
@@ -9,6 +9,8 @@ package CommandParser;
  * <move-command> := <move_action> <direction> | <direction>
  * <move_action> := go | move | head
  * <direction> := north | south | east | west
+ * <consume-command> := <consume-action> <item-name>
+ * <consume-action> := consume | eat | drink | use
  * <take-command> := <take_action> <item-name> | <take_action> <gold | golds | money>
  * <item-name> := "item inside the room"
  * <take_action> := take | pick
@@ -26,7 +28,7 @@ package CommandParser;
  */
 
 public class Token {
-    public enum Type {UNKNOWN, ERROR, SAVE, EXIT, DETECT, DIRECTION_ACTION, DIRECTION, TAKE_ACTION, DROP_ACTION,
+    public enum Type {UNKNOWN, ERROR, SAVE, EXIT, DETECT, DIRECTION_ACTION, DIRECTION, CONSUME_ACTION, TAKE_ACTION, DROP_ACTION,
         ITEM, TALK, VIEW_ACTION, STAT, BACKPACK, ATTACK, RETREAT, DEFENCE, HELP};
 
     private String _token = "";
