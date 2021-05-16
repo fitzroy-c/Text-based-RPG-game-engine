@@ -361,7 +361,7 @@ public class Parser {
          * - save game exit game -> game saved
          * - go defence -> error
          */
-        Player ply = new Player("testname", 10,10,0);
+        Player ply = new Player("testname");
         String cmd = "north go east";
         CommandTokenizer mt = new CommandTokenizer(cmd);
         new Parser(mt, ply).parseCommand();

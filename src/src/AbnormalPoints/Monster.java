@@ -1,6 +1,6 @@
 package AbnormalPoints;
 
-//may can be replaced
+//be replaced and divided by 5 specific monsters
 
 import Card.Element;
 

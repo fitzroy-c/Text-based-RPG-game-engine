@@ -15,11 +15,9 @@ public abstract class entity {
     private int strength;
     private int armour;
 
-    private int intelligence;
-    private int luck;
     private int gold;
 
-    private double damage = 30;
+    private int damage = 30;
     private double critChance = 0.0; //critical hit chance
 
     public entity() {
@@ -57,7 +55,7 @@ public abstract class entity {
         return damage;
     }
 
-    public void setDamage(double damage) {
+    public void setDamage(int damage) {
         this.damage = damage;
     }
 
@@ -99,22 +97,6 @@ public abstract class entity {
 
     public void setArmour(int armour) {
         this.armour = armour;
-    }
-
-    public int getIntelligence() {
-        return intelligence;
-    }
-
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
-    public int getLuck() {
-        return luck;
-    }
-
-    public void setLuck(int luck) {
-        this.luck = luck;
     }
 
     public int getGold() {

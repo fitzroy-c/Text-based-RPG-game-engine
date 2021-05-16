@@ -10,9 +10,12 @@ public class Bag {
     int maxWeight;
     private List<Item> itemList = null;
 
+    /*
     public Bag(){
         this(5, new ArrayList<Item>());
     }
+
+     */
     public Bag(int maxWeight) {
         this(maxWeight, new ArrayList<Item>());
     }
