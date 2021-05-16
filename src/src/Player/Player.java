@@ -23,62 +23,82 @@ public class Player {
     private int HP;
     private int maxHP;
     private int money; // (how many gold he has)
-    private int xp; //level=(int)xp/10 + 1
+    private int xp;    // current xp
+    private int maxXP; // max xp that upgrade a player's level once reached
+    private double xpFactor;
     private int level;
     private int armour; //defense
     private int damage;
     private double criticalChance;
-
-    private int factor = 2; //critical hit factor
-
+    private double maxCriticalChance;
     Bag bag;
     Placement placement;//Coordinate
-    //NEW A PLAYER
-    //TODO need fix
+
+    /**
+     * Some variables
+     */
+    Random random = new Random();
+    int maxHPIncreasePerLv = 10;
+    int armorIncreasePerLv = 2;
+    int damageIncreasePerLv = 2;
+    double criticalChanceIncreasePerLv = 0.005;
+    int initRandomMaxHP = 15;
+    int initBaseMaxHP = 10;
+    int initRandomMoney =  5;
+    int initBaseMoney = 10;
+    int initMaxXP = 10;
+    double initXPFactor = 1.1;
+    int initRandomArmor =  5;
+    int initBaseArmor = 1;
+    int initRandomDamage =  3;
+    int initBaseDamage = 2;
+    double initCriticalChance = 0.01;
+    double initmaxCriticalChance = 30.00;
+    int initBagWeight;
+    int initXCoordinate = 0;
+    int initYCoordinate = 0;
+
+    /**
+     * Constructor of new player by giving a name
+      */
     public Player(String name){
         this.name = name;
-
-        Random random=new Random();
-
-        this.xp = 100;//default 0
-        this.money = random.nextInt(20);
-        this.level = (int)xp /100;
-        this.bag = new Bag(5); //default bag capacity 5
-
-        //TODO don't know if it is right.
-        Coordinate coordinate = new Coordinate(0,0);
-        this.placement = new Placement(coordinate,"player location");
-
-        this.maxHP = random.nextInt(50)+(level*50);
-        this.armour = random.nextInt(10)+(level*5);
-        this.damage = random.nextInt(10)+(level*30);
-        this.criticalChance = level*0.01; //all these 4 may cause a problem that 1 level up may cause different change
-
+        this.maxHP = random.nextInt(initRandomMaxHP) + initBaseMaxHP;
         this.HP = maxHP;
+        this.money = random.nextInt(initRandomMoney) + initBaseMoney;
+        this.xp = 0; // default 0
+        this.maxXP = initMaxXP;
+        this.xpFactor = initXPFactor;
+        this.level = 1;
+        this.armour = random.nextInt(initRandomArmor)+ initBaseArmor;
+        this.damage = random.nextInt(initRandomDamage)+ initBaseDamage;
+        this.criticalChance = initCriticalChance;
+        this.maxCriticalChance = initmaxCriticalChance;
+        this.bag = new Bag(initBagWeight); //default bag capacity 5
+        this.placement = new Placement(new Coordinate(initXCoordinate,initYCoordinate),"player location");
     }
-    //CHANGE A PLAYER
-    public Player(String name,int xp, int money, int level, int health, int maxHP){
-        this.name = name;
 
-        Random random=new Random();
+    /**
+     * calculate player's new attribute as level increases, given a player
+     */
+    public void UpdatePlayerAttribute(){
+        if(this.xp >= this.maxXP){
+            this.xp -= this.maxXP; // reset xp
+            this.level += 1; // increase level
+            this.maxXP *= xpFactor; // increase xpFactor
 
+            // update other attributes (maxHP, armor, damage, criticalChance, HP)
+            this.maxHP += maxHPIncreasePerLv;
+            this.armour += armorIncreasePerLv;
+            this.damage += damageIncreasePerLv;
 
-        this.xp = 100;//default 0
-        this.money = random.nextInt(20);
-        this.level = (int)xp /100;
-        this.bag = new Bag(5); //default bag capacity 5
+            if (this.criticalChance + criticalChanceIncreasePerLv > this.maxCriticalChance)
+                this.criticalChance = this.maxCriticalChance;
+            else
+                this.criticalChance += criticalChanceIncreasePerLv;
 
-        //TODO don't know if it is right.
-        Coordinate coordinate = new Coordinate(0,0);
-        this.placement = new Placement(coordinate,"player location");
-
-        this.maxHP = random.nextInt(50)+(level*50);
-        this.armour = random.nextInt(10)+(level*5);
-        this.damage = random.nextInt(10)+(level*30);
-        this.criticalChance = level*0.01; //all these 4 may cause a problem that 1 level up may cause different change
-
-        this.HP = maxHP;
-
+            this.HP = maxHP; // recover all hp once upgraded
+        }
     }
 
     /**
