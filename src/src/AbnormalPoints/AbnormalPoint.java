@@ -13,53 +13,70 @@ import Card.Element;
  * 5 extended monster kinds: Giant, Troll, Wolf, Skeleton, Goblin
  * default characteristic: normal (details can be seen in Card.Element)
  * xp, gold to get if we defeat one AbnormalPoint.
- * @author yitao chen
+ * @author yitao chen, Guanming Ou
  */
+
 public class AbnormalPoint extends entity{
-    private int xpGain;
+    enum AbnormalPointType {
+        NPC,
+        MONSTER;
+    }
+
     private String id;
-    public Element element;  //characteristic;
-    public String monsterType;
+    public AbnormalPointType type;
+    public AbnormalPoint NPCorMonster;
 
     /**
      * Constructor of AbnormalPoint
      */
-    public AbnormalPoint(){
-        element = Element.Normal;
-    }
 
-    public AbnormalPoint(String abnormalPointID) {
-        this.id = abnormalPointID;
-        element = Element.Normal;
-    }
-
-    public int getXPGain() {
-        return xpGain;
-    } //if card game remove?
-
-    public void setXPGain(int xpGain) {
-        this.xpGain = xpGain;
-    } //if card game remove?
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) { this.id = id;}
-
-    public Element getElement() { return element;}
-
-    public void setElement(Element element) { this.element = element;}
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj instanceof AbnormalPoint) {
-            AbnormalPoint AbnormalPoint = (AbnormalPoint) obj;
-            return AbnormalPoint.monsterType.equals(this.monsterType);
-        }
-        return false;
-    }
 }
+
+//public class AbnormalPoint extends entity{
+//    private int xpGain;
+//    private String id;
+//    public Element element;  //characteristic;
+//    public String monsterType;
+//
+//    /**
+//     * Constructor of AbnormalPoint
+//     */
+//    public AbnormalPoint(){
+//        element = Element.Normal;
+//    }
+//
+//    public AbnormalPoint(String abnormalPointID) {
+//        this.id = abnormalPointID;
+//        element = Element.Normal;
+//    }
+//
+//    public int getXPGain() {
+//        return xpGain;
+//    } //if card game remove?
+//
+//    public void setXPGain(int xpGain) {
+//        this.xpGain = xpGain;
+//    } //if card game remove?
+//
+//    public String getId() {
+//        return id;
+//    }
+//
+//    public void setId(String id) { this.id = id;}
+//
+//    public Element getElement() { return element;}
+//
+//    public void setElement(Element element) { this.element = element;}
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (obj instanceof AbnormalPoint) {
+//            AbnormalPoint AbnormalPoint = (AbnormalPoint) obj;
+//            return AbnormalPoint.monsterType.equals(this.monsterType);
+//        }
+//        return false;
+//    }
+//}
