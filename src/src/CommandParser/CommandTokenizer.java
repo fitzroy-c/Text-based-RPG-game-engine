@@ -145,10 +145,10 @@ public class CommandTokenizer {
 
                 // RETREAT only if the command is <retreat| escape>
                 if (createNextString.length() == 0 && !createString.toString().equals("run"))
-                    currentToken = new Token(createString.toString(),Token.Type.RETREAT);
+                    currentToken = new Token(createString.toString(),Token.Type.RETREAT_ACTION);
                 // RETREAT only if the command is <run away | retreat away | escape away>
                 if (createNextString.toString().equals("away"))
-                    currentToken = new Token(createString+" "+createNextString,Token.Type.RETREAT);
+                    currentToken = new Token(createString+" "+createNextString,Token.Type.RETREAT_ACTION);
             }
 
             // DEFENCE

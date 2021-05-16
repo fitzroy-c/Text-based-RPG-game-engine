@@ -24,7 +24,8 @@ import Player.Bag;
  * <bag>          := <backpack | bag>
  * <look-action> := look | view | see | browse
  * <attack-command> := attack
- * <retreat-command> := retreat | run away | escape
+ * <retreat-command> := <retreat-action> <direction>
+ * <retreat-action> := retreat | run away | escape
  * <defence-command> := defence
  * <help-command> := help
  *
@@ -94,27 +95,25 @@ public class Parser {
             }
         }
 
-        // <move-command> := <move_action> <direction> | <direction>
+        // <move-command> :=  <direction>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DIRECTION){
             Token current = this._tokenizer.current();
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                // TODO: complete this method which make the player go to the direction.
-                System.out.println("headed to "+current.token()+" direction");
+                System.out.println(player.goToDirection(current.token()));
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: complete this method which make the player go to the direction.
-                System.out.println("headed to "+current.token()+" direction");
+                System.out.println(player.goToDirection(current.token()));
                 cmdExecuted = true;
             }
         }
+        // <move-command> := <move_action> <direction>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DIRECTION_ACTION){
             cmdExecuted = true;
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.DIRECTION){
-                    // TODO: complete this method which make the player go to the direction.
-                    System.out.println("2 headed to "+this._tokenizer.current().token()+" direction");
+                    System.out.println(player.goToDirection(this._tokenizer.current().token()));
                 } else {
                     callError();
                 }
@@ -175,12 +174,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TALK){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                // TODO: complete this method which talk to NPC at the coordinate
-                System.out.println("player talked to AbnormalPoint");
+                System.out.println(player.talk());
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: complete this method which talk to NPC at the coordinate
-                System.out.println("player talked to AbnormalPoint");
+                System.out.println(player.talk());
                 cmdExecuted = true;
             }
         }
@@ -230,27 +227,26 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ATTACK){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                // TODO: complete this method which attack to the monster
-                System.out.println("player attacked");
+                player.attack();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: complete this method which attack to the monster
-                System.out.println("player attacked");
+                player.attack();
                 cmdExecuted = true;
             }
         }
 
-        // <retreat-command> := retreat | run away | escape
-        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.RETREAT){
+        //  * <retreat-command> := <retreat-action> <direction>
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.RETREAT_ACTION){
+            cmdExecuted = true;
             this._tokenizer.next();
-            if (this._tokenizer.hasNext() == false){
-                // TODO: complete this method which may let player escape from the fight
-                System.out.println("player escaped");
-                cmdExecuted = true;
-            } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: complete this method which may let player escape from the fight
-                System.out.println("player escaped");
-                cmdExecuted = true;
+            if (this._tokenizer.hasNext()){
+                if (this._tokenizer.current().type()==Token.Type.DIRECTION){
+                    System.out.println(player.retreat(this._tokenizer.current().token()));
+                } else {
+                    callError();
+                }
+            } else {
+                callError();
             }
         }
 
@@ -258,12 +254,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DEFENCE){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                // TODO: complete this method which let player defense
-                System.out.println("player defenced");
+                player.defence();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                // TODO: complete this method which let player defense
-                System.out.println("player defenced");
+                player.defence();
                 cmdExecuted = true;
             }
         }
@@ -313,7 +307,8 @@ public class Parser {
                 "<look_action><bag> | <bag> : view player's bag\n"+
                 "<attack>: attack enemy\n"+
                 "<defence>: defence \n"+
-                "<retreat | run away | escape>: escape from combat\n"+
+                "<retreat_action><direction>: escape from combat\n"+
+                "    <retreat_action> := retreat | run away | escape\n"+
                 "<help>: Prints this info\n");
     }
 

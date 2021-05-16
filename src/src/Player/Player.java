@@ -229,10 +229,46 @@ public class Player {
      * @param direction north | east | south | west
      * @return true: update successfu, false: update unsuccessful
      */
-    public boolean goToDirection(String direction){
+    public String goToDirection(String direction){
+    // TODO: complete this method which make the player go to the direction.
 
+        return null;
+    }
 
-        return false;
+    /**
+     * This talk to the npc at the given coordinate
+     * @return
+     */
+    public String talk(){
+        // TODO: complete this method which talk to NPC at the coordinate
+        return null;
+    }
+
+    /**
+     * This attacks the monster at the player's current placement, and monster will attack by respond
+     * @return
+     */
+    public String attack(){
+        // TODO: complete this method which attack to the monster
+        return null;
+    }
+
+    /**
+     * player defence, which increase his armor temperally, and monster will attack by respond
+     * @return
+     */
+    public String defence(){
+        // TODO: complete this method which let player defense
+        return null;
+    }
+
+    /**
+     * player retreat, which allow player to escape from current fight and move to next coordinate
+     * @return
+     */
+    public String retreat(String direction){
+        // TODO: complete this method which may let player escape from the fight
+        return null;
     }
 
     /**
