@@ -7,7 +7,7 @@ public class Bag {
 
     int currentWeight;
     int maxWeight;
-    private List<Item> itemList = null;
+    private List<Item> itemList;
 
     /*
     public Bag(){
@@ -58,6 +58,9 @@ public class Bag {
     }
 
      */
+    /**
+     * put an item in the bag (Yixiang Yin, modified by Yitao)
+     */
     public void put(Item i){
         int weightOfItem = i.getWeight();
         if (currentWeight + weightOfItem <= maxWeight) {
@@ -66,9 +69,11 @@ public class Bag {
         }
     }
 
-    //drop things out of the bag
 
 
+    /**
+     * drop things out of the bag (Yixiang Yin, modified by Yitao)
+     */
     public Item drop(Item i){
         if (inMyBag(i)) {
             int weightOfItem = i.properties.get("weight");
@@ -79,8 +84,8 @@ public class Bag {
         return null;
     }
 
-    /*
-    check if one item is in the bag
+    /**
+    * check if one item is in the bag (Yixiang Yin)
     */
     public boolean inMyBag(Item i){
         for (Item item: this.itemList){
@@ -113,8 +118,8 @@ public class Bag {
     public boolean isEmpty() {
         return this.itemList.isEmpty();
     }
-    /*
-    show the content in the bag
+    /**
+     * show the content in the bag(Yixiang Yin)
      */
     public void showMyBag() {
         System.out.println("-----------Your bag-----------");
