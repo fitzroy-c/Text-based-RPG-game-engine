@@ -26,7 +26,7 @@ public class Player {
     private int money; // (how many gold he has)
     private int xp;    // current xp
     private int maxXP; // max xp that upgrade a player's level once reached
-    private final double xpFactor;
+    private final int xpPerLv;
     private int level;
     private int armour; //defense
     private int damage;
@@ -42,19 +42,19 @@ public class Player {
     int maxHPIncreasePerLv = 10;
     int armorIncreasePerLv = 2;
     int damageIncreasePerLv = 2;
-    double criticalChanceIncreasePerLv = 0.005;
-    int initRandomMaxHP = 15;
-    int initBaseMaxHP = 10;
+    double criticalChanceIncreasePerLv = 0.01; //from 0.00-1.00 min step 0.01
+    int initRandomMaxHP = 20;
+    int initBaseMaxHP = 80;
     int initRandomMoney =  5;
     int initBaseMoney = 10;
     int initMaxXP = 10;
-    double initXPFactor = 1.1;
+    int initXPPerLv = 10;
     int initRandomArmor =  5;
     int initBaseArmor = 1;
-    int initRandomDamage =  3;
-    int initBaseDamage = 2;
-    double initCriticalChance = 0.01;
-    double initMaxCriticalChance = 1.00;
+    int initRandomDamage =  5;
+    int initBaseDamage = 10;
+    double initCriticalChance = 0.01; //from 0.00-1.00 min step 0.01
+    double initMaxCriticalChance = 1.00; //from 0.00-1.00 min step 0.01
     int initBagWeight;
     int initXCoordinate = 0;
     int initYCoordinate = 0;
@@ -69,7 +69,7 @@ public class Player {
         this.money = random.nextInt(initRandomMoney) + initBaseMoney;
         this.xp = 0; // default 0
         this.maxXP = initMaxXP;
-        this.xpFactor = initXPFactor;
+        this.xpPerLv = initXPPerLv;
         this.level = 1;
         this.armour = random.nextInt(initRandomArmor)+ initBaseArmor;
         this.damage = random.nextInt(initRandomDamage)+ initBaseDamage;
@@ -87,7 +87,7 @@ public class Player {
         if(this.xp >= this.maxXP){
             this.xp -= this.maxXP; // reset xp
             this.level += 1; // increase level
-            this.maxXP *= xpFactor; // increase xpFactor
+            this.maxXP = maxXP + xpPerLv; // increase xpFactor
 
             // update other attributes (maxHP, armor, damage, criticalChance, HP)
             this.maxHP += maxHPIncreasePerLv;
@@ -138,6 +138,8 @@ public class Player {
     }
     /**
      * Consume an consumable item
+     * TODO: more function should be add. if the item has damage or what,should reset the monster.hp player's gold/xp etc.
+     * TODO: item should be divided first and then play its function
      * @author: Yixiang Yin
      **/
     public String consume(Item i){
@@ -206,9 +208,9 @@ public class Player {
         // 0 or less definite no monster
         if (randomInt <= this.place.getDangerRate()) {
             //randomly choose 1 from 5 type
-            int randomInt2 = random.nextInt(6);
+            //int randomInt2 = random.nextInt(6);
             int playerLevel = this.level;
-            switch (random.nextInt(6)) {
+            switch (random.nextInt(5)) {
                 case 0:
                     /**
                      * A monster with high health and damage, but low armour.
@@ -245,7 +247,7 @@ public class Player {
                             0.05,75, 3,25,10,Element.Normal);
                     System.out.println("You are facing a troll");
                     return new Monster(troll,playerLevel);
-                case 5:
+                default:
                     /**
                      * A normal wild creature
                      */
@@ -254,9 +256,6 @@ public class Player {
                             0.04,25, 3,0,2,Element.Normal);
                     System.out.println("You are facing a wolf");
                     return new Monster(wolf,playerLevel);
-                default: // any non-hostile location
-                    System.out.println("You are in a safe place");
-                    return null;
             }
         } else {
             System.out.println("You are in a safe place");
@@ -346,6 +345,34 @@ public class Player {
         return true;
     }
 
+    /**
+     * check the player is alive or not
+     * built to call before moving to next coordinate
+     * alive return true; dead return false
+     * @author yitao chen
+     */
+    public boolean playerSurvive() {
+        if (this.HP<=0){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * check if this round is a critical hit
+     * @author yitao chen
+     * @param criticalChance from 0.00-1.00 min step 0.01
+     */
+    public boolean criticalCheck(double criticalChance){
+        Random random = new Random();
+        int chance = (int)criticalChance*100;
+        int randomInt = random.nextInt(100); //
+        if (randomInt<=chance){
+            return true;}
+        else{
+            return false;
+        }
+    }
 
 
     /**
@@ -364,6 +391,39 @@ public class Player {
     public String attack(){
         // TODO: complete this method which attack to the monster
         return null;
+    }
+
+    /**
+     * you should call checkMonster function before calling the attack function
+     * default critical hit = normal *2
+     * @return
+     */
+    public String attack1(Monster monster){
+        String string = "Ready to attack:\n";
+        if (monster==null){
+            return string+"There is no monster to attack.\n";
+        }
+        string += monster.getName()+"\n"+monster.getIntro();
+        Random random = new Random();
+        int monsterHP = monster.getHP();
+        while(monsterHP>0&&this.HP>0){
+            if (criticalCheck(this.criticalChance)){
+                monsterHP = monsterHP - this.damage*2 + monster.getArmour();
+            }
+            monsterHP = monsterHP - this.damage + monster.getArmour();
+            if (criticalCheck(monster.getCritChance())){
+                this.HP = this.HP - monster.getDamage()*2 + this.armour;
+            }
+            this.HP = this.HP - monster.getDamage() + this.armour;
+        }
+        if (this.HP<=0){
+            return string+"Your adventure journey ended here. The magic world will remember you\n";
+        }else{
+        this.xp += monster.getXpGain();
+        this.money += monster.getGold();
+        UpdatePlayerAttribute();
+        return string+"You have defeated the monster, congratulations.\n";
+        }
     }
 
     /**
@@ -398,7 +458,7 @@ public class Player {
                 "Armor: "      + getArmour()+"\n"+
                 "Criticle Chance: " + getCriticalChance()+"/"+getMaxCriticalChance()+"\n"+
                 "Money: "      + getMoney()+"\n"+
-                "Coordinate"   + this.place.getCoordinate().toString();
+                "Coordinate"   + this.place.getCoordinate().toString()+"\n";
     }
 
     public String getName() {

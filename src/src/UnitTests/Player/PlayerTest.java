@@ -1,5 +1,8 @@
 package Player;
 
+import AbnormalPoints.Monster;
+import AbnormalPoints.MonsterAttributes;
+import Card.Element;
 import navigation.Coordinate;
 import navigation.Direction;
 import navigation.Place;
@@ -12,7 +15,7 @@ import static org.junit.Assert.*;
  */
 public class PlayerTest {
     @Test
-    public void createPlaceTopDangerTest() {
+    public void setPlaceTopDangerTest() {
         Coordinate coordinate = new Coordinate(0, 0);
         String description = "A monster is here";
         Place place = new Place(coordinate, description);
@@ -30,7 +33,8 @@ public class PlayerTest {
 
         Player player = new Player("test one");
         player.place = place;
-        assertNotEquals(null, player.checkMonster());
+        Monster monster = player.checkMonster();
+        assertNotEquals(null, monster);
     }
 
 
@@ -62,5 +66,17 @@ public class PlayerTest {
         player.goToDirection("east");
         Coordinate coordinate = new Coordinate(1, 1);
         assertEquals(coordinate, player.place.getCoordinate());
+    }
+
+    @Test
+    public void attack1Test1(){
+        Player player = new Player("test one");
+        System.out.println(player.showPlayerStat());
+        MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
+                55,6, 0,3,12,2,
+                0.02,10, 3,0,5, Element.Normal);
+        Monster monster = new Monster(goblin,player.getLevel());
+        player.attack1(monster);
+        System.out.println(player.showPlayerStat());
     }
 }
