@@ -1,5 +1,4 @@
 {
-  "items": {
     "C1": {
       "type": "consumable",
       "name": "Mushroom",
@@ -40,5 +39,4 @@
         "value": "100"
       }
     }
-  }
 }
