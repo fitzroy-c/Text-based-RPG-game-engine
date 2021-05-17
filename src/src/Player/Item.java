@@ -1,5 +1,16 @@
 package Player;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +66,25 @@ public class Item {
         }
         return false;
     }
+    /**
+     * search an item in item.json. return true if found, otherwise, false
+     * @author: Yixiang Yin
+     **/
+    public static boolean searchInItemJson(String itemName){
+        Gson gson = new Gson();
+        JsonReader reader = null;
+        try {
+            reader = new JsonReader(new FileReader("json_files/Item.json"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Item[] data = gson.fromJson(reader, Item.class);
+        for (Item i : data){
+            if (i.name.equals(itemName)) return true;
+        }
+        return false;
+    }
+
     public void print() {
         // TODO: need a function to print out all we have in this real location (name + description?)
     }

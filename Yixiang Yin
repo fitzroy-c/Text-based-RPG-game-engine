@@ -1,31 +1,62 @@
 {
   "name": "Yixiang Yin",
-  "HP": 55,
-  "maxHP": 55,
-  "money": 2,
-  "xp": 100,
+  "HP": 21,
+  "maxHP": 21,
+  "money": 10,
+  "xp": 0,
+  "maxXP": 10,
+  "xpFactor": 1.1,
   "level": 1,
-  "armour": 13,
-  "damage": 37,
+  "armour": 4,
+  "damage": 3,
   "criticalChance": 0.01,
-  "factor": 2,
+  "maxCriticalChance": 1.0,
   "bag": {
     "currentWeight": 0,
-    "maxWeight": 5,
+    "maxWeight": 0,
     "itemList": []
   },
-  "placement": {
+  "place": {
     "coordinate": {
       "x": 0,
       "y": 0
     },
     "description": "player location",
-    "dangerRate": 0,
+    "dangerRate": 4,
     "bag": {
       "currentWeight": 0,
-      "maxWeight": 5,
+      "maxWeight": 100,
       "itemList": []
     },
-    "abnormalPoints": []
-  }
+    "abnormalPoints": [],
+    "random": {
+      "seed": 213284057227948,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "random": {
+    "seed": 271668669026446,
+    "nextNextGaussian": 0.0,
+    "haveNextNextGaussian": false
+  },
+  "maxHPIncreasePerLv": 10,
+  "armorIncreasePerLv": 2,
+  "damageIncreasePerLv": 2,
+  "criticalChanceIncreasePerLv": 0.005,
+  "initRandomMaxHP": 15,
+  "initBaseMaxHP": 10,
+  "initRandomMoney": 5,
+  "initBaseMoney": 10,
+  "initMaxXP": 10,
+  "initXPFactor": 1.1,
+  "initRandomArmor": 5,
+  "initBaseArmor": 1,
+  "initRandomDamage": 3,
+  "initBaseDamage": 2,
+  "initCriticalChance": 0.01,
+  "initMaxCriticalChance": 1.0,
+  "initBagWeight": 0,
+  "initXCoordinate": 0,
+  "initYCoordinate": 0
 }
