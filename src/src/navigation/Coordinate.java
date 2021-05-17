@@ -32,6 +32,12 @@ public class Coordinate {
         this.y = y;
     }
 
+    /**
+     * put a direction
+     * @param direction
+     * @return
+     */
+
     public Coordinate getBorderCoordinate(Direction direction) {
         return new Coordinate(x + direction.getDx(), y + direction.getDy());
     }

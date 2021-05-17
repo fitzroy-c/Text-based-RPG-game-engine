@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
+import navigation.Direction;
 import navigation.Place;
 
 import java.io.*;
@@ -199,7 +200,10 @@ public class Player {
      */
     public Monster checkMonster(){
         Random random = new Random();
-        int randomInt = random.nextInt(6) + 1; // 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
+        int randomInt = random.nextInt(6) + 1; // 1-6
+        // place danger rate 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
+        // 6 definite have a monster -- test only
+        // 0 or less definite no monster
         if (randomInt <= this.place.getDangerRate()) {
             //randomly choose 1 from 5 type
             int randomInt2 = random.nextInt(6);
@@ -299,27 +303,50 @@ public class Player {
 
     /**
      * Update player's placement given a direction
+     *
+     * maxX,maxY describe the size of the map (from [0][0]to[maxX][maxY])
      * @param direction north | east | south | west
-     * @return true: update successful, false: update unsuccessful
-     * @author Yixiang Yin
+     * @return true: update successfully, false: update unsuccessfully
+     * @author Yixiang Yin, modified by yitao chen
      */
+
     public boolean goToDirection(String direction){
-        // TODO: complete this method which make the player go to the direction.
+        //TODO these 2 range description should be global limits
+        int maxX = 30;
+        int maxY = 30;
+
         switch (direction){
-            case "north":this.place.getCoordinate().goNorth();
+            case "north":
+                if (this.place.getCoordinate().y==maxY){
+                    return false;
+                }
+                this.place.getCoordinate().goNorth();
             break;
-            case "east":this.place.getCoordinate().goEast();
+            case "east":
+                if (this.place.getCoordinate().x==maxX){
+                    return false;
+                }
+                this.place.getCoordinate().goEast();
             break;
 
-            case "south":this.place.getCoordinate().goSouth();
+            case "south":
+                if (this.place.getCoordinate().y==0){
+                    return false;
+                }
+                this.place.getCoordinate().goSouth();
             break;
 
-            case "west":this.place.getCoordinate().goWest();
+            case "west":
+                if (this.place.getCoordinate().x==0){
+                    return false;
+                }
+                this.place.getCoordinate().goWest();
             break;
-
         }
         return true;
     }
+
+
 
     /**
      * This talk to the npc at the given coordinate
