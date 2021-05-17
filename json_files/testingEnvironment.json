@@ -5,46 +5,36 @@
     "listOfRooms": [
       {
         "monster": {
-          "name": "Goblin worker",
-          "element": "Normal",
-          "maxHP": 8,
-          "maxMP": 0,
-          "monsterCardSet": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            2
-          ],
-          "aiLevel": 0
+          "abnormalPointType": "MONSTER",
+          "name": "goblin",
+          "intro": "55",
+          "maxHP": 6,
+          "HP": 6,
+          "damage": 12,
+          "armour": 63,
+          "gold": 13,
+          "xpGain": 28,
+          "critChance": 10.0,
+          "element": "Normal"
         },
-        "name": "Goblin worker",
+        "name": "Wolf worker",
         "description": "small, malicious and greedy goblin worker.  Beware..."
       },
       {
         "monster": {
-          "name": "Goblin soldier",
-          "element": "Normal",
-          "maxHP": 20,
-          "maxMP": 0,
-          "monsterCardSet": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            2
-          ],
-          "aiLevel": 0
+          "abnormalPointType": "MONSTER",
+          "name": "goblin",
+          "intro": "55",
+          "maxHP": 6,
+          "HP": 6,
+          "damage": 126,
+          "armour": 53,
+          "gold": 53,
+          "xpGain": 102,
+          "critChance": 0.02,
+          "element": "Normal"
         },
-        "name": "Goblin soldier",
+        "name": "Wolf soldier",
         "description": "Strong, malicious and greedy goblin soldier.  Beware..."
       }
     ]
