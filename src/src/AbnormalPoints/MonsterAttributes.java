@@ -3,7 +3,8 @@ package AbnormalPoints;
 import Card.Element;
 
 public class MonsterAttributes {
-    String setMonsterType;
+    String setMonsterName;
+    String setMonsterIntro;
     int setBaseMaxHP;
     int setByLevelMaxHP;
     int setBaseArmor;
@@ -17,10 +18,11 @@ public class MonsterAttributes {
     int setByLevelGold;
     Element setElement;
 
-    public MonsterAttributes(String setMonsterType, int setBaseMaxHP, int setByLevelMaxHP, int setBaseArmor, int setByLevelArmor,
+    public MonsterAttributes(String setMonsterName, String setMonsterIntro, int setBaseMaxHP, int setByLevelMaxHP, int setBaseArmor, int setByLevelArmor,
                              int setBaseDamage, int setByLevelDamage, double setCritChance, int setBaseXPGain,
                              int setByLevelXPGain, int setBaseGold, int setByLevelGold, Element setElement) {
-        this.setMonsterType = setMonsterType;
+        this.setMonsterName = setMonsterName;
+        this.setMonsterIntro = setMonsterIntro;
         this.setBaseMaxHP = setBaseMaxHP;
         this.setByLevelMaxHP = setByLevelMaxHP;
         this.setBaseArmor = setBaseArmor;

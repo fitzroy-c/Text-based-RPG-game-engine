@@ -1,8 +1,5 @@
 package AbnormalPoints;
 
-
-import Card.Element;
-
 /**
  * This class is to allow NPC and Monster to fit into the same AbnormalPoint list
  * @author yitao chen, Guanming Ou
@@ -10,7 +7,9 @@ import Card.Element;
 
 public class AbnormalPoint extends entity{
     enum AbnormalPointType {
-        NPC,
+        NPC_TALK,
+        NPC_BLESSING,
+        NPC_MERCHANT,
         MONSTER;
     }
 
