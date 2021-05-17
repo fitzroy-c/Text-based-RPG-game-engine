@@ -42,7 +42,11 @@ public class GameTest {
         // recommend do a search in the item.json, if found, give item type
 
     }
+    @Test(timeout=1000)
+    public void testSearchInItemJson() throws Exception {
+        assertTrue(searchInItemJson("Mushroom"));
 
+    }
     public static void main(String[] args) {
         searchInItemJson("Mushroom");
     }

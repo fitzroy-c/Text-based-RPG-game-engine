@@ -1,14 +1,14 @@
 {
   "name": "Yixiang Yin",
-  "HP": 21,
-  "maxHP": 21,
-  "money": 10,
+  "HP": 13,
+  "maxHP": 13,
+  "money": 12,
   "xp": 0,
   "maxXP": 10,
   "xpFactor": 1.1,
   "level": 1,
-  "armour": 4,
-  "damage": 3,
+  "armour": 5,
+  "damage": 4,
   "criticalChance": 0.01,
   "maxCriticalChance": 1.0,
   "bag": {
@@ -22,7 +22,7 @@
       "y": 0
     },
     "description": "player location",
-    "dangerRate": 4,
+    "dangerRate": 2,
     "bag": {
       "currentWeight": 0,
       "maxWeight": 100,
@@ -30,13 +30,13 @@
     },
     "abnormalPoints": [],
     "random": {
-      "seed": 213284057227948,
+      "seed": 76332651685011,
       "nextNextGaussian": 0.0,
       "haveNextNextGaussian": false
     }
   },
   "random": {
-    "seed": 271668669026446,
+    "seed": 238035365241298,
     "nextNextGaussian": 0.0,
     "haveNextNextGaussian": false
   },
