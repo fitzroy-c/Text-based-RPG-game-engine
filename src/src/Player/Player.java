@@ -396,6 +396,7 @@ public class Player {
     /**
      * you should call checkMonster function before calling the attack function
      * default critical hit = normal *2
+     * @author yitao chen
      * @return
      */
     public String attack1(Monster monster){
