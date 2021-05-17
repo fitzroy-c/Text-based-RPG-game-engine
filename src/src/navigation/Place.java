@@ -9,6 +9,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * the class is meant to store the player's info : current location(coordinate,description,dangerRate)
+ * anything unusual if has.
+ * bag.
+ * @author yitao chen
+ */
 public class Place {
     private Coordinate coordinate;
     private String description;
