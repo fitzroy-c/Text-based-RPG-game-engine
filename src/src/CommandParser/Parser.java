@@ -1,7 +1,9 @@
 package CommandParser;
 
+import AbnormalPoints.Monster;
 import Player.Player;
 import Player.Bag;
+import Player.Item;
 
 /**
  * Grammar:
@@ -37,14 +39,22 @@ import Player.Bag;
 public class Parser {
     Player player;
     CommandTokenizer _tokenizer;
+    Monster monster;
+    Item item;
+
 
     public Parser(CommandTokenizer tokenizer, Player player) {
         this.player = player;
         _tokenizer = tokenizer;
     }
+    public Parser(CommandTokenizer tokenizer, Player player, Monster monster) {
+        this.player = player;
+        _tokenizer = tokenizer;
+        this.monster = monster;
+    }
 
     // <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
-    //              <attack-command>|<retreat-command>|<defence-command>|<view-command>
+    //              <attack-command>|<retreat-command>|<bribe-command>|<view-command>
     public boolean parseCommand() {
         boolean cmdExecuted = false; // allow only one command to execute per command
 
@@ -222,17 +232,15 @@ public class Parser {
                 callError();
             }
         }
-        /*
 
-        // Todo need fix
         // <attack-command> := attack
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ATTACK){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.attack();
+                player.attack(monster);
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.attack();
+                player.attack(monster);
                 cmdExecuted = true;
             }
         }
@@ -243,10 +251,10 @@ public class Parser {
             cmdExecuted = true;
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.retreat();
+                player.retreat(monster);
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.retreat();
+                player.retreat(monster);
                 cmdExecuted = true;
             }
         }
@@ -256,15 +264,14 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BRIBE){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.bribe();
+                player.bribe(monster);
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.bribe();
+                player.bribe(monster);
                 cmdExecuted = true;
             }
         }
 
-         */
 
         // <help-command> := help
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.HELP){
