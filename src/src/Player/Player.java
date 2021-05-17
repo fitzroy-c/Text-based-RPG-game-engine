@@ -434,4 +434,28 @@ public class Player {
     public double getMaxCriticalChance() {
         return maxCriticalChance;
     }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
+    public void setMaxXP(int maxXP) {
+        this.maxXP = maxXP;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public void setArmour(int armour) {
+        this.armour = armour;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public void setCriticalChance(double criticalChance) {
+        this.criticalChance = criticalChance;
+    }
 }
