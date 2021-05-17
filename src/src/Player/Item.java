@@ -17,6 +17,10 @@ import java.util.List;
 import java.util.Map;
 // todo item.json
 // todo test for these functions in player, bag,item.class
+
+
+// todo weapon,
+// i
 public class Item {
     public final String id;
     public final String type;
@@ -75,6 +79,7 @@ public class Item {
         return false;
     }
     /**
+     * //Todo initialize first once the game starts
      * search an item in item.json. return true if found, otherwise, false(contain bugs)
      * @author: Yixiang Yin
      **/

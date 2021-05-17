@@ -20,7 +20,7 @@ public class Place {
     private String description;
     private int dangerRate; //calculate the chance we meet a monster
     private Bag bag;        // the bag which contains item inside a room
-    private List<AbnormalPoint> abnormalPoints;
+    private List<AbnormalPoint> abnormalPoints; // may have npc and monster
 
     Random random = new Random();
 

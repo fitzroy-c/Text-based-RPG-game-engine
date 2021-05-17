@@ -11,6 +11,9 @@ public class Game {
     public CommandTokenizer cmdTok;
     public Parser parser;
 
+
+//    Item[]
+
     public static void main(String[] args) {
         Scanner s=new Scanner(System.in);
         System.out.print("Welcome to the world!"+"\n");
@@ -18,7 +21,7 @@ public class Game {
         String name = s.next();
         player.setName(name);
         //Player player = new Player(name);
-        //gameInteractionLoop(player);
+//        gameInteractionLoop(player);
     }
 
 

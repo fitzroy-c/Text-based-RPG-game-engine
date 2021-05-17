@@ -1,6 +1,7 @@
 package AbnormalPoints;
-import Card.Element;
 
+
+import Player.Player;
 
 /**
  * This is the class of monster where player will have their combat with
@@ -24,5 +25,9 @@ public class Monster extends AbnormalPoint {
         this.setXpGain(ma.setBaseXPGain + playerLevel * ma.setByLevelXPGain);
         this.setGold(ma.setBaseGold + playerLevel * ma.setByLevelGold);
         this.setElement(ma.setElement);
+    }
+
+    public void attack(Player p){
+//        p.
     }
 }
