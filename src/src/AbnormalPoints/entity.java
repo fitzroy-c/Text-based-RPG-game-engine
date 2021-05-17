@@ -1,41 +1,72 @@
 package AbnormalPoints;
 
+import Card.Element;
+
 /**
- * superclass for all entities (monsters...)
- * quite basic
+ * superclass for all entities (Monster and NPC)
+ * - This means both NPC and Monster are allow to be attacked
+ * - Main difference is NPC is passive to attack, but Monster will aggressively attack player
  * @author yitao chen
  */
 public abstract class entity {
-    // All entities can attack, have HP, have names
     private String name;
-    private String intro; //describe the monster
+    private String intro; //describe the monster or npc
     private int maxHP;
     private int HP;
-    private int level;
     private int damage;
     private int armour;
 
     private int gold;
-    private double critChance = 0.0; //critical hit chance
+    private int xpGain;
+    private double critChance; //critical hit chance
+    private Element element;
 
+    /**
+     * Default of a entity
+     */
     public entity() {
-        this(100, 100, "default", 0);
+        this("default", "default intro", 100, 100,10,
+                5,3,0.00, Element.Normal);
     }
-    public entity(int maxHP, int HP, String name, int gold) {
+
+    /**
+     * Constructor of a entity
+     * @param name name of the entity
+     * @param intro the intro, which describe this entity
+     * @param maxHP the maximum HP
+     * @param HP the current HP
+     * @param damage the damage of this entity can cause
+     * @param armour the armor of this entity
+     * @param gold the gold this entity have
+     * @param critChance the critical damage chance this entity have
+     */
+    public entity(String name, String intro, int maxHP, int HP, int damage, int armour, int gold,
+                  double critChance, Element element) {
+        this.name = name;
+        this.intro = intro;
         this.maxHP = maxHP;
         this.HP = HP;
-        this.name = name;
+        this.damage = damage;
+        this.armour = armour;
         this.gold = gold;
-    }
-    public int getHP() {
-        return this.HP;
+        this.critChance = critChance;
+        this.element = element;
     }
 
-    public void setHP(int HP) {
-        if (HP > maxHP) {
-            HP = maxHP;
-        }
-        this.HP = HP;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 
     public int getMaxHP() {
@@ -44,9 +75,14 @@ public abstract class entity {
 
     public void setMaxHP(int maxHP) {
         this.maxHP = maxHP;
-        if (HP > maxHP) {
-            HP = maxHP;
-        }
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
     }
 
     public int getDamage() {
@@ -55,30 +91,6 @@ public abstract class entity {
 
     public void setDamage(int damage) {
         this.damage = damage;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setIntro(String intro) {
-        this.intro = intro;
-    }
-
-    public String getIntro() {
-        return this.intro;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public int getArmour() {
@@ -103,5 +115,21 @@ public abstract class entity {
 
     public void setCritChance(double critChance) {
         this.critChance = critChance;
+    }
+
+    public int getXpGain() {
+        return xpGain;
+    }
+
+    public void setXpGain(int xpGain) {
+        this.xpGain = xpGain;
+    }
+
+    public Element getElement() {
+        return element;
+    }
+
+    public void setElement(Element element) {
+        this.element = element;
     }
 }

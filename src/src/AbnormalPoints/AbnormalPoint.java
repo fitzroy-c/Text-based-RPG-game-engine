@@ -4,15 +4,7 @@ package AbnormalPoints;
 import Card.Element;
 
 /**
- * This class deals with NPC and all of their properties.(aka monsters)
- * Any method that changes a NPC interacts with it should be placed within this class.
- * supplement for entity.(For simplicity, we consider all NPCs evil, no friend with main character )
- *
- * Mainly function:
- * a NPC should have an ID to identify
- * 5 extended monster kinds: Giant, Troll, Wolf, Skeleton, Goblin
- * default characteristic: normal (details can be seen in Card.Element)
- * xp, gold to get if we defeat one AbnormalPoint.
+ * This class is to allow NPC and Monster to fit into the same AbnormalPoint list
  * @author yitao chen, Guanming Ou
  */
 
@@ -22,16 +14,22 @@ public class AbnormalPoint extends entity{
         MONSTER;
     }
 
-    private String id;
-    public AbnormalPointType type;
-    public AbnormalPoint NPCorMonster;
-
-    /**
-     * Constructor of AbnormalPoint
-     */
-
+    public AbnormalPointType abnormalPointType;
 }
 
+
+///**
+// * This class deals with NPC and all of their properties.(aka monsters)
+// * Any method that changes a NPC interacts with it should be placed within this class.
+// * supplement for entity.(For simplicity, we consider all NPCs evil, no friend with main character )
+// *
+// * Mainly function:
+// * a NPC should have an ID to identify
+// * 5 extended monster kinds: Giant, Troll, Wolf, Skeleton, Goblin
+// * default characteristic: normal (details can be seen in Card.Element)
+// * xp, gold to get if we defeat one AbnormalPoint.
+// * @author yitao chen, Guanming Ou
+// */
 //public class AbnormalPoint extends entity{
 //    private int xpGain;
 //    private String id;
