@@ -19,7 +19,7 @@ import java.util.Map;
 // todo test for these functions in player, bag,item.class
 
 
-// todo weapon,
+// todo weapon, considering onetime weapon first
 // i
 public class Item {
     public final String id;

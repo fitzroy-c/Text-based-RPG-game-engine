@@ -26,8 +26,4 @@ public class Monster extends AbnormalPoint {
         this.setGold(ma.setBaseGold + playerLevel * ma.setByLevelGold);
         this.setElement(ma.setElement);
     }
-
-    public void attack(Player p){
-//        p.
-    }
 }
