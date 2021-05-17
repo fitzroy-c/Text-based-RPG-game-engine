@@ -141,7 +141,7 @@ public class Player {
      * @author: Yixiang Yin
      **/
     public String consume(Item i){
-        if (i.type.equals("consumable") && bag.inMyBag(i)){
+        if (i.type.equals("consumable") && bag.searchInBag(i)){
             HP+=i.properties.get("health").intValue();
             bag.drop(i);
             return "You've successfully consume "+i.name+" .";

@@ -83,7 +83,7 @@ public class Bag {
      * drop things out of the bag (Yixiang Yin, modified by Yitao)
      */
     public Item drop(Item i){
-        if (inMyBag(i)) {
+        if (searchInBag(i)) {
             int weightOfItem = i.properties.get("weight");
             itemList.remove(i);
             currentWeight -= weightOfItem;
@@ -95,7 +95,7 @@ public class Bag {
     /**
     * check if one item is in the bag (Yixiang Yin)
     */
-    public boolean inMyBag(Item i){
+    public boolean searchInBag(Item i){
         for (Item item: this.itemList){
             if (i.equals(item)) return true;
         }

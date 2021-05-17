@@ -1,5 +1,6 @@
 package UnitTests;
 
+import static Player.Item.searchInItemJson;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -43,6 +44,6 @@ public class GameTest {
     }
 
     public static void main(String[] args) {
-
+        searchInItemJson("Mushroom");
     }
 }

@@ -69,7 +69,7 @@ public class JsonSnL {
         int[] goblinCardSet1 = {1,1,1,1,1,1,1,1,2};
 
         Monster goblinWorker = new Monster( new MonsterAttributes("goblin", "55",6,
-                0,3,12,2,5,0.02,
+                0,3,12,2,2,10,
                 3,5,3,2, Element.Normal), 5);
         Monster goblinSoldier = new Monster(new MonsterAttributes("goblin", "55",6,
                 0,3,5,6,12,0.02,2,10,
