@@ -1,5 +1,8 @@
 package Player;
 
+import AbnormalPoints.MonsterAttributes;
+import AbnormalPoints.Monster;
+import Card.Element;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -76,6 +79,7 @@ public class Player {
     }
 
     /**
+     * call once each time you attack/ //TODO
      * calculate player's new attribute as level increases, given a player
      */
     public void UpdatePlayerAttribute(){
@@ -174,6 +178,7 @@ public class Player {
      * @return
      */
     public String checkMonsterType() {
+        // TODO: Is it be replaced or not? what's the meaning. Need change
         // TODO: save the game and back to the main menu, need player to have location that stores monster
         this.getPlace().getAbnormalPoints();
         //            Monster monster = new Monster();
@@ -183,7 +188,71 @@ public class Player {
 //                System.out.println("There is no monster near you, phew～");
 //            }
         return null;
-    };
+    }
+
+    /**
+     * call once each time player moves its place//TODO need add
+     * The MonsterGenerator generates random monsters appropriately according
+     * to the player's level and place
+     * @author yitao chen
+     * @return null, if there is not. return the monster if it has
+     */
+    public Monster checkMonster(){
+        Random random = new Random();
+        int randomInt = random.nextInt(6) + 1; // 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
+        if (randomInt <= this.place.getDangerRate()) {
+            //randomly choose 1 from 5 type
+            int randomInt2 = random.nextInt(6);
+            int playerLevel = this.level;
+            switch (random.nextInt(6)) {
+                case 0:
+                    /**
+                     * A monster with high health and damage, but low armour.
+                     */
+                    MonsterAttributes giant = new MonsterAttributes("giant","A monster with high health and damage, but low armour.",
+                            150, 8, 6, 3,40,3,
+                            0.03,50, 3,15, 11, Element.Normal);
+                    return new Monster(giant,playerLevel);
+                case 1:
+                    /**
+                     * A normal monster , with slight armour.
+                     */
+                    MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
+                            55,6, 0,3,12,2,
+                            0.02,10, 3,0,5, Element.Normal);
+                    return new Monster(goblin,playerLevel);
+                case 2:
+                    /**
+                     * A quite weak monster.
+                     */
+                    MonsterAttributes skeleton = new MonsterAttributes("skeleton", "A quite weak monster.",
+                            50,3, 0, 1, 8,1,
+                            0.02,10, 3, 0,3,Element.Normal);
+                    return new Monster(skeleton,playerLevel);
+                case 3:
+                    /**
+                     * A monster without low damage, but high health and armour.
+                     */
+                    MonsterAttributes troll = new MonsterAttributes("troll", "A monster without low damage, but high health and armour.",
+                            70,11, 0,12,20,3,
+                            0.05,75, 3,25,10,Element.Normal);
+                    return new Monster(troll,playerLevel);
+                case 5:
+                    /**
+                     * A normal wild creature
+                     */
+                    MonsterAttributes wolf = new MonsterAttributes("wolf", "A wolf as you see",
+                            35,3, 0,0,15,2,
+                            0.04,25, 3,0,2,Element.Normal);
+                    return new Monster(wolf,playerLevel);
+                default: // any non-hostile location
+                    return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
 
     /**
      * Take a item from current room, given an item name

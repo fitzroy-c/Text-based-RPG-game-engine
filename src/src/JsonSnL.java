@@ -68,12 +68,12 @@ public class JsonSnL {
 
         int[] goblinCardSet1 = {1,1,1,1,1,1,1,1,2};
 
-        Monster goblinWorker = new Monster( new MonsterAttributes("goblin", 55,6,
+        Monster goblinWorker = new Monster( new MonsterAttributes("goblin", "55",6,
                 0,3,12,2,0.02,10,
-                3,0,5, Element.Normal), 5);
-        Monster goblinSoldier = new Monster(new MonsterAttributes("goblin", 55,6,
-                0,3,12,2,0.02,10,
-                3,0,5, Element.Normal) , 10);
+                3,5,3,2, Element.Normal), 5);
+        Monster goblinSoldier = new Monster(new MonsterAttributes("goblin", "55",6,
+                0,3,5,6,12,0.02,2,10,
+                3,5, Element.Normal) , 10);
 
         forrestRooms.add(new MonsterRoom("Wolf worker", "small, malicious and greedy goblin worker.  Beware...", goblinWorker));
         forrestRooms.add(new MonsterRoom("Wolf soldier","Strong, malicious and greedy goblin soldier.  Beware...", goblinSoldier));

@@ -4,6 +4,7 @@ package navigation;
  * Three properties: A description (in-game text) and two integers.
  * The integers are added to a coordinate to get the new direction
  * (i.e. to get a north coordinate you add 1 to the y property of a coordinate).
+ * @author yitao chen
  */
 public enum Direction {
     NORTH("To the North", 0, 1),
