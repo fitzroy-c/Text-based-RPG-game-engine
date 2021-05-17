@@ -76,7 +76,7 @@ public class PlayerTest {
                 55,6, 0,3,12,2,
                 0.02,10, 3,0,5, Element.Normal);
         Monster monster = new Monster(goblin,player.getLevel());
-        player.attack1(monster);
+        player.attack(monster);
         System.out.println(player.showPlayerStat());
     }
 }

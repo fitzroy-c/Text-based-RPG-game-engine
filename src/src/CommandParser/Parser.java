@@ -222,7 +222,9 @@ public class Parser {
                 callError();
             }
         }
+        /*
 
+        // Todo need fix
         // <attack-command> := attack
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ATTACK){
             this._tokenizer.next();
@@ -235,32 +237,34 @@ public class Parser {
             }
         }
 
-        //  * <retreat-command> := <retreat-action> <direction>
+        //  Todo need fix
+        //  * <retreat-command> := <retreat-action>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.RETREAT_ACTION){
             cmdExecuted = true;
             this._tokenizer.next();
-            if (this._tokenizer.hasNext()){
-                if (this._tokenizer.current().type()==Token.Type.DIRECTION){
-                    System.out.println(player.retreat(this._tokenizer.current().token()));
-                } else {
-                    callError();
-                }
-            } else {
-                callError();
+            if (this._tokenizer.hasNext() == false){
+                player.retreat();
+                cmdExecuted = true;
+            } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
+                player.retreat();
+                cmdExecuted = true;
             }
         }
 
-        // <defence-command> := defence
-        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DEFENCE){
+        // Todo need fix
+        // <bribe-command> := bribe
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BRIBE){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.defence();
+                player.bribe();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.defence();
+                player.bribe();
                 cmdExecuted = true;
             }
         }
+
+         */
 
         // <help-command> := help
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.HELP){
@@ -345,12 +349,12 @@ public class Parser {
          * - run away   -> player escaped
          * - run sss    -> player escaped
          * - help       -> help menu
-         * - defence    -> player defenced
-         * - defence de -> error
+         * //- defence    -> player defenced
+         * //- defence de -> error
          * - retreat defence -> error
-         * - go defence
+         * - go bribe
          * - save game exit game -> game saved
-         * - go defence -> error
+         * - go bribe -> error
          */
         Player ply = new Player("testname");
         String cmd = "north";

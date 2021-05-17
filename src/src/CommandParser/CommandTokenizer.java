@@ -151,9 +151,9 @@ public class CommandTokenizer {
                     currentToken = new Token(createString+" "+createNextString,Token.Type.RETREAT_ACTION);
             }
 
-            // DEFENCE
-            else if (createString.toString().equals("defence"))
-                currentToken = new Token(createString.toString(),Token.Type.DEFENCE);
+            // BRIBE
+            else if (createString.toString().equals("bribe"))
+                currentToken = new Token(createString.toString(),Token.Type.BRIBE);
 
             // HELP
             else if (createString.toString().equals("help"))

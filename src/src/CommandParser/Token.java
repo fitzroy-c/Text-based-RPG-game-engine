@@ -23,13 +23,13 @@ package CommandParser;
  * <look-action> := look | view | see | browse
  * <attack-command> := attack
  * <retreat-command> := retreat | run away | escape
- * <defence-command> := defence
+ * <bribe-command> := bribe
  * <help-command> := help
  */
 
 public class Token {
     public enum Type {UNKNOWN, ERROR, SAVE, EXIT, DETECT, DIRECTION_ACTION, DIRECTION, CONSUME_ACTION, TAKE_ACTION, DROP_ACTION,
-        ITEM, TALK, VIEW_ACTION, STAT, BACKPACK, ATTACK, RETREAT_ACTION, DEFENCE, HELP};
+        ITEM, TALK, VIEW_ACTION, STAT, BACKPACK, ATTACK, RETREAT_ACTION, BRIBE, HELP};
 
     private String _token = "";
     private Type _type = Type.UNKNOWN;

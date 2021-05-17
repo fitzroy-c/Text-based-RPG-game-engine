@@ -384,14 +384,15 @@ public class Player {
         return null;
     }
 
-    /**
+    /*
      * This attacks the monster at the player's current placement, and monster will attack by respond
      * @return
-     */
     public String attack(){
         // TODO: complete this method which attack to the monster
         return null;
     }
+
+     */
 
     /**
      * you should call checkMonster function before calling the attack function
@@ -399,7 +400,7 @@ public class Player {
      * @author yitao chen
      * @return
      */
-    public String attack1(Monster monster){
+    public String attack(Monster monster){
         String string = "Ready to attack:\n";
         if (monster==null){
             return string+"There is no monster to attack.\n";
@@ -409,13 +410,13 @@ public class Player {
         int monsterHP = monster.getHP();
         while(monsterHP>0&&this.HP>0){
             if (criticalCheck(this.criticalChance)){
-                monsterHP = monsterHP - this.damage*2 + monster.getArmour();
+                monsterHP = monsterHP - Math.max(this.damage*2 - monster.getArmour(),0);
             }
-            monsterHP = monsterHP - this.damage + monster.getArmour();
+            monsterHP = monsterHP - Math.max(this.damage - monster.getArmour(),0);
             if (criticalCheck(monster.getCritChance())){
-                this.HP = this.HP - monster.getDamage()*2 + this.armour;
+                this.HP = this.HP - Math.max(monster.getDamage()*2 - this.armour,0);
             }
-            this.HP = this.HP - monster.getDamage() + this.armour;
+            this.HP = this.HP - Math.max(monster.getDamage() - this.armour,0);
         }
         if (this.HP<=0){
             return string+"Your adventure journey ended here. The magic world will remember you\n";
@@ -428,21 +429,37 @@ public class Player {
     }
 
     /**
-     * player defence, which increase his armor temperally, and monster will attack by respond
+     * player bribe the monster if he can, if failed ,turn to attack
      * @return
      */
-    public String defence(){
-        // TODO: complete this method which let player defense
-        return null;
+    public String bribe(Monster monster){
+        String string = "Ready to bribe:\n";
+        if (this.money>=monster.getGold()){
+            this.money -= monster.getGold();
+            monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+            return string+"Bribe successfully.\n";
+        }
+        String string1 = attack(monster);
+        return string+"Bribe failed.\n"+string1;
     }
 
     /**
-     * player retreat, which allow player to escape from current fight and move to next coordinate
+     * player retreat, which allow player to escape from current fight. hold the coordinate
      * @return
      */
-    public String retreat(String direction){
-        // TODO: complete this method which may let player escape from the fight
-        return null;
+    public String retreat(Monster monster){
+        String string = "Ready to retreat:\n";
+        while(this.HP>0){
+            if (criticalCheck(0.8)){ //80% chance succeed
+                monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                return string + "Retreat successfully.\n";
+            }else{
+                this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
+                string +="Retreat failed.\n";
+                retreat(monster);
+            }
+        }
+        return string+"Your adventure journey ended here. The magic world will remember you\n";
     }
 
     /**
