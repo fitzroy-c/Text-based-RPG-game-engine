@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
+import navigation.Direction;
 import navigation.Place;
 
 import java.io.*;
@@ -199,7 +200,10 @@ public class Player {
      */
     public Monster checkMonster(){
         Random random = new Random();
-        int randomInt = random.nextInt(6) + 1; // 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
+        int randomInt = random.nextInt(6) + 1; // 1-6
+        // place danger rate 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
+        // 6 definite have a monster -- test only
+        // 0 or less definite no monster
         if (randomInt <= this.place.getDangerRate()) {
             //randomly choose 1 from 5 type
             int randomInt2 = random.nextInt(6);
@@ -212,6 +216,7 @@ public class Player {
                     MonsterAttributes giant = new MonsterAttributes("giant","A monster with high health and damage, but low armour.",
                             150, 8, 6, 3,40,3,
                             0.03,50, 3,15, 11, Element.Normal);
+                    System.out.println("You are facing a giant");
                     return new Monster(giant,playerLevel);
                 case 1:
                     /**
@@ -220,6 +225,7 @@ public class Player {
                     MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
                             55,6, 0,3,12,2,
                             0.02,10, 3,0,5, Element.Normal);
+                    System.out.println("You are facing a goblin");
                     return new Monster(goblin,playerLevel);
                 case 2:
                     /**
@@ -228,6 +234,7 @@ public class Player {
                     MonsterAttributes skeleton = new MonsterAttributes("skeleton", "A quite weak monster.",
                             50,3, 0, 1, 8,1,
                             0.02,10, 3, 0,3,Element.Normal);
+                    System.out.println("You are facing a skeleton");
                     return new Monster(skeleton,playerLevel);
                 case 3:
                     /**
@@ -236,6 +243,7 @@ public class Player {
                     MonsterAttributes troll = new MonsterAttributes("troll", "A monster without low damage, but high health and armour.",
                             70,11, 0,12,20,3,
                             0.05,75, 3,25,10,Element.Normal);
+                    System.out.println("You are facing a troll");
                     return new Monster(troll,playerLevel);
                 case 5:
                     /**
@@ -244,11 +252,14 @@ public class Player {
                     MonsterAttributes wolf = new MonsterAttributes("wolf", "A wolf as you see",
                             35,3, 0,0,15,2,
                             0.04,25, 3,0,2,Element.Normal);
+                    System.out.println("You are facing a wolf");
                     return new Monster(wolf,playerLevel);
                 default: // any non-hostile location
+                    System.out.println("You are in a safe place");
                     return null;
             }
         } else {
+            System.out.println("You are in a safe place");
             return null;
         }
     }
@@ -292,27 +303,50 @@ public class Player {
 
     /**
      * Update player's placement given a direction
+     *
+     * maxX,maxY describe the size of the map (from [0][0]to[maxX][maxY])
      * @param direction north | east | south | west
-     * @return true: update successful, false: update unsuccessful
-     * @author Yixiang Yin
+     * @return true: update successfully, false: update unsuccessfully
+     * @author Yixiang Yin, modified by yitao chen
      */
+
     public boolean goToDirection(String direction){
-        // TODO: complete this method which make the player go to the direction.
+        //TODO these 2 range description should be global limits
+        int maxX = 30;
+        int maxY = 30;
+
         switch (direction){
-            case "north":this.place.getCoordinate().goNorth();
+            case "north":
+                if (this.place.getCoordinate().y==maxY){
+                    return false;
+                }
+                this.place.getCoordinate().goNorth();
             break;
-            case "east":this.place.getCoordinate().goEast();
+            case "east":
+                if (this.place.getCoordinate().x==maxX){
+                    return false;
+                }
+                this.place.getCoordinate().goEast();
             break;
 
-            case "south":this.place.getCoordinate().goSouth();
+            case "south":
+                if (this.place.getCoordinate().y==0){
+                    return false;
+                }
+                this.place.getCoordinate().goSouth();
             break;
 
-            case "west":this.place.getCoordinate().goWest();
+            case "west":
+                if (this.place.getCoordinate().x==0){
+                    return false;
+                }
+                this.place.getCoordinate().goWest();
             break;
-
         }
         return true;
     }
+
+
 
     /**
      * This talk to the npc at the given coordinate

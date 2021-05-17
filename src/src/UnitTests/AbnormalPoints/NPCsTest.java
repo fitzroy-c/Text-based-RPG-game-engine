@@ -11,6 +11,7 @@ import static org.junit.Assert.assertFalse;
 
 /**
  * @author yitao chen
+ * this is a test for old version monster
  * test all npcs(monsters)
  */
 public class NPCsTest {

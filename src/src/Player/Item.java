@@ -44,6 +44,13 @@ public class Item {
         }
         return Integer.valueOf(0);//in case some special item don't have weight(ability card)
     }
+
+    public Integer getDamage() {
+        if (properties.containsKey("damage")) {
+            return properties.get("damage");
+        }
+        return Integer.valueOf(0);//in case some special item don't have weight(gold,treasure,xp spring)
+    }
     public int getProperty(String property) {
         if (! properties.containsKey(property)) {
             return 0;
