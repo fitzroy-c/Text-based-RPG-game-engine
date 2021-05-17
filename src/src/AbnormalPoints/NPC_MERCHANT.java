@@ -24,4 +24,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
         this.setElement(element);
         this.npcBag = npcBag;
     }
+
+    //Todo 买卖交互
+//    public
 }

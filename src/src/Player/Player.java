@@ -33,7 +33,7 @@ public class Player {
     private double criticalChance;
     private final double maxCriticalChance;
     Bag bag;
-    Place place;//Coordinate
+    Place place; //Coordinate
 
     /**
      * Some variables
