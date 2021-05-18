@@ -240,10 +240,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ATTACK){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.attack();
+                System.out.println(player.attack());
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.attack();
+                System.out.println(player.attack());
                 cmdExecuted = true;
             }
         }

@@ -77,6 +77,7 @@ public class Game {
         Control c = new Control(ab ,player);
         ///
         gameInteractionLoop(player, c.currentOption);
+//        gameInteractionLoop(player);
     }
 
 
@@ -90,12 +91,13 @@ public class Game {
         Scanner s = new Scanner(System.in);
         while (continueOn){
             cmdTok = new CommandTokenizer(s.next());
+
             if (option.chooseOp(option.option, cmdTok.current())) {
                 continueOn = new Parser(cmdTok, player).parseCommand();
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
             }
-            //continueOn = new Parser(cmdTok, player).parseCommand();
+//            continueOn = new Parser(cmdTok, player).parseCommand();
         }
     }
 
