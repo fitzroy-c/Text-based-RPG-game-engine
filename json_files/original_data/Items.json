@@ -1,0 +1,338 @@
+{
+  "4,0": {
+    "currentWeight": 0,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C3",
+        "type": "consumable",
+        "name": "Healing Potion",
+        "description": "Restores 100 health",
+        "properties": {}
+      },
+      {
+        "id": "C2",
+        "type": "consumable",
+        "name": "Lesser Healing Potion",
+        "description": "Restores 50 health",
+        "properties": {}
+      }
+    ]
+  },
+  "0,1": {
+    "currentWeight": 4,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      }
+    ]
+  },
+  "0,2": {
+    "currentWeight": 2,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C2",
+        "type": "consumable",
+        "name": "Lesser Healing Potion",
+        "description": "Restores 50 health",
+        "properties": {}
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      }
+    ]
+  },
+  "0,3": {
+    "currentWeight": 4,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      }
+    ]
+  },
+  "0,4": {
+    "currentWeight": 0,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C3",
+        "type": "consumable",
+        "name": "Healing Potion",
+        "description": "Restores 100 health",
+        "properties": {}
+      },
+      {
+        "id": "C2",
+        "type": "consumable",
+        "name": "Lesser Healing Potion",
+        "description": "Restores 50 health",
+        "properties": {}
+      }
+    ]
+  },
+  "1,0": {
+    "currentWeight": 4,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      }
+    ]
+  },
+  "5,0": {
+    "currentWeight": 0,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C4",
+        "type": "consumable",
+        "name": "Greater Healing Potion",
+        "description": "Restores 100 health",
+        "properties": {}
+      }
+    ]
+  },
+  "0,5": {
+    "currentWeight": 0,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C4",
+        "type": "consumable",
+        "name": "Greater Healing Potion",
+        "description": "Restores 100 health",
+        "properties": {}
+      }
+    ]
+  },
+  "2,0": {
+    "currentWeight": 2,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C2",
+        "type": "consumable",
+        "name": "Lesser Healing Potion",
+        "description": "Restores 50 health",
+        "properties": {}
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      }
+    ]
+  },
+  "3,0": {
+    "currentWeight": 4,
+    "maxWeight": 100,
+    "itemList": [
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
+      }
+    ]
+  }
+}

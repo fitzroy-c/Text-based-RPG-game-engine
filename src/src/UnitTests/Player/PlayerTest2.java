@@ -1,5 +1,9 @@
 package Player;
 
+import AbnormalPoints.AbnormalPoint;
+import AbnormalPoints.DialogTree;
+import AbnormalPoints.NPC_TALK;
+import Card.Element;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import navigation.Coordinate;
@@ -7,7 +11,9 @@ import org.junit.Test;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -55,7 +61,7 @@ public class PlayerTest2 {
     }
 
     @Test
-    public void createJson(){
+    public void createItemJson(){
         Player player = new Player();
         //        DialogTree tree = new DialogTree();
 //        tree.root.npcDialog = "I can bless you... to better prepare you for the fight";
@@ -122,6 +128,73 @@ public class PlayerTest2 {
         testBag.put(new Coordinate(5,0), bag04);
 
         player.setStorageInfo(testBag);
-        player.saveItem();
+//        player.saveItem();
     }
+
+    @Test
+    public void createNPCJson(){
+        Player player = new Player();
+        HashMap<Coordinate, AbnormalPoint> testNPC = new HashMap<>();
+
+        DialogTree Bless_tree = new DialogTree();
+        Bless_tree.getRoot().setNpcDialog("I can bless you... to better prepare you for the fight");
+        Bless_tree.getRoot().setIndex(0);
+        Bless_tree.getRoot().setDtype(DialogTree.DialogType.CONTINUE);
+        List<DialogTree.Dialog> blesserDialog = new ArrayList<>();
+        blesserDialog.add(new DialogTree.Dialog(1, "I want to increase my health", "as you wish...", null, DialogTree.DialogType.END_BLESS_HP));
+        blesserDialog.add(new DialogTree.Dialog(2, "I want to increase my armor", "as you wish...", null, DialogTree.DialogType.END_BLESS_ARMOR));
+        blesserDialog.add(new DialogTree.Dialog(3, "I want to increase my damage", "as you wish...", null, DialogTree.DialogType.END_BLESS_DAMAGE));
+        Bless_tree.getRoot().setNextDialogs(blesserDialog);
+
+        NPC_TALK l_fairy = new NPC_TALK("Little_Fairy", "Hi, I can permanent increase your power!",
+                100,100,1,100,0,50,0, Element.Normal,
+                Bless_tree, 3,3,3,null);
+
+        NPC_TALK t_fairy = new NPC_TALK("Teenager_Fairy", "Hi, I can permanent increase your power!",
+                500,500,1,500,0,100,0, Element.Normal,
+                Bless_tree, 7,6,4,null);
+
+        NPC_TALK a_fairy = new NPC_TALK("Adult_Fairy", "Hi, I can permanent increase your power!",
+                1000,1000,1,1000,0,500,0, Element.Normal,
+                Bless_tree, 13,10,10,null);
+
+        NPC_TALK e_fairy = new NPC_TALK("Elder_Fairy", "Hi, I can permanent increase your power!",
+                10000,10000,1,2000,0,1000,0, Element.Normal,
+                Bless_tree, 50,30,40,null);
+
+
+//        DialogTree Bless_tree = new DialogTree();
+//        Bless_tree.getRoot().setNpcDialog("I can bless you... to better prepare you for the fight");
+//        Bless_tree.getRoot().setIndex(0);
+//        Bless_tree.getRoot().setDtype(DialogTree.DialogType.CONTINUE);
+//        List<DialogTree.Dialog> blesserDialog = new ArrayList<>();
+//        blesserDialog.add(new DialogTree.Dialog(1, "I want to increase my health", "as you wish...", null, DialogTree.DialogType.END_BLESS_HP));
+//        blesserDialog.add(new DialogTree.Dialog(2, "I want to increase my armor", "as you wish...", null, DialogTree.DialogType.END_BLESS_ARMOR));
+//        blesserDialog.add(new DialogTree.Dialog(3, "I want to increase my damage", "as you wish...", null, DialogTree.DialogType.END_BLESS_DAMAGE))
+//        Bless_tree.getRoot().setNextDialogs(blesserDialog);
+//
+//
+//        NPC_TALK guide = new NPC_TALK("Guide", "Hi, I am your guide to this world!",
+//                10,9,10,10,10,10,0.01, Element.Normal,
+//                null, 0,0,0,null);
+
+
+        testNPC.put(new Coordinate(0,1), l_fairy);
+        testNPC.put(new Coordinate(0,2), a_fairy);
+        testNPC.put(new Coordinate(0,3), l_fairy);
+        testNPC.put(new Coordinate(0,4), a_fairy);
+        testNPC.put(new Coordinate(0,5), t_fairy);
+        testNPC.put(new Coordinate(1,0), e_fairy);
+        testNPC.put(new Coordinate(2,0), l_fairy);
+        testNPC.put(new Coordinate(3,0), a_fairy);
+        testNPC.put(new Coordinate(4,0), t_fairy);
+        testNPC.put(new Coordinate(5,0), e_fairy);
+
+        player.setNpcInfo(testNPC);
+        player.saveNPC();
+    }
+
+
+
+
 }
