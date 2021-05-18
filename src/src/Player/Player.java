@@ -38,6 +38,8 @@ public class Player {
     Bag bag;
     Place place; //Coordinate
     List<Place> gameMap;
+    HashMap npcInfo;
+    HashMap itemInfo;
 
     /**
      * Some variables
@@ -47,8 +49,8 @@ public class Player {
     int armorIncreasePerLv = 5;
     int damageIncreasePerLv = 2;
     double criticalChanceIncreasePerLv = 0.02; //from 0.00-1.00 min step 0.01
-    int initRandomMaxHP = 40;
-    int initBaseMaxHP = 160;
+    int initRandomMaxHP = 30;
+    int initBaseMaxHP = 120;
     int initRandomMoney =  5;
     int initBaseMoney = 10;
     int initMaxXP = 10;
@@ -184,17 +186,16 @@ public class Player {
      * - else, return there is no monster
      * @return
      */
-    public String checkMonsterType() {
-        // TODO: Is it be replaced or not? what's the meaning. Need change
-        // TODO: save the game and back to the main menu, need player to have location that stores monster
-        this.getPlace().getAbnormalPoints();
-        //            Monster monster = new Monster();
-//            if (monster == null) {
-//                System.out.println("There is a "+ monster.getName() +" around you, WATCH OUT!");
-//            } else {
-//                System.out.println("There is no monster near you, phew～");
-//            }
-        return null;
+
+    public String checkMonster() {
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class){
+                int dangerRate = this.place.getDangerRate();
+                String string = "";
+                return "There is no monster";
+            }
+        }
+        return "There is no monster.\n";
     }
 
     /**
@@ -204,7 +205,7 @@ public class Player {
      * @author yitao chen
      * @return null, if there is not. return the monster if it has
      */
-    public Monster checkMonster(){
+    public Monster generateMonster(){
         Random random = new Random();
         int randomInt = random.nextInt(6) + 1; // 1-6
         // place danger rate 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
@@ -314,6 +315,7 @@ public class Player {
      */
 
     public boolean goToDirection(String direction){
+        //TODO need to update the place stat everytime
         //TODO these 2 range description should be global limits
         int maxX = 30;
         int maxY = 30;
@@ -366,6 +368,7 @@ public class Player {
      * check if this round is a critical hit
      * @author yitao chen
      * @param criticalChance from 0.00-1.00 min step 0.01
+     * @author yitao chen
      */
     public boolean criticalCheck(double criticalChance){
         Random random = new Random();
@@ -454,8 +457,7 @@ public class Player {
                             Monster npcMonster = npc_t.transformIntoMonster(); // convert this npc into monster
                             this.place.removeAbnormalPoint(npc_t); // remove npc from player's place
                             this.place.addAbnormalPoint(npcMonster); // npc return as monster
-                            this.attack(npcMonster); // player attack monster
-                            return ""; // not sure what string place here, as attack may already outputted a string
+                            return this.attack(); // not sure what string place here, as attack may already outputted a string
                         }
                         // this is continue
                         DialogTree newTree = new DialogTree();
@@ -512,8 +514,10 @@ public class Player {
 //        return null;
 //    }
 
+
+
     /**
-     * you should call checkMonster function before calling the attack function
+     * you should call generateMonster function before calling the attack function
      * default critical hit = normal *2
      * @author yitao chen
      * @return
@@ -559,6 +563,7 @@ public class Player {
 
     /**
      * player bribe the monster if he can, if failed ,turn to attack
+     * @author yitao chen
      * @return
      */
     public String bribe(){
@@ -581,6 +586,7 @@ public class Player {
 
     /**
      * player retreat, which allow player to escape from current fight. hold the coordinate
+     * @author yitao chen
      * @return
      */
     public String retreat(){
@@ -722,5 +728,8 @@ public class Player {
         this.place = place;
     }
 
+    public void setNpcInfo(HashMap map) {this.npcInfo = map;}
+
+    public void setItemInfo(HashMap map) {this.itemInfo = map;}
 
 }
