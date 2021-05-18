@@ -1,3 +1,5 @@
+package UnitTests;
+
 import java.util.Random;
 import java.util.Scanner;
 import java.io.BufferedWriter;
@@ -11,7 +13,7 @@ import java.io.IOException;
  * detail data can be replaced by other files
  * @author yitao chen
  */
-public class testGame1 {
+public class GameTest1 {
     static class Base {
         int i;
         String name; //ID
