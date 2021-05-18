@@ -71,12 +71,19 @@ public class PlayerTest {
     @Test
     public void attack1Test1(){
         Player player = new Player("test one");
+        System.out.println("show the before stat");
         System.out.println(player.showPlayerStat());
+        System.out.println();
         MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
                 55,6, 0,3,12,2,
                 0.02,10, 3,0,5, Element.Normal);
         Monster monster = new Monster(goblin,player.getLevel());
-        player.attack(monster);
+        player.place.addAbnormalPoint(monster);
+
+        System.out.println(player.attack());
+
+
+        System.out.println("show the current stat");
         System.out.println(player.showPlayerStat());
     }
 }
