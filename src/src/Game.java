@@ -6,7 +6,17 @@ import CommandParser.Parser;
 import Options.BasicOption;
 import Options.Control;
 import Player.Player;
+import Player.Item;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -19,15 +29,60 @@ public class Game {
      */
     public static void initialize() {
         player = new Player("");
+        readMapInfo();
     }
 
 //    Item[]
 
     /**
+     *
+     */
+    public static void readMapInfo() {
+        File item = new File("json_files/Item.json");
+        File npc = new File("json_files/NPC.json");
+
+        Gson gson = new Gson();
+
+        try {
+            HashMap hashMapItem = gson.fromJson(new FileReader(item), HashMap.class);
+            player.setItemInfo(hashMapItem);
+            HashMap hashMapNPC = gson.fromJson(new FileReader(npc), HashMap.class);
+            player.setNpcInfo(hashMapNPC);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+/*    Test
+        public static void loaditem() {
+        File item = new File("json_files/Item2.json");
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Item itemNew = createItem();
+        String json = gson.toJson(itemNew);
+
+        try (FileWriter writer = new FileWriter("json_files/Item2.json")) {
+            gson.toJson(itemNew,writer);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Item createItem() {
+        HashMap<String,Integer> map = new HashMap();
+        map.put("lala",12);
+        Item item = new Item("c1", "test1", "fire", "lalala", map);
+        return item;
+    }*/
+
+
+
+/**
      * Is this our main game?
      *
      * @param args
      */
+
     public static void main(String[] args) throws Exception {
         initialize();
 
