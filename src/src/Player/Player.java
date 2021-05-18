@@ -460,7 +460,47 @@ public class Player {
             return false;
         }
     }
+    /**
+     * be used when user want to buy things from the user(user enters "trade" command)
+     *  what does it do?
+     * - It checks if there is a shop(merchant)
+     * - Print the content of the shop
+     * - Give user choices to choose from
+     * (Assumption: user only can purchase one thing each time)
+     * @author Yixiang Yin
+     */
 
+    public void buy(){
+        NPC_MERCHANT shop = (NPC_MERCHANT) SearchInAbnormalPoints(AbnormalPoint.AbnormalPointType.NPC_MERCHANT);
+        if (shop==null) {
+            System.out.println("There is no one for you to buy things from");
+        }
+        if (!NPC_MERCHANT.showTheShop(shop)) return; // indicating nothing to buy(shop is empty)
+        else {
+            Scanner s = new Scanner(System.in);
+            int userChoice = s.nextInt();
+            Item itemPuchase = shop.npcBag.getItems().get(userChoice);
+            boolean succ = shop.buyFromNPC(this,itemPuchase.name);
+            System.out.println(shop.outputStrForBuyFromNPC(this,itemPuchase.name,succ));
+        }
+    }
+
+
+    /**
+     * Description suggested by the name(include null case)
+     * @return boolean: true, if found, else, false
+     * @author Yixiang Yin
+     */
+    public AbnormalPoint SearchInAbnormalPoints(AbnormalPoint.AbnormalPointType type){
+        List<AbnormalPoint> APoints =  this.place.getAbnormalPoints();
+        if (APoints==null) return null;
+        for (AbnormalPoint p:APoints){
+            if (p.abnormalPointType==type){
+                return p;
+            }
+        }
+        return null;
+    }
 
     /**
      * This talk to the npc at the given coordinate

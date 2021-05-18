@@ -11,8 +11,8 @@ import java.util.List;
  * This class mainly held npc that will trade with player
  */
 public class NPC_MERCHANT extends AbnormalPoint{
-    Bag npcBag;
-
+    public Bag npcBag;
+//    player的bag, npc_merchant的bag,
     public NPC_MERCHANT(String name, String intro, int maxHP, int HP, int damage, int armour,
                         int gold, int xpGain, double critChance, Element element, Bag npcBag) {
         this.abnormalPointType = AbnormalPointType.NPC_MERCHANT;
@@ -37,6 +37,8 @@ public class NPC_MERCHANT extends AbnormalPoint{
      * return true if successful, otherwise, false
      * @author: Yixiang Yin
      **/
+    //todo:  show my shop
+    //todo:  限制行动
     public boolean buyFromNPC(Player p, String itemName){
         // assume itemName is valid
         boolean npcHaveIt = npcBag.searchInBagByName(itemName);
@@ -46,14 +48,14 @@ public class NPC_MERCHANT extends AbnormalPoint{
             if (p.money>=price){
                 p.money-=price;
                 p.getBag().put(wanted);
+                npcBag.drop(wanted);
                 return true;
-                // might remove the same item from npcbag, but i think it's okay for now
             }
             else return false; // don't have enough money
         }
         return false; // npc don't have it
     }
-    /**
+    /** (companion with the function above)
      * output the possible str for different circumstances when purchasing
      * @author: Yixiang Yin
      **/
@@ -66,4 +68,23 @@ public class NPC_MERCHANT extends AbnormalPoint{
             return "Sorry, I don't have "+itemName+" .";
         }
     }
+    /**
+     * print the content of the shop
+     * return false if nothing in the shop, else true
+     * @author Yixiang Yin
+     */
+
+    public static boolean showTheShop(NPC_MERCHANT npc){
+        if (npc.npcBag.getItems()==null){ System.out.println("The merchant has nothing. lol");
+        return false;}
+        System.out.println("-----------------Shop------------------");
+        for (int i = 0; i<npc.npcBag.getItems().size();i++){
+            System.out.println("["+i+"]"+" : "+npc.npcBag.getItems().get(i).getDescription());
+            System.out.println();
+        }
+        System.out.println("-----------------End------------------");
+        return true;
+
+    }
+
 }

@@ -34,7 +34,6 @@ public class Bag {
     //TODO :i am confused about why the following 2 function presents this way
     //TODO : the function still can't call correctly in Placement.java
 
-
     /**
      * put an item in the bag, output string to indicate if it succeed.
      * @param i
@@ -69,6 +68,7 @@ public class Bag {
     /**
      * put an item in the bag (Yixiang Yin, modified by Yitao)
      */
+    // 整体， 玩家， 地点
     public boolean put(Item i){
         int weightOfItem = i.getWeight();
         if (currentWeight + weightOfItem <= maxWeight) {
@@ -77,6 +77,18 @@ public class Bag {
             return true;
         }
         return false;
+    }
+    /**
+     * drop things out of the bag (Yixiang Yin, modified by Yitao)
+     */
+    public Item drop(Item i){
+        if (searchInBag(i)) {
+            int weightOfItem = i.properties.get("weight");
+            itemList.remove(i);
+            currentWeight -= weightOfItem;
+            return i;
+        }
+        return null;
     }
 
     /**
@@ -100,19 +112,6 @@ public class Bag {
                 tempBag.put(placeItem);
             }
             player.place.setBag(tempBag);
-        }
-        return null;
-    }
-
-    /**
-     * drop things out of the bag (Yixiang Yin, modified by Yitao)
-     */
-    public Item drop(Item i){
-        if (searchInBag(i)) {
-            int weightOfItem = i.properties.get("weight");
-            itemList.remove(i);
-            currentWeight -= weightOfItem;
-            return i;
         }
         return null;
     }
