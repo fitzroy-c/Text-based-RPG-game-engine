@@ -169,6 +169,7 @@ public class PlayerTest2 {
 //                10,9,10,10,10,10,0.01, Element.Normal,
 //                null, 0,0,0,null);
 
+
         testNPC.put(new Coordinate(0,1), l_fairy);
         testNPC.put(new Coordinate(0,2), a_fairy);
         testNPC.put(new Coordinate(0,3), l_fairy);
@@ -183,4 +184,8 @@ public class PlayerTest2 {
         player.setNpcInfo(testNPC);
         player.saveNPC();
     }
+
+
+
+
 }

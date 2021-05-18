@@ -88,7 +88,7 @@ public class Player {
     }
 
     /**
-     * call once each time you attack
+     * call once each time you attack/ //TODO
      * calculate player's new attribute as level increases, given a player
      */
     public void UpdatePlayerAttribute(){
@@ -123,46 +123,6 @@ public class Player {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * load original items data from json_files/original_data/
-     * @author Guanming Ou
-     */
-    public static HashMap<Coordinate, Bag> loadOriginalItems() {
-        File file = new File("json_files/original_data/Items.json");
-
-        Gson gson = new Gson();
-        JsonReader jsonReader = null;
-
-        final Type CUS_LIST_TYPE = new TypeToken<HashMap<Coordinate, Bag>>() {}.getType();
-
-        try{
-            jsonReader = new JsonReader(new FileReader(file));
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return gson.fromJson(jsonReader, HashMap.class);
-    }
-
-    /**
-     * load original npc data from json_files/original_data/
-     * @author Guanming Ou
-     */
-    public static HashMap<Coordinate, AbnormalPoint> loadOriginalNPCs() {
-        File file = new File("json_files/original_data/AbnormalPoints.json");
-
-        Gson gson = new Gson();
-        JsonReader jsonReader = null;
-
-        final Type CUS_LIST_TYPE = new TypeToken<HashMap<Coordinate, Bag>>() {}.getType();
-
-        try{
-            jsonReader = new JsonReader(new FileReader(file));
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return gson.fromJson(jsonReader, HashMap.class);
     }
 
     //TODO: Delete later, just for testing & create json
@@ -208,6 +168,46 @@ public class Player {
             e.printStackTrace();
         }
         return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+    }
+
+    /**
+     * load original items data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, Bag> loadOriginalItems() {
+        File file = new File("json_files/original_data/Items.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+    }
+
+    /**
+     * load original npc data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, AbnormalPoint> loadOriginalNPCs() {
+        File file = new File("json_files/original_data/AbnormalPoints.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, HashMap.class);
     }
 
     /**
