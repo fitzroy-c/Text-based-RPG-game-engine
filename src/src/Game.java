@@ -91,7 +91,6 @@ public class Game {
         Scanner s = new Scanner(System.in);
         while (continueOn){
             cmdTok = new CommandTokenizer(s.next());
-
             if (option.chooseOp(option.option, cmdTok.current())) {
                 continueOn = new Parser(cmdTok, player).parseCommand();
             } else {

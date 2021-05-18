@@ -487,20 +487,22 @@ public class Player {
      *  what does it do?
      * - It checks if there is a shop(merchant)
      * - Print the content of the shop
-     * - Give user choices to choose from
+     * - Give user choices to choose from, handle invalid item index
      * (Assumption: user only can purchase one thing each time)
      * @author Yixiang Yin
      */
 
-    public void buy(){
+    public void buyCommandHandler(){
         NPC_MERCHANT shop = (NPC_MERCHANT) SearchInAbnormalPoints(AbnormalPoint.AbnormalPointType.NPC_MERCHANT);
         if (shop==null) {
             System.out.println("There is no one for you to buy things from");
         }
         if (!NPC_MERCHANT.showTheShop(shop)) return; // indicating nothing to buy(shop is empty)
         else {
+            System.out.println("Please type the corresponding item index to purchase corresponding item.");
             Scanner s = new Scanner(System.in);
             int userChoice = s.nextInt();
+            if (userChoice>=shop.npcBag.getItems().size()) System.out.println("Invalid item index, please try again.");;
             Item itemPuchase = shop.npcBag.getItems().get(userChoice);
             boolean succ = shop.buyFromNPC(this,itemPuchase.name);
             System.out.println(shop.outputStrForBuyFromNPC(this,itemPuchase.name,succ));
