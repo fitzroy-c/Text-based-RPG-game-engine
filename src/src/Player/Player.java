@@ -30,12 +30,12 @@ public class Player {
     public int money; // (how many gold he has)
     private int xp;    // current xp
     private int maxXP; // max xp that upgrade a player's level once reached
-    private final int xpPerLv;
+    private int xpPerLv;
     private int level;
     private int armour; //defense
     private int damage;
     private double criticalChance;
-    private final double maxCriticalChance;
+    private double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
     HashMap<Coordinate, AbnormalPoint> npcInfo; // the map that contains all npc on the specific key coordinate
@@ -130,7 +130,7 @@ public class Player {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         try(FileWriter fw = new FileWriter("json_files/original_data/Items.json")){ // name json file with player's name
-            gson.toJson(this, fw);
+            gson.toJson(this.storageInfo, fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,10 +140,13 @@ public class Player {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         try(FileWriter fw = new FileWriter("json_files/original_data/AbnormalPoints.json")){ // name json file with player's name
-            gson.toJson(this, fw);
+            gson.toJson(this.npcInfo, fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    //TODO: test only, delete later
+    public Player(){
     }
 
     /**
