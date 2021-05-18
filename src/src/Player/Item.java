@@ -83,22 +83,29 @@ public class Item {
      * search an item in item.json. return true if found, otherwise, false(contain bugs)
      * @author: Yixiang Yin
      **/
-    public static boolean searchInItemJson(String itemName){
+    public static List<Item> initializeItems(){
+
         Gson gson = new Gson();
         String path = "json_files/Item.json";
-        BufferedReader bufferedReader = null;
+        JsonReader jr = null;
+        final Type LIST_TYPE = new TypeToken<List<Item>>() {}.getType();
+
         try {
-            bufferedReader = new BufferedReader(new FileReader(path));
+            jr = new JsonReader(new FileReader(path));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        HashMap<String, String> json = gson.fromJson(bufferedReader, HashMap.class);
-        for (String i : json.keySet()){
-            System.out.println(i);
-        }
-        return json.containsKey(itemName);
+        List<Item> items = gson.fromJson(jr,LIST_TYPE);
+        return items;
     }
 
+    public static void main(String[] args) {
+        // test initializeItems
+        List<Item> items = initializeItems();
+        for (Item i :items){
+            System.out.println(i.name);
+        }
+    }
     public void print() {
         // TODO: need a function to print out all we have in this real location (name + description?)
     }
