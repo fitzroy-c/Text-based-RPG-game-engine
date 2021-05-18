@@ -14,6 +14,7 @@ import navigation.Place;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -37,7 +38,7 @@ public class Player {
     private final double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
-    List<Place> gameMap;
+    //List<Place> gameMap;
     HashMap npcInfo;
     HashMap itemInfo;
 
@@ -184,18 +185,28 @@ public class Player {
      * Check if this room has a monster,
      * - if yes, return the danger level and name of the monster
      * - else, return there is no monster
+     * @author yitao chen
      * @return
      */
 
     public String checkMonster() {
+        int dangerRate = this.place.getDangerRate();
+        String string = "";
+        if (dangerRate<=0){
+            string+="This place is safe.\n";
+        }else if (dangerRate<=2){
+            string+="This place is quiet.\n";
+        }else if (dangerRate==3){
+            string+="You can hear monsters roaring.\n";
+        }else {
+            string+="Quite a danger zone, Run!\n";
+        }
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class){
-                int dangerRate = this.place.getDangerRate();
-                String string = "";
-                return "There is no monster";
+                return string + "There is a monster: "+this.place.getAbnormalPoints().get(i).getName()+"\n";
             }
         }
-        return "There is no monster.\n";
+        return string + "There is no monster here.\n";
     }
 
     /**
@@ -223,7 +234,7 @@ public class Player {
                     MonsterAttributes giant = new MonsterAttributes("giant","A monster with high health and damage, but low armour.",
                             150, 8, 6, 3,40,3,
                             0.03,50, 3,15, 11, Element.Normal);
-                    System.out.println("You are facing a giant");
+                    //System.out.println("You are facing a giant");
                     return new Monster(giant,playerLevel);
                 case 1:
                     /**
@@ -232,7 +243,7 @@ public class Player {
                     MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
                             55,6, 0,3,12,2,
                             0.02,10, 3,0,5, Element.Normal);
-                    System.out.println("You are facing a goblin");
+                    //System.out.println("You are facing a goblin");
                     return new Monster(goblin,playerLevel);
                 case 2:
                     /**
@@ -241,7 +252,7 @@ public class Player {
                     MonsterAttributes skeleton = new MonsterAttributes("skeleton", "A quite weak monster.",
                             50,3, 0, 1, 8,1,
                             0.02,10, 3, 0,3,Element.Normal);
-                    System.out.println("You are facing a skeleton");
+                    //System.out.println("You are facing a skeleton");
                     return new Monster(skeleton,playerLevel);
                 case 3:
                     /**
@@ -250,7 +261,7 @@ public class Player {
                     MonsterAttributes troll = new MonsterAttributes("troll", "A monster without low damage, but high health and armour.",
                             70,11, 0,12,20,3,
                             0.05,75, 3,25,10,Element.Normal);
-                    System.out.println("You are facing a troll");
+                    //System.out.println("You are facing a troll");
                     return new Monster(troll,playerLevel);
                 default:
                     /**
@@ -259,11 +270,11 @@ public class Player {
                     MonsterAttributes wolf = new MonsterAttributes("wolf", "A wolf as you see",
                             35,3, 0,0,15,2,
                             0.04,25, 3,0,2,Element.Normal);
-                    System.out.println("You are facing a wolf");
+                    //System.out.println("You are facing a wolf");
                     return new Monster(wolf,playerLevel);
             }
         } else {
-            System.out.println("You are in a safe place");
+            //System.out.println("You are in a safe place");
             return null;
         }
     }

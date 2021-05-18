@@ -50,7 +50,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void goToDirectionTest(){
+    public void goToDirectionTest1(){
         Player player = new Player("test one");
         assertEquals(false, player.goToDirection("south"));
         assertEquals(true, player.goToDirection("north"));
@@ -59,7 +59,7 @@ public class PlayerTest {
         assertEquals(true, player.goToDirection("wrongOrder"));
     }
     @Test
-    public void goToDirectionTest1(){
+    public void goToDirectionTest2(){
         Player player = new Player("test one");
         player.goToDirection("north");
         player.goToDirection("east");
@@ -68,7 +68,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void attack1Test1(){
+    public void attackTest1(){
         Player player = new Player("test one");
         System.out.println("show the before stat");
         System.out.println(player.showPlayerStat());
@@ -80,7 +80,6 @@ public class PlayerTest {
         player.place.addAbnormalPoint(monster);
 
         System.out.println(player.attack());
-
 
         System.out.println("show the current stat");
         System.out.println(player.showPlayerStat());
