@@ -80,6 +80,20 @@ public class Bag {
     }
 
     /**
+     * give all item from a bag to player's bag, if a player's bag cannot hold it as max weight reached,
+     * it will then transfer rest of the npc's item into the room
+     * @param player
+     * @return
+     */
+    public Bag giveAllItemTo(Player player){
+        for (Item npc_item : this.itemList){
+//            if (player.bag.put())
+
+        }
+        return null;
+    }
+
+    /**
      * drop things out of the bag (Yixiang Yin, modified by Yitao)
      */
     public Item drop(Item i){

@@ -1,8 +1,9 @@
 package Player;
 
-import AbnormalPoints.MonsterAttributes;
-import AbnormalPoints.Monster;
+import AbnormalPoints.*;
 import Card.Element;
+import CommandParser.CommandTokenizer;
+import CommandParser.Parser;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -13,7 +14,9 @@ import navigation.Place;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * similar to a extended class from entity
@@ -377,12 +380,153 @@ public class Player {
 
     /**
      * This talk to the npc at the given coordinate
-     * @return
+     * @return string
+     * @author Guanming Ou
      */
     public String talk(){
         // TODO: complete this method which talk to NPC at the coordinate
+        // check if here can talk
+        List<AbnormalPoint> currentPlace =  this.place.getAbnormalPoints();
+        if (currentPlace == null)
+            return "There is no one to talk to.";
+        // check if there is npc that you can talk to
+        NPC_TALK npc_t = null;
+        for (AbnormalPoint a : currentPlace){
+            if (a.abnormalPointType == AbnormalPoint.AbnormalPointType.NPC_TALK){
+                npc_t = (NPC_TALK) a;
+                break;
+            }
+        }
+        if (npc_t == null)
+            return "You can't talk to a monster or a merchant.";
+        else { // there is a npc that you can talk to
+               // continue dialog for conversation
+
+            boolean continueTalk = true;
+            Scanner s = new Scanner(System.in);
+            String playerResponse;
+            DialogTree.DialogType dType = DialogTree.DialogType.CONTINUE;
+
+            while (continueTalk){
+                System.out.println(npc_t.getDialogTree().getRoot().getNpcDialog()); // npc's dialog
+                System.out.println("Your response(s):");
+                System.out.println(npc_t.getDialogTree().printAvailableDialog()); // show player available response
+                playerResponse = s.next(); // get player's response
+
+                // convert player's respond into integer
+                if (isAllInt(playerResponse)){
+                    int respondIndex = Integer.parseInt(playerResponse);
+                    // check if player's response match one of the index
+                    DialogTree.Dialog nextDialog = npc_t.getDialogTree().matchDialog(respondIndex);
+                    if (nextDialog != null){
+                        // check if the conversation meet end state
+                        if (nextDialog.getDtype() == DialogTree.DialogType.END_BLESS_HP){
+                            System.out.println(nextDialog.getNpcDialog()); // npc dialog
+                            DialogTree tree = new DialogTree();
+                            tree.setRoot(nextDialog);
+                            npc_t.setDialogTree(tree); // set dialog tree
+                            return npc_t.hpBless(this); // increase hp, and return final message
+                        }
+                        else if (nextDialog.getDtype() == DialogTree.DialogType.END_BLESS_ARMOR){
+                            System.out.println(nextDialog.getNpcDialog()); // npc dialog
+                            DialogTree tree = new DialogTree();
+                            tree.setRoot(nextDialog);
+                            npc_t.setDialogTree(tree); // set dialog tree
+                            return npc_t.armorBless(this); // increase armor, and return final message
+                        }
+                        else if (nextDialog.getDtype() == DialogTree.DialogType.END_BLESS_DAMAGE) {
+                            System.out.println(nextDialog.getNpcDialog()); // npc dialog
+                            DialogTree tree = new DialogTree();
+                            tree.setRoot(nextDialog);
+                            npc_t.setDialogTree(tree); // set dialog tree
+                            return npc_t.damageBless(this); // increase damage, and return final message
+                        }
+                        else if (nextDialog.getDtype() == DialogTree.DialogType.END_GIVE_GOLD){
+                            DialogTree tree = new DialogTree();
+                            tree.setRoot(nextDialog);
+                            npc_t.setDialogTree(tree); // set dialog tree
+                            this.money += npc_t.getGold(); // npc give gold
+                            npc_t.setGold(0); // clear npc gold
+                            return nextDialog.getNpcDialog(); // return final npc dialog
+                        }
+                        else if (nextDialog.getDtype() == DialogTree.DialogType.END_GIVE_ITEM){
+                            DialogTree tree = new DialogTree();
+                            tree.setRoot(nextDialog);
+                            npc_t.setDialogTree(tree); // set dialog tree
+
+
+
+                        }
+                        else if (nextDialog.getDtype() == DialogTree.DialogType.END_NONE){
+                            DialogTree tree = new DialogTree();
+                            tree.setRoot(nextDialog);
+                            npc_t.setDialogTree(tree); // set dialog tree
+                            return nextDialog.getNpcDialog(); // increase damage, and return final message
+                        }
+                        else if (nextDialog.getDtype() == DialogTree.DialogType.END_ATTACK){
+
+                        }
+                        // this is continue
+                        //TODO: Complete the remain of the function
+                    }
+                }
+                else
+                    System.out.println("Invalid respond index, please try again");
+            }
+
+        }
+
+
         return null;
     }
+
+    /**
+     * Check a string is completely int, before using toInt method
+     */
+    public boolean isAllInt(String input){
+        input = input.trim(); // remove white space
+        if (input.isEmpty())
+            return false;
+        char firstChar = input.charAt(0);
+        if (Character.isDigit(firstChar)){
+            int count = 0;
+            while (count < input.length()) {
+                if (! Character.isLetter(input.charAt(count)))
+                    return false;
+                count++;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Trace down the dialog tree, given the selection of reply by the player
+     * @param indexChoice the choice of the player (int)
+     * @return a new DialogTree with new npc dialog and children dialogs
+     * @author: Guanming Ou
+     */
+//    public DialogTree applyReply(int indexChoice){
+//        if (this.root == null | this.root.nextDialogs == null) return null;
+//
+//        DialogTree.Dialog currentNode = this.root;
+//        List<DialogTree.Dialog> children = currentNode.nextDialogs;
+//        //TODO: Make it so that it make to npc do such things following its type
+//        for (DialogTree.Dialog d : children){
+//            if (d.index == indexChoice){
+//                DialogTree t = new DialogTree();
+//                t.root = d;
+//                t.rootString = d.npcDialog;
+//                return t;
+//            }
+//        }
+//        return null;
+//    }
+
+
+
+
+
+
 
     /*
      * This attacks the monster at the player's current placement, and monster will attack by respond
@@ -569,5 +713,13 @@ public class Player {
 
     public void setCriticalChance(double criticalChance) {
         this.criticalChance = criticalChance;
+    }
+
+    public void setBag(Bag bag) {
+        this.bag = bag;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
     }
 }
