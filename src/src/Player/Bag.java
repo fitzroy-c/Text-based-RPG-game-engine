@@ -34,7 +34,6 @@ public class Bag {
     //TODO :i am confused about why the following 2 function presents this way
     //TODO : the function still can't call correctly in Placement.java
 
-
     /**
      * put an item in the bag, output string to indicate if it succeed.
      * @param i
