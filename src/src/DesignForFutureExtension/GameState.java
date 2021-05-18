@@ -1,3 +1,5 @@
+package DesignForFutureExtension;
+
 public class GameState {
     private static String[] playerHands = new String[10];
     private static String[] enemyHands = new String[10];

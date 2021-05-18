@@ -162,10 +162,10 @@ public class Action_cards extends Cards {
 
 
 //hand: [0,1,2]    size 5
-//Deck: [0,1,2,3,4,5];
+//DesignForFutureExtension.Deck: [0,1,2,3,4,5];
 //
 //hand: [0,1,2]    size 5;
-//Deck: [0,1,2,3,4,5]   ;
+//DesignForFutureExtension.Deck: [0,1,2,3,4,5]   ;
 //
 //arraylist: []
 //arraylist.add(3);
