@@ -44,9 +44,9 @@ public class Game {
         Gson gson = new Gson();
 
         try {
-            HashMap hashMapItem = gson.fromJson(new FileReader(item), HashMap.class);
+            HashMap<Integer, Item> hashMapItem = gson.fromJson(new FileReader(item), HashMap.class);
             player.setItemInfo(hashMapItem);
-            HashMap hashMapNPC = gson.fromJson(new FileReader(npc), HashMap.class);
+            HashMap<Integer, AbnormalPoint> hashMapNPC = gson.fromJson(new FileReader(npc), HashMap.class);
             player.setNpcInfo(hashMapNPC);
 
         } catch (Exception e) {
