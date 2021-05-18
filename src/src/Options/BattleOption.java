@@ -1,6 +1,8 @@
 package Options;
 
+import AbnormalPoints.Monster;
 import Player.Player;
+import AbnormalPoints.AbnormalPoint;
 
 public class BattleOption extends BasicOption {
 
@@ -15,8 +17,9 @@ public class BattleOption extends BasicOption {
         this.option.add(new Option("west", "Go west"));
     }
 
-    public BattleOption(Player enemy,Player player) throws Exception {
+    public BattleOption(AbnormalPoint enemy,Player player) throws Exception {
         buildMenu();
+        showMenu(this.option);
         if (player.getHP() <= 0) {
             System.err.println("YOU DIE");
             System.out.println("Start again? (Y/N)");
@@ -28,7 +31,9 @@ public class BattleOption extends BasicOption {
     ///testOnly
     public static void main(String[] args) throws Exception {
         Player p = new Player("P");
-        BattleOption b = new BattleOption(p, p);
+        AbnormalPoint a = new AbnormalPoint();
+        Monster m = new Monster(null, 12);
+        BattleOption b = new BattleOption(m, p);
         b.printOut(b.option);
     }
 }

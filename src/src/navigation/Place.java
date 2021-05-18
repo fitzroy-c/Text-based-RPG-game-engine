@@ -18,14 +18,12 @@ import java.util.Random;
 public class Place {
     private Coordinate coordinate;
     private String description;
-    private int dangerRate; //calculate the chance we meet a monster
-    private Bag bag;        // the bag which contains item inside a room
+    private int dangerRate;                     // calculate the chance we meet a monster
+    private Bag bag;                            // the bag which contains item inside a room
     private List<AbnormalPoint> abnormalPoints; // may have npc and monster
 
     Random random = new Random();
 
-    public Place() {
-    }
     /*
     place danger rate 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
     6 definite have a monster -- test only
@@ -95,7 +93,7 @@ public class Place {
     /**
      * Print out the information of current placement
      */
-    public void printPlacement() {
+    public void printPlace() {
         // TODO: need a function to print out all we have in this real location (description + npc + ?)
     }
 
@@ -136,4 +134,5 @@ public class Place {
         return bag.getItems();
     }
 
+    public void setBag(Bag bag) { this.bag = bag; }
 }

@@ -14,6 +14,7 @@ import navigation.Place;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -37,26 +38,28 @@ public class Player {
     private final double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
+    HashMap<Coordinate, AbnormalPoint> npcInfo; // the map that contains all npc on the specific key coordinate
+    HashMap<Coordinate, Bag> storageInfo; // the room storage which contains all bags on the map, with coordinate info
 
     /**
      * Some variables
      */
     Random random = new Random();
-    int maxHPIncreasePerLv = 10;
-    int armorIncreasePerLv = 2;
+    int maxHPIncreasePerLv = 15;
+    int armorIncreasePerLv = 5;
     int damageIncreasePerLv = 2;
-    double criticalChanceIncreasePerLv = 0.01; //from 0.00-1.00 min step 0.01
-    int initRandomMaxHP = 20;
-    int initBaseMaxHP = 80;
+    double criticalChanceIncreasePerLv = 0.02; //from 0.00-1.00 min step 0.01
+    int initRandomMaxHP = 30;
+    int initBaseMaxHP = 120;
     int initRandomMoney =  5;
     int initBaseMoney = 10;
     int initMaxXP = 10;
     int initXPPerLv = 10;
-    int initRandomArmor =  5;
-    int initBaseArmor = 1;
-    int initRandomDamage =  5;
-    int initBaseDamage = 10;
-    double initCriticalChance = 0.01; //from 0.00-1.00 min step 0.01
+    int initRandomArmor =  4;
+    int initBaseArmor = 4;
+    int initRandomDamage =  8;
+    int initBaseDamage = 12;
+    double initCriticalChance = 0.02; //from 0.00-1.00 min step 0.01
     double initMaxCriticalChance = 1.00; //from 0.00-1.00 min step 0.01
     int initBagWeight;
     int initXCoordinate = 0;
@@ -80,6 +83,8 @@ public class Player {
         this.maxCriticalChance = initMaxCriticalChance;
         this.bag = new Bag(initBagWeight); //default bag capacity 5
         this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
+        //this.setNpcInfo(loadOriginalNPCs()); // load from original file
+        //this.setStorageInfo(loadOriginalItems()); // load from original file
     }
 
     /**
@@ -87,7 +92,7 @@ public class Player {
      * calculate player's new attribute as level increases, given a player
      */
     public void UpdatePlayerAttribute(){
-        if(this.xp >= this.maxXP){
+        while(this.xp >= this.maxXP){
             this.xp -= this.maxXP; // reset xp
             this.level += 1; // increase level
             this.maxXP = maxXP + xpPerLv; // increase xpFactor
@@ -108,24 +113,46 @@ public class Player {
 
     /**
      * Save player as json
+     * @author Guanming Ou
      */
-    // TODO: This method is not tested yet, check and complete if needed - Guanming
     public void save() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter(this.name)){ // name json file with player's name
+        try(FileWriter fw = new FileWriter("json_files/player_save/" + this.name)){ // name json file with player's name
             gson.toJson(this, fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    //TODO: Delete later, just for testing & create json
+    public void saveItem(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/Items.json")){ // name json file with player's name
+            gson.toJson(this, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //TODO: Delete later, just for testing & create json
+    public void saveNPC(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/AbnormalPoints.json")){ // name json file with player's name
+            gson.toJson(this, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * load player from json
      * @param playerName the name of specific player
+     * @author Guanming Ou
      */
-    // TODO: This method is not tested yet, check and complete if needed - Guanming
     public static Player load(String playerName) {
-        File file = new File("json_files/"+ playerName +".json");
+        File file = new File("json_files/player_save/"+ playerName +".json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
@@ -139,6 +166,47 @@ public class Player {
         }
         return gson.fromJson(jsonReader, CUS_LIST_TYPE);
     }
+
+    /**
+     * load original items data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, Bag> loadOriginalItems() {
+        File file = new File("json_files/original_data/Items.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+    }
+
+    /**
+     * load original npc data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, AbnormalPoint> loadOriginalNPCs() {
+        File file = new File("json_files/original_data/AbnormalPoints.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+    }
+
     /**
      * Consume an consumable item
      * TODO: more function should be add. if the item has damage or what,should reset the monster.hp player's gold/xp etc.
@@ -181,19 +249,28 @@ public class Player {
      * Check if this room has a monster,
      * - if yes, return the danger level and name of the monster
      * - else, return there is no monster
+     * @author yitao chen
      * @return
      */
-    public String checkMonsterType() {
-        // TODO: Is it be replaced or not? what's the meaning. Need change
-        // TODO: save the game and back to the main menu, need player to have location that stores monster
-        this.getPlace().getAbnormalPoints();
-        //            Monster monster = new Monster();
-//            if (monster == null) {
-//                System.out.println("There is a "+ monster.getName() +" around you, WATCH OUT!");
-//            } else {
-//                System.out.println("There is no monster near you, phew～");
-//            }
-        return null;
+
+    public String checkMonster() {
+        int dangerRate = this.place.getDangerRate();
+        String string = "";
+        if (dangerRate<=0){
+            string+="This place is safe.\n";
+        }else if (dangerRate<=2){
+            string+="This place is quiet.\n";
+        }else if (dangerRate==3){
+            string+="You can hear monsters roaring.\n";
+        }else {
+            string+="Quite a danger zone, Run!\n";
+        }
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER){
+                return string + "There is a monster: "+this.place.getAbnormalPoints().get(i).getName()+"\n";
+            }
+        }
+        return string + "There is no monster here.\n";
     }
 
     /**
@@ -203,7 +280,7 @@ public class Player {
      * @author yitao chen
      * @return null, if there is not. return the monster if it has
      */
-    public Monster checkMonster(){
+    public void generateMonster(){
         Random random = new Random();
         int randomInt = random.nextInt(6) + 1; // 1-6
         // place danger rate 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
@@ -221,8 +298,8 @@ public class Player {
                     MonsterAttributes giant = new MonsterAttributes("giant","A monster with high health and damage, but low armour.",
                             150, 8, 6, 3,40,3,
                             0.03,50, 3,15, 11, Element.Normal);
-                    System.out.println("You are facing a giant");
-                    return new Monster(giant,playerLevel);
+                    //System.out.println("You are facing a giant");
+                    this.place.addAbnormalPoint(new Monster(giant,playerLevel));
                 case 1:
                     /**
                      * A normal monster , with slight armour.
@@ -230,8 +307,8 @@ public class Player {
                     MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
                             55,6, 0,3,12,2,
                             0.02,10, 3,0,5, Element.Normal);
-                    System.out.println("You are facing a goblin");
-                    return new Monster(goblin,playerLevel);
+                    //System.out.println("You are facing a goblin");
+                    this.place.addAbnormalPoint( new Monster(goblin,playerLevel));
                 case 2:
                     /**
                      * A quite weak monster.
@@ -239,8 +316,8 @@ public class Player {
                     MonsterAttributes skeleton = new MonsterAttributes("skeleton", "A quite weak monster.",
                             50,3, 0, 1, 8,1,
                             0.02,10, 3, 0,3,Element.Normal);
-                    System.out.println("You are facing a skeleton");
-                    return new Monster(skeleton,playerLevel);
+                    //System.out.println("You are facing a skeleton");
+                    this.place.addAbnormalPoint( new Monster(skeleton,playerLevel));
                 case 3:
                     /**
                      * A monster without low damage, but high health and armour.
@@ -248,8 +325,8 @@ public class Player {
                     MonsterAttributes troll = new MonsterAttributes("troll", "A monster without low damage, but high health and armour.",
                             70,11, 0,12,20,3,
                             0.05,75, 3,25,10,Element.Normal);
-                    System.out.println("You are facing a troll");
-                    return new Monster(troll,playerLevel);
+                    //System.out.println("You are facing a troll");
+                    this.place.addAbnormalPoint( new Monster(troll,playerLevel));
                 default:
                     /**
                      * A normal wild creature
@@ -257,13 +334,11 @@ public class Player {
                     MonsterAttributes wolf = new MonsterAttributes("wolf", "A wolf as you see",
                             35,3, 0,0,15,2,
                             0.04,25, 3,0,2,Element.Normal);
-                    System.out.println("You are facing a wolf");
-                    return new Monster(wolf,playerLevel);
+                    //System.out.println("You are facing a wolf");
+                    this.place.addAbnormalPoint(new Monster(wolf,playerLevel));
             }
-        } else {
-            System.out.println("You are in a safe place");
-            return null;
         }
+        //System.out.println("You are in a safe place");
     }
 
 
@@ -313,6 +388,7 @@ public class Player {
      */
 
     public boolean goToDirection(String direction){
+        //TODO need to update the place stat everytime
         //TODO these 2 range description should be global limits
         int maxX = 30;
         int maxY = 30;
@@ -323,12 +399,14 @@ public class Player {
                     return false;
                 }
                 this.place.getCoordinate().goNorth();
+                generateMonster();
             break;
             case "east":
                 if (this.place.getCoordinate().x==maxX){
                     return false;
                 }
                 this.place.getCoordinate().goEast();
+                generateMonster();
             break;
 
             case "south":
@@ -336,6 +414,7 @@ public class Player {
                     return false;
                 }
                 this.place.getCoordinate().goSouth();
+                generateMonster();
             break;
 
             case "west":
@@ -343,6 +422,7 @@ public class Player {
                     return false;
                 }
                 this.place.getCoordinate().goWest();
+                generateMonster();
             break;
         }
         return true;
@@ -365,6 +445,7 @@ public class Player {
      * check if this round is a critical hit
      * @author yitao chen
      * @param criticalChance from 0.00-1.00 min step 0.01
+     * @author yitao chen
      */
     public boolean criticalCheck(double criticalChance){
         Random random = new Random();
@@ -384,7 +465,6 @@ public class Player {
      * @author Guanming Ou
      */
     public String talk(){
-        // TODO: complete this method which talk to NPC at the coordinate
         // check if here can talk
         List<AbnormalPoint> currentPlace =  this.place.getAbnormalPoints();
         if (currentPlace == null)
@@ -400,8 +480,10 @@ public class Player {
         if (npc_t == null)
             return "You can't talk to a monster or a merchant.";
         else { // there is a npc that you can talk to
-               // continue dialog for conversation
-
+            // check if npc has talked before
+            if (npc_t.isHasEndedTalk())
+                return "You cannot talk to already talked npc.";
+            // continue dialog for conversation
             boolean continueTalk = true;
             Scanner s = new Scanner(System.in);
             String playerResponse;
@@ -422,61 +504,48 @@ public class Player {
                         // check if the conversation meet end state
                         if (nextDialog.getDtype() == DialogTree.DialogType.END_BLESS_HP){
                             System.out.println(nextDialog.getNpcDialog()); // npc dialog
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
                             return npc_t.hpBless(this); // increase hp, and return final message
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_BLESS_ARMOR){
                             System.out.println(nextDialog.getNpcDialog()); // npc dialog
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
                             return npc_t.armorBless(this); // increase armor, and return final message
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_BLESS_DAMAGE) {
                             System.out.println(nextDialog.getNpcDialog()); // npc dialog
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
                             return npc_t.damageBless(this); // increase damage, and return final message
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_GIVE_GOLD){
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
                             this.money += npc_t.getGold(); // npc give gold
                             npc_t.setGold(0); // clear npc gold
+                            npc_t.setHasEndedTalk(true);
                             return nextDialog.getNpcDialog(); // return final npc dialog
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_GIVE_ITEM){
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
-
-
-
+                            npc_t.getNpcBag().giveAllItemTo(this); // npc give all item
+                            npc_t.setHasEndedTalk(true); // npc ended
+                            return nextDialog.getNpcDialog();  // return final npc dialog
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_NONE){
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
+                            npc_t.setHasEndedTalk(true); // npc ended
                             return nextDialog.getNpcDialog(); // increase damage, and return final message
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_ATTACK){
-
+                            System.out.println(nextDialog.getNpcDialog());
+                            Monster npcMonster = npc_t.transformIntoMonster(); // convert this npc into monster
+                            this.place.removeAbnormalPoint(npc_t); // remove npc from player's place
+                            this.place.addAbnormalPoint(npcMonster); // npc return as monster
+                            return this.attack(); // not sure what string place here, as attack may already outputted a string
                         }
                         // this is continue
-                        //TODO: Complete the remain of the function
+                        DialogTree newTree = new DialogTree();
+                        newTree.setRoot(nextDialog);
+                        npc_t.setDialogTree(newTree);
                     }
                 }
                 else
                     System.out.println("Invalid respond index, please try again");
             }
-
         }
-
-
         return null;
     }
 
@@ -524,86 +593,99 @@ public class Player {
 
 
 
-
-
-
-
-    /*
-     * This attacks the monster at the player's current placement, and monster will attack by respond
-     * @return
-    public String attack(){
-        // TODO: complete this method which attack to the monster
-        return null;
-    }
-
-     */
-
     /**
-     * you should call checkMonster function before calling the attack function
+     * you should call generateMonster function before calling the attack function
      * default critical hit = normal *2
      * @author yitao chen
      * @return
      */
-    public String attack(Monster monster){
-        String string = "Ready to attack:\n";
-        if (monster==null){
-            return string+"There is no monster to attack.\n";
-        }
-        string += monster.getName()+"\n"+monster.getIntro();
-        Random random = new Random();
-        int monsterHP = monster.getHP();
-        while(monsterHP>0&&this.HP>0){
-            if (criticalCheck(this.criticalChance)){
-                monsterHP = monsterHP - Math.max(this.damage*2 - monster.getArmour(),0);
+    public String attack(){
+        String string = "Ready to attack:";
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                string += monster.getName()+"\n"+monster.getIntro()+"\n";
+                Random random = new Random();
+                int monsterHP = monster.getHP();
+                while(monsterHP>0&&this.HP>0){
+                    if (criticalCheck(this.criticalChance)){
+                        int realDamage = Math.max(this.damage*2 - monster.getArmour(),0);
+                        monsterHP = monsterHP - realDamage;
+                        string += "Nice, you have made a critical hit. "+monster.getName()+" -"+realDamage+"HP\n";
+                    }
+                    int realDamage = Math.max(this.damage - monster.getArmour(),0);
+                    monsterHP = monsterHP - realDamage;
+                    string += "Normal hit."+monster.getName()+" -"+realDamage+"HP\n";
+                    if (criticalCheck(monster.getCritChance())){
+                        int realDamage1 = Math.max(monster.getDamage()*2 - this.armour,0);
+                        this.HP = this.HP - realDamage1;
+                        string += "Sadly. You got a critical hit. "+this.name+" -"+realDamage1+"HP\n";
+                    }
+                    int realDamage1 = Math.max(monster.getDamage() - this.armour,0);
+                    this.HP = this.HP - realDamage1;
+                    string += "You got a hit. "+this.name+" -"+realDamage1+"HP\n";
+                }
+                if (this.HP<=0){
+                    return string+"Your adventure journey ended here. The magic world will remember you\n";
+                }else{
+                    this.xp += monster.getXpGain();
+                    this.money += monster.getGold();
+                    UpdatePlayerAttribute();
+                    return string+"You have defeated the monster, congratulations.\n";
+                }
             }
-            monsterHP = monsterHP - Math.max(this.damage - monster.getArmour(),0);
-            if (criticalCheck(monster.getCritChance())){
-                this.HP = this.HP - Math.max(monster.getDamage()*2 - this.armour,0);
-            }
-            this.HP = this.HP - Math.max(monster.getDamage() - this.armour,0);
         }
-        if (this.HP<=0){
-            return string+"Your adventure journey ended here. The magic world will remember you\n";
-        }else{
-        this.xp += monster.getXpGain();
-        this.money += monster.getGold();
-        UpdatePlayerAttribute();
-        return string+"You have defeated the monster, congratulations.\n";
-        }
+        return string+"There is no monster to attack.\n";
     }
 
     /**
      * player bribe the monster if he can, if failed ,turn to attack
+     * @author yitao chen
      * @return
      */
-    public String bribe(Monster monster){
+    public String bribe(){
         String string = "Ready to bribe:\n";
-        if (this.money>=monster.getGold()){
-            this.money -= monster.getGold();
-            monster.setHP(0); // you can check the monster's hp to see if it succeed as well
-            return string+"Bribe successfully.\n";
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                if (this.money>=monster.getGold()){
+                    this.money -= monster.getGold();
+                    monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                    return string+"Bribe successfully.\n";
+                }
+                String string1 = attack();
+                return string+"Bribe failed. Not enough gold.\n"+string1;
+            }
         }
-        String string1 = attack(monster);
-        return string+"Bribe failed.\n"+string1;
+        return string + "There is no monster for you to bribe\n";
+
     }
 
     /**
      * player retreat, which allow player to escape from current fight. hold the coordinate
+     * @author yitao chen
      * @return
      */
-    public String retreat(Monster monster){
+    public String retreat(){
         String string = "Ready to retreat:\n";
-        while(this.HP>0){
-            if (criticalCheck(0.8)){ //80% chance succeed
-                monster.setHP(0); // you can check the monster's hp to see if it succeed as well
-                return string + "Retreat successfully.\n";
-            }else{
-                this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
-                string +="Retreat failed.\n";
-                retreat(monster);
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                while(this.HP>0){
+                    if (criticalCheck(0.8)){ //80% chance succeed
+                        monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                        return string + "Retreat successfully.\n";
+                    }else{
+                        this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
+                        string +="Retreat failed.\n";
+                    }
+                }
+                return string+"Your adventure journey ended here. The magic world will remember you\n";
             }
         }
-        return string+"Your adventure journey ended here. The magic world will remember you\n";
+        return string + "There is no monster for you to retreat\n";
+
+
     }
 
     /**
@@ -721,5 +803,13 @@ public class Player {
 
     public void setPlace(Place place) {
         this.place = place;
+    }
+
+    public void setNpcInfo(HashMap<Coordinate, AbnormalPoint> npcInfo) {
+        this.npcInfo = npcInfo;
+    }
+
+    public void setStorageInfo(HashMap<Coordinate, Bag> storageInfo) {
+        this.storageInfo = storageInfo;
     }
 }

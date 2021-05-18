@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class BasicOption {
-    List<Option> option = new ArrayList<>();
+    public List<Option> option = new ArrayList<>();
     HashMap<String, Option> optionInterface = new HashMap();
 
     public void printOut(List<Option> o) {
@@ -23,24 +23,22 @@ public class BasicOption {
         }
     }
 
-    public Option chooseOp(List<Option> o, Token token) {
+    public boolean chooseOp(List<Option> o, Token token) {
         this.printOut(o);
         String command = token.token();
         if (optionInterface.containsKey(command)) {
-            return optionInterface.get(command);
+            return true;
         } else {
             System.out.println("I don't know what '" + command + "' means.");
-            return this.showMenu(o, token);
+            return false;
         }
     }
 
-//    public boolean hasD
-
-    public Option showMenu(List<Option> o, Token token) {
+    public void showMenu(List<Option> o) {
         for (int i = 0; i < o.size(); i++) {
+            optionInterface.put(String.valueOf(i+1), o.get(i));
             optionInterface.put(o.get(i).getCommand(), o.get(i));
         }
-        return chooseOp(o, token);
     }
 
 }

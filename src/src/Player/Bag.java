@@ -83,12 +83,23 @@ public class Bag {
      * give all item from a bag to player's bag, if a player's bag cannot hold it as max weight reached,
      * it will then transfer rest of the npc's item into the room
      * @param player
-     * @return
+     * @return Guanming Ou
      */
     public Bag giveAllItemTo(Player player){
+        Bag tempBag = new Bag(100);;
         for (Item npc_item : this.itemList){
-//            if (player.bag.put())
-
+            if (player.bag.put(npc_item)){ // add to player's bag
+                this.drop(npc_item); // delete from npc's bag
+            } else {
+                tempBag.put(npc_item);
+            }
+        }
+        if (!tempBag.isEmpty()){
+            List<Item> roomItem = player.place.getItems();
+            for (Item placeItem : roomItem){
+                tempBag.put(placeItem);
+            }
+            player.place.setBag(tempBag);
         }
         return null;
     }
@@ -127,7 +138,7 @@ public class Bag {
     }
     /**
      * Check if a bag contains a item of given item name (String)
-     * @param itemName
+     * @param itemName the name of a item
      * @return The corresponding item (Item)
      */
     public Item getItemByName(String itemName){

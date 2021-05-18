@@ -53,18 +53,6 @@ public class NPC_TALK extends AbnormalPoint{
         this.npcBag = npcBag;
     }
 
-    //        DialogTree tree = new DialogTree();
-//        tree.root.npcDialog = "I can bless you... to better prepare you for the fight";
-//        tree.root.index = 0;
-//        tree.root.dtype = DialogTree.DialogType.CONTINUE;
-//        tree.root.nextDialogs.add(new DialogTree.Dialog(1, "I want to increase my health",
-//                "as you wish...", null, DialogTree.DialogType.END_BLESS));
-//        tree.root.nextDialogs.add(new DialogTree.Dialog(2, "I want to increase my armor",
-//                "as you wish...", null, DialogTree.DialogType.END_BLESS));
-//        tree.root.nextDialogs.add(new DialogTree.Dialog(3, "I want to increase my damage",
-//                "as you wish...", null, DialogTree.DialogType.END_BLESS));
-//        this.dialogTree = tree;
-
     /**
      * Method that increase a player's stat base on player's choice
      * @param i (1 = increase max hp, 2 = increase armor, 3 = increase damage)
@@ -107,6 +95,29 @@ public class NPC_TALK extends AbnormalPoint{
         return "Your attack damage has increased to "+player.getDamage();
     }
 
+    /**
+     * As npc wants to attack player, it will transform into monster
+     * @return a monster with same stat as npc
+     */
+    public Monster transformIntoMonster(){
+        MonsterAttributes temp = new MonsterAttributes("temp", "temp",
+                1,0, 0,0,0,0,
+                0,0, 0,0,0,Element.Normal);
+
+        Monster newMonster = new Monster(temp, 1);
+        newMonster.setName("Angry "+ this.getName());
+        newMonster.setIntro(this.getIntro());
+        newMonster.setMaxHP(this.getMaxHP());
+        newMonster.setHP(this.getHP());
+        newMonster.setArmour(this.getArmour());
+        newMonster.setDamage(this.getDamage());
+        newMonster.setCritChance(this.getCritChance());
+        newMonster.setXpGain(this.getXpGain());
+        newMonster.setGold(this.getGold());
+        newMonster.setElement(this.getElement());
+        return newMonster;
+    }
+
     public DialogTree getDialogTree() {
         return dialogTree;
     }
@@ -146,4 +157,8 @@ public class NPC_TALK extends AbnormalPoint{
     public void setHasEndedTalk(boolean hasEndedTalk) {
         this.hasEndedTalk = hasEndedTalk;
     }
+
+    public Bag getNpcBag() { return npcBag; }
+
+    public void setNpcBag(Bag npcBag) { this.npcBag = npcBag; }
 }

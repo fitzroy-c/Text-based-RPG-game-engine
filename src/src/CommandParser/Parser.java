@@ -39,19 +39,22 @@ import Player.Item;
 public class Parser {
     Player player;
     CommandTokenizer _tokenizer;
-    Monster monster;
-    Item item;
+    //Monster monster;
+    //Item item;
 
 
     public Parser(CommandTokenizer tokenizer, Player player) {
         this.player = player;
         _tokenizer = tokenizer;
     }
+    /*
     public Parser(CommandTokenizer tokenizer, Player player, Monster monster) {
         this.player = player;
         _tokenizer = tokenizer;
         this.monster = monster;
     }
+
+     */
 
     // <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
     //              <attack-command>|<retreat-command>|<bribe-command>|<view-command>
@@ -97,10 +100,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DETECT) {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                System.out.println(player.checkMonsterType());
+                System.out.println(player.checkMonster());
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                System.out.println(player.checkMonsterType());
+                System.out.println(player.checkMonster());
                 cmdExecuted = true;
             }
         }
@@ -237,10 +240,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.ATTACK){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.attack(monster);
+                player.attack();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.attack(monster);
+                player.attack();
                 cmdExecuted = true;
             }
         }
@@ -251,10 +254,10 @@ public class Parser {
             cmdExecuted = true;
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.retreat(monster);
+                player.retreat();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.retreat(monster);
+                player.retreat();
                 cmdExecuted = true;
             }
         }
@@ -264,10 +267,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BRIBE){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.bribe(monster);
+                player.bribe();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.bribe(monster);
+                player.bribe();
                 cmdExecuted = true;
             }
         }
