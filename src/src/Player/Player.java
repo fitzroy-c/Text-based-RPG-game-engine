@@ -114,7 +114,7 @@ public class Player {
     public void save() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter(this.name)){ // name json file with player's name
+        try(FileWriter fw = new FileWriter("json_files/player_save/" + this.name)){ // name json file with player's name
             gson.toJson(this, fw);
         } catch (IOException e) {
             e.printStackTrace();
@@ -126,7 +126,7 @@ public class Player {
      */
     // TODO: This method is not tested yet, check and complete if needed - Guanming
     public static Player load(String playerName) {
-        File file = new File("json_files/"+ playerName +".json");
+        File file = new File("json_files/player_save/"+ playerName +".json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
