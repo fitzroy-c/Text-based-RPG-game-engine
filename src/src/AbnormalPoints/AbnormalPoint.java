@@ -6,9 +6,8 @@ package AbnormalPoints;
  */
 
 public class AbnormalPoint extends entity{
-    enum AbnormalPointType {
+    public enum AbnormalPointType {
         NPC_TALK,
-        NPC_BLESSING,
         NPC_MERCHANT,
         MONSTER;
     }
