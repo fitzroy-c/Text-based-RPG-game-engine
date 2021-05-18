@@ -512,8 +512,6 @@ public class Player {
 //        return null;
 //    }
 
-
-
     /**
      * you should call checkMonster function before calling the attack function
      * default critical hit = normal *2
@@ -723,4 +721,6 @@ public class Player {
     public void setPlace(Place place) {
         this.place = place;
     }
+
+
 }
