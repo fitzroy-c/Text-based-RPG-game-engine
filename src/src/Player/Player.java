@@ -14,6 +14,7 @@ import navigation.Place;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -37,7 +38,6 @@ public class Player {
     private final double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
-    List<Place> gameMap;
     HashMap npcInfo;
     HashMap itemInfo;
 
@@ -90,7 +90,7 @@ public class Player {
      * calculate player's new attribute as level increases, given a player
      */
     public void UpdatePlayerAttribute(){
-        if(this.xp >= this.maxXP){
+        while(this.xp >= this.maxXP){
             this.xp -= this.maxXP; // reset xp
             this.level += 1; // increase level
             this.maxXP = maxXP + xpPerLv; // increase xpFactor

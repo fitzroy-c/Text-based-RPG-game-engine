@@ -37,5 +37,15 @@ public class PlayerTest2 {
         assertEquals(4, player.getLevel());
     }
 
+    @Test
+    public void updatePlayerAttributeTestYesMultiLevel(){
+        Player player = new Player("testOne");
+        player.setLevel(2);
+        player.setMaxXP(123);
+        player.setXp(10000);
+        player.UpdatePlayerAttribute();
+        assertEquals(36, player.getLevel());
+    }
+
 
 }
