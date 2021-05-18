@@ -43,21 +43,21 @@ public class Player {
      * Some variables
      */
     Random random = new Random();
-    int maxHPIncreasePerLv = 10;
-    int armorIncreasePerLv = 2;
+    int maxHPIncreasePerLv = 15;
+    int armorIncreasePerLv = 5;
     int damageIncreasePerLv = 2;
-    double criticalChanceIncreasePerLv = 0.01; //from 0.00-1.00 min step 0.01
-    int initRandomMaxHP = 20;
-    int initBaseMaxHP = 80;
+    double criticalChanceIncreasePerLv = 0.02; //from 0.00-1.00 min step 0.01
+    int initRandomMaxHP = 40;
+    int initBaseMaxHP = 160;
     int initRandomMoney =  5;
     int initBaseMoney = 10;
     int initMaxXP = 10;
     int initXPPerLv = 10;
-    int initRandomArmor =  5;
-    int initBaseArmor = 1;
-    int initRandomDamage =  5;
-    int initBaseDamage = 10;
-    double initCriticalChance = 0.01; //from 0.00-1.00 min step 0.01
+    int initRandomArmor =  4;
+    int initBaseArmor = 4;
+    int initRandomDamage =  8;
+    int initBaseDamage = 12;
+    double initCriticalChance = 0.02; //from 0.00-1.00 min step 0.01
     double initMaxCriticalChance = 1.00; //from 0.00-1.00 min step 0.01
     int initBagWeight;
     int initXCoordinate = 0;
@@ -114,7 +114,7 @@ public class Player {
     public void save() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter(this.name)){ // name json file with player's name
+        try(FileWriter fw = new FileWriter("json_files/player_save/" + this.name)){ // name json file with player's name
             gson.toJson(this, fw);
         } catch (IOException e) {
             e.printStackTrace();
@@ -126,7 +126,7 @@ public class Player {
      */
     // TODO: This method is not tested yet, check and complete if needed - Guanming
     public static Player load(String playerName) {
-        File file = new File("json_files/"+ playerName +".json");
+        File file = new File("json_files/player_save/"+ playerName +".json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
@@ -346,9 +346,6 @@ public class Player {
                 this.place.getCoordinate().goWest();
             break;
         }
-
-
-
         return true;
     }
 
@@ -515,15 +512,7 @@ public class Player {
 //        return null;
 //    }
 
-    /*
-     * This attacks the monster at the player's current placement, and monster will attack by respond
-     * @return
-    public String attack(){
-        // TODO: complete this method which attack to the monster
-        return null;
-    }
 
-     */
 
     /**
      * you should call checkMonster function before calling the attack function
@@ -531,66 +520,91 @@ public class Player {
      * @author yitao chen
      * @return
      */
-    public String attack(Monster monster){
-        String string = "Ready to attack:\n";
-        if (monster==null){
-            return string+"There is no monster to attack.\n";
-        }
-        string += monster.getName()+"\n"+monster.getIntro();
-        Random random = new Random();
-        int monsterHP = monster.getHP();
-        while(monsterHP>0&&this.HP>0){
-            if (criticalCheck(this.criticalChance)){
-                monsterHP = monsterHP - Math.max(this.damage*2 - monster.getArmour(),0);
+    public String attack(){
+        String string = "Ready to attack:";
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                string += monster.getName()+"\n"+monster.getIntro()+"\n";
+                Random random = new Random();
+                int monsterHP = monster.getHP();
+                while(monsterHP>0&&this.HP>0){
+                    if (criticalCheck(this.criticalChance)){
+                        int realDamage = Math.max(this.damage*2 - monster.getArmour(),0);
+                        monsterHP = monsterHP - realDamage;
+                        string += "Nice, you have made a critical hit. "+monster.getName()+" -"+realDamage+"HP\n";
+                    }
+                    int realDamage = Math.max(this.damage - monster.getArmour(),0);
+                    monsterHP = monsterHP - realDamage;
+                    string += "Normal hit."+monster.getName()+" -"+realDamage+"HP\n";
+                    if (criticalCheck(monster.getCritChance())){
+                        int realDamage1 = Math.max(monster.getDamage()*2 - this.armour,0);
+                        this.HP = this.HP - realDamage1;
+                        string += "Sadly. You got a critical hit. "+this.name+" -"+realDamage1+"HP\n";
+                    }
+                    int realDamage1 = Math.max(monster.getDamage() - this.armour,0);
+                    this.HP = this.HP - realDamage1;
+                    string += "You got a hit. "+this.name+" -"+realDamage1+"HP\n";
+                }
+                if (this.HP<=0){
+                    return string+"Your adventure journey ended here. The magic world will remember you\n";
+                }else{
+                    this.xp += monster.getXpGain();
+                    this.money += monster.getGold();
+                    UpdatePlayerAttribute();
+                    return string+"You have defeated the monster, congratulations.\n";
+                }
             }
-            monsterHP = monsterHP - Math.max(this.damage - monster.getArmour(),0);
-            if (criticalCheck(monster.getCritChance())){
-                this.HP = this.HP - Math.max(monster.getDamage()*2 - this.armour,0);
-            }
-            this.HP = this.HP - Math.max(monster.getDamage() - this.armour,0);
         }
-        if (this.HP<=0){
-            return string+"Your adventure journey ended here. The magic world will remember you\n";
-        }else{
-        this.xp += monster.getXpGain();
-        this.money += monster.getGold();
-        UpdatePlayerAttribute();
-        return string+"You have defeated the monster, congratulations.\n";
-        }
+        return string+"There is no monster to attack.\n";
     }
 
     /**
      * player bribe the monster if he can, if failed ,turn to attack
      * @return
      */
-    public String bribe(Monster monster){
+    public String bribe(){
         String string = "Ready to bribe:\n";
-        if (this.money>=monster.getGold()){
-            this.money -= monster.getGold();
-            monster.setHP(0); // you can check the monster's hp to see if it succeed as well
-            return string+"Bribe successfully.\n";
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                if (this.money>=monster.getGold()){
+                    this.money -= monster.getGold();
+                    monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                    return string+"Bribe successfully.\n";
+                }
+                String string1 = attack();
+                return string+"Bribe failed. Not enough gold.\n"+string1;
+            }
         }
-        String string1 = attack(monster);
-        return string+"Bribe failed.\n"+string1;
+        return string + "There is no monster for you to bribe\n";
+
     }
 
     /**
      * player retreat, which allow player to escape from current fight. hold the coordinate
      * @return
      */
-    public String retreat(Monster monster){
+    public String retreat(){
         String string = "Ready to retreat:\n";
-        while(this.HP>0){
-            if (criticalCheck(0.8)){ //80% chance succeed
-                monster.setHP(0); // you can check the monster's hp to see if it succeed as well
-                return string + "Retreat successfully.\n";
-            }else{
-                this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
-                string +="Retreat failed.\n";
-                retreat(monster);
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                while(this.HP>0){
+                    if (criticalCheck(0.8)){ //80% chance succeed
+                        monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                        return string + "Retreat successfully.\n";
+                    }else{
+                        this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
+                        string +="Retreat failed.\n";
+                    }
+                }
+                return string+"Your adventure journey ended here. The magic world will remember you\n";
             }
         }
-        return string+"Your adventure journey ended here. The magic world will remember you\n";
+        return string + "There is no monster for you to retreat\n";
+
+
     }
 
     /**

@@ -83,7 +83,7 @@ public class Bag {
      * give all item from a bag to player's bag, if a player's bag cannot hold it as max weight reached,
      * it will then transfer rest of the npc's item into the room
      * @param player
-     * @return
+     * @return Guanming Ou
      */
     public Bag giveAllItemTo(Player player){
         Bag tempBag = new Bag(100);;
@@ -138,7 +138,7 @@ public class Bag {
     }
     /**
      * Check if a bag contains a item of given item name (String)
-     * @param itemName
+     * @param itemName the name of a item
      * @return The corresponding item (Item)
      */
     public Item getItemByName(String itemName){
