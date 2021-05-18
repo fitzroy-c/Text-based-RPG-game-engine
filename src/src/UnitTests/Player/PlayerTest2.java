@@ -128,7 +128,8 @@ public class PlayerTest2 {
         testBag.put(new Coordinate(5,0), bag04);
 
         player.setStorageInfo(testBag);
-//        player.saveItem();
+        player.saveItem();
+        player.loadOriginalItems();
     }
 
     @Test
