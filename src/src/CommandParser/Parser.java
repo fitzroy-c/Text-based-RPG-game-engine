@@ -100,10 +100,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.DETECT) {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                System.out.println(player.checkMonsterType());
+                System.out.println(player.checkMonster());
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                System.out.println(player.checkMonsterType());
+                System.out.println(player.checkMonster());
                 cmdExecuted = true;
             }
         }

@@ -4,7 +4,6 @@ import AbnormalPoints.Monster;
 import AbnormalPoints.MonsterAttributes;
 import Card.Element;
 import navigation.Coordinate;
-import navigation.Direction;
 import navigation.Place;
 import org.junit.Test;
 
@@ -33,7 +32,7 @@ public class PlayerTest {
 
         Player player = new Player("test one");
         player.place = place;
-        Monster monster = player.checkMonster();
+        Monster monster = player.generateMonster();
         assertNotEquals(null, monster);
     }
 
@@ -47,7 +46,7 @@ public class PlayerTest {
 
         Player player = new Player("test one");
         player.place = place;
-        assertEquals(null, player.checkMonster());
+        assertEquals(null, player.generateMonster());
     }
 
     @Test
