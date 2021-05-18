@@ -37,6 +37,7 @@ public class Player {
     private final double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
+    List<Place> gameMap;
 
     /**
      * Some variables
@@ -345,6 +346,9 @@ public class Player {
                 this.place.getCoordinate().goWest();
             break;
         }
+
+
+
         return true;
     }
 
@@ -384,7 +388,6 @@ public class Player {
      * @author Guanming Ou
      */
     public String talk(){
-        // TODO: complete this method which talk to NPC at the coordinate
         // check if here can talk
         List<AbnormalPoint> currentPlace =  this.place.getAbnormalPoints();
         if (currentPlace == null)
@@ -400,8 +403,10 @@ public class Player {
         if (npc_t == null)
             return "You can't talk to a monster or a merchant.";
         else { // there is a npc that you can talk to
-               // continue dialog for conversation
-
+            // check if npc has talked before
+            if (npc_t.isHasEndedTalk())
+                return "You cannot talk to already talked npc.";
+            // continue dialog for conversation
             boolean continueTalk = true;
             Scanner s = new Scanner(System.in);
             String playerResponse;
@@ -422,61 +427,49 @@ public class Player {
                         // check if the conversation meet end state
                         if (nextDialog.getDtype() == DialogTree.DialogType.END_BLESS_HP){
                             System.out.println(nextDialog.getNpcDialog()); // npc dialog
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
                             return npc_t.hpBless(this); // increase hp, and return final message
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_BLESS_ARMOR){
                             System.out.println(nextDialog.getNpcDialog()); // npc dialog
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
                             return npc_t.armorBless(this); // increase armor, and return final message
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_BLESS_DAMAGE) {
                             System.out.println(nextDialog.getNpcDialog()); // npc dialog
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
                             return npc_t.damageBless(this); // increase damage, and return final message
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_GIVE_GOLD){
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
                             this.money += npc_t.getGold(); // npc give gold
                             npc_t.setGold(0); // clear npc gold
+                            npc_t.setHasEndedTalk(true);
                             return nextDialog.getNpcDialog(); // return final npc dialog
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_GIVE_ITEM){
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
-
-
-
+                            npc_t.getNpcBag().giveAllItemTo(this); // npc give all item
+                            npc_t.setHasEndedTalk(true); // npc ended
+                            return nextDialog.getNpcDialog();  // return final npc dialog
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_NONE){
-                            DialogTree tree = new DialogTree();
-                            tree.setRoot(nextDialog);
-                            npc_t.setDialogTree(tree); // set dialog tree
+                            npc_t.setHasEndedTalk(true); // npc ended
                             return nextDialog.getNpcDialog(); // increase damage, and return final message
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_ATTACK){
-
+                            System.out.println(nextDialog.getNpcDialog());
+                            Monster npcMonster = npc_t.transformIntoMonster(); // convert this npc into monster
+                            this.place.removeAbnormalPoint(npc_t); // remove npc from player's place
+                            this.place.addAbnormalPoint(npcMonster); // npc return as monster
+                            this.attack(npcMonster); // player attack monster
+                            return ""; // not sure what string place here, as attack may already outputted a string
                         }
                         // this is continue
-                        //TODO: Complete the remain of the function
+                        DialogTree newTree = new DialogTree();
+                        newTree.setRoot(nextDialog);
+                        npc_t.setDialogTree(newTree);
                     }
                 }
                 else
                     System.out.println("Invalid respond index, please try again");
             }
-
         }
-
-
         return null;
     }
 
@@ -521,12 +514,6 @@ public class Player {
 //        }
 //        return null;
 //    }
-
-
-
-
-
-
 
     /*
      * This attacks the monster at the player's current placement, and monster will attack by respond
