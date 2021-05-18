@@ -103,7 +103,7 @@ public class GameTest1 {
         }
         void save(Base base) {
             try {
-                FileWriter desFile=new FileWriter("game.txt",true);
+                FileWriter desFile=new FileWriter("gameTest.txt",true);
                 BufferedWriter out=new BufferedWriter(desFile);
                 out.write("name："+base.getName()+" Career："+base.getCareer()+
                         " Attributes："+"Strength:"+this.getStrength()+" Physical："+this.getPhys()+

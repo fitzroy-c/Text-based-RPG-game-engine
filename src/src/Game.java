@@ -103,15 +103,15 @@ public class Game {
 
 }
 //public class Game {
-//    static Deck.PlayerDeck pDeck; // Initialise the Wake Deck
-//    static Deck.EnemyDeck dDeck; // Initialise the Daikaiju Deck
+//    static DesignForFutureExtension.Deck.PlayerDeck pDeck; // Initialise the Wake DesignForFutureExtension.Deck
+//    static DesignForFutureExtension.Deck.EnemyDeck dDeck; // Initialise the Daikaiju DesignForFutureExtension.Deck
 //    // current card(choice) in front of the user
 //    Boolean isInCombatSystem;
 //    Player player;
 //
 //
 //    public int drawCards(int[] hands, String playerCareer){
-//        pDeck = new Deck.PlayerDeck(hands);
+//        pDeck = new DesignForFutureExtension.Deck.PlayerDeck(hands);
 //
 //        // draws a random tile from the available
 //        Random r = new Random();
