@@ -83,8 +83,8 @@ public class Player {
         this.maxCriticalChance = initMaxCriticalChance;
         this.bag = new Bag(initBagWeight); //default bag capacity 5
         this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
-        //this.setNpcInfo(loadOriginalNPCs()); // load from original file
-        //this.setStorageInfo(loadOriginalItems()); // load from original file
+        this.setNpcInfo(loadOriginalNPCs()); // load from original file
+        this.setStorageInfo(loadOriginalItems()); // load from original file
     }
 
     /**
@@ -180,14 +180,12 @@ public class Player {
         Gson gson = new Gson();
         JsonReader jsonReader = null;
 
-        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
-
         try{
             jsonReader = new JsonReader(new FileReader(file));
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+        return gson.fromJson(jsonReader, HashMap.class);
     }
 
     /**
@@ -200,14 +198,12 @@ public class Player {
         Gson gson = new Gson();
         JsonReader jsonReader = null;
 
-        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
-
         try{
             jsonReader = new JsonReader(new FileReader(file));
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+        return gson.fromJson(jsonReader, HashMap.class);
     }
 
     /**

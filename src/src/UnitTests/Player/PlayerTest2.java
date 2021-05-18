@@ -63,17 +63,6 @@ public class PlayerTest2 {
     @Test
     public void createItemJson(){
         Player player = new Player();
-        //        DialogTree tree = new DialogTree();
-//        tree.root.npcDialog = "I can bless you... to better prepare you for the fight";
-//        tree.root.index = 0;
-//        tree.root.dtype = DialogTree.DialogType.CONTINUE;
-//        tree.root.nextDialogs.add(new DialogTree.Dialog(1, "I want to increase my health",
-//                "as you wish...", null, DialogTree.DialogType.END_BLESS));
-//        tree.root.nextDialogs.add(new DialogTree.Dialog(2, "I want to increase my armor",
-//                "as you wish...", null, DialogTree.DialogType.END_BLESS));
-//        tree.root.nextDialogs.add(new DialogTree.Dialog(3, "I want to increase my damage",
-//                "as you wish...", null, DialogTree.DialogType.END_BLESS));
-//        this.dialogTree = tree;
 
         HashMap<Coordinate, Bag> testBag = new HashMap<>();
         HashMap<String, Integer> c1P = new HashMap<>();
@@ -128,7 +117,9 @@ public class PlayerTest2 {
         testBag.put(new Coordinate(5,0), bag04);
 
         player.setStorageInfo(testBag);
-//        player.saveItem();
+        player.saveItem();
+        HashMap<Coordinate, Bag> items = player.loadOriginalItems();
+
     }
 
     @Test
