@@ -54,8 +54,8 @@ public class Player {
     int initXPPerLv = 10;
     int initRandomArmor =  5;
     int initBaseArmor = 1;
-    int initRandomDamage =  5;
-    int initBaseDamage = 10;
+    int initRandomDamage =  8;
+    int initBaseDamage = 12;
     double initCriticalChance = 0.01; //from 0.00-1.00 min step 0.01
     double initMaxCriticalChance = 1.00; //from 0.00-1.00 min step 0.01
     int initBagWeight;
@@ -531,22 +531,30 @@ public class Player {
      * @return
      */
     public String attack(){
-        String string = "Ready to attack:\n";
+        String string = "Ready to attack:";
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
                 Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
-                string += monster.getName()+"\n"+monster.getIntro();
+                string += monster.getName()+"\n"+monster.getIntro()+"\n";
                 Random random = new Random();
                 int monsterHP = monster.getHP();
                 while(monsterHP>0&&this.HP>0){
                     if (criticalCheck(this.criticalChance)){
-                        monsterHP = monsterHP - Math.max(this.damage*2 - monster.getArmour(),0);
+                        int realDamage = Math.max(this.damage*2 - monster.getArmour(),0);
+                        monsterHP = monsterHP - realDamage;
+                        string += "Nice, you have made a critical hit. "+monster.getName()+" -"+realDamage+"HP\n";
                     }
-                    monsterHP = monsterHP - Math.max(this.damage - monster.getArmour(),0);
+                    int realDamage = Math.max(this.damage - monster.getArmour(),0);
+                    monsterHP = monsterHP - realDamage;
+                    string += "Normal hit."+monster.getName()+" -"+realDamage+"HP\n";
                     if (criticalCheck(monster.getCritChance())){
-                        this.HP = this.HP - Math.max(monster.getDamage()*2 - this.armour,0);
+                        int realDamage1 = Math.max(monster.getDamage()*2 - this.armour,0);
+                        this.HP = this.HP - realDamage1;
+                        string += "Sadly. You got a critical hit. "+this.name+" -"+realDamage1+"HP\n";
                     }
-                    this.HP = this.HP - Math.max(monster.getDamage() - this.armour,0);
+                    int realDamage1 = Math.max(monster.getDamage() - this.armour,0);
+                    this.HP = this.HP - realDamage1;
+                    string += "You got a hit. "+this.name+" -"+realDamage1+"HP\n";
                 }
                 if (this.HP<=0){
                     return string+"Your adventure journey ended here. The magic world will remember you\n";
