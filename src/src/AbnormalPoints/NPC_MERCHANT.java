@@ -4,6 +4,9 @@ import Card.Element;
 import Player.Bag;
 import Player.Player;
 import Player.Item;
+
+import java.util.List;
+
 /**
  * This class mainly held npc that will trade with player
  */
@@ -29,8 +32,38 @@ public class NPC_MERCHANT extends AbnormalPoint{
 
     //Todo 买卖交互
     //todo initialize npc shop
-    public boolean buyFromNPC(Player p, Item itemSold){
-        return true;
+    /**
+     * Player buy items from NPC
+     * return true if successful, otherwise, false
+     * @author: Yixiang Yin
+     **/
+    public boolean buyFromNPC(Player p, String itemName){
+        // assume itemName is valid
+        boolean npcHaveIt = npcBag.searchInBagByName(itemName);
+        if (npcHaveIt) {
+            Item wanted = npcBag.getItemByName(itemName); // guarantee non-null
+            int price = wanted.getProperty("price");
+            if (p.money>=price){
+                p.money-=price;
+                p.getBag().put(wanted);
+                return true;
+                // might remove the same item from npcbag, but i think it's okay for now
+            }
+            else return false; // don't have enough money
+        }
+        return false; // npc don't have it
     }
-//    public
+    /**
+     * output the possible str for different circumstances when purchasing
+     * @author: Yixiang Yin
+     **/
+    public String outputStrForBuyFromNPC(Player p, String itemName, boolean succ){
+        if (succ) return "You've successfully purchased "+itemName+" .Happy to see you soon again!";
+        else {
+            Item wanted = npcBag.getItemByName(itemName); // guarantee non-null
+            int price = wanted.getProperty("price");
+            if (p.money<price) return "You don't have enough money to purchase "+itemName+" .";
+            return "Sorry, I don't have "+itemName+" .";
+        }
+    }
 }

@@ -23,7 +23,7 @@ public class Player {
     private String name;
     private int HP;
     private int maxHP;
-    private int money; // (how many gold he has)
+    public int money; // (how many gold he has)
     private int xp;    // current xp
     private int maxXP; // max xp that upgrade a player's level once reached
     private final int xpPerLv;

@@ -61,9 +61,10 @@ public class Item {
         }
         return properties.get(property);
     }
-    public Map<String, Integer> getProperties() {
-        return Collections.unmodifiableMap(properties);// for safe reason unchangeable map
-    }
+    // redundant
+//    public Map<String, Integer> getProperties() {
+//        return Collections.unmodifiableMap(properties);// for safe reason unchangeable map
+//    }
     public boolean containsProperty(String key) {
         return properties.containsKey(key);
     }
@@ -79,7 +80,7 @@ public class Item {
         return false;
     }
     /**
-     * //Todo initialize first once the game starts
+     * initialize items
      * search an item in item.json. return true if found, otherwise, false(contain bugs)
      * @author: Yixiang Yin
      **/

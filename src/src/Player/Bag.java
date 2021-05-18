@@ -103,6 +103,15 @@ public class Bag {
     }
 
     /**
+     * check if one item is in the bag by itemName (Yixiang Yin)
+     */
+    public boolean searchInBagByName(String in){
+        for (Item item: this.itemList){
+            if (item.name.equals(in)) return true;
+        }
+        return false;
+    }
+    /**
      * Check if a bag contains a item of given item name (String)
      * @param itemName
      * @return The corresponding item (Item)
