@@ -1,11 +1,12 @@
 package UnitTests;
 
-import static Player.Item.searchInItemJson;
+import static Player.Item.initializeItems;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
+import java.util.List;
 
 import CommandParser.CommandTokenizer;
 import CommandParser.Token;
@@ -42,12 +43,13 @@ public class GameTest {
         // recommend do a search in the item.json, if found, give item type
 
     }
-    @Test(timeout=1000)
-    public void testSearchInItemJson() throws Exception {
-        assertTrue(searchInItemJson("Mushroom"));
-
-    }
-    public static void main(String[] args) {
-        searchInItemJson("Mushroom");
-    }
+//    @Test(timeout=1000)
+//    public void testInitializeItems() throws Exception {
+//        List<Item> items  = initializeItems();
+//        assertTrue(searchInItemJson("Mushroom"));
+//
+//    }
+//    public static void main(String[] args) {
+//        searchInItemJson("Mushroom");
+//    }
 }

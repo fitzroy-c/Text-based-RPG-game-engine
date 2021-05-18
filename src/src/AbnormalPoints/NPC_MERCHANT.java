@@ -2,7 +2,8 @@ package AbnormalPoints;
 
 import Card.Element;
 import Player.Bag;
-
+import Player.Player;
+import Player.Item;
 /**
  * This class mainly held npc that will trade with player
  */
@@ -25,6 +26,11 @@ public class NPC_MERCHANT extends AbnormalPoint{
         this.npcBag = npcBag;
     }
 
+
     //Todo 买卖交互
+    //todo initialize npc shop
+    public boolean buyFromNPC(Player p, Item itemSold){
+        return true;
+    }
 //    public
 }
