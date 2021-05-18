@@ -81,7 +81,6 @@ public class Item {
     }
     /**
      * initialize items
-     * search an item in item.json. return true if found, otherwise, false(contain bugs)
      * @author: Yixiang Yin
      **/
     public static List<Item> initializeItems(){

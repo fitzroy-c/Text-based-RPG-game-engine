@@ -83,8 +83,8 @@ public class Player {
         this.maxCriticalChance = initMaxCriticalChance;
         this.bag = new Bag(initBagWeight); //default bag capacity 5
         this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
-        this.setNpcInfo(loadOriginalNPCs()); // load from original file
-        this.setStorageInfo(loadOriginalItems()); // load from original file
+        //this.setNpcInfo(loadOriginalNPCs()); // load from original file
+        //this.setStorageInfo(loadOriginalItems()); // load from original file
     }
 
     /**
@@ -252,18 +252,28 @@ public class Player {
      * Check if this room has a monster,
      * - if yes, return the danger level and name of the monster
      * - else, return there is no monster
+     * @author yitao chen
      * @return
      */
 
     public String checkMonster() {
+        int dangerRate = this.place.getDangerRate();
+        String string = "";
+        if (dangerRate<=0){
+            string+="This place is safe.\n";
+        }else if (dangerRate<=2){
+            string+="This place is quiet.\n";
+        }else if (dangerRate==3){
+            string+="You can hear monsters roaring.\n";
+        }else {
+            string+="Quite a danger zone, Run!\n";
+        }
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
-            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class){
-                int dangerRate = this.place.getDangerRate();
-                String string = "";
-                return "There is no monster";
+            if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER){
+                return string + "There is a monster: "+this.place.getAbnormalPoints().get(i).getName()+"\n";
             }
         }
-        return "There is no monster.\n";
+        return string + "There is no monster here.\n";
     }
 
     /**
@@ -273,7 +283,7 @@ public class Player {
      * @author yitao chen
      * @return null, if there is not. return the monster if it has
      */
-    public Monster generateMonster(){
+    public void generateMonster(){
         Random random = new Random();
         int randomInt = random.nextInt(6) + 1; // 1-6
         // place danger rate 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
@@ -291,8 +301,8 @@ public class Player {
                     MonsterAttributes giant = new MonsterAttributes("giant","A monster with high health and damage, but low armour.",
                             150, 8, 6, 3,40,3,
                             0.03,50, 3,15, 11, Element.Normal);
-                    System.out.println("You are facing a giant");
-                    return new Monster(giant,playerLevel);
+                    //System.out.println("You are facing a giant");
+                    this.place.addAbnormalPoint(new Monster(giant,playerLevel));
                 case 1:
                     /**
                      * A normal monster , with slight armour.
@@ -300,8 +310,8 @@ public class Player {
                     MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
                             55,6, 0,3,12,2,
                             0.02,10, 3,0,5, Element.Normal);
-                    System.out.println("You are facing a goblin");
-                    return new Monster(goblin,playerLevel);
+                    //System.out.println("You are facing a goblin");
+                    this.place.addAbnormalPoint( new Monster(goblin,playerLevel));
                 case 2:
                     /**
                      * A quite weak monster.
@@ -309,8 +319,8 @@ public class Player {
                     MonsterAttributes skeleton = new MonsterAttributes("skeleton", "A quite weak monster.",
                             50,3, 0, 1, 8,1,
                             0.02,10, 3, 0,3,Element.Normal);
-                    System.out.println("You are facing a skeleton");
-                    return new Monster(skeleton,playerLevel);
+                    //System.out.println("You are facing a skeleton");
+                    this.place.addAbnormalPoint( new Monster(skeleton,playerLevel));
                 case 3:
                     /**
                      * A monster without low damage, but high health and armour.
@@ -318,8 +328,8 @@ public class Player {
                     MonsterAttributes troll = new MonsterAttributes("troll", "A monster without low damage, but high health and armour.",
                             70,11, 0,12,20,3,
                             0.05,75, 3,25,10,Element.Normal);
-                    System.out.println("You are facing a troll");
-                    return new Monster(troll,playerLevel);
+                    //System.out.println("You are facing a troll");
+                    this.place.addAbnormalPoint( new Monster(troll,playerLevel));
                 default:
                     /**
                      * A normal wild creature
@@ -327,13 +337,11 @@ public class Player {
                     MonsterAttributes wolf = new MonsterAttributes("wolf", "A wolf as you see",
                             35,3, 0,0,15,2,
                             0.04,25, 3,0,2,Element.Normal);
-                    System.out.println("You are facing a wolf");
-                    return new Monster(wolf,playerLevel);
+                    //System.out.println("You are facing a wolf");
+                    this.place.addAbnormalPoint(new Monster(wolf,playerLevel));
             }
-        } else {
-            System.out.println("You are in a safe place");
-            return null;
         }
+        //System.out.println("You are in a safe place");
     }
 
 
@@ -394,12 +402,14 @@ public class Player {
                     return false;
                 }
                 this.place.getCoordinate().goNorth();
+                generateMonster();
             break;
             case "east":
                 if (this.place.getCoordinate().x==maxX){
                     return false;
                 }
                 this.place.getCoordinate().goEast();
+                generateMonster();
             break;
 
             case "south":
@@ -407,6 +417,7 @@ public class Player {
                     return false;
                 }
                 this.place.getCoordinate().goSouth();
+                generateMonster();
             break;
 
             case "west":
@@ -414,6 +425,7 @@ public class Player {
                     return false;
                 }
                 this.place.getCoordinate().goWest();
+                generateMonster();
             break;
         }
         return true;
@@ -593,7 +605,7 @@ public class Player {
     public String attack(){
         String string = "Ready to attack:";
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
-            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+            if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER) {
                 Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
                 string += monster.getName()+"\n"+monster.getIntro()+"\n";
                 Random random = new Random();
