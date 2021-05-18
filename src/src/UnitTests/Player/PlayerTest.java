@@ -22,7 +22,9 @@ public class PlayerTest {
         assertEquals(6, place.getDangerRate());
     }
 
-
+    /*
+    old tes when player.generateMonster() still return monster
+    It's updated to renew the player.place.abnormalPoint
     @Test
     public void createMonsterTest(){
         Coordinate coordinate = new Coordinate(0, 0);
@@ -32,10 +34,10 @@ public class PlayerTest {
 
         Player player = new Player("test one");
         player.place = place;
+        player.generateMonster();
         Monster monster = player.generateMonster();
         assertNotEquals(null, monster);
     }
-
 
     @Test
     public void createPlaceSafeTest() {
@@ -47,6 +49,36 @@ public class PlayerTest {
         Player player = new Player("test one");
         player.place = place;
         assertEquals(null, player.generateMonster());
+    }
+
+     */
+
+    /**
+     * this 2 test is to test the function of checkMonsterTest
+     * and generateMonster function as well
+     */
+    @Test
+    public void checkMonsterTest1(){
+        Coordinate coordinate = new Coordinate(1, 1);
+        String description = "Safe house";
+        Place place1 = new Place(coordinate, description);
+        place1.setDangerRate(1);
+        Player player = new Player("test one");
+        player.place = place1;
+        player.generateMonster();
+        System.out.println(player.checkMonster()); //should be quiet and little chance to meet a monster
+    }
+    @Test
+    public void checkMonsterTest2(){
+        Coordinate coordinate = new Coordinate(1, 1);
+        String description = "Danger zone";
+        Place place2 = new Place(coordinate, description);
+        Player player = new Player("test one");
+        place2.setDangerRate(5);
+        player.place = place2;
+        player.generateMonster();
+        System.out.println(player.checkMonster());//should be extremely dangerous and high chance to meet a monster
+
     }
 
     @Test

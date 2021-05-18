@@ -24,8 +24,6 @@ public class Place {
 
     Random random = new Random();
 
-    public Place() {
-    }
     /*
     place danger rate 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
     6 definite have a monster -- test only
@@ -95,7 +93,7 @@ public class Place {
     /**
      * Print out the information of current placement
      */
-    public void printPlacement() {
+    public void printPlace() {
         // TODO: need a function to print out all we have in this real location (description + npc + ?)
     }
 
