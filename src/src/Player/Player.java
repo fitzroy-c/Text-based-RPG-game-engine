@@ -524,86 +524,89 @@ public class Player {
 
 
 
-
-
-
-
-    /*
-     * This attacks the monster at the player's current placement, and monster will attack by respond
-     * @return
-    public String attack(){
-        // TODO: complete this method which attack to the monster
-        return null;
-    }
-
-     */
-
     /**
      * you should call checkMonster function before calling the attack function
      * default critical hit = normal *2
      * @author yitao chen
      * @return
      */
-    public String attack(Monster monster){
+    public String attack(){
         String string = "Ready to attack:\n";
-        if (monster==null){
-            return string+"There is no monster to attack.\n";
-        }
-        string += monster.getName()+"\n"+monster.getIntro();
-        Random random = new Random();
-        int monsterHP = monster.getHP();
-        while(monsterHP>0&&this.HP>0){
-            if (criticalCheck(this.criticalChance)){
-                monsterHP = monsterHP - Math.max(this.damage*2 - monster.getArmour(),0);
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                string += monster.getName()+"\n"+monster.getIntro();
+                Random random = new Random();
+                int monsterHP = monster.getHP();
+                while(monsterHP>0&&this.HP>0){
+                    if (criticalCheck(this.criticalChance)){
+                        monsterHP = monsterHP - Math.max(this.damage*2 - monster.getArmour(),0);
+                    }
+                    monsterHP = monsterHP - Math.max(this.damage - monster.getArmour(),0);
+                    if (criticalCheck(monster.getCritChance())){
+                        this.HP = this.HP - Math.max(monster.getDamage()*2 - this.armour,0);
+                    }
+                    this.HP = this.HP - Math.max(monster.getDamage() - this.armour,0);
+                }
+                if (this.HP<=0){
+                    return string+"Your adventure journey ended here. The magic world will remember you\n";
+                }else{
+                    this.xp += monster.getXpGain();
+                    this.money += monster.getGold();
+                    UpdatePlayerAttribute();
+                    return string+"You have defeated the monster, congratulations.\n";
+                }
             }
-            monsterHP = monsterHP - Math.max(this.damage - monster.getArmour(),0);
-            if (criticalCheck(monster.getCritChance())){
-                this.HP = this.HP - Math.max(monster.getDamage()*2 - this.armour,0);
-            }
-            this.HP = this.HP - Math.max(monster.getDamage() - this.armour,0);
         }
-        if (this.HP<=0){
-            return string+"Your adventure journey ended here. The magic world will remember you\n";
-        }else{
-        this.xp += monster.getXpGain();
-        this.money += monster.getGold();
-        UpdatePlayerAttribute();
-        return string+"You have defeated the monster, congratulations.\n";
-        }
+        return string+"There is no monster to attack.\n";
     }
 
     /**
      * player bribe the monster if he can, if failed ,turn to attack
      * @return
      */
-    public String bribe(Monster monster){
+    public String bribe(){
         String string = "Ready to bribe:\n";
-        if (this.money>=monster.getGold()){
-            this.money -= monster.getGold();
-            monster.setHP(0); // you can check the monster's hp to see if it succeed as well
-            return string+"Bribe successfully.\n";
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                if (this.money>=monster.getGold()){
+                    this.money -= monster.getGold();
+                    monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                    return string+"Bribe successfully.\n";
+                }
+                String string1 = attack();
+                return string+"Bribe failed. Not enough gold.\n"+string1;
+            }
         }
-        String string1 = attack(monster);
-        return string+"Bribe failed.\n"+string1;
+        return string + "There is no monster for you to bribe\n";
+
     }
 
     /**
      * player retreat, which allow player to escape from current fight. hold the coordinate
      * @return
      */
-    public String retreat(Monster monster){
+    public String retreat(){
         String string = "Ready to retreat:\n";
-        while(this.HP>0){
-            if (criticalCheck(0.8)){ //80% chance succeed
-                monster.setHP(0); // you can check the monster's hp to see if it succeed as well
-                return string + "Retreat successfully.\n";
-            }else{
-                this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
-                string +="Retreat failed.\n";
-                retreat(monster);
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                while(this.HP>0){
+                    if (criticalCheck(0.8)){ //80% chance succeed
+                        monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                        return string + "Retreat successfully.\n";
+                    }else{
+                        this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
+                        string +="Retreat failed.\n";
+                    }
+                }
+                return string+"Your adventure journey ended here. The magic world will remember you\n";
             }
         }
-        return string+"Your adventure journey ended here. The magic world will remember you\n";
+        return string + "There is no monster for you to retreat\n";
+
+
     }
 
     /**

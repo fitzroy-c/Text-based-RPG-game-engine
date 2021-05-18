@@ -67,7 +67,7 @@ public class PlayerTest {
         Coordinate coordinate = new Coordinate(1, 1);
         assertEquals(coordinate, player.place.getCoordinate());
     }
-
+    /* old test for attacking
     @Test
     public void attack1Test1(){
         Player player = new Player("test one");
@@ -79,4 +79,6 @@ public class PlayerTest {
         player.attack(monster);
         System.out.println(player.showPlayerStat());
     }
+
+     */
 }
