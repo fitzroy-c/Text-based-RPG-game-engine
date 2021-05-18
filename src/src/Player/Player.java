@@ -180,14 +180,12 @@ public class Player {
         Gson gson = new Gson();
         JsonReader jsonReader = null;
 
-        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
-
         try{
             jsonReader = new JsonReader(new FileReader(file));
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+        return gson.fromJson(jsonReader, HashMap.class);
     }
 
     /**
@@ -199,8 +197,6 @@ public class Player {
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
-
-        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
 
         try{
             jsonReader = new JsonReader(new FileReader(file));
