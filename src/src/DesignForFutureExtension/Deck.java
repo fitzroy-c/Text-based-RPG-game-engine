@@ -1,3 +1,5 @@
+package DesignForFutureExtension;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,7 +10,7 @@ public static class PlayerDeck extends ArrayList<Integer> {
 
 
     /**
-     * Create player Deck for all current possible card that the player can play
+     * Create player DesignForFutureExtension.Deck for all current possible card that the player can play
      *
      * @param hands the current cards that the player holds, array of card ids
      */
@@ -20,7 +22,7 @@ public static class PlayerDeck extends ArrayList<Integer> {
 
 public static class EnemyDeck extends ArrayList<Integer>{
     /**
-     * Create enemy Deck for all current possible card that the player can play
+     * Create enemy DesignForFutureExtension.Deck for all current possible card that the player can play
      *
      * @param hands the current cards that the player holds, array of card ids
      */

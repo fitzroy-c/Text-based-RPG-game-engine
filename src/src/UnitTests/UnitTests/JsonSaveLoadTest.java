@@ -1,3 +1,5 @@
+package UnitTests;
+
 import AbnormalPoints.MonsterAttributes;
 import Card.subCards.Normal_Attack_cards;
 import Maps.Environment;
@@ -24,7 +26,7 @@ import Card.*;
 
 // load all Json file and information into here and modify so on
 
-public class JsonSnL {
+public class JsonSaveLoadTest {
     // This is just for testing, delete later --------------------------
     public static void main(String[]args){
 

@@ -1,7 +1,8 @@
 meeting time: 15：00-19:00 2021.5.17
 
 participator: Guanming, YiTao, Bill
-
+The absence of Yixiang was due to a conflict between lab and the meeting
+He added his participation in the evening eventually(see gitlab history).
 What we do: 
 - Co-writing codes time
 - Improve the data exchange object for inner data exchange
