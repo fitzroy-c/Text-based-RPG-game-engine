@@ -1,27 +1,50 @@
 
 
+import AbnormalPoints.AbnormalPoint;
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
+import Options.BasicOption;
+import Options.Control;
 import Player.Player;
 
 import java.util.Scanner;
 
 public class Game {
     private static Player player;
-    public CommandTokenizer cmdTok;
+    public static CommandTokenizer cmdTok;
     public Parser parser;
 
+    /**
+     * initial pre-game
+     */
+    public static void initialize() {
+        player = new Player("");
+    }
 
 //    Item[]
 
-    public static void main(String[] args) {
+    /**
+     * Is this our main game?
+     *
+     * @param args
+     */
+    public static void main(String[] args) throws Exception {
+        initialize();
+
+//        StartOption start = new StartOption(player);
+//        start.printOut(start.option);
+//        gameInteractionLoop(player);
+
         Scanner s=new Scanner(System.in);
         System.out.print("Welcome to the world!"+"\n");
         System.out.println("What's your name?");
         String name = s.next();
         player.setName(name);
-        //Player player = new Player(name);
-//        gameInteractionLoop(player);
+        /// test
+        AbnormalPoint ab = new AbnormalPoint();
+        Control c = new Control(ab ,player);
+        ///
+        gameInteractionLoop(player, c.currentOption);
     }
 
 
@@ -30,12 +53,17 @@ public class Game {
      * It terminate when player input a 'exit | exit game' command
      * @param player
      */
-    public void gameInteractionLoop(Player player) {
+    public static void gameInteractionLoop(Player player, BasicOption option) throws Exception {
         boolean continueOn = true;
         Scanner s = new Scanner(System.in);
         while (continueOn){
             cmdTok = new CommandTokenizer(s.next());
-            continueOn = new Parser(cmdTok, player).parseCommand();
+            if (option.chooseOp(option.option, cmdTok.current())) {
+                continueOn = new Parser(cmdTok, player).parseCommand();
+            } else {
+                continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
+            }
+            //continueOn = new Parser(cmdTok, player).parseCommand();
         }
     }
 

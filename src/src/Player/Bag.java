@@ -86,9 +86,20 @@ public class Bag {
      * @return
      */
     public Bag giveAllItemTo(Player player){
+        Bag tempBag = new Bag(100);;
         for (Item npc_item : this.itemList){
-//            if (player.bag.put())
-
+            if (player.bag.put(npc_item)){ // add to player's bag
+                this.drop(npc_item); // delete from npc's bag
+            } else {
+                tempBag.put(npc_item);
+            }
+        }
+        if (!tempBag.isEmpty()){
+            List<Item> roomItem = player.place.getItems();
+            for (Item placeItem : roomItem){
+                tempBag.put(placeItem);
+            }
+            player.place.setBag(tempBag);
         }
         return null;
     }
