@@ -1,0 +1,21 @@
+{
+  "maxHPIncreasePerLv": 15,
+  "armorIncreasePerLv": 5,
+  "damageIncreasePerLv": 2,
+  "criticalChanceIncreasePerLv": 0.02,
+  "initRandomMaxHP": 30,
+  "initBaseMaxHP": 120,
+  "initRandomMoney": 5,
+  "initBaseMoney": 10,
+  "initMaxXP": 10,
+  "initXPPerLv": 10,
+  "initRandomArmor": 4,
+  "initBaseArmor": 4,
+  "initRandomDamage": 8,
+  "initBaseDamage": 12,
+  "initCriticalChance": 0.02,
+  "initMaxCriticalChance": 1.0,
+  "initBagWeight": 10,
+  "initXCoordinate": 0,
+  "initYCoordinate": 0
+}

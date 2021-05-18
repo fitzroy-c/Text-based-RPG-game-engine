@@ -45,50 +45,34 @@ public class Player {
      * Some variables
      */
     Random random = new Random();
-    int maxHPIncreasePerLv = 15;
-    int armorIncreasePerLv = 5;
-    int damageIncreasePerLv = 2;
-    double criticalChanceIncreasePerLv = 0.02; //from 0.00-1.00 min step 0.01
-    int initRandomMaxHP = 30;
-    int initBaseMaxHP = 120;
-    int initRandomMoney =  5;
-    int initBaseMoney = 10;
-    int initMaxXP = 10;
-    int initXPPerLv = 10;
-    int initRandomArmor =  4;
-    int initBaseArmor = 4;
-    int initRandomDamage =  8;
-    int initBaseDamage = 12;
-    double initCriticalChance = 0.02; //from 0.00-1.00 min step 0.01
-    double initMaxCriticalChance = 1.00; //from 0.00-1.00 min step 0.01
-    int initBagWeight;
-    int initXCoordinate = 0;
-    int initYCoordinate = 0;
+    PlayerAttributes pa = PlayerAttributes.loadPlayerAttributes();
 
     /**
      * Constructor of new player by giving a name
      */
     public Player(String name){
         this.name = name;
-        this.maxHP = random.nextInt(initRandomMaxHP) + initBaseMaxHP;
+        this.maxHP = random.nextInt(pa.initRandomMaxHP) + pa.initBaseMaxHP;
         this.HP = maxHP;
-        this.money = random.nextInt(initRandomMoney) + initBaseMoney;
+        this.money = random.nextInt(pa.initRandomMoney) + pa.initBaseMoney;
         this.xp = 0; // default 0
-        this.maxXP = initMaxXP;
-        this.xpPerLv = initXPPerLv;
+        this.maxXP = pa.initMaxXP;
+        this.xpPerLv = pa.initXPPerLv;
         this.level = 1;
-        this.armour = random.nextInt(initRandomArmor)+ initBaseArmor;
-        this.damage = random.nextInt(initRandomDamage)+ initBaseDamage;
-        this.criticalChance = initCriticalChance;
-        this.maxCriticalChance = initMaxCriticalChance;
-        this.bag = new Bag(initBagWeight); //default bag capacity 5
-        this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
+        this.armour = random.nextInt(pa.initRandomArmor)+ pa.initBaseArmor;
+        this.damage = random.nextInt(pa.initRandomDamage)+ pa.initBaseDamage;
+        this.criticalChance = pa.initCriticalChance;
+        this.maxCriticalChance = pa.initMaxCriticalChance;
+        this.bag = new Bag(pa.initBagWeight); //default bag capacity 5
         this.setNpcInfo(loadOriginalNPCs()); // load from original file
         this.setStorageInfo(loadOriginalItems()); // load from original file
+
+
+//        this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
     }
 
     /**
-     * call once each time you attack/ //TODO
+     * call once each time you attack
      * calculate player's new attribute as level increases, given a player
      */
     public void UpdatePlayerAttribute(){
@@ -98,14 +82,14 @@ public class Player {
             this.maxXP = maxXP + xpPerLv; // increase xpFactor
 
             // update other attributes (maxHP, armor, damage, criticalChance, HP)
-            this.maxHP += maxHPIncreasePerLv;
-            this.armour += armorIncreasePerLv;
-            this.damage += damageIncreasePerLv;
+            this.maxHP += pa.maxHPIncreasePerLv;
+            this.armour += pa.armorIncreasePerLv;
+            this.damage += pa.damageIncreasePerLv;
 
-            if (this.criticalChance + criticalChanceIncreasePerLv > this.maxCriticalChance)
+            if (this.criticalChance + pa.criticalChanceIncreasePerLv > this.maxCriticalChance)
                 this.criticalChance = this.maxCriticalChance;
             else
-                this.criticalChance += criticalChanceIncreasePerLv;
+                this.criticalChance += pa.criticalChanceIncreasePerLv;
 
             this.HP = maxHP; // recover all hp once upgraded
         }
@@ -125,7 +109,10 @@ public class Player {
         }
     }
 
-    //TODO: Delete later, just for testing & create json
+    /**
+     * Not used in normal gave, but is used for updating items in original json file
+     * @author Guanming Ou
+     */
     public void saveItem(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -135,7 +122,10 @@ public class Player {
             e.printStackTrace();
         }
     }
-    //TODO: Delete later, just for testing & create json
+    /**
+     * Not used in normal gave, but is used for updating abnormalpoints in original data json file
+     * @author Guanming Ou
+     */
     public void saveNPC(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -145,6 +135,21 @@ public class Player {
             e.printStackTrace();
         }
     }
+    /**
+     * Not used in normal gave, but is used for updating player attributes in original data json file
+     * @author Guanming Ou
+     */
+    public void savePlayerAttributes(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/Player_original_attributes.json")){ // name json file with player's name
+            gson.toJson(this.pa, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     //TODO: test only, delete later
     public Player(){
     }
@@ -205,6 +210,27 @@ public class Player {
         }
         return gson.fromJson(jsonReader, HashMap.class);
     }
+
+    /**
+     * Given data from orginal_data, search hashmap's bag by coordinate keys
+     * @param coord The coordinate of the place's information that you want to get
+     * @return Bag in hashmap or null if not found
+     * @author Guanming Ou
+     */
+    public Bag SearchItemFromHashMap(Coordinate coord, HashMap<Coordinate, Bag> hashmap){
+        return hashmap.get(coord);
+    }
+
+    /**
+     * Given data from orginal_data, search hashmap's npc(abnormal points) by coordinate keys
+     * @param coord The coordinate of the place's information that you want to get
+     * @return AbnormalPoint in hashmap or null if not found
+     * @author Guanming Ou
+     */
+    public AbnormalPoint SearchNPCFromHashMap(Coordinate coord, HashMap<Coordinate, AbnormalPoint> hashmap){
+        return hashmap.get(coord);
+    }
+
 
     /**
      * Consume an consumable item
@@ -850,5 +876,73 @@ public class Player {
 
     public void setStorageInfo(HashMap<Coordinate, Bag> storageInfo) {
         this.storageInfo = storageInfo;
+    }
+
+    /**
+     * This is a subclass for enabling edit player's origianl generate atrributes via json
+     * @author Guanming Ou
+     */
+    public static class PlayerAttributes {
+        int maxHPIncreasePerLv;
+        int armorIncreasePerLv;
+        int damageIncreasePerLv;
+        double criticalChanceIncreasePerLv; //from 0.00-1.00 min step 0.01
+        int initRandomMaxHP;
+        int initBaseMaxHP;
+        int initRandomMoney;
+        int initBaseMoney;
+        int initMaxXP;
+        int initXPPerLv;
+        int initRandomArmor;
+        int initBaseArmor;
+        int initRandomDamage;
+        int initBaseDamage;
+        double initCriticalChance; //from 0.00-1.00 min step 0.01
+        double initMaxCriticalChance; //from 0.00-1.00 min step 0.01
+        int initBagWeight;
+        int initXCoordinate;
+        int initYCoordinate;
+
+        public PlayerAttributes(int maxHPIncreasePerLv, int armorIncreasePerLv, int damageIncreasePerLv, double criticalChanceIncreasePerLv, int initRandomMaxHP, int initBaseMaxHP, int initRandomMoney, int initBaseMoney, int initMaxXP, int initXPPerLv, int initRandomArmor, int initBaseArmor, int initRandomDamage, int initBaseDamage, double initCriticalChance, double initMaxCriticalChance, int initBagWeight, int initXCoordinate, int initYCoordinate) {
+            this.maxHPIncreasePerLv = maxHPIncreasePerLv;
+            this.armorIncreasePerLv = armorIncreasePerLv;
+            this.damageIncreasePerLv = damageIncreasePerLv;
+            this.criticalChanceIncreasePerLv = criticalChanceIncreasePerLv;
+            this.initRandomMaxHP = initRandomMaxHP;
+            this.initBaseMaxHP = initBaseMaxHP;
+            this.initRandomMoney = initRandomMoney;
+            this.initBaseMoney = initBaseMoney;
+            this.initMaxXP = initMaxXP;
+            this.initXPPerLv = initXPPerLv;
+            this.initRandomArmor = initRandomArmor;
+            this.initBaseArmor = initBaseArmor;
+            this.initRandomDamage = initRandomDamage;
+            this.initBaseDamage = initBaseDamage;
+            this.initCriticalChance = initCriticalChance;
+            this.initMaxCriticalChance = initMaxCriticalChance;
+            this.initBagWeight = initBagWeight;
+            this.initXCoordinate = initXCoordinate;
+            this.initYCoordinate = initYCoordinate;
+        }
+
+        /**
+         * load PlayerAttributes from json
+         * @author Guanming Ou
+         */
+        public static PlayerAttributes loadPlayerAttributes() {
+            File file = new File("json_files/original_data/Player_original_attributes.json");
+
+            Gson gson = new Gson();
+            JsonReader jsonReader = null;
+
+            final Type CUS_LIST_TYPE = new TypeToken<PlayerAttributes>() {}.getType();
+
+            try{
+                jsonReader = new JsonReader(new FileReader(file));
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+        }
     }
 }
