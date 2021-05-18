@@ -71,19 +71,19 @@ public class PlayerTest2 {
         c1P.put("value", 10);
         Item c1 = new Item("C1", "consumable", "Mushroom", "Restores 15 health", c1P);
         HashMap<String, Integer> c2P = new HashMap<>();
-        c1P.put("health", +50);
-        c1P.put("weight", 1);
-        c1P.put("value", 25);
+        c2P.put("health", +50);
+        c2P.put("weight", 1);
+        c2P.put("value", 25);
         Item c2 = new Item("C2", "consumable", "Lesser Healing Potion", "Restores 50 health", c2P);
         HashMap<String, Integer> c3P = new HashMap<>();
-        c1P.put("health", +100);
-        c1P.put("weight", 1);
-        c1P.put("value", 50);
+        c3P.put("health", +100);
+        c3P.put("weight", 1);
+        c3P.put("value", 50);
         Item c3 = new Item("C3", "consumable", "Healing Potion", "Restores 100 health", c3P);
         HashMap<String, Integer> c4P = new HashMap<>();
-        c1P.put("health", +150);
-        c1P.put("weight", 1);
-        c1P.put("value", 100);
+        c4P.put("health", +150);
+        c4P.put("weight", 1);
+        c4P.put("value", 100);
         Item c4 = new Item("C4", "consumable", "Greater Healing Potion", "Restores 100 health", c4P);
 
         Bag bag01 = new Bag(100); // has 4 mushroom

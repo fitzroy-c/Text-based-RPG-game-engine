@@ -1,6 +1,6 @@
 {
   "4,0": {
-    "currentWeight": 0,
+    "currentWeight": 2,
     "maxWeight": 100,
     "itemList": [
       {
@@ -8,14 +8,22 @@
         "type": "consumable",
         "name": "Healing Potion",
         "description": "Restores 100 health",
-        "properties": {}
+        "properties": {
+          "health": 100,
+          "weight": 1,
+          "value": 50
+        }
       },
       {
         "id": "C2",
         "type": "consumable",
         "name": "Lesser Healing Potion",
         "description": "Restores 50 health",
-        "properties": {}
+        "properties": {
+          "health": 50,
+          "weight": 1,
+          "value": 25
+        }
       }
     ]
   },
@@ -29,9 +37,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -40,9 +48,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -51,9 +59,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -62,15 +70,15 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       }
     ]
   },
   "0,2": {
-    "currentWeight": 2,
+    "currentWeight": 3,
     "maxWeight": 100,
     "itemList": [
       {
@@ -79,9 +87,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -89,7 +97,11 @@
         "type": "consumable",
         "name": "Lesser Healing Potion",
         "description": "Restores 50 health",
-        "properties": {}
+        "properties": {
+          "health": 50,
+          "weight": 1,
+          "value": 25
+        }
       },
       {
         "id": "C1",
@@ -97,9 +109,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       }
     ]
@@ -114,9 +126,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -125,9 +137,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -136,9 +148,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -147,15 +159,15 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       }
     ]
   },
   "0,4": {
-    "currentWeight": 0,
+    "currentWeight": 2,
     "maxWeight": 100,
     "itemList": [
       {
@@ -163,14 +175,22 @@
         "type": "consumable",
         "name": "Healing Potion",
         "description": "Restores 100 health",
-        "properties": {}
+        "properties": {
+          "health": 100,
+          "weight": 1,
+          "value": 50
+        }
       },
       {
         "id": "C2",
         "type": "consumable",
         "name": "Lesser Healing Potion",
         "description": "Restores 50 health",
-        "properties": {}
+        "properties": {
+          "health": 50,
+          "weight": 1,
+          "value": 25
+        }
       }
     ]
   },
@@ -184,9 +204,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -195,9 +215,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -206,9 +226,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -217,15 +237,15 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       }
     ]
   },
   "5,0": {
-    "currentWeight": 0,
+    "currentWeight": 1,
     "maxWeight": 100,
     "itemList": [
       {
@@ -233,12 +253,16 @@
         "type": "consumable",
         "name": "Greater Healing Potion",
         "description": "Restores 100 health",
-        "properties": {}
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
       }
     ]
   },
   "0,5": {
-    "currentWeight": 0,
+    "currentWeight": 1,
     "maxWeight": 100,
     "itemList": [
       {
@@ -246,12 +270,16 @@
         "type": "consumable",
         "name": "Greater Healing Potion",
         "description": "Restores 100 health",
-        "properties": {}
+        "properties": {
+          "health": 150,
+          "weight": 1,
+          "value": 100
+        }
       }
     ]
   },
   "2,0": {
-    "currentWeight": 2,
+    "currentWeight": 3,
     "maxWeight": 100,
     "itemList": [
       {
@@ -260,9 +288,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -270,7 +298,11 @@
         "type": "consumable",
         "name": "Lesser Healing Potion",
         "description": "Restores 50 health",
-        "properties": {}
+        "properties": {
+          "health": 50,
+          "weight": 1,
+          "value": 25
+        }
       },
       {
         "id": "C1",
@@ -278,9 +310,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       }
     ]
@@ -295,9 +327,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -306,9 +338,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -317,9 +349,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       },
       {
@@ -328,9 +360,9 @@
         "name": "Mushroom",
         "description": "Restores 15 health",
         "properties": {
-          "health": 150,
+          "health": 15,
           "weight": 1,
-          "value": 100
+          "value": 10
         }
       }
     ]
