@@ -38,8 +38,8 @@ public class Player {
     private final double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
-    HashMap npcInfo;
-    HashMap itemInfo;
+    HashMap<Coordinate, AbnormalPoint> npcInfo; // the map that contains all npc on the specific key coordinate
+    HashMap<Coordinate, Bag> storageInfo; // the room storage which contains all bags on the map, with coordinate info
 
     /**
      * Some variables
@@ -83,6 +83,8 @@ public class Player {
         this.maxCriticalChance = initMaxCriticalChance;
         this.bag = new Bag(initBagWeight); //default bag capacity 5
         this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
+        this.setNpcInfo(loadOriginalNPCs()); // load from original file
+        this.setStorageInfo(loadOriginalItems()); // load from original file
     }
 
     /**
@@ -111,8 +113,8 @@ public class Player {
 
     /**
      * Save player as json
+     * @author Guanming Ou
      */
-    // TODO: This method is not tested yet, check and complete if needed - Guanming
     public void save() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -125,8 +127,8 @@ public class Player {
     /**
      * load player from json
      * @param playerName the name of specific player
+     * @author Guanming Ou
      */
-    // TODO: This method is not tested yet, check and complete if needed - Guanming
     public static Player load(String playerName) {
         File file = new File("json_files/player_save/"+ playerName +".json");
 
@@ -142,6 +144,47 @@ public class Player {
         }
         return gson.fromJson(jsonReader, CUS_LIST_TYPE);
     }
+
+    /**
+     * load original items data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, Bag> loadOriginalItems() {
+        File file = new File("json_files/original_data/Items.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+    }
+
+    /**
+     * load original npc data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, AbnormalPoint> loadOriginalNPCs() {
+        File file = new File("json_files/original_data/AbnormalPoints.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+    }
+
     /**
      * Consume an consumable item
      * TODO: more function should be add. if the item has damage or what,should reset the monster.hp player's gold/xp etc.
@@ -728,8 +771,11 @@ public class Player {
         this.place = place;
     }
 
-    public void setNpcInfo(HashMap map) {this.npcInfo = map;}
+    public void setNpcInfo(HashMap<Coordinate, AbnormalPoint> npcInfo) {
+        this.npcInfo = npcInfo;
+    }
 
-    public void setItemInfo(HashMap map) {this.itemInfo = map;}
-
+    public void setStorageInfo(HashMap<Coordinate, Bag> storageInfo) {
+        this.storageInfo = storageInfo;
+    }
 }

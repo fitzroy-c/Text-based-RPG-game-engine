@@ -29,29 +29,6 @@ public class Game {
      */
     public static void initialize() {
         player = new Player("");
-        readMapInfo();
-    }
-
-//    Item[]
-
-    /**
-     *
-     */
-    public static void readMapInfo() {
-        File item = new File("json_files/Item.json");
-        File npc = new File("json_files/NPC.json");
-
-        Gson gson = new Gson();
-
-        try {
-            HashMap<Integer, Item> hashMapItem = gson.fromJson(new FileReader(item), HashMap.class);
-            player.setItemInfo(hashMapItem);
-            HashMap<Integer, AbnormalPoint> hashMapNPC = gson.fromJson(new FileReader(npc), HashMap.class);
-            player.setNpcInfo(hashMapNPC);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 /*    Test
