@@ -124,6 +124,28 @@ public class Player {
             e.printStackTrace();
         }
     }
+
+    //TODO: Delete later, just for testing & create json
+    public void saveItem(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/Items.json")){ // name json file with player's name
+            gson.toJson(this, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //TODO: Delete later, just for testing & create json
+    public void saveNPC(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/AbnormalPoints.json")){ // name json file with player's name
+            gson.toJson(this, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * load player from json
      * @param playerName the name of specific player
