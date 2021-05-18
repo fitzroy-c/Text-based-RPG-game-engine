@@ -63,7 +63,7 @@ public class PlayerTest2 {
     @Test
     public void createItemJson(){
         Player player = new Player();
-        //        DialogTree tree = new DialogTree();
+//        DialogTree tree = new DialogTree();
 //        tree.root.npcDialog = "I can bless you... to better prepare you for the fight";
 //        tree.root.index = 0;
 //        tree.root.dtype = DialogTree.DialogType.CONTINUE;
@@ -132,7 +132,7 @@ public class PlayerTest2 {
     }
 
     @Test
-    public void createNPCJson(){
+    public void createNPCJsonTest(){
         Player player = new Player();
         HashMap<Coordinate, AbnormalPoint> testNPC = new HashMap<>();
 
