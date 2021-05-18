@@ -14,9 +14,7 @@ import navigation.Place;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * similar to a extended class from entity
@@ -38,6 +36,8 @@ public class Player {
     Bag bag;
     Place place; //Coordinate
     List<Place> gameMap;
+    HashMap npcInfo;
+    HashMap itemInfo;
 
     /**
      * Some variables
@@ -726,4 +726,9 @@ public class Player {
     public void setPlace(Place place) {
         this.place = place;
     }
+
+    public void setNpcInfo(HashMap map) {this.npcInfo = map;}
+
+    public void setItemInfo(HashMap map) {this.itemInfo = map;}
+
 }
