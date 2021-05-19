@@ -75,11 +75,16 @@ public class Game {
         /// test
         AbnormalPoint ab = new AbnormalPoint();
         Control c = new Control(ab ,player);
-        ///
         gameInteractionLoop(player, c.currentOption);
 //        gameInteractionLoop(player);
-    }
 
+
+        //This is the second version
+
+
+
+
+    }
 
     /**
      * This continuously ask for player's input to keep the game running,
@@ -100,4 +105,17 @@ public class Game {
         }
     }
 
+    /**
+     * This a second gameloop, using just parser
+     * It terminate when player input a 'exit | exit game' command
+     * @param player
+     */
+    public static void gameInteractionLoopParser(Player player) throws Exception {
+        boolean continueOn = true;
+        Scanner s = new Scanner(System.in);
+        while (continueOn){
+            cmdTok = new CommandTokenizer(s.next());
+            continueOn = new Parser(cmdTok, player).parseCommand();
+        }
+    }
 }

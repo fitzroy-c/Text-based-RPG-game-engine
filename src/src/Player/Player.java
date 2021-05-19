@@ -35,7 +35,10 @@ public class Player {
     private double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
-    HashMap<Coordinate, Place> mapData;
+//    HashMap<Coordinate, Place> mapData;
+    HashMap<Coordinate, NPC_TALK> map_npcTData;
+    HashMap<Coordinate, NPC_MERCHANT> map_npcMData;
+    HashMap<Coordinate, Bag> map_bagData;
 
     /**
      * Some variables
@@ -60,8 +63,13 @@ public class Player {
         this.criticalChance = pa.initCriticalChance;
         this.maxCriticalChance = pa.initMaxCriticalChance;
         this.bag = new Bag(pa.initBagWeight);
-        this.setMapData(loadOriginalMapData());
-        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
+//        this.setMapData(loadOriginalMapData());
+
+//        this.setMap_npcMData(loadOriginalMerchantNPCs());
+        this.setMap_npcTData(loadOriginalTalkNPCs());
+        this.setMap_bagData(loadOriginalItems());
+        //TODO: add new coordinate
+//        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
     }
 
     /**
@@ -103,18 +111,58 @@ public class Player {
     }
 
     /**
-     * Not used in normal gave, but is used for updating items in original json file
+     * Save item as json
      * @author Guanming Ou
      */
-    public void saveMap(){
+    public void saveItem(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter("json_files/original_data/map.json")){ // name json file with player's name
-            gson.toJson(this.mapData, fw);
+        try(FileWriter fw = new FileWriter("json_files/original_data/Items.json")){ // name json file with player's name
+            gson.toJson(this.map_bagData, fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    /**
+     * Save talk npc as json
+     * @author Guanming Ou
+     */
+    public void saveTALKNPC(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/TalkNPC.json")){ // name json file with player's name
+            gson.toJson(this.map_npcTData, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Save merchant npc as json
+     * @author Guanming Ou
+     */
+    public void saveMERCHANTNPC(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/MerchantNPC.json")){ // name json file with player's name
+            gson.toJson(this.map_npcMData, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    /**
+//     * Not used in normal gave, but is used for updating items in original json file
+//     * @author Guanming Ou
+//     */
+//    public void saveMap(){
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//
+//        try(FileWriter fw = new FileWriter("json_files/original_data/map.json")){ // name json file with player's name
+//            gson.toJson(this.mapData, fw);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * Not used in normal game, but is used for updating player attributes in original data json file
@@ -157,11 +205,11 @@ public class Player {
     }
 
     /**
-     * load original map data from json_files/original_data/
+     * load original items data from json_files/original_data/
      * @author Guanming Ou
      */
-    public static HashMap<Coordinate, Place> loadOriginalMapData() {
-        File file = new File("json_files/original_data/map.json");
+    public static HashMap<Coordinate, Bag> loadOriginalItems() {
+        File file = new File("json_files/original_data/Bag.json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
@@ -173,6 +221,61 @@ public class Player {
         }
         return gson.fromJson(jsonReader, HashMap.class);
     }
+
+    /**
+     * load original talk npc data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, NPC_TALK> loadOriginalTalkNPCs() {
+        File file = new File("json_files/original_data/TalkNPC.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, HashMap.class);
+    }
+
+    /**
+     * load original merchant npc data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, NPC_MERCHANT> loadOriginalMerchantNPCs() {
+        File file = new File("json_files/original_data/MerchantNPC.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, HashMap.class);
+    }
+
+//
+//    /**
+//     * load original map data from json_files/original_data/
+//     * @author Guanming Ou
+//     */
+//    public static HashMap<Coordinate, Place> loadOriginalMapData() {
+//        File file = new File("json_files/original_data/map.json");
+//
+//        Gson gson = new Gson();
+//        JsonReader jsonReader = null;
+//
+//        try{
+//            jsonReader = new JsonReader(new FileReader(file));
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return gson.fromJson(jsonReader, HashMap.class);
+//    }
 
     /**
      * Given data from orginal_data, search hashmap's 'place' by coordinate keys
@@ -355,82 +458,86 @@ public class Player {
         }
     }
 
-    /**
-     * Update player's place given a direction
-     *
-     * maxX,maxY describe the size of the map (from [0][0]to[maxX][maxY])
-     * @param direction north | east | south | west
-     * @return true: update successfully, false: update unsuccessfully
-     * @author Yixiang Yin, modified by yitao chen and Guanming Ou
-     */
-
-    public String goToDirection(String direction){
-        int maxX = 30;
-        int maxY = 30;
-        Coordinate nextCoord = this.place.getCoordinate();
-
-        switch (direction){
-            case "north":
-                if (this.place.getCoordinate().y==maxY){
-                    return "direction out of map's boundary";
-                }
-                nextCoord.goNorth();
-                goToDirectionHelper(nextCoord);
-                this.place.printPlace();
-            break;
-            case "east":
-                if (this.place.getCoordinate().x==maxX){
-                    return "direction out of map's boundary";
-                }
-                nextCoord.goEast();
-                goToDirectionHelper(nextCoord);
-                this.place.printPlace();
-            break;
-
-            case "south":
-                if (this.place.getCoordinate().y==0){
-                    return "direction out of map's boundary";
-                }
-                nextCoord.goSouth();
-                goToDirectionHelper(nextCoord);
-                this.place.printPlace();
-            break;
-
-            case "west":
-                if (this.place.getCoordinate().x==0){
-                    return "direction out of map's boundary";
-                }
-                nextCoord.goWest();
-                goToDirectionHelper(nextCoord);
-                this.place.printPlace();
-            break;
-        }
-        return "You've moved to "+direction+" direction";
+    public String goToDirection(String d){
+        return null;
     }
 
-    /**
-     * check if the next coordinate is already store inside the map data, and update if required
-     * @param nextCoord the next coordinate that the player wants to move to
-     * @author Guanming Ou
-     */
-    public void goToDirectionHelper(Coordinate nextCoord){
-        HashMap<Coordinate, Place> map = this.getMapData();
-        if (map.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-            map.remove(this.place.getCoordinate()); // remove current coordinate from map data
-            map.put(this.place.getCoordinate(), this.place); // insert current place to map data
-        }
-
-        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
-            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
-        else{ // randomly generate place named wild area with random danger rate and monster
-            this.place.setCoordinate(nextCoord);
-            this.place.setDescription("Wild area");
-            this.place.setDangerRate(random.nextInt(5));
-            this.place.setBag(new Bag(100));
-            this.place.setAbnormalPoints(new ArrayList<AbnormalPoint>());
-            generateMonster();
-        }
-    }
+//    /**
+//     * Update player's place given a direction
+//     *
+//     * maxX,maxY describe the size of the map (from [0][0]to[maxX][maxY])
+//     * @param direction north | east | south | west
+//     * @return true: update successfully, false: update unsuccessfully
+//     * @author Yixiang Yin, modified by yitao chen and Guanming Ou
+//     */
+//
+//    public String goToDirection(String direction){
+//        int maxX = 30;
+//        int maxY = 30;
+//        Coordinate nextCoord = this.place.getCoordinate();
+//
+//        switch (direction){
+//            case "north":
+//                if (this.place.getCoordinate().y==maxY){
+//                    return "direction out of map's boundary";
+//                }
+//                nextCoord.goNorth();
+//                goToDirectionHelper(nextCoord);
+//                this.place.printPlace();
+//            break;
+//            case "east":
+//                if (this.place.getCoordinate().x==maxX){
+//                    return "direction out of map's boundary";
+//                }
+//                nextCoord.goEast();
+//                goToDirectionHelper(nextCoord);
+//                this.place.printPlace();
+//            break;
+//
+//            case "south":
+//                if (this.place.getCoordinate().y==0){
+//                    return "direction out of map's boundary";
+//                }
+//                nextCoord.goSouth();
+//                goToDirectionHelper(nextCoord);
+//                this.place.printPlace();
+//            break;
+//
+//            case "west":
+//                if (this.place.getCoordinate().x==0){
+//                    return "direction out of map's boundary";
+//                }
+//                nextCoord.goWest();
+//                goToDirectionHelper(nextCoord);
+//                this.place.printPlace();
+//            break;
+//        }
+//        return "You've moved to "+direction+" direction";
+//    }
+//
+//    /**
+//     * check if the next coordinate is already store inside the map data, and update if required
+//     * @param nextCoord the next coordinate that the player wants to move to
+//     * @author Guanming Ou
+//     */
+//    public void goToDirectionHelper(Coordinate nextCoord){
+//        HashMap<Coordinate, Place> map = this.getMapData();
+//        if (map.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+//            map.remove(this.place.getCoordinate()); // remove current coordinate from map data
+//            map.put(this.place.getCoordinate(), this.place); // insert current place to map data
+//        }
+//
+//        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
+//            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
+//        else{ // randomly generate place named wild area with random danger rate and monster
+//            this.place.setCoordinate(nextCoord);
+//            this.place.setDescription("Wild area");
+//            this.place.setDangerRate(random.nextInt(5));
+//            this.place.setBag(new Bag(100));
+//            this.place.setAbnormalPoints(new ArrayList<AbnormalPoint>());
+//            generateMonster();
+//        }
+//    }
 
     /**
      * check the player is alive or not
@@ -851,13 +958,25 @@ public class Player {
         this.place = place;
     }
 
-    public void setMapData(HashMap<Coordinate, Place> mapData) {
-        this.mapData = mapData;
+    public void setMap_npcTData(HashMap<Coordinate, NPC_TALK> map_npcTData) {
+        this.map_npcTData = map_npcTData;
     }
 
-    public HashMap<Coordinate, Place> getMapData() {
-        return mapData;
+    public void setMap_npcMData(HashMap<Coordinate, NPC_MERCHANT> map_npcMData) {
+        this.map_npcMData = map_npcMData;
     }
+
+    public void setMap_bagData(HashMap<Coordinate, Bag> map_bagData) {
+        this.map_bagData = map_bagData;
+    }
+
+    //    public void setMapData(HashMap<Coordinate, Place> mapData) {
+//        this.mapData = mapData;
+//    }
+//
+//    public HashMap<Coordinate, Place> getMapData() {
+//        return mapData;
+//    }
 
     /**
      * This is a subclass for enabling edit player's origianl generate atrributes via json

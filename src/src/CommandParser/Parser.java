@@ -211,10 +211,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BACKPACK){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.getBag().showMyBag();
+                player.getBag().showMyBag(player.getBag());
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.getBag().showMyBag();
+                player.getBag().showMyBag(player.getBag());
                 cmdExecuted = true;
             }
         }
@@ -227,7 +227,7 @@ public class Parser {
                     player.showPlayerStat();
                 }
                 else if (this._tokenizer.current().type()==Token.Type.BACKPACK){
-                    player.getBag().showMyBag();
+                    player.getBag().showMyBag(player.getBag());
                 } else {
                     callError();
                 }
@@ -247,7 +247,6 @@ public class Parser {
                 cmdExecuted = true;
             }
         }
-
         //  Todo need fix
         //  * <retreat-command> := <retreat-action>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.RETREAT_ACTION){
