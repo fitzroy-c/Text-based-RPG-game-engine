@@ -11,6 +11,7 @@ import java.util.List;
 public class BasicOption {
     public List<Option> option = new ArrayList<>();
     HashMap<String, Option> optionInterface = new HashMap();
+    public List<Token.Type> tokenType = new ArrayList<>();
 
     public void printOut() {
         for (int i = 1; i < option.size()+1; i++) {
@@ -26,11 +27,20 @@ public class BasicOption {
     public boolean chooseOp(Token token) {
         //this.printOut();
         String command = token.token();
+        Token.Type type = token.type();
 
+/*
         if (token.type()== Token.Type.ERROR)
             return true;
-
-        if (optionInterface.containsKey(command)) {
+        if (token.type()== Token.Type.DIRECTION_ACTION)
+            return true;
+        if (token.type()== Token.Type.DROP_ACTION)
+            return true;
+        if (token.type()== Token.Type.RETREAT_ACTION)
+            return true;
+*/
+//      optionInterface.containsKey(command) &&
+        if (tokenType.contains(type)) {
             return true;
         } else {
             System.out.println("I don't know what '" + command + "' means.");
