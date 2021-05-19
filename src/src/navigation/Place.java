@@ -37,6 +37,14 @@ public class Place {
         this.abnormalPoints = new ArrayList<>();
     }
 
+    public Place(Coordinate coordinate, String description, int dangerRate, Bag bag, List<AbnormalPoint> abnormalPoints) {
+        this.coordinate = coordinate;
+        this.description = description;
+        this.dangerRate = dangerRate;
+        this.bag = bag;
+        this.abnormalPoints = abnormalPoints;
+    }
+
     /**
      * add AbnormalPoint
      * @param abnormalPoint

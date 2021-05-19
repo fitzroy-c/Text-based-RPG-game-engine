@@ -38,8 +38,7 @@ public class Player {
     private double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
-    HashMap<Coordinate, AbnormalPoint> npcInfo; // the map that contains all npc on the specific key coordinate
-    HashMap<Coordinate, Bag> storageInfo; // the room storage which contains all bags on the map, with coordinate info
+    HashMap<Coordinate, Place> mapData;
 
     /**
      * Some variables
@@ -63,11 +62,8 @@ public class Player {
         this.damage = random.nextInt(pa.initRandomDamage)+ pa.initBaseDamage;
         this.criticalChance = pa.initCriticalChance;
         this.maxCriticalChance = pa.initMaxCriticalChance;
-        this.bag = new Bag(pa.initBagWeight); //default bag capacity 5
-        this.setNpcInfo(loadOriginalNPCs()); // load from original file
-        this.setStorageInfo(loadOriginalItems()); // load from original file
-
-
+        this.bag = new Bag(pa.initBagWeight);
+        this.setMapData(loadOriginalMapData());
 //        this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
     }
 
@@ -113,30 +109,18 @@ public class Player {
      * Not used in normal gave, but is used for updating items in original json file
      * @author Guanming Ou
      */
-    public void saveItem(){
+    public void saveMap(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter("json_files/original_data/Items.json")){ // name json file with player's name
-            gson.toJson(this.storageInfo, fw);
+        try(FileWriter fw = new FileWriter("json_files/original_data/map.json")){ // name json file with player's name
+            gson.toJson(this.mapData, fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    /**
-     * Not used in normal gave, but is used for updating abnormalpoints in original data json file
-     * @author Guanming Ou
-     */
-    public void saveNPC(){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter("json_files/original_data/AbnormalPoints.json")){ // name json file with player's name
-            gson.toJson(this.npcInfo, fw);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     /**
-     * Not used in normal gave, but is used for updating player attributes in original data json file
+     * Not used in normal game, but is used for updating player attributes in original data json file
      * @author Guanming Ou
      */
     public void savePlayerAttributes(){
@@ -176,11 +160,11 @@ public class Player {
     }
 
     /**
-     * load original items data from json_files/original_data/
+     * load original map data from json_files/original_data/
      * @author Guanming Ou
      */
-    public static HashMap<Coordinate, Bag> loadOriginalItems() {
-        File file = new File("json_files/original_data/Items.json");
+    public static HashMap<Coordinate, Place> loadOriginalMapData() {
+        File file = new File("json_files/original_data/map.json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
@@ -194,43 +178,14 @@ public class Player {
     }
 
     /**
-     * load original npc data from json_files/original_data/
-     * @author Guanming Ou
-     */
-    public static HashMap<Coordinate, AbnormalPoint> loadOriginalNPCs() {
-        File file = new File("json_files/original_data/AbnormalPoints.json");
-
-        Gson gson = new Gson();
-        JsonReader jsonReader = null;
-
-        try{
-            jsonReader = new JsonReader(new FileReader(file));
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return gson.fromJson(jsonReader, HashMap.class);
-    }
-
-    /**
-     * Given data from orginal_data, search hashmap's bag by coordinate keys
+     * Given data from orginal_data, search hashmap's 'place' by coordinate keys
      * @param coord The coordinate of the place's information that you want to get
      * @return Bag in hashmap or null if not found
      * @author Guanming Ou
      */
-    public Bag SearchItemFromHashMap(Coordinate coord, HashMap<Coordinate, Bag> hashmap){
+    public Place SearchItemFromHashMap(Coordinate coord, HashMap<Coordinate, Place> hashmap){
         return hashmap.get(coord);
     }
-
-    /**
-     * Given data from orginal_data, search hashmap's npc(abnormal points) by coordinate keys
-     * @param coord The coordinate of the place's information that you want to get
-     * @return AbnormalPoint in hashmap or null if not found
-     * @author Guanming Ou
-     */
-    public AbnormalPoint SearchNPCFromHashMap(Coordinate coord, HashMap<Coordinate, AbnormalPoint> hashmap){
-        return hashmap.get(coord);
-    }
-
 
     /**
      * Consume an consumable item
@@ -872,12 +827,8 @@ public class Player {
         this.place = place;
     }
 
-    public void setNpcInfo(HashMap<Coordinate, AbnormalPoint> npcInfo) {
-        this.npcInfo = npcInfo;
-    }
-
-    public void setStorageInfo(HashMap<Coordinate, Bag> storageInfo) {
-        this.storageInfo = storageInfo;
+    public void setMapData(HashMap<Coordinate, Place> mapData) {
+        this.mapData = mapData;
     }
 
     /**

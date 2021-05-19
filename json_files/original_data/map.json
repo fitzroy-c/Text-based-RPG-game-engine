@@ -1,0 +1,1134 @@
+{
+  "0,0": {
+    "coordinate": {
+      "x": 0,
+      "y": 0
+    },
+    "description": "The initial point",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 4,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 3,
+        "blessAddArmour": 3,
+        "blessAddDamage": 3,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Little_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 100,
+        "HP": 100,
+        "damage": 1,
+        "armour": 100,
+        "gold": 0,
+        "xpGain": 50,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 175444471685991,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "0,1": {
+    "coordinate": {
+      "x": 0,
+      "y": 1
+    },
+    "description": "fairy land",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 3,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 7,
+        "blessAddArmour": 6,
+        "blessAddDamage": 4,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Teenager_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 500,
+        "HP": 500,
+        "damage": 1,
+        "armour": 500,
+        "gold": 0,
+        "xpGain": 100,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 185939259399568,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "0,2": {
+    "coordinate": {
+      "x": 0,
+      "y": 2
+    },
+    "description": "some wild area",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 4,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [],
+    "random": {
+      "seed": 152619334938999,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "0,3": {
+    "coordinate": {
+      "x": 0,
+      "y": 3
+    },
+    "description": "fairy land",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 2,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 13,
+        "blessAddArmour": 10,
+        "blessAddDamage": 10,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Adult_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 1000,
+        "HP": 1000,
+        "damage": 1,
+        "armour": 1000,
+        "gold": 0,
+        "xpGain": 500,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 246260045586781,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "0,4": {
+    "coordinate": {
+      "x": 0,
+      "y": 4
+    },
+    "description": "fairy land",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 0,
+      "maxWeight": 100,
+      "itemList": []
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 50,
+        "blessAddArmour": 30,
+        "blessAddDamage": 40,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Elder_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 10000,
+        "HP": 10000,
+        "damage": 1,
+        "armour": 2000,
+        "gold": 0,
+        "xpGain": 1000,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 31722680274738,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "1,0": {
+    "coordinate": {
+      "x": 1,
+      "y": 0
+    },
+    "description": "fairy land",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 4,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 3,
+        "blessAddArmour": 3,
+        "blessAddDamage": 3,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Little_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 100,
+        "HP": 100,
+        "damage": 1,
+        "armour": 100,
+        "gold": 0,
+        "xpGain": 50,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 84646783344155,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "1,1": {
+    "coordinate": {
+      "x": 1,
+      "y": 1
+    },
+    "description": "some wild area",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 0,
+      "maxWeight": 100,
+      "itemList": []
+    },
+    "abnormalPoints": [],
+    "random": {
+      "seed": 17348775635452,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "1,2": {
+    "coordinate": {
+      "x": 1,
+      "y": 2
+    },
+    "description": "some wild area",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 0,
+      "maxWeight": 100,
+      "itemList": []
+    },
+    "abnormalPoints": [],
+    "random": {
+      "seed": 168222221109739,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "1,3": {
+    "coordinate": {
+      "x": 1,
+      "y": 3
+    },
+    "description": "fairy land",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 3,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 7,
+        "blessAddArmour": 6,
+        "blessAddDamage": 4,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Teenager_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 500,
+        "HP": 500,
+        "damage": 1,
+        "armour": 500,
+        "gold": 0,
+        "xpGain": 100,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 57508603037378,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "1,4": {
+    "coordinate": {
+      "x": 1,
+      "y": 4
+    },
+    "description": "fairy land",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 1,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 13,
+        "blessAddArmour": 10,
+        "blessAddDamage": 10,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Adult_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 1000,
+        "HP": 1000,
+        "damage": 1,
+        "armour": 1000,
+        "gold": 0,
+        "xpGain": 500,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 232580239343711,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "2,0": {
+    "coordinate": {
+      "x": 1,
+      "y": 0
+    },
+    "description": "fairy land",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 4,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 3,
+        "blessAddArmour": 3,
+        "blessAddDamage": 3,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Little_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 100,
+        "HP": 100,
+        "damage": 1,
+        "armour": 100,
+        "gold": 0,
+        "xpGain": 50,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 16133371886157,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "2,1": {
+    "coordinate": {
+      "x": 1,
+      "y": 1
+    },
+    "description": "some wild area",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 2,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [],
+    "random": {
+      "seed": 267367170273477,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "2,2": {
+    "coordinate": {
+      "x": 1,
+      "y": 2
+    },
+    "description": "some wild area",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 1,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [],
+    "random": {
+      "seed": 95052527394982,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "2,3": {
+    "coordinate": {
+      "x": 1,
+      "y": 3
+    },
+    "description": "fairy land",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 4,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 7,
+        "blessAddArmour": 6,
+        "blessAddDamage": 4,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Teenager_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 500,
+        "HP": 500,
+        "damage": 1,
+        "armour": 500,
+        "gold": 0,
+        "xpGain": 100,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 257891366130169,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  },
+  "2,4": {
+    "coordinate": {
+      "x": 1,
+      "y": 4
+    },
+    "description": "fairy land",
+    "dangerRate": 0,
+    "bag": {
+      "currentWeight": 3,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        }
+      ]
+    },
+    "abnormalPoints": [
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              },
+              {
+                "index": 3,
+                "playerReply": "I want to increase my damage",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_DAMAGE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 13,
+        "blessAddArmour": 10,
+        "blessAddDamage": 10,
+        "hasEndedTalk": false,
+        "abnormalPointType": "NPC_TALK",
+        "name": "Adult_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 1000,
+        "HP": 1000,
+        "damage": 1,
+        "armour": 1000,
+        "gold": 0,
+        "xpGain": 500,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
+    "random": {
+      "seed": 144915172987446,
+      "nextNextGaussian": 0.0,
+      "haveNextNextGaussian": false
+    }
+  }
+}
