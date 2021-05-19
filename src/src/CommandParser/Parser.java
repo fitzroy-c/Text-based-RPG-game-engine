@@ -298,16 +298,7 @@ public class Parser {
         return true;
     }
 
-    /**
-     * check if a given string is a valid item name in a list with all possible item
-     * @author: Yixiang Yin
-     **/
-    public static boolean isItem(List<Item> reference, String nameToBeCheck){
-        for (Item i: reference){
-            if (i.name.equals(nameToBeCheck)) return true;
-        }
-        return false;
-    }
+
 
     public void callError() {
         System.out.println("message not recognised, please try again or use 'help'");

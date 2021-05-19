@@ -1,9 +1,14 @@
 package CommandParser;
 
+import Player.Item;
+
+import java.util.List;
+
 public class CommandTokenizer {
 
     private String _buffer;		//save text
     private Token currentToken;	//save token extracted from next()
+    private List<Item> ItemBook;
 
     /**
      *  Tokenizer class constructor
@@ -13,8 +18,18 @@ public class CommandTokenizer {
     public CommandTokenizer(String text) {
         _buffer = text;		// save input text (string)
         next();		        // extracts the first token.
+        ItemBook = Item.initializeItems();
     }
-
+    /**
+     * check if a given string is a valid item name in a list with all possible item
+     * @author: Yixiang Yin
+     **/
+    public static boolean isItem(List<Item> reference, String nameToBeCheck){
+        for (Item i: reference){
+            if (i.name.equals(nameToBeCheck)) return true;
+        }
+        return false;
+    }
     /**
      *  This function will find and extract a next token from {@code _buffer} and
      *  save the token to {@code currentToken}.

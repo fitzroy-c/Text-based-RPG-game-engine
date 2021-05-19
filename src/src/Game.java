@@ -25,7 +25,7 @@ public class Game {
     private static Player player;
     public static CommandTokenizer cmdTok;
     public Parser parser;
-    private List<Item> itemBook; // contain all possible item
+    private List<Item> itemBook; // contain all possible items in the game(used for reference purposes)
 
     /**
      * initial pre-game
