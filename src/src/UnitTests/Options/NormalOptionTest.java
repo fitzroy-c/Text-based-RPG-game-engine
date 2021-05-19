@@ -50,6 +50,7 @@ public class NormalOptionTest {
     }
 
     public static void gameInteractionLoop(Player player, Control c) throws Exception {
+        ///testing
         boolean continueOn = true;
         Scanner s = new Scanner(System.in);
         while (continueOn){
