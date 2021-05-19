@@ -97,7 +97,7 @@ public class Item {
         return items;
     }
 
-
+//    String s = ""String"";
     /**
      * used to generate Item on the map, and save that into a json file
      * @author: Yixiang Yin
@@ -162,10 +162,11 @@ public class Item {
             Item item = null;
             for (JsonElement je : sProps){
                 JsonObject itemJO = je.getAsJsonObject();
-                String id = String.valueOf(itemJO.get("id"));
-                String type = String.valueOf(itemJO.get("type"));
-                String name = String.valueOf(itemJO.get("name"));
-                String description = String.valueOf(itemJO.get("description"));
+                String id =itemJO.get("id").getAsString();
+//                System.out.println(id);
+                String type = itemJO.get("type").getAsString();
+                String name = itemJO.get("name").getAsString();
+                String description = itemJO.get("description").getAsString();
                 JsonObject props = itemJO.get("properties").getAsJsonObject();
                 Map<String, Integer> properties = new HashMap<>();
                 for (Map.Entry<String, JsonElement> entry2 : props.entrySet()) {

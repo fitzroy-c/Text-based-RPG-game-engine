@@ -150,10 +150,15 @@ public class Bag {
      */
     public Item getItemByName(String itemName){
         // if the bag is empty
+        System.out.println(this.itemList.size());
         if (this.itemList.isEmpty())
             return null;
 
         for (Item i : this.itemList){
+            System.out.println(i.name);
+            System.out.println(i.name.equals(itemName));
+            System.out.println(i.name.equals("Mushroom"));
+
             if (i.name.equals(itemName))
                 return i;
         }
