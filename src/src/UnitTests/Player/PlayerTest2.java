@@ -140,19 +140,19 @@ public class PlayerTest2 {
 
         NPC_TALK l_fairy = new NPC_TALK("Little_Fairy", "Hi, I can permanent increase your power!",
                 100,100,1,100,0,50,0, Element.Normal,
-                Bless_tree, 3,3,3,null);
+                Bless_tree, 3,3,3,new Bag(10));
 
         NPC_TALK t_fairy = new NPC_TALK("Teenager_Fairy", "Hi, I can permanent increase your power!",
                 500,500,1,500,0,100,0, Element.Normal,
-                Bless_tree, 7,6,4,null);
+                Bless_tree, 7,6,4,new Bag(10));
 
         NPC_TALK a_fairy = new NPC_TALK("Adult_Fairy", "Hi, I can permanent increase your power!",
                 1000,1000,1,1000,0,500,0, Element.Normal,
-                Bless_tree, 13,10,10,null);
+                Bless_tree, 13,10,10,new Bag(10));
 
         NPC_TALK e_fairy = new NPC_TALK("Elder_Fairy", "Hi, I can permanent increase your power!",
                 10000,10000,1,2000,0,1000,0, Element.Normal,
-                Bless_tree, 50,30,40,null);
+                Bless_tree, 50,30,40,new Bag(10));
 
 
 //        DialogTree Bless_tree = new DialogTree();
@@ -170,6 +170,7 @@ public class PlayerTest2 {
 //                10,9,10,10,10,10,0.01, Element.Normal,
 //                null, 0,0,0,null);
 
+
         testNPC.put(new Coordinate(0,0), l_fairy);
         testNPC.put(new Coordinate(0,1), l_fairy);
         testNPC.put(new Coordinate(0,2), a_fairy);
@@ -185,6 +186,12 @@ public class PlayerTest2 {
         player.setMap_npcTData(testNPC);
         player.saveTALKNPC();
 //        HashMap<Coordinate, NPC_TALK> npcT = player.loadOriginalTalkNPCs();
+
+
+
+
+
+
     }
 
 
