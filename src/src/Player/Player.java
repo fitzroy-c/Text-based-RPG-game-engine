@@ -367,45 +367,79 @@ public class Player {
      * @author Yixiang Yin, modified by yitao chen
      */
 
-    public boolean goToDirection(String direction){
+    public String goToDirection(String direction){
         //TODO need to update the place stat everytime
         //TODO these 2 range description should be global limits
         int maxX = 30;
         int maxY = 30;
+        Coordinate nextCoord = this.place.getCoordinate();
 
         switch (direction){
             case "north":
                 if (this.place.getCoordinate().y==maxY){
-                    return false;
+                    return "direction out of map's boundary";
                 }
                 this.place.getCoordinate().goNorth();
                 generateMonster();
+                this.place.printPlace();
             break;
             case "east":
                 if (this.place.getCoordinate().x==maxX){
-                    return false;
+                    return "direction out of map's boundary";
                 }
                 this.place.getCoordinate().goEast();
                 generateMonster();
+                this.place.printPlace();
             break;
 
             case "south":
                 if (this.place.getCoordinate().y==0){
-                    return false;
+                    return "direction out of map's boundary";
                 }
                 this.place.getCoordinate().goSouth();
                 generateMonster();
+                this.place.printPlace();
             break;
 
             case "west":
                 if (this.place.getCoordinate().x==0){
-                    return false;
+                    return "direction out of map's boundary";
                 }
+                nextCoord.goWest();
+                goToDirectionHelper(nextCoord);
+
                 this.place.getCoordinate().goWest();
                 generateMonster();
+                this.place.printPlace();
             break;
         }
-        return true;
+        return "You've moved to "+direction+" direction";
+    }
+
+    /**
+     * check if the next coordinate is already store inside the map data, and update if required
+     * if there is current coordinate exist in map data
+     * - remove current coordinate from map data
+     * - insert current place to map data
+     *
+     * if (there is next coordinate inside the map data)
+     * - update current place with the place inside the map data
+     * else
+     * - randomly generate place named wild area with random dangerate and monster
+     * @param nextCoord the next coordinate that the player wants to move to
+     * @author Guanming Ou
+     */
+    public void goToDirectionHelper(Coordinate nextCoord){
+        HashMap<Coordinate, Place> map = this.getMapData();
+        if (map.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+            map.remove(this.place.getCoordinate()); // remove current coordinate from map data
+            map.put(this.place.getCoordinate(), this.place); // insert current place to map data
+        }
+
+        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
+            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
+        else
+            generateMonster();
     }
 
     /**
