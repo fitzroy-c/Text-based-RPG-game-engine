@@ -16,6 +16,7 @@ import java.util.Map;
 // todo test for these functions in player, bag,item.class
 
 
+
 // todo weapon, considering onetime weapon first
 // i
 public class Item {
@@ -102,14 +103,16 @@ public class Item {
      * @author: Yixiang Yin
      **/
     public static void generateItemOnTheMapJson(String path){
-        HashMap<Coordinate, Item> hp = new HashMap<>();
+        HashMap<Coordinate, Bag> hp = new HashMap<>();
 
         List<Item> items = initializeItemBook();
         int x = 0;
         while (x<30){
             int y = 0;
             while (y<30){
-                hp.put(new Coordinate(x,y),items.get((x+y)%items.size()));
+                Bag b = new Bag(10000);
+                b.put(items.get((x+y)%items.size()));
+                hp.put(new Coordinate(x,y),b);
                 y++;
                 y++;
             }

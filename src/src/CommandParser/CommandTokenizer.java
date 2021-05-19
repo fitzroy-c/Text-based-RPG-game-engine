@@ -8,7 +8,7 @@ public class CommandTokenizer {
 
     private String _buffer;		//save text
     private Token currentToken;	//save token extracted from next()
-    private List<Item> ItemBook;
+    private List<Item> ItemBook= Item.initializeItemBook();
 
     /**
      *  Tokenizer class constructor
@@ -18,7 +18,6 @@ public class CommandTokenizer {
     public CommandTokenizer(String text) {
         _buffer = text;		// save input text (string)
         next();		        // extracts the first token.
-        ItemBook = Item.initializeItemBook();
     }
     /**
      * check if a given string is a valid item name in a list with all possible item
@@ -42,7 +41,7 @@ public class CommandTokenizer {
             return;
         }
 
-        //this allow user input only number. Bill
+        //user can input action index or corresponding text. (Bill)
         if (_buffer.matches("^[0-9]+$")) {
             currentToken = new Token(_buffer,Token.Type.ERROR);}
 
@@ -57,7 +56,7 @@ public class CommandTokenizer {
                 createString.append(_buffer.charAt(count));
                 count++;
             }
-            createString = new StringBuilder(createString.toString().toLowerCase());
+            createString = new StringBuilder(createString.toString());
 
             // SAVE <save | save game>
             if (createString.toString().equals("save")) {
@@ -109,7 +108,7 @@ public class CommandTokenizer {
             else if (createString.toString().equals("take") | createString.toString().equals("pick"))
                 currentToken = new Token(createString.toString(),Token.Type.TAKE_ACTION);
 
-            else if (createString.toString().equals("item")) // TODO: make checkHasItem, return true if this is a valid item name
+            else if (isItem(this.ItemBook,createString.toString())) // TODO: make checkHasItem, return true if this is a valid item name (done by Yixiang Yin)
                 currentToken = new Token(createString.toString(),Token.Type.ITEM);
 //            if (checkHasItem(createString))
 //                currentToken = new Token(createString,Token.Type.ITEM);
