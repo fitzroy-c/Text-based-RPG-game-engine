@@ -17,6 +17,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -24,12 +25,14 @@ public class Game {
     private static Player player;
     public static CommandTokenizer cmdTok;
     public Parser parser;
+    private List<Item> itemBook; // contain all possible items in the game(used for reference purposes)
 
     /**
      * initial pre-game
      */
-    public static void initialize() {
+    public void initialize() {
         player = new Player("");
+        itemBook = Item.initializeItems();
     }
 
 /*    Test
@@ -62,7 +65,8 @@ public class Game {
      */
 
     public static void main(String[] args) throws Exception {
-        initialize();
+        Game g = new Game();
+        g.initialize();
 
 //        StartOption start = new StartOption(player);
 //        start.printOut(start.option);

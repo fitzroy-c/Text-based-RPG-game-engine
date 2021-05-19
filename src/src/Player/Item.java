@@ -74,7 +74,7 @@ public class Item {
         return false;
     }
     /**
-     * initialize items
+     * initialize items as a reference for classifying items from user input
      * @author: Yixiang Yin
      **/
     public static List<Item> initializeItems(){
@@ -100,6 +100,7 @@ public class Item {
             System.out.println(i.name);
         }
     }
+
     public void print() {
         // TODO: need a function to print out all we have in this real location (name + description?)
     }
