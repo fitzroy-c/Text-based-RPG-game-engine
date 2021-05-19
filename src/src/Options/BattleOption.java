@@ -11,10 +11,10 @@ public class BattleOption extends BasicOption {
         this.option.add(new Option("retreat", "Retreat from here"));
         this.option.add(new Option("defence", "Defence"));
         this.option.add(new Option("pick", "Pick an item"));
-        this.option.add(new Option("north", "Go north"));
-        this.option.add(new Option("south", "Go south"));
-        this.option.add(new Option("east", "Go east"));
-        this.option.add(new Option("west", "Go west"));
+//        this.option.add(new Option("north", "Go north"));
+//        this.option.add(new Option("south", "Go south"));
+//        this.option.add(new Option("east", "Go east"));
+//        this.option.add(new Option("west", "Go west"));
     }
 
     public BattleOption(AbnormalPoint enemy,Player player) throws Exception {
@@ -34,6 +34,6 @@ public class BattleOption extends BasicOption {
         AbnormalPoint a = new AbnormalPoint();
         Monster m = new Monster(null, 12);
         BattleOption b = new BattleOption(m, p);
-        b.printOut(b.option);
+        b.printOut();
     }
 }

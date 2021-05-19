@@ -4,6 +4,7 @@ import AbnormalPoints.*;
 import Card.Element;
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
+import Options.Control;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -247,6 +248,9 @@ public class Player {
         }
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER){
+                ///change battleOption here bill
+                Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
+                ///
                 return string + "There is a monster: "+this.place.getAbnormalPoints().get(i).getName()+"\n";
             }
         }
