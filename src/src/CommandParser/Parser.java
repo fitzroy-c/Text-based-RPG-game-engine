@@ -5,6 +5,8 @@ import Player.Player;
 import Player.Bag;
 import Player.Item;
 
+import java.util.List;
+
 /**
  * Grammar:
  * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
@@ -294,6 +296,17 @@ public class Parser {
         }
 
         return true;
+    }
+
+    /**
+     * check if a given string is a valid item name in a list with all possible item
+     * @author: Yixiang Yin
+     **/
+    public static boolean isItem(List<Item> reference, String nameToBeCheck){
+        for (Item i: reference){
+            if (i.name.equals(nameToBeCheck)) return true;
+        }
+        return false;
     }
 
     public void callError() {
