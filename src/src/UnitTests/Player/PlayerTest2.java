@@ -90,10 +90,19 @@ public class PlayerTest2 {
 
         Boolean f2 = testBag.containsKey(a);
         Bag b2 = testBag.get(a);
+        int h2 = a.hashCode();
 
         Player player = new Player( "ddd");
+
         Boolean f3 = player.getMap_bagData().containsKey(a);
-        Bag b3 = player.extractBag(a, player.getMap_bagData());
+        Bag b3 = player.getMap_bagData().get(a);
+
+
+//        Bag b3 = player.extractBag(a.toString(), player.getMap_bagData());
+
+        HashMap<Coordinate, Bag> jsonBag = new HashMap<>();
+        jsonBag = player.map_bagData;
+
 
 
 

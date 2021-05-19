@@ -654,8 +654,6 @@ public class Player {
         return new Bag(100);
     }
 
-
-
     /**
      * check the player is alive or not
      * built to call before moving to next coordinate
