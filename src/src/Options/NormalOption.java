@@ -26,7 +26,7 @@ public class NormalOption extends BasicOption{
 
     }
 
-    public NormalOption(Player player) throws Exception {
+    public NormalOption(Player player) {
         buildMenu();
         showMenu();
         if (player.getHP() <= 0) {
