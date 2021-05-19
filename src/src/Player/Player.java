@@ -65,10 +65,15 @@ public class Player {
         this.bag = new Bag(pa.initBagWeight);
 //        this.setMapData(loadOriginalMapData());
 
+        // load json files
 //        this.setMap_npcMData(loadOriginalMerchantNPCs());
         this.setMap_npcTData(loadOriginalTalkNPCs());
         this.setMap_bagData(loadOriginalItems());
-        //TODO: add new coordinate
+        // get data from json to generate the initial place (if any)
+        this.place = new Place(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), "", 0,
+                exactBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), map_bagData),
+                exactBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate),
+                        this.getMap_npcTData(), this.getMap_npcMData()));
 //        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
     }
 
@@ -547,36 +552,34 @@ public class Player {
 //        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
 //            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
         int updated = 0;
-        List<AbnormalPoint> abpoints = new ArrayList<AbnormalPoint>();
-        Place nextPlace = new Place(nextCoord, "", 0,new Bag(100), abpoints);
-        if (npc_t.containsKey(nextCoord)) { // try to get npc merchant from json if any
-            abpoints.add(npc_m.get(nextCoord));
+        Place nextPlace = new Place(nextCoord, "", 0,new Bag(100), new ArrayList<>());
+        nextPlace.setAbnormalPoints(exactBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
+        if (! nextPlace.getAbnormalPoints().isEmpty()) // check if operation did get npc
             updated++;
-        }
-        if (npc_t.containsKey(nextCoord)){ // try to get npc talk from json if any
-            abpoints.add(npc_t.get(nextCoord));
-            updated++;
-        }
-        nextPlace.setAbnormalPoints(abpoints); // update player place's abnormal point
-
         if (bag.containsKey(nextCoord)){ // try and get bag from json if any
             nextPlace.setBag(bag.get(nextCoord)); // update player's place's storage bag
             updated++;
         }
 
         if (updated == 0){ // randomly generate place named wild area with random danger rate and monster
-            this.place.setDangerRate(random.nextInt(5));
+            nextPlace.setDescription("Wild area");
+            nextPlace.setDangerRate(random.nextInt(5));
             generateMonster();
         }
+        // update all information
+        this.setPlace(nextPlace);
+        this.setMap_npcTData(npc_t);
+        this.setMap_npcMData(npc_m);
+        this.setMap_bagData(bag);
     }
 
     /**
      * From a list of abnormalpoints, find the talk npc
      * @return NPC_TALK
+     * @author Guanming Ou
      */
     public NPC_TALK extractNPCTalk(){
        List<AbnormalPoint> alist = this.place.getAbnormalPoints();
-       NPC_TALK npc_t = null;
        for (AbnormalPoint a : alist){
            if (a.abnormalPointType == AbnormalPoint.AbnormalPointType.NPC_TALK)
                return (NPC_TALK) a;
@@ -587,16 +590,44 @@ public class Player {
     /**
      * From a list of abnormalpoints, find the npc merchant
      * @return NPC_MERCHANT
+     * @author Guanming Ou
      */
     public NPC_MERCHANT extractNPCMerchant(){
         List<AbnormalPoint> alist = this.place.getAbnormalPoints();
-        NPC_TALK npc_m = null;
         for (AbnormalPoint a : alist){
             if (a.abnormalPointType == AbnormalPoint.AbnormalPointType.NPC_MERCHANT)
                 return (NPC_MERCHANT) a;
         }
         return null;
     }
+
+    /**
+     * Extract npcs from hashmaps (load from json), and return as Abnormalpoint List
+     * @author Guanming Ou
+     */
+    public List<AbnormalPoint> exactBothNPCs(Coordinate c, HashMap<Coordinate, NPC_TALK> npc_t, HashMap<Coordinate, NPC_MERCHANT> npc_m){
+        List<AbnormalPoint> abpoints = new ArrayList<AbnormalPoint>();
+
+        if (npc_t.containsKey(c)) { // try to get npc merchant from json if any
+            abpoints.add(npc_m.get(c));
+        }
+        if (npc_t.containsKey(c)){ // try to get npc talk from json if any
+            abpoints.add(npc_t.get(c));
+        }
+        return abpoints;
+    }
+    /**
+     * Extract bag from hashmaps (load from json), and return a bag
+     * @author Guanming Ou
+     */
+    public Bag exactBothNPCs(Coordinate c, HashMap<Coordinate, Bag> bag){
+        if (bag.containsKey(c)) { // try to get npc merchant from json if any
+            return bag.get(c);
+        }
+        return new Bag(100);
+    }
+
+
 
     /**
      * check the player is alive or not
@@ -1027,6 +1058,18 @@ public class Player {
 
     public void setMap_bagData(HashMap<Coordinate, Bag> map_bagData) {
         this.map_bagData = map_bagData;
+    }
+
+    public HashMap<Coordinate, NPC_TALK> getMap_npcTData() {
+        return map_npcTData;
+    }
+
+    public HashMap<Coordinate, NPC_MERCHANT> getMap_npcMData() {
+        return map_npcMData;
+    }
+
+    public HashMap<Coordinate, Bag> getMap_bagData() {
+        return map_bagData;
     }
 
     //    public void setMapData(HashMap<Coordinate, Place> mapData) {

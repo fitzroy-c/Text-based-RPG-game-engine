@@ -21,8 +21,6 @@ public class Place {
     private Coordinate coordinate;
     private String description;
     private int dangerRate;                     // calculate the chance we meet a monster
-    private NPC_TALK npc_t;
-    private NPC_MERCHANT npc_m;
     private Bag bag;                            // the bag which contains item inside a room
     private List<AbnormalPoint> abnormalPoints; // may have npc and monster
 
@@ -112,11 +110,12 @@ public class Place {
      * - abnormalPoints
      * @author Guanming Ou
      */
-    public String printPlace(){
-        return "Coordinate:"+this.getCoordinate()+"\n"+
+    public void printPlace(){
+        String n = "Coordinate:"+this.getCoordinate()+"\n"+
                 "Danger rate:"+this.getDangerRate()+"\n"+
                 "Items: "+this.getBag().showPlaceBag()+"\n"+
                 "Monster | NPC: "+this.printAbnormalPoints() +"\n";
+        System.out.println(n);
     }
 
     /**

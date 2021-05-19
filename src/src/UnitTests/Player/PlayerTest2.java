@@ -105,7 +105,7 @@ public class PlayerTest2 {
         Bag bag04 = new Bag(100); // has 1 Greater Healing Potion
         bag04.put(c4);
 
-
+        testBag.put(new Coordinate(0,0), bag01);
         testBag.put(new Coordinate(0,1), bag01);
         testBag.put(new Coordinate(0,2), bag02);
         testBag.put(new Coordinate(0,3), bag01);

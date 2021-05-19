@@ -80,10 +80,6 @@ public class Game {
 
 
         //This is the second version
-
-
-
-
     }
 
     /**
