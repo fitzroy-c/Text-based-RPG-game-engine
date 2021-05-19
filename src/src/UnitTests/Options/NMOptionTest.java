@@ -16,7 +16,7 @@ public class NMOptionTest {
     public static CommandTokenizer cmdTok;
 
     static private void initialize() {
-        player = new Player("test");
+//        player = new Player("test");
         MonsterAttributes ma = new MonsterAttributes("tt","tt",100,10,12,12,12,12,
                 12,12,12,12,12, Element.Normal);
         Monster monster = new Monster(ma, 5);
@@ -28,16 +28,19 @@ public class NMOptionTest {
     }
 
     public static void main(String[] args) throws Exception {
-        initialize();
+//        initialize();
         Scanner s=new Scanner(System.in);
         System.out.print("Welcome to the world!"+"\n");
         System.out.println("What would you like to do?");
         StartOption start = new StartOption();
         start.printOut();
         while(true) {
+            player = new Player("");
+            initialize();
             int i = start.getInput(s.next());
             switch (i){
                 case 0:
+                    Control.death=false;
                     System.out.println("what is your name?");
                     String name = s.next();
                     player.setName(name);
@@ -62,6 +65,8 @@ public class NMOptionTest {
         boolean continueOn = true;
         Scanner s = new Scanner(System.in);
         while (continueOn){
+            if (Control.death)
+                return;
             BasicOption current = c.currentOption;
             String out = s.nextLine();
             System.out.println(out);

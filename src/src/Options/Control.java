@@ -15,6 +15,7 @@ public class Control extends BasicOption {
     static List<AbnormalPoint> npcs = new ArrayList<>();
     static boolean isMonster = false;
     static boolean isNpc = false;
+    static public boolean death = false;
 
     public Control(Player player) throws Exception {
         current = new AbnormalPoint();
@@ -69,5 +70,9 @@ public class Control extends BasicOption {
     static public void addNPCs(AbnormalPoint npc) {
         npcs.add(npc);
         isNpc = true;
+    }
+
+    static public void setDeath(boolean b) {
+        death = b;
     }
 }
