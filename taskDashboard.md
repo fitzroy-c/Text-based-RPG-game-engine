@@ -1,6 +1,8 @@
 
 Tasks:
-make buy functional 
+test if buy command is functioning
+test if pick command is functioning
+remove bag in place? (remove redundancy) 
 show the item in the place where player is in : completed by Yixiang Yin
 
 
