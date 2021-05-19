@@ -178,6 +178,14 @@ public class Bag {
         }
         System.out.println("-------------End--------------");
     }
+    public void showPlaceBag2() {
+        System.out.println("-----------Items on the floor-----------");
+        for (Item i: this.itemList){
+            System.out.println(i.name+" : "+i.getDescription());
+            System.out.println();
+        }
+        System.out.println("-------------End--------------");
+    }
 
     /**
      * show the content in the place's bag (in different format)

@@ -5,8 +5,7 @@ import Card.Element;
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
 import Options.Control;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
@@ -40,6 +39,7 @@ public class Player {
     HashMap<Coordinate, NPC_TALK> map_npcTData;
     HashMap<Coordinate, NPC_MERCHANT> map_npcMData;
     HashMap<Coordinate, Bag> map_bagData;
+//    HashMap<Coordinate, Bag> map_bagData;
 
     /**
      * Some variables
@@ -225,14 +225,50 @@ public class Player {
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
-        final Type LIST_TYPE = new TypeToken<HashMap<Coordinate, Bag>>() {}.getType();
+//        final Type LIST_TYPE = new TypeToken<HashMap<Coordinate, Bag>>() {}.getType();
 
         try{
             jsonReader = new JsonReader(new FileReader(file));
+
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return gson.fromJson(jsonReader,LIST_TYPE);
+
+        JsonObject jo = gson.fromJson(jsonReader, JsonObject.class);
+        HashMap<Coordinate, Bag> hp = new HashMap<>();
+
+        for (Map.Entry<String, JsonElement> entry : jo.entrySet()) {
+            String coor = entry.getKey();
+            JsonObject itemData = entry.getValue().getAsJsonObject();
+            String cw = String.valueOf(itemData.get("currentWeight"));
+            String mw = String.valueOf(itemData.get("maxWeight"));
+
+
+            JsonArray sProps = itemData.get("itemList").getAsJsonArray();
+            List<Item> items = new LinkedList<Item>();
+            Item item = null;
+            for (JsonElement je : sProps){
+                JsonObject itemJO = je.getAsJsonObject();
+                String id = String.valueOf(itemJO.get("id"));
+                String type = String.valueOf(itemJO.get("type"));
+                String name = String.valueOf(itemJO.get("name"));
+                String description = String.valueOf(itemJO.get("description"));
+                JsonObject props = itemJO.get("properties").getAsJsonObject();
+                Map<String, Integer> properties = new HashMap<>();
+                for (Map.Entry<String, JsonElement> entry2 : props.entrySet()) {
+                    Integer propValue = entry2.getValue().getAsInt();
+                    properties.put(entry2.getKey(), propValue);
+                }
+                 item = new Item(id,type,name,description,properties);
+                items.add(item);
+            }
+
+
+            hp.put(Coordinate.fromStringToCoordinate(coor),new Bag(Integer.parseInt(cw),Integer.parseInt(mw), items));
+
+        }
+
+            return hp;
     }
 
     /**
