@@ -218,56 +218,10 @@ public class Player {
 
     /**
      * load original items data from json_files/original_data/
-     * @author Guanming Ou and significantly modified by Yixiang Yin
+     * @author Guanming Ou
      */
     public static HashMap<Coordinate, Bag> loadOriginalItems() {
-        File file = new File("json_files/original_data/InitializedItem.json");
-
-        Gson gson = new Gson();
-        JsonReader jsonReader = null;
-
-        try{
-            jsonReader = new JsonReader(new FileReader(file));
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        JsonObject jo = gson.fromJson(jsonReader, JsonObject.class);
-        HashMap<Coordinate, Bag> hp = new HashMap<>();
-
-        for (Map.Entry<String, JsonElement> entry : jo.entrySet()) {
-            String coor = entry.getKey();
-            JsonObject itemData = entry.getValue().getAsJsonObject();
-            String cw = String.valueOf(itemData.get("currentWeight"));
-            String mw = String.valueOf(itemData.get("maxWeight"));
-
-
-            JsonArray sProps = itemData.get("itemList").getAsJsonArray();
-            List<Item> items = new LinkedList<Item>();
-            Item item = null;
-            for (JsonElement je : sProps){
-                JsonObject itemJO = je.getAsJsonObject();
-                String id = String.valueOf(itemJO.get("id"));
-                String type = String.valueOf(itemJO.get("type"));
-                String name = String.valueOf(itemJO.get("name"));
-                String description = String.valueOf(itemJO.get("description"));
-                JsonObject props = itemJO.get("properties").getAsJsonObject();
-                Map<String, Integer> properties = new HashMap<>();
-                for (Map.Entry<String, JsonElement> entry2 : props.entrySet()) {
-                    Integer propValue = entry2.getValue().getAsInt();
-                    properties.put(entry2.getKey(), propValue);
-                }
-                 item = new Item(id,type,name,description,properties);
-                items.add(item);
-            }
-
-
-            hp.put(Coordinate.fromStringToCoordinate(coor),new Bag(Integer.parseInt(cw),Integer.parseInt(mw), items));
-
-        }
-
-            return hp;
+            return Item.loadOriginalItems();
     }
 
     /**
