@@ -4,6 +4,7 @@ import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
 import Options.BasicOption;
 import Options.Control;
+import Options.PlayerOption;
 import Options.StartOption;
 import Player.Player;
 import Player.Item;
@@ -67,6 +68,7 @@ public class Game {
         System.out.println("What would you like to do?");
         StartOption start = new StartOption();
         start.printOut();
+        while(true) {
         int i = start.getInput(s.next());
         switch (i){
             case 0:
@@ -81,7 +83,9 @@ public class Game {
 //                gameInteractionLoopParser(player);
                 break;
             case 1:
-                System.out.println("here is all player available");
+                System.out.println("Here is all the players available");
+                PlayerOption playerOption = new PlayerOption();
+                playerOption.printOut();
                 while (true) {
                     ///test purpose
                 }
@@ -90,6 +94,7 @@ public class Game {
                 System.exit(0);
             default:
                 System.out.println("I don't understand this command");
+            }
         }
 //        gameInteractionLoop(player);
     }
