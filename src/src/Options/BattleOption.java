@@ -20,13 +20,15 @@ public class BattleOption extends BasicOption {
     }
 
     public BattleOption(AbnormalPoint enemy,Player player) throws Exception {
-        buildMenu();
-        showMenu();
         if (player.getHP() <= 0) {
-            System.err.println("YOU DIE");
-            System.out.println("Start again? (Y/N)");
+            System.out.println("YOU DIE");
+            System.out.println("What would you like to do?");
+            StartOption start = new StartOption();
+            start.printOut();
+            Control.death=true;
         } else {
-
+            buildMenu();
+            showMenu();
         }
     }
 

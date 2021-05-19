@@ -22,7 +22,7 @@ public class Game {
      * initial pre-game
      */
     public void initialize() {
-        player = new Player("");
+
         itemBook = Item.initializeItemBook();
     }
 
@@ -69,9 +69,11 @@ public class Game {
         StartOption start = new StartOption();
         start.printOut();
         while(true) {
+        player = new Player("");
         int i = start.getInput(s.next());
         switch (i){
             case 0:
+                Control.death=false;
                 System.out.println("what is your name?");
                 String name = s.next();
                 player.setName(name);
@@ -112,6 +114,8 @@ public class Game {
 //        Monster monster = new Monster(mo, 12);
         Scanner s = new Scanner(System.in);
         while (continueOn){
+            if (Control.death)
+                return;
             BasicOption current = c.currentOption;
             String out = s.nextLine();
             System.out.println(out);
