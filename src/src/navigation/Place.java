@@ -1,6 +1,8 @@
 package navigation;
 
 import AbnormalPoints.AbnormalPoint;
+import AbnormalPoints.NPC_MERCHANT;
+import AbnormalPoints.NPC_TALK;
 import Player.Bag;
 import Player.Item;
 
@@ -19,6 +21,8 @@ public class Place {
     private Coordinate coordinate;
     private String description;
     private int dangerRate;                     // calculate the chance we meet a monster
+    private NPC_TALK npc_t;
+    private NPC_MERCHANT npc_m;
     private Bag bag;                            // the bag which contains item inside a room
     private List<AbnormalPoint> abnormalPoints; // may have npc and monster
 
@@ -111,7 +115,6 @@ public class Place {
     public String printPlace(){
         return "Coordinate:"+this.getCoordinate()+"\n"+
                 "Danger rate:"+this.getDangerRate()+"\n"+
-                this.getDescription()+"\n"+
                 "Items: "+this.getBag().showPlaceBag()+"\n"+
                 "Monster | NPC: "+this.printAbnormalPoints() +"\n";
     }
@@ -170,4 +173,8 @@ public class Place {
     }
 
     public void setBag(Bag bag) { this.bag = bag; }
+
+    public void setAbnormalPoints(List<AbnormalPoint> abnormalPoints) {
+        this.abnormalPoints = abnormalPoints;
+    }
 }

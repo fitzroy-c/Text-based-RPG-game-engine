@@ -40,7 +40,7 @@ public class GameTest {
         t.next();
         assertEquals("case sensitive","Mushroom", t.current().token());
         assertEquals("wrong token type", t.current().type(), Token.Type.ITEM);
-        // recommend do a search in the item.json, if found, give item type
+        //todo recommend do a search in the item.json, if found, give item type
 
     }
 //    @Test(timeout=1000)
