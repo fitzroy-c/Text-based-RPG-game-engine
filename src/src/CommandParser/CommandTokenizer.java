@@ -26,6 +26,11 @@ public class CommandTokenizer {
             currentToken = null;	// if there's no string left, set currentToken null and return
             return;
         }
+
+        //this allow user input only number. Bill
+        if (_buffer.matches("^[0-9]+$")) {
+            currentToken = new Token(_buffer,Token.Type.ERROR);}
+
         char firstChar = _buffer.charAt(0);
         StringBuilder createString = new StringBuilder();
         StringBuilder createNextString = new StringBuilder();

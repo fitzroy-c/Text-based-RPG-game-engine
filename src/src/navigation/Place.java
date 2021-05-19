@@ -1,6 +1,8 @@
 package navigation;
 
 import AbnormalPoints.AbnormalPoint;
+import AbnormalPoints.NPC_MERCHANT;
+import AbnormalPoints.NPC_TALK;
 import Player.Bag;
 import Player.Item;
 
@@ -108,12 +110,12 @@ public class Place {
      * - abnormalPoints
      * @author Guanming Ou
      */
-    public String printPlace(){
-        return "Coordinate:"+this.getCoordinate()+"\n"+
+    public void printPlace(){
+        String n = "Coordinate:"+this.getCoordinate()+"\n"+
                 "Danger rate:"+this.getDangerRate()+"\n"+
-                this.getDescription()+"\n"+
                 "Items: "+this.getBag().showPlaceBag()+"\n"+
                 "Monster | NPC: "+this.printAbnormalPoints() +"\n";
+        System.out.println(n);
     }
 
     /**
@@ -170,4 +172,8 @@ public class Place {
     }
 
     public void setBag(Bag bag) { this.bag = bag; }
+
+    public void setAbnormalPoints(List<AbnormalPoint> abnormalPoints) {
+        this.abnormalPoints = abnormalPoints;
+    }
 }

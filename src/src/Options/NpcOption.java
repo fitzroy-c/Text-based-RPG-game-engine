@@ -14,7 +14,7 @@ public class NpcOption extends BasicOption{
 
     public NpcOption(AbnormalPoint npc, Player player) {
         buildMenu();
-        showMenu(this.option);
+        showMenu();
         //...//
     }
 

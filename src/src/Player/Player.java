@@ -4,6 +4,7 @@ import AbnormalPoints.*;
 import Card.Element;
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
+import Options.Control;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -14,10 +15,7 @@ import navigation.Place;
 
 import java.io.*;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * similar to a extended class from entity
@@ -38,7 +36,10 @@ public class Player {
     private double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
-    HashMap<Coordinate, Place> mapData;
+//    HashMap<Coordinate, Place> mapData;
+    HashMap<Coordinate, NPC_TALK> map_npcTData;
+    HashMap<Coordinate, NPC_MERCHANT> map_npcMData;
+    HashMap<Coordinate, Bag> map_bagData;
 
     /**
      * Some variables
@@ -63,8 +64,18 @@ public class Player {
         this.criticalChance = pa.initCriticalChance;
         this.maxCriticalChance = pa.initMaxCriticalChance;
         this.bag = new Bag(pa.initBagWeight);
-        this.setMapData(loadOriginalMapData());
-        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
+//        this.setMapData(loadOriginalMapData());
+
+        // load json files
+//        this.setMap_npcMData(loadOriginalMerchantNPCs());
+        this.setMap_npcTData(loadOriginalTalkNPCs());
+        this.setMap_bagData(loadOriginalItems());
+        // get data from json to generate the initial place (if any)
+        this.place = new Place(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), "", 0,
+                exactBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), map_bagData),
+                exactBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate),
+                        this.getMap_npcTData(), this.getMap_npcMData()));
+//        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
     }
 
     /**
@@ -106,18 +117,58 @@ public class Player {
     }
 
     /**
-     * Not used in normal gave, but is used for updating items in original json file
+     * Save item as json
      * @author Guanming Ou
      */
-    public void saveMap(){
+    public void saveItem(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter("json_files/original_data/map.json")){ // name json file with player's name
-            gson.toJson(this.mapData, fw);
+        try(FileWriter fw = new FileWriter("json_files/original_data/Items.json")){ // name json file with player's name
+            gson.toJson(this.map_bagData, fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    /**
+     * Save talk npc as json
+     * @author Guanming Ou
+     */
+    public void saveTALKNPC(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/TalkNPC.json")){ // name json file with player's name
+            gson.toJson(this.map_npcTData, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
+     * Save merchant npc as json
+     * @author Guanming Ou
+     */
+    public void saveMERCHANTNPC(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/MerchantNPC.json")){ // name json file with player's name
+            gson.toJson(this.map_npcMData, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+//    /**
+//     * Not used in normal gave, but is used for updating items in original json file
+//     * @author Guanming Ou
+//     */
+//    public void saveMap(){
+//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+//
+//        try(FileWriter fw = new FileWriter("json_files/original_data/map.json")){ // name json file with player's name
+//            gson.toJson(this.mapData, fw);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * Not used in normal game, but is used for updating player attributes in original data json file
@@ -160,11 +211,11 @@ public class Player {
     }
 
     /**
-     * load original map data from json_files/original_data/
+     * load original items data from json_files/original_data/
      * @author Guanming Ou
      */
-    public static HashMap<Coordinate, Place> loadOriginalMapData() {
-        File file = new File("json_files/original_data/map.json");
+    public static HashMap<Coordinate, Bag> loadOriginalItems() {
+        File file = new File("json_files/original_data/Items.json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
@@ -176,6 +227,61 @@ public class Player {
         }
         return gson.fromJson(jsonReader, HashMap.class);
     }
+
+    /**
+     * load original talk npc data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, NPC_TALK> loadOriginalTalkNPCs() {
+        File file = new File("json_files/original_data/TalkNPC.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, HashMap.class);
+    }
+
+    /**
+     * load original merchant npc data from json_files/original_data/
+     * @author Guanming Ou
+     */
+    public static HashMap<Coordinate, NPC_MERCHANT> loadOriginalMerchantNPCs() {
+        File file = new File("json_files/original_data/MerchantNPC.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        try{
+            jsonReader = new JsonReader(new FileReader(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.fromJson(jsonReader, HashMap.class);
+    }
+
+//
+//    /**
+//     * load original map data from json_files/original_data/
+//     * @author Guanming Ou
+//     */
+//    public static HashMap<Coordinate, Place> loadOriginalMapData() {
+//        File file = new File("json_files/original_data/map.json");
+//
+//        Gson gson = new Gson();
+//        JsonReader jsonReader = null;
+//
+//        try{
+//            jsonReader = new JsonReader(new FileReader(file));
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return gson.fromJson(jsonReader, HashMap.class);
+//    }
 
     /**
      * Given data from orginal_data, search hashmap's 'place' by coordinate keys
@@ -247,10 +353,36 @@ public class Player {
         }
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER){
+                ///change battleOption here bill
+                Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
+                ///this give monster list to Option
+                Control.addMonsters(this.place.getAbnormalPoints().get(i));
+                ///
                 return string + "There is a monster: "+this.place.getAbnormalPoints().get(i).getName()+"\n";
             }
         }
         return string + "There is no monster here.\n";
+    }
+
+    /**
+     * this method here for the menu
+     * to check if current location have
+     * NPCs
+     * @author Zihong Yuan
+     */
+    public void checkNPCs() {
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            AbnormalPoint.AbnormalPointType current =  this.place.getAbnormalPoints().get(i).abnormalPointType;
+
+            if (current == AbnormalPoint.AbnormalPointType.NPC_TALK
+                || current == AbnormalPoint.AbnormalPointType.NPC_MERCHANT){
+                ///change battleOption here bill
+                //Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
+                ///this give NPC list to Option
+                Control.addNPCs(this.place.getAbnormalPoints().get(i));
+                ///
+            }
+        }
     }
 
     /**
@@ -347,9 +479,9 @@ public class Player {
      * @return true: successfully droped item, false: item not exist.
      * @author: Guanming Ou
      */
-    public boolean dropItemFromBag(String name){
+    public boolean dropItemFromBag(String name) {
         Item item = this.bag.getItemByName(name);
-        if (item == null){
+        if (item == null) {
             return false;
         } else {
             this.place.getBag().put(item);
@@ -359,17 +491,15 @@ public class Player {
     }
 
     /**
-     * Update player's placement given a direction
+     * Update player's place given a direction
      *
      * maxX,maxY describe the size of the map (from [0][0]to[maxX][maxY])
      * @param direction north | east | south | west
      * @return true: update successfully, false: update unsuccessfully
-     * @author Yixiang Yin, modified by yitao chen
+     * @author Yixiang Yin, modified by yitao chen and Guanming Ou
      */
 
     public String goToDirection(String direction){
-        //TODO need to update the place stat everytime
-        //TODO these 2 range description should be global limits
         int maxX = 30;
         int maxY = 30;
         Coordinate nextCoord = this.place.getCoordinate();
@@ -379,16 +509,16 @@ public class Player {
                 if (this.place.getCoordinate().y==maxY){
                     return "direction out of map's boundary";
                 }
-                this.place.getCoordinate().goNorth();
-                generateMonster();
+                nextCoord.goNorth();
+                goToDirectionHelper(nextCoord);
                 this.place.printPlace();
             break;
             case "east":
                 if (this.place.getCoordinate().x==maxX){
                     return "direction out of map's boundary";
                 }
-                this.place.getCoordinate().goEast();
-                generateMonster();
+                nextCoord.goEast();
+                goToDirectionHelper(nextCoord);
                 this.place.printPlace();
             break;
 
@@ -396,8 +526,8 @@ public class Player {
                 if (this.place.getCoordinate().y==0){
                     return "direction out of map's boundary";
                 }
-                this.place.getCoordinate().goSouth();
-                generateMonster();
+                nextCoord.goSouth();
+                goToDirectionHelper(nextCoord);
                 this.place.printPlace();
             break;
 
@@ -407,9 +537,6 @@ public class Player {
                 }
                 nextCoord.goWest();
                 goToDirectionHelper(nextCoord);
-
-                this.place.getCoordinate().goWest();
-                generateMonster();
                 this.place.printPlace();
             break;
         }
@@ -418,29 +545,116 @@ public class Player {
 
     /**
      * check if the next coordinate is already store inside the map data, and update if required
-     * if there is current coordinate exist in map data
-     * - remove current coordinate from map data
-     * - insert current place to map data
-     *
-     * if (there is next coordinate inside the map data)
-     * - update current place with the place inside the map data
-     * else
-     * - randomly generate place named wild area with random dangerate and monster
      * @param nextCoord the next coordinate that the player wants to move to
      * @author Guanming Ou
      */
     public void goToDirectionHelper(Coordinate nextCoord){
-        HashMap<Coordinate, Place> map = this.getMapData();
-        if (map.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-            map.remove(this.place.getCoordinate()); // remove current coordinate from map data
-            map.put(this.place.getCoordinate(), this.place); // insert current place to map data
+//        HashMap<Coordinate, Place> map = this.getMapData();
+        HashMap<Coordinate, NPC_TALK> npc_t = this.map_npcTData;
+        HashMap<Coordinate, NPC_MERCHANT> npc_m = this.map_npcMData;
+        HashMap<Coordinate, Bag> bag = this.map_bagData;
+        // update the npc merchant json of current coordinate
+//        if (npc_m.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+//            NPC_MERCHANT npcm = extractNPCMerchant(); // find npc talk inside the abnormal point list
+//            if (npcm != null){
+//                npc_m.remove(this.place.getCoordinate()); // remove current coordinate from map data
+//                npc_m.put(this.place.getCoordinate(), npcm); // insert current place to map data (one npc talk only)
+//            }
+//        }
+        // update the npc talk json of current coordinate
+        if (npc_t.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+            NPC_TALK npct = extractNPCTalk(); // find npc talk inside the abnormal point list
+            if (npct != null){
+                npc_t.remove(this.place.getCoordinate()); // remove current coordinate from map data
+                npc_t.put(this.place.getCoordinate(), npct); // insert current place to map data (one npc talk only)
+            }
+        }
+        // update the bag json of current coordinate
+        if (bag.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+            bag.remove(this.place.getCoordinate()); // remove current coordinate from map data
+            bag.put(this.place.getCoordinate(), this.place.getBag()); // insert current place to map data
         }
 
-        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
-            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
-        else
+//        // update next coordinate inside json
+//        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
+//            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
+        int updated = 0;
+        Place nextPlace = new Place(nextCoord, "", 0,new Bag(100), new ArrayList<>());
+        nextPlace.setAbnormalPoints(exactBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
+        if (! nextPlace.getAbnormalPoints().isEmpty()) // check if operation did get npc
+            updated++;
+        if (bag.containsKey(nextCoord)){ // try and get bag from json if any
+            nextPlace.setBag(bag.get(nextCoord)); // update player's place's storage bag
+            updated++;
+        }
+
+        if (updated == 0){ // randomly generate place named wild area with random danger rate and monster
+            nextPlace.setDescription("Wild area");
+            nextPlace.setDangerRate(random.nextInt(5));
             generateMonster();
+        }
+        // update all information
+        this.setPlace(nextPlace);
+        this.setMap_npcTData(npc_t);
+        this.setMap_npcMData(npc_m);
+        this.setMap_bagData(bag);
     }
+
+    /**
+     * From a list of abnormalpoints, find the talk npc
+     * @return NPC_TALK
+     * @author Guanming Ou
+     */
+    public NPC_TALK extractNPCTalk(){
+       List<AbnormalPoint> alist = this.place.getAbnormalPoints();
+       for (AbnormalPoint a : alist){
+           if (a.abnormalPointType == AbnormalPoint.AbnormalPointType.NPC_TALK)
+               return (NPC_TALK) a;
+       }
+       return null;
+    }
+
+    /**
+     * From a list of abnormalpoints, find the npc merchant
+     * @return NPC_MERCHANT
+     * @author Guanming Ou
+     */
+    public NPC_MERCHANT extractNPCMerchant(){
+        List<AbnormalPoint> alist = this.place.getAbnormalPoints();
+        for (AbnormalPoint a : alist){
+            if (a.abnormalPointType == AbnormalPoint.AbnormalPointType.NPC_MERCHANT)
+                return (NPC_MERCHANT) a;
+        }
+        return null;
+    }
+
+    /**
+     * Extract npcs from hashmaps (load from json), and return as Abnormalpoint List
+     * @author Guanming Ou
+     */
+    public List<AbnormalPoint> exactBothNPCs(Coordinate c, HashMap<Coordinate, NPC_TALK> npc_t, HashMap<Coordinate, NPC_MERCHANT> npc_m){
+        List<AbnormalPoint> abpoints = new ArrayList<AbnormalPoint>();
+
+        if (npc_t.containsKey(c)) { // try to get npc merchant from json if any
+            abpoints.add(npc_m.get(c));
+        }
+        if (npc_t.containsKey(c)){ // try to get npc talk from json if any
+            abpoints.add(npc_t.get(c));
+        }
+        return abpoints;
+    }
+    /**
+     * Extract bag from hashmaps (load from json), and return a bag
+     * @author Guanming Ou
+     */
+    public Bag exactBothNPCs(Coordinate c, HashMap<Coordinate, Bag> bag){
+        if (bag.containsKey(c)) { // try to get npc merchant from json if any
+            return bag.get(c);
+        }
+        return new Bag(100);
+    }
+
+
 
     /**
      * check the player is alive or not
@@ -861,13 +1075,37 @@ public class Player {
         this.place = place;
     }
 
-    public void setMapData(HashMap<Coordinate, Place> mapData) {
-        this.mapData = mapData;
+    public void setMap_npcTData(HashMap<Coordinate, NPC_TALK> map_npcTData) {
+        this.map_npcTData = map_npcTData;
     }
 
-    public HashMap<Coordinate, Place> getMapData() {
-        return mapData;
+    public void setMap_npcMData(HashMap<Coordinate, NPC_MERCHANT> map_npcMData) {
+        this.map_npcMData = map_npcMData;
     }
+
+    public void setMap_bagData(HashMap<Coordinate, Bag> map_bagData) {
+        this.map_bagData = map_bagData;
+    }
+
+    public HashMap<Coordinate, NPC_TALK> getMap_npcTData() {
+        return map_npcTData;
+    }
+
+    public HashMap<Coordinate, NPC_MERCHANT> getMap_npcMData() {
+        return map_npcMData;
+    }
+
+    public HashMap<Coordinate, Bag> getMap_bagData() {
+        return map_bagData;
+    }
+
+    //    public void setMapData(HashMap<Coordinate, Place> mapData) {
+//        this.mapData = mapData;
+//    }
+//
+//    public HashMap<Coordinate, Place> getMapData() {
+//        return mapData;
+//    }
 
     /**
      * This is a subclass for enabling edit player's origianl generate atrributes via json
