@@ -78,6 +78,12 @@ public class Player {
 //        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
     }
 
+    public static Bag getForHashMap(Coordinate c , HashMap<Coordinate,Bag> hp){
+        for (Coordinate coord: hp.keySet()){
+            if (coord.equals(c)) return hp.get(coord);
+        }
+        return null;
+    }
     /**
      * call once each time you attack
      * calculate player's new attribute as level increases, given a player
@@ -219,13 +225,14 @@ public class Player {
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
+        final Type LIST_TYPE = new TypeToken<HashMap<Coordinate, Bag>>() {}.getType();
 
         try{
             jsonReader = new JsonReader(new FileReader(file));
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return gson.fromJson(jsonReader, HashMap.class);
+        return gson.fromJson(jsonReader,LIST_TYPE);
     }
 
     /**
