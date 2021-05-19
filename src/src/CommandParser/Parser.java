@@ -105,11 +105,8 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
                 System.out.println(player.checkMonster());
-                System.out.println(player.getPlace().getCoordinate().equals(new Coordinate(0,0)));
-                System.out.println(player.getPlace().getClass());
-                System.out.println(player.getPlace().getCoordinate().getClass());
-                System.out.println(Player.getForHashMap(player.getPlace().getCoordinate(),player.getMap_bagData()));
-                player.getMap_bagData().get(player.getPlace().getCoordinate()).showPlaceBag();
+                if (player.getMap_bagData().get(player.getPlace().getCoordinate())==null) System.out.println("Nothing on the floor");
+                else player.getMap_bagData().get(player.getPlace().getCoordinate()).showPlaceBag2();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
                 System.out.println(player.checkMonster());

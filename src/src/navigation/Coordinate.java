@@ -86,6 +86,12 @@ public class Coordinate {
         return result;
     }
 
+    public static Coordinate fromStringToCoordinate(String string){
+        String[] parts = string.split(",");
+        int x = Integer.parseInt(parts[0]);
+        int y = Integer.parseInt(parts[1]);
+        return new Coordinate(x, y);
+    }
     @Override
     public String toString() {
         return x + "," + y;

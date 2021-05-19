@@ -5,8 +5,7 @@ import Card.Element;
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
 import Options.Control;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
@@ -40,6 +39,7 @@ public class Player {
     HashMap<Coordinate, NPC_TALK> map_npcTData;
     HashMap<Coordinate, NPC_MERCHANT> map_npcMData;
     HashMap<Coordinate, Bag> map_bagData;
+//    HashMap<Coordinate, Bag> map_bagData;
 
     /**
      * Some variables
@@ -221,18 +221,7 @@ public class Player {
      * @author Guanming Ou
      */
     public static HashMap<Coordinate, Bag> loadOriginalItems() {
-        File file = new File("json_files/original_data/InitializedItem.json");
-
-        Gson gson = new Gson();
-        JsonReader jsonReader = null;
-        final Type LIST_TYPE = new TypeToken<HashMap<Coordinate, Bag>>() {}.getType();
-
-        try{
-            jsonReader = new JsonReader(new FileReader(file));
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return gson.fromJson(jsonReader,LIST_TYPE);
+            return Item.loadOriginalItems();
     }
 
     /**
