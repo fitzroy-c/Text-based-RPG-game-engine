@@ -41,7 +41,7 @@ public class CommandTokenizer {
             return;
         }
 
-        //this allow user input only number. Bill
+        //user can input action index or corresponding text. (Bill)
         if (_buffer.matches("^[0-9]+$")) {
             currentToken = new Token(_buffer,Token.Type.ERROR);}
 
