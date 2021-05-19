@@ -64,14 +64,19 @@ public class Coordinate {
     }
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        Coordinate target = (Coordinate) o;
+//
+//        if (x != target.x) return false;
+//        if (y != target.y) return false;
+//        return true;
+                Coordinate target = (Coordinate) o;
 
-        Coordinate target = (Coordinate) o;
+        if (this.x==target.x | this.y == target.y) return true;
+        return false;
 
-        if (x != target.x) return false;
-        if (y != target.y) return false;
-        return true;
     }
 
     @Override
