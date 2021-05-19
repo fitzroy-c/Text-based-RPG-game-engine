@@ -5,7 +5,20 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 
-public class JsonTest {
+/**
+ *
+ * The class is build to testify the TalkNPC.json file to see if it suits the hashmap<Coordinate,npc_Talk>
+ * reference: https://www.cnblogs.com/myseries/p/10574184.html shows the basic usage of the fastjson lib
+ *
+ * I tried to build a jsonSchema once to do the same function, but I have trouble describing the tree structure.
+ * I changed the way to operate on the string (from the very beginning)
+ *
+ * @author yitao chen
+ */
+
+
+
+public class JsonTestNpcTalk {
 
     private static final Set<String> nullableParametersSet1 = new HashSet<>();
     private static final Set<String> optionalParametersSet1 = new HashSet<>();
@@ -72,9 +85,9 @@ public class JsonTest {
     public static String txt2String(File file) {
         String result = "";
         try {
-            BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
+            BufferedReader br = new BufferedReader(new FileReader(file));
             String s = null;
-            while ((s = br.readLine()) != null) {//使用readLine方法，一次读一行
+            while ((s = br.readLine()) != null) {//readLine  line by line
                 result = result + "\n" + s;
             }
             br.close();
@@ -84,6 +97,58 @@ public class JsonTest {
         return result;
     }
 
+    private static void checkDialog(JSONObject jsonObject) throws JSONException{
+        Set<String> dialogParams = jsonObject.keySet();
+
+        for (String param : dialogParams) {
+            if (!nullableParametersSet5.contains(param) & !optionalParametersSet5.contains(param)) {
+                throw new JSONException("bad param: " + param);
+            } else {
+                for (String para : nullableParametersSet5) {
+                    if (!dialogParams.contains(para)) {
+                        throw new JSONException("no param: " + para);
+                    }
+                }
+            }
+        }
+
+        try {
+            jsonObject.getObject("index", int.class);
+        } catch (Exception e) {
+            throw new JSONException("bad index: " + jsonObject.getObject("index", String.class));
+        }
+
+        try {
+            jsonObject.getObject("npcDialog", String.class);
+        } catch (Exception e) {
+            throw new JSONException("bad npcDialog: " + jsonObject.getObject("npcDialog", String.class));
+        }
+
+        try {
+            if (!dtypes.contains(jsonObject.getObject("dtype", String.class))) {
+                throw new JSONException("bad dtype: " + jsonObject.getObject("dtype", String.class));
+            }
+        } catch (Exception e) {
+            throw new JSONException("bad dtype: " + jsonObject.getObject("dtype", String.class));
+        }
+
+        if(dialogParams.contains("playerReply")){
+            try {
+                jsonObject.getObject("playerReply", String.class);
+            } catch (Exception e) {
+                throw new JSONException("bad playerReply: " + jsonObject.getObject("playerReply", String.class));
+            }
+        }
+
+        //recursion
+        if(dialogParams.contains("nextDialogs")){
+            for (JSONObject obj:
+                    jsonObject.getJSONArray("nextDialogs").toJavaList(JSONObject.class)) {
+                checkDialog(obj);
+            }
+        }
+
+    }
 
     public static void checkJson(String json) throws JSONException {
         JSONObject jsonMap = JSONObject.parseObject(json);
@@ -195,16 +260,123 @@ public class JsonTest {
             }
 
 
-            if (params.contains("npcBag")) {//TODO
+            if (params.contains("npcBag")) {
+
+                JSONObject npcBag = npc.getJSONObject("npcBag");
+                Set<String> npcBagParams = npcBag.keySet();
+                for (String npcBagParam : npcBagParams) {
+                    if (!nullableParametersSet2.contains(npcBagParam)) {
+                        throw new JSONException("bad param: " + npcBagParam);
+                    } else {
+                        for (String para : nullableParametersSet2) {
+                            if (!npcBagParams.contains(para)) {
+                                throw new JSONException("no param: " + para);
+                            }
+                        }
+                    }
+                }
+
+                try {
+                    npcBag.getObject("currentWeight", int.class);
+                } catch (Exception e) {
+                    throw new JSONException("bad currentWeight: " + npcBag.getObject("currentWeight", String.class));
+                }
+                try {
+                    npcBag.getObject("maxWeight", int.class);
+                } catch (Exception e) {
+                    throw new JSONException("bad maxWeight: " + npcBag.getObject("maxWeight", String.class));
+                }
+                JSONArray itemList = npcBag.getJSONArray("itemList");
+                for (JSONObject item : itemList.toJavaList(JSONObject.class)) {
+
+                    Set<String> itemKeys = item.keySet();
+                    for (String itemKey : itemKeys) {
+                        if (!nullableParametersSet3.contains(itemKey)) {
+                            throw new JSONException("bad param: " + itemKey);
+                        } else {
+                            for (String para : nullableParametersSet3) {
+                                if (!itemKeys.contains(para)) {
+                                    throw new JSONException("no param: " + para);
+                                }
+                            }
+                        }
+                    }
+
+                    try {
+                        item.getObject("id", String.class);
+                    } catch (Exception e) {
+                        throw new JSONException("bad id: " + item.getObject("id", String.class));
+                    }
+                    try {
+                        item.getObject("type", String.class);
+                    } catch (Exception e) {
+                        throw new JSONException("bad type: " + item.getObject("type", String.class));
+                    }
+                    try {
+                        item.getObject("name", String.class);
+                    } catch (Exception e) {
+                        throw new JSONException("bad name: " + item.getObject("name", String.class));
+                    }
+                    try {
+                        item.getObject("description", String.class);
+                    } catch (Exception e) {
+                        throw new JSONException("bad description: " + item.getObject("description", String.class));
+                    }
+
+                    JSONObject properties = item.getJSONObject("properties");
+                    Set<String> propertiesKeys = properties.keySet();
+                    if (!properties.keySet().isEmpty()) {
+                        for (String propertiesKey : propertiesKeys) {
+                            if (!nullableParametersSet4.contains(propertiesKey)) {
+                                throw new JSONException("bad param: " + propertiesKey);
+                            } else {
+                                for (String para : nullableParametersSet4) {
+                                    if (!propertiesKeys.contains(para)) {
+                                        throw new JSONException("no param: " + para);
+                                    }
+                                }
+                            }
+                        }
+
+                        try {
+                            properties.getObject("health", int.class);
+                        } catch (Exception e) {
+                            throw new JSONException("bad health: " + properties.getObject("health", String.class));
+                        }
+                        try {
+                            properties.getObject("weight", int.class);
+                        } catch (Exception e) {
+                            throw new JSONException("bad weight: " + properties.getObject("weight", String.class));
+                        }
+                        try {
+                            properties.getObject("value", int.class);
+                        } catch (Exception e) {
+                            throw new JSONException("bad value: " + properties.getObject("value", String.class));
+                        }
+                    }
+
+                }
 
             }
 
+            JSONObject diagTree = npc.getJSONObject("dialogTree");
+            Set<String> diagTreeParams = diagTree.keySet();
+
+            if (diagTreeParams.isEmpty()) {
+                throw new JSONException("request param:  root");
+            }
+
+            for (String diagTreeParam :
+                    diagTreeParams) {
+                if (!diagTreeParam.equals("root")) {
+                    throw new JSONException("bad param: " + diagTreeParam);
+                }
+            }
+            checkDialog(diagTree.getJSONObject("root"));
         }
-
     }
-
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("json_files/original_data/TalkNPC.json");
-        JsonTest.checkJson(txt2String(file));
+        JsonTestNpcTalk.checkJson(txt2String(file));
     }
 }

@@ -9,26 +9,13 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.util.HashMap;
 
+
+/**
+ * before you use the function, you should test the originate_data format first
+ * TalkNPC, MerchantNPC, item?
+ */
 public class autoTest {
 
-    /**
-     * Test AbnormalPoints.json
-     * @return
-     */
-    private static void testOriginalNPCs() {
-    }
-
-
-    /**
-     * Items AbnormalPoints.json
-     * @return
-     */
-    private static void testOriginalItems() {
-
-    }
-
     public static void main (String[]args){
-        testOriginalItems();
-        testOriginalNPCs();
     }
 }
