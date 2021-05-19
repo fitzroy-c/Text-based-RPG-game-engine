@@ -1,6 +1,5 @@
 
 
-import AbnormalPoints.AbnormalPoint;
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
 import Options.BasicOption;
@@ -8,17 +7,8 @@ import Options.Control;
 import Options.StartOption;
 import Player.Player;
 import Player.Item;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.stream.JsonReader;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.Reader;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Game {
@@ -32,7 +22,7 @@ public class Game {
      */
     public void initialize() {
         player = new Player("");
-        itemBook = Item.initializeItems();
+        itemBook = Item.initializeItemBook();
     }
 
 /*    Test

@@ -1,11 +1,15 @@
 package AbnormalPoints;
 
-import Card.Element;
 import Player.Bag;
 import Player.Player;
 import Player.Item;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import navigation.Coordinate;
 
-import java.util.List;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * This class mainly held npc that will trade with player
@@ -14,7 +18,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
     public Bag npcBag;
 //    player的bag, npc_merchant的bag,
     public NPC_MERCHANT(String name, String intro, int maxHP, int HP, int damage, int armour,
-                        int gold, int xpGain, double critChance, Element element, Bag npcBag) {
+                        int gold, int xpGain, double critChance, Bag npcBag) {
         this.abnormalPointType = AbnormalPointType.NPC_MERCHANT;
         this.setName(name);
         this.setIntro(intro);
@@ -25,7 +29,6 @@ public class NPC_MERCHANT extends AbnormalPoint{
         this.setGold(gold);
         this.setXpGain(xpGain);
         this.setCritChance(critChance);
-        this.setElement(element);
         this.npcBag = npcBag;
     }
 
@@ -85,6 +88,25 @@ public class NPC_MERCHANT extends AbnormalPoint{
         System.out.println("-----------------End------------------");
         return true;
 
+    }
+
+
+    public static void saveMERCHANTNPC(HashMap<Coordinate,NPC_MERCHANT> hp){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try(FileWriter fw = new FileWriter("json_files/original_data/MerchantNPC.json")){ // name json file with player's name
+            gson.toJson(hp, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void main(String[] args) {
+        Bag bag = new Bag(0,1000,Item.initializeItemBook());
+        NPC_MERCHANT shop = new NPC_MERCHANT("Merchant 1","s",100,100,10,10,10,10,10,bag);
+        HashMap<Coordinate,NPC_MERCHANT> hp = new HashMap<>();
+        Coordinate coor = new Coordinate(1,1);
+        hp.put(coor,shop);
+        saveMERCHANTNPC(hp);
     }
 
 }

@@ -18,7 +18,7 @@ public class CommandTokenizer {
     public CommandTokenizer(String text) {
         _buffer = text;		// save input text (string)
         next();		        // extracts the first token.
-        ItemBook = Item.initializeItems();
+        ItemBook = Item.initializeItemBook();
     }
     /**
      * check if a given string is a valid item name in a list with all possible item

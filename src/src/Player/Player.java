@@ -67,7 +67,7 @@ public class Player {
 //        this.setMapData(loadOriginalMapData());
 
         // load json files
-//        this.setMap_npcMData(loadOriginalMerchantNPCs());
+        this.setMap_npcMData(loadOriginalMerchantNPCs());
         this.setMap_npcTData(loadOriginalTalkNPCs());
         this.setMap_bagData(loadOriginalItems());
         // get data from json to generate the initial place (if any)
@@ -215,7 +215,7 @@ public class Player {
      * @author Guanming Ou
      */
     public static HashMap<Coordinate, Bag> loadOriginalItems() {
-        File file = new File("json_files/original_data/Items.json");
+        File file = new File("json_files/original_data/InitializedItem.json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
