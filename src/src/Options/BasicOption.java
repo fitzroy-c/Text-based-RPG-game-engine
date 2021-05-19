@@ -29,9 +29,9 @@ public class BasicOption {
         String command = token.token();
         Token.Type type = token.type();
 
-/*
         if (token.type()== Token.Type.ERROR)
             return true;
+/*
         if (token.type()== Token.Type.DIRECTION_ACTION)
             return true;
         if (token.type()== Token.Type.DROP_ACTION)

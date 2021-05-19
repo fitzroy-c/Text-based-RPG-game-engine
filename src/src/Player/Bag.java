@@ -8,13 +8,21 @@ public class Bag {
     int currentWeight;
     int maxWeight;
     private List<Item> itemList;
+    public Bag() {
 
+    }
     /*
     public Bag(){
         this(5, new ArrayList<Item>());
     }
 
      */
+    public Bag(int currentWeight,int maxWeight, List<Item> items) {
+        this.currentWeight = currentWeight;
+        this.maxWeight = maxWeight;
+        this.itemList = items;
+        this.currentWeight = 0;
+    }
     public Bag(int maxWeight) {
         this(maxWeight, new ArrayList<Item>());
     }
@@ -68,7 +76,7 @@ public class Bag {
     /**
      * put an item in the bag (Yixiang Yin, modified by Yitao)
      */
-    // 整体， 玩家， 地点
+    //玩家， 地点
     public boolean put(Item i){
         int weightOfItem = i.getWeight();
         if (currentWeight + weightOfItem <= maxWeight) {
