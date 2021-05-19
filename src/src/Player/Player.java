@@ -64,7 +64,7 @@ public class Player {
         this.maxCriticalChance = pa.initMaxCriticalChance;
         this.bag = new Bag(pa.initBagWeight);
         this.setMapData(loadOriginalMapData());
-//        this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
+        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
     }
 
     /**
@@ -829,6 +829,10 @@ public class Player {
 
     public void setMapData(HashMap<Coordinate, Place> mapData) {
         this.mapData = mapData;
+    }
+
+    public HashMap<Coordinate, Place> getMapData() {
+        return mapData;
     }
 
     /**

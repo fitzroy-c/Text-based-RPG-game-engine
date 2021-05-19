@@ -99,10 +99,37 @@ public class Place {
     }
 
     /**
-     * Print out the information of current placement
+     * Display the current coordinate description
+     * @return String description
+     * - coordinate
+     * - description
+     * - dangerRate
+     * - bag
+     * - abnormalPoints
+     * @author Guanming Ou
      */
-    public void printPlace() {
-        // TODO: need a function to print out all we have in this real location (description + npc + ?)
+    public String printPlace(){
+        return "Coordinate:"+this.getCoordinate()+"\n"+
+                "Danger rate:"+this.getDangerRate()+"\n"+
+                this.getDescription()+"\n"+
+                "Items: "+this.getBag().showPlaceBag()+"\n"+
+                "Monster | NPC: "+this.printAbnormalPoints() +"\n";
+    }
+
+    /**
+     * Print all abnormal points inside the abnormal point list
+     * @return string of all the abnormal point name
+     * @author Guanming Ou
+     */
+    public String printAbnormalPoints(){
+        String aps = "[";
+        for (int i =0; i<this.abnormalPoints.size(); i++){
+            if (i == 0)
+                aps += this.abnormalPoints.get(i).getName();
+            else
+                aps += ", "+this.abnormalPoints.get(i).getName();
+        }
+        return aps+"]";
     }
 
     public void setCoordinate(Coordinate coordinate) {

@@ -170,4 +170,21 @@ public class Bag {
         }
         System.out.println("-------------End--------------");
     }
+
+    /**
+     * show the content in the place's bag (in different format)
+     * @author Guanming Ou
+     * @return a string description of all item name inside the room
+     */
+    public String showPlaceBag() {
+        String itemNames = "[";
+        for (int i =0; i<this.itemList.size(); i++){
+            if (i == 0)
+                itemNames += this.itemList.get(i).name;
+            else
+                itemNames += ", "+this.itemList.get(i).name;
+        }
+        return itemNames+"]";
+    }
+
 }
