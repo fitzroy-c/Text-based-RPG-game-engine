@@ -1,13 +1,18 @@
 package Options;
 
 import AbnormalPoints.AbnormalPoint;
-import AbnormalPoints.Monster;
 import Player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *The class can switch between different option
+ * menus at different situations.
+ *
+ * @author Zihong Yuan
+ */
 public class Control extends BasicOption {
     static AbnormalPoint current;
     Player player;
@@ -24,12 +29,24 @@ public class Control extends BasicOption {
         printRightOption();
     }
 
-    public void setCurrentOption(AbnormalPoint currentab) throws Exception {
-        this.current = currentab;
+    /**
+     * The method can set the current AbnormalPoint.
+     *
+     * @author Zihong Yuan
+     * @param currentAP the AbnormalPoint input
+     */
+    public void setCurrentOption(AbnormalPoint currentAP) {
+        this.current = currentAP;
         printRightOption();
     }
 
-    public void printRightOption() throws Exception {
+    /**
+     * The method can print out correct option menu in the console.
+     * It can choose from different Monsters and NPCs.
+     *
+     * @author Zihong Yuan
+     */
+    public void printRightOption() { //TODO make it can go back to the NMOption when use BACK
         if (isMonster && isNpc) {
             System.out.println("Control: case is NM");
             NMOption nm = new NMOption(monsters, npcs);
@@ -40,7 +57,6 @@ public class Control extends BasicOption {
                 try {
                     int n = s.nextInt();
                     current = nm.verifyInt(n);
-                    System.out.println("this is int "+n);
                     b = false;
                 } catch (Exception e) {
                     System.out.println("I don't understand");
@@ -48,14 +64,12 @@ public class Control extends BasicOption {
                 }
             }
         }
-        System.out.println("Run print");
         switch (current.getString()) {
             case "NPC_TALK" :
             case "NPC_MERCHANT" :
                 System.out.println("Control: case is NPC");
                 NpcOption p = new NpcOption(current, player);
                 this.currentOption = p;
-                //this.option = currentOption.option;
                 p.printOut();
                 break;
             case "MONSTER" :
@@ -73,20 +87,44 @@ public class Control extends BasicOption {
         }
     }
 
-    static public void setCurrentAb(AbnormalPoint a) {
-        current = a;
+    /**
+     * The method can set current AbnormalPoint.
+     *
+     * @author Zihong Yuan
+     * @param ab wanted AbnormalPoint
+     */
+    static public void setCurrentAb(AbnormalPoint ab) {
+        current = ab;
     }
 
+    /**
+     * The method can add monster into monsters list.
+     *
+     * @author Zihong Yuan
+     * @param monster
+     */
     static public void addMonsters(AbnormalPoint monster) {
         monsters.add(monster);
         isMonster = true;
     }
 
+    /**
+     * The method can add NPC into npcs list.
+     *
+     * @author Zihong Yuan
+     * @param npc
+     */
     static public void addNPCs(AbnormalPoint npc) {
         npcs.add(npc);
         isNpc = true;
     }
 
+    /**
+     * The method can set the death to wanted boolean.
+     *
+     * @author Zihong Yuan
+     * @param b
+     */
     static public void setDeath(boolean b) {
         death = b;
     }

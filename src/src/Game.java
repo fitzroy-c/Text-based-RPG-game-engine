@@ -22,7 +22,6 @@ public class Game {
      * initial pre-game
      */
     public void initialize() {
-
         itemBook = Item.initializeItemBook();
     }
 
@@ -58,11 +57,6 @@ public class Game {
     public static void main(String[] args) throws Exception {
         Game g = new Game();
         g.initialize();
-
-//        StartOption start = new StartOption(player);
-//        start.printOut(start.option);
-//        gameInteractionLoop(player);
-
         Scanner s=new Scanner(System.in);
         System.out.print("Welcome to the world!"+"\n");
         System.out.println("What would you like to do?");
@@ -109,28 +103,20 @@ public class Game {
      */
     public static void gameInteractionLoop(Player player, Control c) throws Exception {
         boolean continueOn = true;
-//        MonsterAttributes mo = new MonsterAttributes();
-//        BasicOption current = c.currentOption;
-//        Monster monster = new Monster(mo, 12);
         Scanner s = new Scanner(System.in);
         while (continueOn){
             if (Control.death)
                 return;
             BasicOption current = c.currentOption;
-            String out = s.nextLine();
-            System.out.println(out);
-            cmdTok = new CommandTokenizer(out);
+            cmdTok = new CommandTokenizer(s.nextLine());
             player.checkNPCs();
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
                 continueOn = new Parser(cmdTok, player).parseCommand();
-                //c.setCurrentOption(monster);
-                //System.out.println("change Option");
                 c.printRightOption();
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
             }
-//            continueOn = new Parser(cmdTok, player).parseCommand();
         }
     }
 
@@ -143,7 +129,7 @@ public class Game {
         boolean continueOn = true;
         Scanner s = new Scanner(System.in);
         while (continueOn){
-            cmdTok = new CommandTokenizer(s.next());
+            cmdTok = new CommandTokenizer(s.nextLine());
             continueOn = new Parser(cmdTok, player).parseCommand();
         }
     }

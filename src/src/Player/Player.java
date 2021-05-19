@@ -39,7 +39,6 @@ public class Player {
     HashMap<Coordinate, NPC_TALK> map_npcTData;
     HashMap<Coordinate, NPC_MERCHANT> map_npcMData;
     HashMap<Coordinate, Bag> map_bagData;
-//    HashMap<Coordinate, Bag> map_bagData;
 
     /**
      * Some variables
