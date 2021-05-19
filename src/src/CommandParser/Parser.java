@@ -1,9 +1,13 @@
 package CommandParser;
 
 import AbnormalPoints.Monster;
+import Options.Control;
 import Player.Player;
 import Player.Bag;
 import Player.Item;
+import navigation.Coordinate;
+
+import java.util.List;
 
 /**
  * Grammar:
@@ -101,6 +105,11 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
                 System.out.println(player.checkMonster());
+                System.out.println(player.getPlace().getCoordinate().equals(new Coordinate(0,0)));
+                System.out.println(player.getPlace().getClass());
+                System.out.println(player.getPlace().getCoordinate().getClass());
+                System.out.println(Player.getForHashMap(player.getPlace().getCoordinate(),player.getMap_bagData()));
+                player.getMap_bagData().get(player.getPlace().getCoordinate()).showPlaceBag();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
                 System.out.println(player.checkMonster());
@@ -211,10 +220,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BACKPACK){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.getBag().showMyBag(player.getBag());
+                player.getBag().showMyBag();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.getBag().showMyBag(player.getBag());
+                player.getBag().showMyBag();
                 cmdExecuted = true;
             }
         }
@@ -227,7 +236,7 @@ public class Parser {
                     player.showPlayerStat();
                 }
                 else if (this._tokenizer.current().type()==Token.Type.BACKPACK){
-                    player.getBag().showMyBag(player.getBag());
+                    player.getBag().showMyBag();
                 } else {
                     callError();
                 }
@@ -294,6 +303,8 @@ public class Parser {
 
         return true;
     }
+
+
 
     public void callError() {
         System.out.println("message not recognised, please try again or use 'help'");

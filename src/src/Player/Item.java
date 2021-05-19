@@ -1,16 +1,20 @@
 package Player;
 
+import AbnormalPoints.NPC_MERCHANT;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import navigation.Coordinate;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 // todo item.json
 // todo test for these functions in player, bag,item.class
+
 
 
 // todo weapon, considering onetime weapon first
@@ -74,13 +78,13 @@ public class Item {
         return false;
     }
     /**
-     * initialize items
+     * initialize items as a reference for classifying items from user input
      * @author: Yixiang Yin
      **/
-    public static List<Item> initializeItems(){
+    public static List<Item> initializeItemBook(){
 
         Gson gson = new Gson();
-        String path = "json_files/Item.json";
+        String path = "json_files/original_data/ItemBook.json";
         JsonReader jr = null;
         final Type LIST_TYPE = new TypeToken<List<Item>>() {}.getType();
 
@@ -93,13 +97,40 @@ public class Item {
         return items;
     }
 
-    public static void main(String[] args) {
-        // test initializeItems
-        List<Item> items = initializeItems();
-        for (Item i :items){
-            System.out.println(i.name);
+
+    /**
+     * used to generate Item on the map, and save that into a json file
+     * @author: Yixiang Yin
+     **/
+    public static void generateItemOnTheMapJson(String path){
+        HashMap<Coordinate, Bag> hp = new HashMap<>();
+
+        List<Item> items = initializeItemBook();
+        int x = 0;
+        while (x<30){
+            int y = 0;
+            while (y<30){
+                Bag b = new Bag(10000);
+                b.put(items.get((x+y)%items.size()));
+                hp.put(new Coordinate(x,y),b);
+                y++;
+                y++;
+            }
+            x++;
+            x++;
+        }
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        try(FileWriter fw = new FileWriter(path)){ // name json file with player's name
+            gson.toJson(hp, fw);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+    public static void main(String[] args) {
+        // test initializeItems
+        generateItemOnTheMapJson("json_files/original_data/InitializedItem.json");
+    }
+
     public void print() {
         // TODO: need a function to print out all we have in this real location (name + description?)
     }

@@ -11,10 +11,11 @@ import java.util.List;
 public class BasicOption {
     public List<Option> option = new ArrayList<>();
     HashMap<String, Option> optionInterface = new HashMap();
+    public List<Token.Type> tokenType = new ArrayList<>();
 
-    public void printOut(List<Option> o) {
-        for (int i = 1; i < o.size()+1; i++) {
-            Option op = o.get(i-1);
+    public void printOut() {
+        for (int i = 1; i < option.size()+1; i++) {
+            Option op = option.get(i-1);
             if(op.getDescription() != null) {
                 System.out.println("["+ i + "] " + op.getCommand() + " : " + op.getDescription());
             } else {
@@ -23,10 +24,14 @@ public class BasicOption {
         }
     }
 
-    public boolean chooseOp(List<Option> o, Token token) {
-        this.printOut(o);
+    public boolean chooseOp(Token token) {
+        //this.printOut();
         String command = token.token();
-        if (optionInterface.containsKey(command)) {
+        Token.Type type = token.type();
+
+        if (token.type()== Token.Type.ERROR)
+            return true;
+        if (tokenType.contains(type)) {
             return true;
         } else {
             System.out.println("I don't know what '" + command + "' means.");
@@ -34,10 +39,21 @@ public class BasicOption {
         }
     }
 
-    public void showMenu(List<Option> o) {
-        for (int i = 0; i < o.size(); i++) {
-            optionInterface.put(String.valueOf(i+1), o.get(i));
-            optionInterface.put(o.get(i).getCommand(), o.get(i));
+    public CommandTokenizer convert(CommandTokenizer t){
+        CommandTokenizer cmdTok;
+        String s = t.current().token();
+        if (optionInterface.containsKey(s)) {
+            String cmd = optionInterface.get(s).getCommand();
+            cmdTok = new CommandTokenizer(cmd);
+            return cmdTok;
+        }
+        return t;
+    }
+
+    public void showMenu() {
+        for (int i = 0; i < option.size(); i++) {
+            optionInterface.put(String.valueOf(i+1), option.get(i));
+            optionInterface.put(option.get(i).getCommand(), option.get(i));
         }
     }
 

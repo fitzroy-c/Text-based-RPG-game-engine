@@ -1,9 +1,14 @@
 package CommandParser;
 
+import Player.Item;
+
+import java.util.List;
+
 public class CommandTokenizer {
 
     private String _buffer;		//save text
     private Token currentToken;	//save token extracted from next()
+    private List<Item> ItemBook= Item.initializeItemBook();
 
     /**
      *  Tokenizer class constructor
@@ -14,7 +19,16 @@ public class CommandTokenizer {
         _buffer = text;		// save input text (string)
         next();		        // extracts the first token.
     }
-
+    /**
+     * check if a given string is a valid item name in a list with all possible item
+     * @author: Yixiang Yin
+     **/
+    public static boolean isItem(List<Item> reference, String nameToBeCheck){
+        for (Item i: reference){
+            if (i.name.equals(nameToBeCheck)) return true;
+        }
+        return false;
+    }
     /**
      *  This function will find and extract a next token from {@code _buffer} and
      *  save the token to {@code currentToken}.
@@ -26,6 +40,11 @@ public class CommandTokenizer {
             currentToken = null;	// if there's no string left, set currentToken null and return
             return;
         }
+
+        //user can input action index or corresponding text. (Bill)
+        if (_buffer.matches("^[0-9]+$")) {
+            currentToken = new Token(_buffer,Token.Type.ERROR);}
+
         char firstChar = _buffer.charAt(0);
         StringBuilder createString = new StringBuilder();
         StringBuilder createNextString = new StringBuilder();
@@ -37,7 +56,7 @@ public class CommandTokenizer {
                 createString.append(_buffer.charAt(count));
                 count++;
             }
-            createString = new StringBuilder(createString.toString().toLowerCase());
+            createString = new StringBuilder(createString.toString());
 
             // SAVE <save | save game>
             if (createString.toString().equals("save")) {
@@ -89,7 +108,7 @@ public class CommandTokenizer {
             else if (createString.toString().equals("take") | createString.toString().equals("pick"))
                 currentToken = new Token(createString.toString(),Token.Type.TAKE_ACTION);
 
-            else if (createString.toString().equals("item")) // TODO: make checkHasItem, return true if this is a valid item name
+            else if (isItem(this.ItemBook,createString.toString())) // TODO: make checkHasItem, return true if this is a valid item name (done by Yixiang Yin)
                 currentToken = new Token(createString.toString(),Token.Type.ITEM);
 //            if (checkHasItem(createString))
 //                currentToken = new Token(createString,Token.Type.ITEM);

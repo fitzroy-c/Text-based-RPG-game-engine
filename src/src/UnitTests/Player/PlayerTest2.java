@@ -62,6 +62,58 @@ public class PlayerTest2 {
     }
 
     @Test
+    public void testNewplayerWithJson() {
+        Player player = new Player( "ddd");
+        assertEquals("ddd",player.getName());
+//        assertEquals(false, player.getMap_bagData().get(new Coordinate(0,0)).isEmpty());
+
+
+    }
+
+    public static void main(String[] args) {
+        Coordinate a = new Coordinate(0,0);
+        Coordinate b = new Coordinate(0,0);
+        Boolean f = a.equals(b);
+
+        HashMap<Coordinate, Bag> testBag = new HashMap<>();
+        HashMap<String, Integer> c1P = new HashMap<>();
+        c1P.put("health", +15);
+        c1P.put("weight", 1);
+        c1P.put("value", 10);
+        Item c1 = new Item("C1", "consumable", "Mushroom", "Restores 15 health", c1P);
+        Bag bag01 = new Bag(100); // has 4 mushroom
+        bag01.put(c1);
+        bag01.put(c1);
+        bag01.put(c1);
+        bag01.put(c1);
+        testBag.put(new Coordinate(0,0), bag01);
+
+        Boolean f2 = testBag.containsKey(a);
+        Bag b2 = testBag.get(a);
+        int h2 = a.hashCode();
+
+        Player player = new Player( "ddd");
+
+        Boolean f3 = player.getMap_bagData().containsKey(a);
+        Bag b3 = player.getMap_bagData().get(a);
+
+
+//        Bag b3 = player.extractBag(a.toString(), player.getMap_bagData());
+
+        HashMap<Coordinate, Bag> jsonBag = new HashMap<>();
+        jsonBag = player.map_bagData;
+
+
+
+
+        int i = 0;
+
+
+    }
+
+
+
+    @Test
     public void createItemJson(){
         Player player = new Player();
 
@@ -105,7 +157,7 @@ public class PlayerTest2 {
         Bag bag04 = new Bag(100); // has 1 Greater Healing Potion
         bag04.put(c4);
 
-
+        testBag.put(new Coordinate(0,0), bag01);
         testBag.put(new Coordinate(0,1), bag01);
         testBag.put(new Coordinate(0,2), bag02);
         testBag.put(new Coordinate(0,3), bag01);
@@ -118,7 +170,9 @@ public class PlayerTest2 {
         testBag.put(new Coordinate(5,0), bag04);
 
         player.setMap_bagData(testBag);
-        player.saveItem();
+//        player.saveItem();
+
+
 //        HashMap<Coordinate, Bag> items = player.loadOriginalItems();
 
     }
@@ -184,11 +238,11 @@ public class PlayerTest2 {
         testNPC.put(new Coordinate(5,0), e_fairy);
 
         player.setMap_npcTData(testNPC);
-        player.saveTALKNPC();
+//        player.saveTALKNPC();
 //        HashMap<Coordinate, NPC_TALK> npcT = player.loadOriginalTalkNPCs();
-
     }
 
+    //I need another json file to understand the structure
     @Test
     public void createNPCTalkJsonTest2(){
 
@@ -237,7 +291,7 @@ public class PlayerTest2 {
         testNPC.put(new Coordinate(0,1), t_fairy);
 
         player.setMap_npcTData(testNPC);
-        player.saveTALKNPC();
+        //player.saveTALKNPC();
 
 
     }
@@ -387,14 +441,4 @@ public class PlayerTest2 {
 //        HashMap<Coordinate, Place> map = player.loadOriginalMapData();
 //        assertEquals(1, 1);
 //    }
-
-
-    /**
-     * Hashmap<Coordinate, NPC_TALK>
-     * Hashmap<Coordinate, NPC_MERCHANT>
-     * Hashmap<Coordinate, >
-     *
-     *
-     *
-     */
 }
