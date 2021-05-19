@@ -78,6 +78,7 @@ public class Game {
                 Control c = new Control(player);
                 ///
                 gameInteractionLoop(player, c);
+//                gameInteractionLoopParser(player);
                 break;
             case 1:
                 System.out.println("here is all player available");
@@ -107,7 +108,9 @@ public class Game {
         Scanner s = new Scanner(System.in);
         while (continueOn){
             BasicOption current = c.currentOption;
-            cmdTok = new CommandTokenizer(s.next());
+            String out = s.nextLine();
+            System.out.println(out);
+            cmdTok = new CommandTokenizer(out);
             player.checkNPCs();
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
