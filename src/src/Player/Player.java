@@ -447,9 +447,9 @@ public class Player {
      * @return true: successfully droped item, false: item not exist.
      * @author: Guanming Ou
      */
-    public boolean dropItemFromBag(String name){
+    public boolean dropItemFromBag(String name) {
         Item item = this.bag.getItemByName(name);
-        if (item == null){
+        if (item == null) {
             return false;
         } else {
             this.place.getBag().put(item);
@@ -458,86 +458,123 @@ public class Player {
         }
     }
 
-    public String goToDirection(String d){
-        return null;
+    /**
+     * Update player's place given a direction
+     *
+     * maxX,maxY describe the size of the map (from [0][0]to[maxX][maxY])
+     * @param direction north | east | south | west
+     * @return true: update successfully, false: update unsuccessfully
+     * @author Yixiang Yin, modified by yitao chen and Guanming Ou
+     */
+
+    public String goToDirection(String direction){
+        int maxX = 30;
+        int maxY = 30;
+        Coordinate nextCoord = this.place.getCoordinate();
+
+        switch (direction){
+            case "north":
+                if (this.place.getCoordinate().y==maxY){
+                    return "direction out of map's boundary";
+                }
+                nextCoord.goNorth();
+                goToDirectionHelper(nextCoord);
+                this.place.printPlace();
+            break;
+            case "east":
+                if (this.place.getCoordinate().x==maxX){
+                    return "direction out of map's boundary";
+                }
+                nextCoord.goEast();
+                goToDirectionHelper(nextCoord);
+                this.place.printPlace();
+            break;
+
+            case "south":
+                if (this.place.getCoordinate().y==0){
+                    return "direction out of map's boundary";
+                }
+                nextCoord.goSouth();
+                goToDirectionHelper(nextCoord);
+                this.place.printPlace();
+            break;
+
+            case "west":
+                if (this.place.getCoordinate().x==0){
+                    return "direction out of map's boundary";
+                }
+                nextCoord.goWest();
+                goToDirectionHelper(nextCoord);
+                this.place.printPlace();
+            break;
+        }
+        return "You've moved to "+direction+" direction";
     }
 
-//    /**
-//     * Update player's place given a direction
-//     *
-//     * maxX,maxY describe the size of the map (from [0][0]to[maxX][maxY])
-//     * @param direction north | east | south | west
-//     * @return true: update successfully, false: update unsuccessfully
-//     * @author Yixiang Yin, modified by yitao chen and Guanming Ou
-//     */
-//
-//    public String goToDirection(String direction){
-//        int maxX = 30;
-//        int maxY = 30;
-//        Coordinate nextCoord = this.place.getCoordinate();
-//
-//        switch (direction){
-//            case "north":
-//                if (this.place.getCoordinate().y==maxY){
-//                    return "direction out of map's boundary";
-//                }
-//                nextCoord.goNorth();
-//                goToDirectionHelper(nextCoord);
-//                this.place.printPlace();
-//            break;
-//            case "east":
-//                if (this.place.getCoordinate().x==maxX){
-//                    return "direction out of map's boundary";
-//                }
-//                nextCoord.goEast();
-//                goToDirectionHelper(nextCoord);
-//                this.place.printPlace();
-//            break;
-//
-//            case "south":
-//                if (this.place.getCoordinate().y==0){
-//                    return "direction out of map's boundary";
-//                }
-//                nextCoord.goSouth();
-//                goToDirectionHelper(nextCoord);
-//                this.place.printPlace();
-//            break;
-//
-//            case "west":
-//                if (this.place.getCoordinate().x==0){
-//                    return "direction out of map's boundary";
-//                }
-//                nextCoord.goWest();
-//                goToDirectionHelper(nextCoord);
-//                this.place.printPlace();
-//            break;
-//        }
-//        return "You've moved to "+direction+" direction";
-//    }
-//
-//    /**
-//     * check if the next coordinate is already store inside the map data, and update if required
-//     * @param nextCoord the next coordinate that the player wants to move to
-//     * @author Guanming Ou
-//     */
-//    public void goToDirectionHelper(Coordinate nextCoord){
+    /**
+     * check if the next coordinate is already store inside the map data, and update if required
+     * @param nextCoord the next coordinate that the player wants to move to
+     * @author Guanming Ou
+     */
+    public void goToDirectionHelper(Coordinate nextCoord){
 //        HashMap<Coordinate, Place> map = this.getMapData();
-//        if (map.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-//            map.remove(this.place.getCoordinate()); // remove current coordinate from map data
-//            map.put(this.place.getCoordinate(), this.place); // insert current place to map data
+        HashMap<Coordinate, NPC_TALK> npc_t = this.map_npcTData;
+        HashMap<Coordinate, NPC_MERCHANT> npc_m = this.map_npcMData;
+        HashMap<Coordinate, Bag> bag = this.map_bagData;
+
+//        if (npc_m.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+//            npc_m.remove(this.place.getCoordinate()); // remove current coordinate from map data
+//            npc_m.put(this.place.getCoordinate(), this.place); // insert current place to map data
 //        }
+
+        if (npc_t.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+            NPC_TALK npc = extractNPCTalk(); // find npc talk inside the abnormal point list
+            if (npc != null){
+                npc_t.remove(this.place.getCoordinate()); // remove current coordinate from map data
+                npc_t.put(this.place.getCoordinate(), npc); // insert current place to map data (one npc talk only)
+            }
+        }
+
+//        if (bag.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+//            NPC_MERCHANT
+//            bag.remove(this.place.getCoordinate()); // remove current coordinate from map data
+//            bag.put(this.place.getCoordinate(), this.place); // insert current place to map data
+//        }
+//
+//
+//
 //
 //        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
 //            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
-//        else{ // randomly generate place named wild area with random danger rate and monster
-//            this.place.setCoordinate(nextCoord);
-//            this.place.setDescription("Wild area");
-//            this.place.setDangerRate(random.nextInt(5));
-//            this.place.setBag(new Bag(100));
-//            this.place.setAbnormalPoints(new ArrayList<AbnormalPoint>());
-//            generateMonster();
-//        }
-//    }
+        else{ // randomly generate place named wild area with random danger rate and monster
+            this.place.setCoordinate(nextCoord);
+            this.place.setDescription("Wild area");
+            this.place.setDangerRate(random.nextInt(5));
+            this.place.setBag(new Bag(100));
+            this.place.setAbnormalPoints(new ArrayList<AbnormalPoint>());
+            generateMonster();
+        }
+    }
+
+    public NPC_TALK extractNPCTalk(){
+       List<AbnormalPoint> alist = this.place.getAbnormalPoints();
+       NPC_TALK npc_t = null;
+       for (AbnormalPoint a : alist){
+           if (a.abnormalPointType == AbnormalPoint.AbnormalPointType.NPC_TALK)
+               return (NPC_TALK) a;
+       }
+       return null;
+    }
+
+    public NPC_MERCHANT extractNPCMerchant(){
+        List<AbnormalPoint> alist = this.place.getAbnormalPoints();
+        NPC_TALK npc_m = null;
+        for (AbnormalPoint a : alist){
+            if (a.abnormalPointType == AbnormalPoint.AbnormalPointType.NPC_MERCHANT)
+                return (NPC_MERCHANT) a;
+        }
+        return null;
+    }
 
     /**
      * check the player is alive or not
