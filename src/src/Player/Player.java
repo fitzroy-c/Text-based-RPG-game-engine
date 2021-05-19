@@ -72,8 +72,8 @@ public class Player {
         this.setMap_bagData(loadOriginalItems());
         // get data from json to generate the initial place (if any)
         this.place = new Place(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), "", 0,
-                exactBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), map_bagData),
-                exactBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate),
+                extractBag(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), map_bagData),
+                extractBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate),
                         this.getMap_npcTData(), this.getMap_npcMData()));
 //        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
     }
@@ -120,10 +120,10 @@ public class Player {
      * Save item as json
      * @author Guanming Ou
      */
-    public void saveItem(){
+    public void saveItem() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter("json_files/original_data/Items.json")){ // name json file with player's name
+        try (FileWriter fw = new FileWriter("json_files/original_data/Items.json")) { // name json file with player's name
             gson.toJson(this.map_bagData, fw);
         } catch (IOException e) {
             e.printStackTrace();
@@ -580,7 +580,7 @@ public class Player {
 //            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
         int updated = 0;
         Place nextPlace = new Place(nextCoord, "", 0,new Bag(100), new ArrayList<>());
-        nextPlace.setAbnormalPoints(exactBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
+        nextPlace.setAbnormalPoints(extractBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
         if (! nextPlace.getAbnormalPoints().isEmpty()) // check if operation did get npc
             updated++;
         if (bag.containsKey(nextCoord)){ // try and get bag from json if any
@@ -632,7 +632,7 @@ public class Player {
      * Extract npcs from hashmaps (load from json), and return as Abnormalpoint List
      * @author Guanming Ou
      */
-    public List<AbnormalPoint> exactBothNPCs(Coordinate c, HashMap<Coordinate, NPC_TALK> npc_t, HashMap<Coordinate, NPC_MERCHANT> npc_m){
+    public List<AbnormalPoint> extractBothNPCs(Coordinate c, HashMap<Coordinate, NPC_TALK> npc_t, HashMap<Coordinate, NPC_MERCHANT> npc_m){
         List<AbnormalPoint> abpoints = new ArrayList<AbnormalPoint>();
 
         if (npc_t.containsKey(c)) { // try to get npc merchant from json if any
@@ -647,7 +647,7 @@ public class Player {
      * Extract bag from hashmaps (load from json), and return a bag
      * @author Guanming Ou
      */
-    public Bag exactBothNPCs(Coordinate c, HashMap<Coordinate, Bag> bag){
+    public Bag extractBag(Coordinate c, HashMap<Coordinate, Bag> bag){
         if (bag.containsKey(c)) { // try to get npc merchant from json if any
             return bag.get(c);
         }
