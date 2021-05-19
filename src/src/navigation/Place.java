@@ -170,4 +170,8 @@ public class Place {
     }
 
     public void setBag(Bag bag) { this.bag = bag; }
+
+    public void setAbnormalPoints(List<AbnormalPoint> abnormalPoints) {
+        this.abnormalPoints = abnormalPoints;
+    }
 }
