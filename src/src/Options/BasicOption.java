@@ -49,10 +49,10 @@ public class BasicOption {
         return t;
     }
 
-    public void showMenu(List<Option> o) {
-        for (int i = 0; i < o.size(); i++) {
-            optionInterface.put(String.valueOf(i+1), o.get(i));
-            optionInterface.put(o.get(i).getCommand(), o.get(i));
+    public void showMenu() {
+        for (int i = 0; i < option.size(); i++) {
+            optionInterface.put(String.valueOf(i+1), option.get(i));
+            optionInterface.put(option.get(i).getCommand(), option.get(i));
         }
     }
 

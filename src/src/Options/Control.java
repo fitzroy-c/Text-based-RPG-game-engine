@@ -1,14 +1,20 @@
 package Options;
 
 import AbnormalPoints.AbnormalPoint;
+import AbnormalPoints.Monster;
 import Player.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Control extends BasicOption {
     static AbnormalPoint current;
     Player player;
     public BasicOption currentOption;
-    boolean isMonster = false;
-    boolean isNpc = false;
+    static List<AbnormalPoint> monsters = new ArrayList<>();
+    static List<AbnormalPoint> npcs = new ArrayList<>();
+    static boolean isMonster = false;
+    static boolean isNpc = false;
 
     public Control(Player player) throws Exception {
         current = new AbnormalPoint();
@@ -22,6 +28,9 @@ public class Control extends BasicOption {
     }
 
     public void printRightOption() throws Exception {
+        if (isMonster && isNpc) {
+            NMOption nm = new NMOption(monsters, npcs);
+        }
         System.out.println("Run print");
         switch (current.getString()) {
             case "NPC_TALK" :
@@ -49,5 +58,15 @@ public class Control extends BasicOption {
 
     static public void setCurrentAb(AbnormalPoint a) {
         current = a;
+    }
+
+    static public void addMonsters(AbnormalPoint monster) {
+        monsters.add(monster);
+        isMonster = true;
+    }
+
+    static public void addNPCs(AbnormalPoint npc) {
+        npcs.add(npc);
+        isNpc = true;
     }
 }

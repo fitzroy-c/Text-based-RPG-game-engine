@@ -350,11 +350,34 @@ public class Player {
             if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER){
                 ///change battleOption here bill
                 Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
+                ///this give monster list to Option
+                Control.addMonsters(this.place.getAbnormalPoints().get(i));
                 ///
                 return string + "There is a monster: "+this.place.getAbnormalPoints().get(i).getName()+"\n";
             }
         }
         return string + "There is no monster here.\n";
+    }
+
+    /**
+     * this method here for the menu
+     * to check if current location have
+     * NPCs
+     * @author Zihong Yuan
+     */
+    public void checkNPCs() {
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            AbnormalPoint.AbnormalPointType current =  this.place.getAbnormalPoints().get(i).abnormalPointType;
+
+            if (current == AbnormalPoint.AbnormalPointType.NPC_TALK
+                || current == AbnormalPoint.AbnormalPointType.NPC_MERCHANT){
+                ///change battleOption here bill
+                //Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
+                ///this give NPC list to Option
+                Control.addNPCs(this.place.getAbnormalPoints().get(i));
+                ///
+            }
+        }
     }
 
     /**

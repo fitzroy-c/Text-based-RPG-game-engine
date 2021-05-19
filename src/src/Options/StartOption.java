@@ -11,7 +11,7 @@ public class StartOption extends BasicOption{
 
     public StartOption() {
         buildMenu();
-        showMenu(this.option);
+        showMenu();
     }
 
     public int getInput(String command) {

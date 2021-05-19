@@ -114,6 +114,7 @@ public class Game {
         while (continueOn){
             BasicOption current = c.currentOption;
             cmdTok = new CommandTokenizer(s.next());
+            player.checkNPCs();
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
                 continueOn = new Parser(cmdTok, player).parseCommand();
