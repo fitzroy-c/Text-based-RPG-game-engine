@@ -105,7 +105,8 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
                 System.out.println(player.checkMonster());
-                player.getMap_bagData().get(player.getPlace().getCoordinate()).showPlaceBag2();
+                if (player.getMap_bagData().get(player.getPlace().getCoordinate())==null) System.out.println("Nothing on the floor");
+                else player.getMap_bagData().get(player.getPlace().getCoordinate()).showPlaceBag2();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
                 System.out.println(player.checkMonster());

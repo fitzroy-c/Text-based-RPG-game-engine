@@ -218,14 +218,13 @@ public class Player {
 
     /**
      * load original items data from json_files/original_data/
-     * @author Guanming Ou
+     * @author Guanming Ou and significantly modified by Yixiang Yin
      */
     public static HashMap<Coordinate, Bag> loadOriginalItems() {
         File file = new File("json_files/original_data/InitializedItem.json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
-//        final Type LIST_TYPE = new TypeToken<HashMap<Coordinate, Bag>>() {}.getType();
 
         try{
             jsonReader = new JsonReader(new FileReader(file));
