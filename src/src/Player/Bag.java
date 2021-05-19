@@ -162,9 +162,9 @@ public class Bag {
     /**
      * show the content in the bag(Yixiang Yin)
      */
-    public void showMyBag() {
+    public static void showMyBag(Bag bagOrBagInCurrentPlace) {
         System.out.println("-----------Your bag-----------");
-        for (Item i: this.itemList){
+        for (Item i: bagOrBagInCurrentPlace.itemList){
             System.out.println(i.name+" : "+i.getDescription());
             System.out.println();
         }
