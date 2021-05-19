@@ -101,22 +101,3 @@ public class Game {
     }
 
 }
-//public class Game {
-//    static DesignForFutureExtension.Deck.PlayerDeck pDeck; // Initialise the Wake DesignForFutureExtension.Deck
-//    static DesignForFutureExtension.Deck.EnemyDeck dDeck; // Initialise the Daikaiju DesignForFutureExtension.Deck
-//    // current card(choice) in front of the user
-//    Boolean isInCombatSystem;
-//    Player player;
-//
-//
-//    public int drawCards(int[] hands, String playerCareer){
-//        pDeck = new DesignForFutureExtension.Deck.PlayerDeck(hands);
-//
-//        // draws a random tile from the available
-//        Random r = new Random();
-//
-//        //TODO: get the card id from certain range (for specific player/enemy class)
-//
-//        return pDeck.get(r.nextInt(pDeck.size())); // FIXME - Task 5a
-//    }
-//}

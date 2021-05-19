@@ -7,6 +7,7 @@ import Card.Element;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import navigation.Coordinate;
+import navigation.Place;
 import org.junit.Test;
 
 import java.io.FileWriter;
@@ -61,10 +62,11 @@ public class PlayerTest2 {
     }
 
     @Test
-    public void createItemJson(){
+    public void createMapJson(){
         Player player = new Player();
+        HashMap<Coordinate, Place> testMap = new HashMap<>();
 
-        HashMap<Coordinate, Bag> testBag = new HashMap<>();
+        // Items
         HashMap<String, Integer> c1P = new HashMap<>();
         c1P.put("health", +15);
         c1P.put("weight", 1);
@@ -104,29 +106,6 @@ public class PlayerTest2 {
         Bag bag04 = new Bag(100); // has 1 Greater Healing Potion
         bag04.put(c4);
 
-
-        testBag.put(new Coordinate(0,1), bag01);
-        testBag.put(new Coordinate(0,2), bag02);
-        testBag.put(new Coordinate(0,3), bag01);
-        testBag.put(new Coordinate(0,4), bag03);
-        testBag.put(new Coordinate(0,5), bag04);
-        testBag.put(new Coordinate(1,0), bag01);
-        testBag.put(new Coordinate(2,0), bag02);
-        testBag.put(new Coordinate(3,0), bag01);
-        testBag.put(new Coordinate(4,0), bag03);
-        testBag.put(new Coordinate(5,0), bag04);
-
-        player.setStorageInfo(testBag);
-        player.saveItem();
-        HashMap<Coordinate, Bag> items = player.loadOriginalItems();
-
-    }
-
-    @Test
-    public void createNPCJson(){
-        Player player = new Player();
-        HashMap<Coordinate, AbnormalPoint> testNPC = new HashMap<>();
-
         DialogTree Bless_tree = new DialogTree();
         Bless_tree.getRoot().setNpcDialog("I can bless you... to better prepare you for the fight");
         Bless_tree.getRoot().setIndex(0);
@@ -153,6 +132,50 @@ public class PlayerTest2 {
                 10000,10000,1,2000,0,1000,0, Element.Normal,
                 Bless_tree, 50,30,40,null);
 
+        List<AbnormalPoint> f1 = new ArrayList<>();
+        f1.add(l_fairy);
+        List<AbnormalPoint> f2 = new ArrayList<>();
+        f2.add(t_fairy);
+        List<AbnormalPoint> f3 = new ArrayList<>();
+        f3.add(l_fairy);
+        f3.add(t_fairy);
+        List<AbnormalPoint> f4 = new ArrayList<>();
+        f4.add(a_fairy);
+        List<AbnormalPoint> f5 = new ArrayList<>();
+        f5.add(e_fairy);
+
+        Place p00 = new Place(new Coordinate(0,0), "The initial point", 0, bag01, f1);
+        Place p01 = new Place(new Coordinate(0,1), "fairy land", 0, bag02, f2);
+        Place p02 = new Place(new Coordinate(0,2), "some wild area", 0, bag01, new ArrayList<>());
+        Place p03 = new Place(new Coordinate(0,3), "fairy land", 0, bag03, f4);
+        Place p04 = new Place(new Coordinate(0,4), "fairy land", 0, new Bag(100), f5);
+        Place p10 = new Place(new Coordinate(1,0), "fairy land", 0, bag01, f1);
+        Place p11 = new Place(new Coordinate(1,1), "some wild area", 0, new Bag(100), new ArrayList<>());
+        Place p12 = new Place(new Coordinate(1,2), "some wild area", 0, new Bag(100), new ArrayList<>());
+        Place p13 = new Place(new Coordinate(1,3), "fairy land", 0, bag02, f2);
+        Place p14 = new Place(new Coordinate(1,4), "fairy land", 0, bag04, f4);
+        Place p20 = new Place(new Coordinate(1,0), "fairy land", 0, bag01, f1);
+        Place p21 = new Place(new Coordinate(1,1), "some wild area", 0, bag03, new ArrayList<>());
+        Place p22 = new Place(new Coordinate(1,2), "some wild area", 0, bag04, new ArrayList<>());
+        Place p23 = new Place(new Coordinate(1,3), "fairy land", 0, bag01, f2);
+        Place p24 = new Place(new Coordinate(1,4), "fairy land", 0, bag02, f4);
+
+        testMap.put(new Coordinate(0,0), p00);
+        testMap.put(new Coordinate(0,1), p01);
+        testMap.put(new Coordinate(0,2), p02);
+        testMap.put(new Coordinate(0,3), p03);
+        testMap.put(new Coordinate(0,4), p04);
+        testMap.put(new Coordinate(1,0), p10);
+        testMap.put(new Coordinate(1,1), p11);
+        testMap.put(new Coordinate(1,2), p12);
+        testMap.put(new Coordinate(1,3), p13);
+        testMap.put(new Coordinate(1,4), p14);
+        testMap.put(new Coordinate(2,0), p20);
+        testMap.put(new Coordinate(2,1), p21);
+        testMap.put(new Coordinate(2,2), p22);
+        testMap.put(new Coordinate(2,3), p23);
+        testMap.put(new Coordinate(2,4), p24);
+
 
 //        DialogTree Bless_tree = new DialogTree();
 //        Bless_tree.getRoot().setNpcDialog("I can bless you... to better prepare you for the fight");
@@ -170,22 +193,10 @@ public class PlayerTest2 {
 //                null, 0,0,0,null);
 
 
-        testNPC.put(new Coordinate(0,1), l_fairy);
-        testNPC.put(new Coordinate(0,2), a_fairy);
-        testNPC.put(new Coordinate(0,3), l_fairy);
-        testNPC.put(new Coordinate(0,4), a_fairy);
-        testNPC.put(new Coordinate(0,5), t_fairy);
-        testNPC.put(new Coordinate(1,0), e_fairy);
-        testNPC.put(new Coordinate(2,0), l_fairy);
-        testNPC.put(new Coordinate(3,0), a_fairy);
-        testNPC.put(new Coordinate(4,0), t_fairy);
-        testNPC.put(new Coordinate(5,0), e_fairy);
-
-        player.setNpcInfo(testNPC);
-        player.saveNPC();
+        player.setMapData(testMap);
+        player.saveMap();
+        HashMap<Coordinate, Place> map = player.loadOriginalMapData();
+        assertEquals(1, 1);
     }
-
-
-
 
 }

@@ -38,57 +38,37 @@ public class Player {
     private double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
-    HashMap<Coordinate, AbnormalPoint> npcInfo; // the map that contains all npc on the specific key coordinate
-    HashMap<Coordinate, Bag> storageInfo; // the room storage which contains all bags on the map, with coordinate info
+    HashMap<Coordinate, Place> mapData;
 
     /**
      * Some variables
      */
     Random random = new Random();
-    int maxHPIncreasePerLv = 15;
-    int armorIncreasePerLv = 5;
-    int damageIncreasePerLv = 2;
-    double criticalChanceIncreasePerLv = 0.02; //from 0.00-1.00 min step 0.01
-    int initRandomMaxHP = 30;
-    int initBaseMaxHP = 120;
-    int initRandomMoney =  5;
-    int initBaseMoney = 10;
-    int initMaxXP = 10;
-    int initXPPerLv = 10;
-    int initRandomArmor =  4;
-    int initBaseArmor = 4;
-    int initRandomDamage =  8;
-    int initBaseDamage = 12;
-    double initCriticalChance = 0.02; //from 0.00-1.00 min step 0.01
-    double initMaxCriticalChance = 1.00; //from 0.00-1.00 min step 0.01
-    int initBagWeight;
-    int initXCoordinate = 0;
-    int initYCoordinate = 0;
+    PlayerAttributes pa = PlayerAttributes.loadPlayerAttributes();
 
     /**
      * Constructor of new player by giving a name
      */
     public Player(String name){
         this.name = name;
-        this.maxHP = random.nextInt(initRandomMaxHP) + initBaseMaxHP;
+        this.maxHP = random.nextInt(pa.initRandomMaxHP) + pa.initBaseMaxHP;
         this.HP = maxHP;
-        this.money = random.nextInt(initRandomMoney) + initBaseMoney;
+        this.money = random.nextInt(pa.initRandomMoney) + pa.initBaseMoney;
         this.xp = 0; // default 0
-        this.maxXP = initMaxXP;
-        this.xpPerLv = initXPPerLv;
+        this.maxXP = pa.initMaxXP;
+        this.xpPerLv = pa.initXPPerLv;
         this.level = 1;
-        this.armour = random.nextInt(initRandomArmor)+ initBaseArmor;
-        this.damage = random.nextInt(initRandomDamage)+ initBaseDamage;
-        this.criticalChance = initCriticalChance;
-        this.maxCriticalChance = initMaxCriticalChance;
-        this.bag = new Bag(initBagWeight); //default bag capacity 5
-        this.place = new Place(new Coordinate(initXCoordinate,initYCoordinate),"player location");
-        this.setNpcInfo(loadOriginalNPCs()); // load from original file
-        this.setStorageInfo(loadOriginalItems()); // load from original file
+        this.armour = random.nextInt(pa.initRandomArmor)+ pa.initBaseArmor;
+        this.damage = random.nextInt(pa.initRandomDamage)+ pa.initBaseDamage;
+        this.criticalChance = pa.initCriticalChance;
+        this.maxCriticalChance = pa.initMaxCriticalChance;
+        this.bag = new Bag(pa.initBagWeight);
+        this.setMapData(loadOriginalMapData());
+        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
     }
 
     /**
-     * call once each time you attack/ //TODO
+     * call once each time you attack
      * calculate player's new attribute as level increases, given a player
      */
     public void UpdatePlayerAttribute(){
@@ -98,14 +78,14 @@ public class Player {
             this.maxXP = maxXP + xpPerLv; // increase xpFactor
 
             // update other attributes (maxHP, armor, damage, criticalChance, HP)
-            this.maxHP += maxHPIncreasePerLv;
-            this.armour += armorIncreasePerLv;
-            this.damage += damageIncreasePerLv;
+            this.maxHP += pa.maxHPIncreasePerLv;
+            this.armour += pa.armorIncreasePerLv;
+            this.damage += pa.damageIncreasePerLv;
 
-            if (this.criticalChance + criticalChanceIncreasePerLv > this.maxCriticalChance)
+            if (this.criticalChance + pa.criticalChanceIncreasePerLv > this.maxCriticalChance)
                 this.criticalChance = this.maxCriticalChance;
             else
-                this.criticalChance += criticalChanceIncreasePerLv;
+                this.criticalChance += pa.criticalChanceIncreasePerLv;
 
             this.HP = maxHP; // recover all hp once upgraded
         }
@@ -125,26 +105,35 @@ public class Player {
         }
     }
 
-    //TODO: Delete later, just for testing & create json
-    public void saveItem(){
+    /**
+     * Not used in normal gave, but is used for updating items in original json file
+     * @author Guanming Ou
+     */
+    public void saveMap(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter("json_files/original_data/Items.json")){ // name json file with player's name
-            gson.toJson(this.storageInfo, fw);
+        try(FileWriter fw = new FileWriter("json_files/original_data/map.json")){ // name json file with player's name
+            gson.toJson(this.mapData, fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    //TODO: Delete later, just for testing & create json
-    public void saveNPC(){
+
+    /**
+     * Not used in normal game, but is used for updating player attributes in original data json file
+     * @author Guanming Ou
+     */
+    public void savePlayerAttributes(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter("json_files/original_data/AbnormalPoints.json")){ // name json file with player's name
-            gson.toJson(this.npcInfo, fw);
+        try(FileWriter fw = new FileWriter("json_files/original_data/Player_original_attributes.json")){ // name json file with player's name
+            gson.toJson(this.pa, fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
     //TODO: test only, delete later
     public Player(){
     }
@@ -171,11 +160,11 @@ public class Player {
     }
 
     /**
-     * load original items data from json_files/original_data/
+     * load original map data from json_files/original_data/
      * @author Guanming Ou
      */
-    public static HashMap<Coordinate, Bag> loadOriginalItems() {
-        File file = new File("json_files/original_data/Items.json");
+    public static HashMap<Coordinate, Place> loadOriginalMapData() {
+        File file = new File("json_files/original_data/map.json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
@@ -189,21 +178,13 @@ public class Player {
     }
 
     /**
-     * load original npc data from json_files/original_data/
+     * Given data from orginal_data, search hashmap's 'place' by coordinate keys
+     * @param coord The coordinate of the place's information that you want to get
+     * @return Bag in hashmap or null if not found
      * @author Guanming Ou
      */
-    public static HashMap<Coordinate, AbnormalPoint> loadOriginalNPCs() {
-        File file = new File("json_files/original_data/AbnormalPoints.json");
-
-        Gson gson = new Gson();
-        JsonReader jsonReader = null;
-
-        try{
-            jsonReader = new JsonReader(new FileReader(file));
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return gson.fromJson(jsonReader, HashMap.class);
+    public Place SearchItemFromHashMap(Coordinate coord, HashMap<Coordinate, Place> hashmap){
+        return hashmap.get(coord);
     }
 
     /**
@@ -386,45 +367,79 @@ public class Player {
      * @author Yixiang Yin, modified by yitao chen
      */
 
-    public boolean goToDirection(String direction){
+    public String goToDirection(String direction){
         //TODO need to update the place stat everytime
         //TODO these 2 range description should be global limits
         int maxX = 30;
         int maxY = 30;
+        Coordinate nextCoord = this.place.getCoordinate();
 
         switch (direction){
             case "north":
                 if (this.place.getCoordinate().y==maxY){
-                    return false;
+                    return "direction out of map's boundary";
                 }
                 this.place.getCoordinate().goNorth();
                 generateMonster();
+                this.place.printPlace();
             break;
             case "east":
                 if (this.place.getCoordinate().x==maxX){
-                    return false;
+                    return "direction out of map's boundary";
                 }
                 this.place.getCoordinate().goEast();
                 generateMonster();
+                this.place.printPlace();
             break;
 
             case "south":
                 if (this.place.getCoordinate().y==0){
-                    return false;
+                    return "direction out of map's boundary";
                 }
                 this.place.getCoordinate().goSouth();
                 generateMonster();
+                this.place.printPlace();
             break;
 
             case "west":
                 if (this.place.getCoordinate().x==0){
-                    return false;
+                    return "direction out of map's boundary";
                 }
+                nextCoord.goWest();
+                goToDirectionHelper(nextCoord);
+
                 this.place.getCoordinate().goWest();
                 generateMonster();
+                this.place.printPlace();
             break;
         }
-        return true;
+        return "You've moved to "+direction+" direction";
+    }
+
+    /**
+     * check if the next coordinate is already store inside the map data, and update if required
+     * if there is current coordinate exist in map data
+     * - remove current coordinate from map data
+     * - insert current place to map data
+     *
+     * if (there is next coordinate inside the map data)
+     * - update current place with the place inside the map data
+     * else
+     * - randomly generate place named wild area with random dangerate and monster
+     * @param nextCoord the next coordinate that the player wants to move to
+     * @author Guanming Ou
+     */
+    public void goToDirectionHelper(Coordinate nextCoord){
+        HashMap<Coordinate, Place> map = this.getMapData();
+        if (map.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+            map.remove(this.place.getCoordinate()); // remove current coordinate from map data
+            map.put(this.place.getCoordinate(), this.place); // insert current place to map data
+        }
+
+        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
+            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
+        else
+            generateMonster();
     }
 
     /**
@@ -846,11 +861,79 @@ public class Player {
         this.place = place;
     }
 
-    public void setNpcInfo(HashMap<Coordinate, AbnormalPoint> npcInfo) {
-        this.npcInfo = npcInfo;
+    public void setMapData(HashMap<Coordinate, Place> mapData) {
+        this.mapData = mapData;
     }
 
-    public void setStorageInfo(HashMap<Coordinate, Bag> storageInfo) {
-        this.storageInfo = storageInfo;
+    public HashMap<Coordinate, Place> getMapData() {
+        return mapData;
+    }
+
+    /**
+     * This is a subclass for enabling edit player's origianl generate atrributes via json
+     * @author Guanming Ou
+     */
+    public static class PlayerAttributes {
+        int maxHPIncreasePerLv;
+        int armorIncreasePerLv;
+        int damageIncreasePerLv;
+        double criticalChanceIncreasePerLv; //from 0.00-1.00 min step 0.01
+        int initRandomMaxHP;
+        int initBaseMaxHP;
+        int initRandomMoney;
+        int initBaseMoney;
+        int initMaxXP;
+        int initXPPerLv;
+        int initRandomArmor;
+        int initBaseArmor;
+        int initRandomDamage;
+        int initBaseDamage;
+        double initCriticalChance; //from 0.00-1.00 min step 0.01
+        double initMaxCriticalChance; //from 0.00-1.00 min step 0.01
+        int initBagWeight;
+        int initXCoordinate;
+        int initYCoordinate;
+
+        public PlayerAttributes(int maxHPIncreasePerLv, int armorIncreasePerLv, int damageIncreasePerLv, double criticalChanceIncreasePerLv, int initRandomMaxHP, int initBaseMaxHP, int initRandomMoney, int initBaseMoney, int initMaxXP, int initXPPerLv, int initRandomArmor, int initBaseArmor, int initRandomDamage, int initBaseDamage, double initCriticalChance, double initMaxCriticalChance, int initBagWeight, int initXCoordinate, int initYCoordinate) {
+            this.maxHPIncreasePerLv = maxHPIncreasePerLv;
+            this.armorIncreasePerLv = armorIncreasePerLv;
+            this.damageIncreasePerLv = damageIncreasePerLv;
+            this.criticalChanceIncreasePerLv = criticalChanceIncreasePerLv;
+            this.initRandomMaxHP = initRandomMaxHP;
+            this.initBaseMaxHP = initBaseMaxHP;
+            this.initRandomMoney = initRandomMoney;
+            this.initBaseMoney = initBaseMoney;
+            this.initMaxXP = initMaxXP;
+            this.initXPPerLv = initXPPerLv;
+            this.initRandomArmor = initRandomArmor;
+            this.initBaseArmor = initBaseArmor;
+            this.initRandomDamage = initRandomDamage;
+            this.initBaseDamage = initBaseDamage;
+            this.initCriticalChance = initCriticalChance;
+            this.initMaxCriticalChance = initMaxCriticalChance;
+            this.initBagWeight = initBagWeight;
+            this.initXCoordinate = initXCoordinate;
+            this.initYCoordinate = initYCoordinate;
+        }
+
+        /**
+         * load PlayerAttributes from json
+         * @author Guanming Ou
+         */
+        public static PlayerAttributes loadPlayerAttributes() {
+            File file = new File("json_files/original_data/Player_original_attributes.json");
+
+            Gson gson = new Gson();
+            JsonReader jsonReader = null;
+
+            final Type CUS_LIST_TYPE = new TypeToken<PlayerAttributes>() {}.getType();
+
+            try{
+                jsonReader = new JsonReader(new FileReader(file));
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+        }
     }
 }
