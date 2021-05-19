@@ -1,6 +1,7 @@
 package Options;
 
 import AbnormalPoints.Monster;
+import CommandParser.Token;
 import Player.Player;
 import AbnormalPoints.AbnormalPoint;
 
@@ -11,10 +12,11 @@ public class BattleOption extends BasicOption {
         this.option.add(new Option("retreat", "Retreat from here"));
         this.option.add(new Option("defence", "Defence"));
         this.option.add(new Option("pick", "Pick an item"));
-//        this.option.add(new Option("north", "Go north"));
-//        this.option.add(new Option("south", "Go south"));
-//        this.option.add(new Option("east", "Go east"));
-//        this.option.add(new Option("west", "Go west"));
+
+        this.tokenType.add(Token.Type.ATTACK);
+        this.tokenType.add(Token.Type.RETREAT_ACTION);
+        this.tokenType.add(Token.Type.TAKE_ACTION);
+
     }
 
     public BattleOption(AbnormalPoint enemy,Player player) throws Exception {
