@@ -295,6 +295,60 @@ public class PlayerTest2 {
 
 
     }
+    @Test
+    public void createNPCTalkJsonTest3(){
+
+        Player player = new Player();
+        HashMap<String, Integer> c1P = new HashMap<>();
+        c1P.put("health", +15);
+        c1P.put("weight", 1);
+        c1P.put("value", 10);
+        Item c1 = new Item("C1", "consumable", "Mushroom", "Restores 15 health", c1P);
+        HashMap<String, Integer> c2P = new HashMap<>();
+
+        c1P.put("health", +50);
+        c1P.put("weight", 1);
+        c1P.put("value", 25);
+        Item c2 = new Item("C2", "consumable", "Lesser Healing Potion", "Restores 50 health", c2P);
+        HashMap<String, Integer> c3P = new HashMap<>();
+        c1P.put("health", +100);
+        c1P.put("weight", 1);
+        c1P.put("value", 50);
+        Item c3 = new Item("C3", "consumable", "Healing Potion", "Restores 100 health", c3P);
+        Bag bag01 = new Bag(100); // has 4 mushroom
+        bag01.put(c1);
+        bag01.put(c1);
+        Bag bag02 = new Bag(100); // has 2 mushroom, 1 Lesser Healing Potion
+        bag02.put(c1);
+        bag02.put(c2);
+
+        DialogTree Bless_tree = new DialogTree();
+        Bless_tree.getRoot().setNpcDialog("I can bless you... to better prepare you for the fight");
+        Bless_tree.getRoot().setIndex(0);
+        Bless_tree.getRoot().setDtype(DialogTree.DialogType.CONTINUE);
+        List<DialogTree.Dialog> blesserDialog = new ArrayList<>();
+        blesserDialog.add(new DialogTree.Dialog(1, "I want to increase my health", "as you wish...", null, DialogTree.DialogType.END_BLESS_HP));
+        blesserDialog.add(new DialogTree.Dialog(2, "I want to increase my armor", "as you wish...", null, DialogTree.DialogType.END_BLESS_ARMOR));
+
+        Bless_tree.getRoot().setNextDialogs(blesserDialog);
+
+        NPC_TALK l_fairy = new NPC_TALK("Little_Fairy", "Hi, I can permanent increase your power!",
+                100,100,1,100,0,50,0, Element.Normal,
+                Bless_tree, 3,3,3,bag01);
+
+        NPC_TALK t_fairy = new NPC_TALK("Teenager_Fairy", "Hi, I can permanent increase your power!",
+                500,500,1,500,0,100,0, Element.Normal,
+                Bless_tree, 7,6,4,bag02);
+
+        HashMap<Coordinate, NPC_TALK> testNPC = new HashMap<>();
+        testNPC.put(new Coordinate(0,0), l_fairy);
+        testNPC.put(new Coordinate(0,1), t_fairy);
+
+        player.setMap_npcTData(testNPC);
+        //player.saveTALKNPC();
+
+
+    }
 
 
 

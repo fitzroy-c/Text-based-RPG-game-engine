@@ -26,7 +26,7 @@
     "blessAddDamage": 3,
     "hasEndedTalk": false,
     "npcBag": {
-      "currentWeight": 2,
+      "currentWeight": 1,
       "maxWeight": 100,
       "itemList": [
         {
