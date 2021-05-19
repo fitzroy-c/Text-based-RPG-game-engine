@@ -210,7 +210,7 @@ public class Player {
      * @author Guanming Ou
      */
     public static HashMap<Coordinate, Bag> loadOriginalItems() {
-        File file = new File("json_files/original_data/Bag.json");
+        File file = new File("json_files/original_data/Items.json");
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
@@ -548,41 +548,59 @@ public class Player {
         HashMap<Coordinate, NPC_TALK> npc_t = this.map_npcTData;
         HashMap<Coordinate, NPC_MERCHANT> npc_m = this.map_npcMData;
         HashMap<Coordinate, Bag> bag = this.map_bagData;
-
+        // update the npc merchant json of current coordinate
 //        if (npc_m.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-//            npc_m.remove(this.place.getCoordinate()); // remove current coordinate from map data
-//            npc_m.put(this.place.getCoordinate(), this.place); // insert current place to map data
+//            NPC_MERCHANT npcm = extractNPCMerchant(); // find npc talk inside the abnormal point list
+//            if (npcm != null){
+//                npc_m.remove(this.place.getCoordinate()); // remove current coordinate from map data
+//                npc_m.put(this.place.getCoordinate(), npcm); // insert current place to map data (one npc talk only)
+//            }
 //        }
-
+        // update the npc talk json of current coordinate
         if (npc_t.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-            NPC_TALK npc = extractNPCTalk(); // find npc talk inside the abnormal point list
-            if (npc != null){
+            NPC_TALK npct = extractNPCTalk(); // find npc talk inside the abnormal point list
+            if (npct != null){
                 npc_t.remove(this.place.getCoordinate()); // remove current coordinate from map data
-                npc_t.put(this.place.getCoordinate(), npc); // insert current place to map data (one npc talk only)
+                npc_t.put(this.place.getCoordinate(), npct); // insert current place to map data (one npc talk only)
             }
         }
+        // update the bag json of current coordinate
+        if (bag.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+            bag.remove(this.place.getCoordinate()); // remove current coordinate from map data
+            bag.put(this.place.getCoordinate(), this.place.getBag()); // insert current place to map data
+        }
 
-//        if (bag.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-//            NPC_MERCHANT
-//            bag.remove(this.place.getCoordinate()); // remove current coordinate from map data
-//            bag.put(this.place.getCoordinate(), this.place); // insert current place to map data
-//        }
-//
-//
-//
-//
+//        // update next coordinate inside json
 //        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
 //            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
-        else{ // randomly generate place named wild area with random danger rate and monster
-            this.place.setCoordinate(nextCoord);
-            this.place.setDescription("Wild area");
+        int updated = 0;
+        List<AbnormalPoint> abpoints = new ArrayList<AbnormalPoint>();
+        Place nextPlace = new Place(nextCoord, "", 0,new Bag(100), abpoints);
+        if (npc_t.containsKey(nextCoord)) { // try to get npc merchant from json if any
+            abpoints.add(npc_m.get(nextCoord));
+            updated++;
+        }
+        if (npc_t.containsKey(nextCoord)){ // try to get npc talk from json if any
+            abpoints.add(npc_t.get(nextCoord));
+            updated++;
+        }
+        nextPlace.setAbnormalPoints(abpoints); // update player place's abnormal point
+
+        if (bag.containsKey(nextCoord)){ // try and get bag from json if any
+            nextPlace.setBag(bag.get(nextCoord)); // update player's place's storage bag
+            updated++;
+        }
+
+        if (updated == 0){ // randomly generate place named wild area with random danger rate and monster
             this.place.setDangerRate(random.nextInt(5));
-            this.place.setBag(new Bag(100));
-            this.place.setAbnormalPoints(new ArrayList<AbnormalPoint>());
             generateMonster();
         }
     }
 
+    /**
+     * From a list of abnormalpoints, find the talk npc
+     * @return NPC_TALK
+     */
     public NPC_TALK extractNPCTalk(){
        List<AbnormalPoint> alist = this.place.getAbnormalPoints();
        NPC_TALK npc_t = null;
@@ -593,6 +611,10 @@ public class Player {
        return null;
     }
 
+    /**
+     * From a list of abnormalpoints, find the npc merchant
+     * @return NPC_MERCHANT
+     */
     public NPC_MERCHANT extractNPCMerchant(){
         List<AbnormalPoint> alist = this.place.getAbnormalPoints();
         NPC_TALK npc_m = null;
