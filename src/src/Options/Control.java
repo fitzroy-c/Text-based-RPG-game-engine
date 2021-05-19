@@ -29,6 +29,7 @@ public class Control extends BasicOption {
 
     public void printRightOption() throws Exception {
         if (isMonster && isNpc) {
+            System.out.println("Control: case is NM");
             NMOption nm = new NMOption(monsters, npcs);
         }
         System.out.println("Run print");

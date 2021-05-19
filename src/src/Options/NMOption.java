@@ -1,6 +1,7 @@
 package Options;
 
 import AbnormalPoints.AbnormalPoint;
+import CommandParser.Token;
 
 import java.util.List;
 
@@ -32,6 +33,10 @@ public class NMOption extends BasicOption{
                 System.out.println("[" + i + "] " + op.getCommand());
             }
         }
+    }
 
+    @Override
+    public boolean chooseOp(Token token) {
+        return false;
     }
 }

@@ -31,15 +31,6 @@ public class BasicOption {
 
         if (token.type()== Token.Type.ERROR)
             return true;
-/*
-        if (token.type()== Token.Type.DIRECTION_ACTION)
-            return true;
-        if (token.type()== Token.Type.DROP_ACTION)
-            return true;
-        if (token.type()== Token.Type.RETREAT_ACTION)
-            return true;
-*/
-//      optionInterface.containsKey(command) &&
         if (tokenType.contains(type)) {
             return true;
         } else {
