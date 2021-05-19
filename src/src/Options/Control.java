@@ -6,6 +6,7 @@ import Player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Control extends BasicOption {
     static AbnormalPoint current;
@@ -32,6 +33,20 @@ public class Control extends BasicOption {
         if (isMonster && isNpc) {
             System.out.println("Control: case is NM");
             NMOption nm = new NMOption(monsters, npcs);
+            nm.printOut();
+            boolean b = true;
+            while (b) {
+                Scanner s = new Scanner(System.in);
+                try {
+                    int n = s.nextInt();
+                    current = nm.verifyInt(n);
+                    System.out.println("this is int "+n);
+                    b = false;
+                } catch (Exception e) {
+                    System.out.println("I don't understand");
+                    System.out.println("Please input number!");
+                }
+            }
         }
         System.out.println("Run print");
         switch (current.getString()) {
