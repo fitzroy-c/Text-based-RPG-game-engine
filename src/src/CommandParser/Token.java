@@ -1,8 +1,8 @@
 package CommandParser;
 
 /**
- * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|<consume-command>|
- *              <attack-command>|<retreat-command>|<defence-command>|<view-command>|<help-command>
+ * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<shop-command>|<drop command>|<talk-command>|
+ *              <consume-command>|<attack-command>|<retreat-command>|<defence-command>|<view-command>|<help-command>
  * <save>    := save | save game
  * <exit>    := exit | exit game
  * <detect>  := detect
@@ -12,6 +12,7 @@ package CommandParser;
  * <consume-command> := <consume-action> <item-name>
  * <consume-action> := consume | eat | drink | use
  * <take-command> := <take_action> <item-name> | <take_action> <gold | golds | money>
+ * <shop-command> := shop | buy | purchase | shopping | trade
  * <item-name> := "item inside the room"
  * <take_action> := take | pick
  * <drop-command> := <drop_action> <item-name>
@@ -29,7 +30,7 @@ package CommandParser;
 
 public class Token {
     public enum Type {UNKNOWN, ERROR, SAVE, EXIT, DETECT, DIRECTION_ACTION, DIRECTION, CONSUME_ACTION, TAKE_ACTION, DROP_ACTION,
-        ITEM, TALK, VIEW_ACTION, STAT, BACKPACK, ATTACK, RETREAT_ACTION, BRIBE, HELP};
+        ITEM, TALK, SHOP, VIEW_ACTION, STAT, BACKPACK, ATTACK, RETREAT_ACTION, BRIBE, HELP};
 
     private String _token = "";
     private Type _type = Type.UNKNOWN;

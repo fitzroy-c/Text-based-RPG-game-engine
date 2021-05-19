@@ -11,28 +11,30 @@ import java.util.List;
 
 /**
  * Grammar:
- * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<drop command>|<talk-command>|
- *              <attack-command>|<retreat-command>|<defence-command>|<view-command>|<help-command>
+ * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<shop-command>|<drop command>|<talk-command>|
+ *              <consume-command>|<attack-command>|<retreat-command>|<defence-command>|<view-command>|<help-command>
  * <save>    := save | save game
  * <exit>    := exit | exit game
  * <detect>  := detect
  * <move-command> := <move_action> <direction> | <direction>
  * <move_action> := go | move | head
  * <direction> := north | south | east | west
- * <take-command> := <take_action> <item-name>
+ * <consume-command> := <consume-action> <item-name>
+ * <consume-action> := consume | eat | drink | use
+ * <take-command> := <take_action> <item-name> | <take_action> <gold | golds | money>
+ * <shop-command> := shop | buy | purchase | shopping | trade
  * <item-name> := "item inside the room"
  * <take_action> := take | pick
  * <drop-command> := <drop_action> <item-name>
  * <drop_action> := drop | put down | abandon
  * <talk-command> := talk | chat | speak
  * <view-command> := <look-action> <stat> | <look-action> <bag> | <stat> | <bag>
- * <stat>         := <stat | stats | statistic>
+ * <stat>         := stat | stats | statistic
  * <bag>          := <backpack | bag>
  * <look-action> := look | view | see | browse
  * <attack-command> := attack
- * <retreat-command> := <retreat-action> <direction>
- * <retreat-action> := retreat | run away | escape
- * <defence-command> := defence
+ * <retreat-command> := retreat | run away | escape
+ * <bribe-command> := bribe
  * <help-command> := help
  *
  * Specification
@@ -191,6 +193,18 @@ public class Parser {
 
         // <talk-command> := talk | chat | speak
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.TALK){
+            this._tokenizer.next();
+            if (this._tokenizer.hasNext() == false){
+                System.out.println(player.talk());
+                cmdExecuted = true;
+            } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
+                System.out.println(player.talk());
+                cmdExecuted = true;
+            }
+        }
+
+        // <shop-command> := shop | buy | purchase | shopping | trade
+        if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.SHOP){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
                 System.out.println(player.talk());
