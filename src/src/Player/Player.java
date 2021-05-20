@@ -510,7 +510,7 @@ public class Player {
                 }
                 nextCoord.goNorth();
                 goToDirectionHelper(nextCoord);
-                this.place.printPlace();
+                System.out.println("Coordinate: "+this.place.getCoordinate());
             break;
             case "east":
                 if (this.place.getCoordinate().x==maxX){
@@ -518,7 +518,7 @@ public class Player {
                 }
                 nextCoord.goEast();
                 goToDirectionHelper(nextCoord);
-                this.place.printPlace();
+                System.out.println("Coordinate: "+this.place.getCoordinate());
             break;
 
             case "south":
@@ -527,7 +527,7 @@ public class Player {
                 }
                 nextCoord.goSouth();
                 goToDirectionHelper(nextCoord);
-                this.place.printPlace();
+                System.out.println("Coordinate: "+this.place.getCoordinate());
             break;
 
             case "west":
@@ -536,7 +536,7 @@ public class Player {
                 }
                 nextCoord.goWest();
                 goToDirectionHelper(nextCoord);
-                this.place.printPlace();
+                System.out.println("Coordinate: "+this.place.getCoordinate());
             break;
         }
         return "You've moved to "+direction+" direction";
