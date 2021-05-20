@@ -337,27 +337,28 @@ public class Player {
         return hashmap.get(coord);
     }
 
-    /**
-     * Consume an consumable item
-     * TODO: more function should be add. if the item has damage or what,should reset the monster.hp player's gold/xp etc.
-     * TODO: item should be divided first and then play its function
-     * @author: Yixiang Yin
-     **/
-    public String consume(Item i){
-        if (i.type.equals("consumable") && bag.searchInBag(i)){
-            HP+=i.properties.get("health").intValue();
-            bag.drop(i);
-            return "You've successfully consume "+i.name+" .";
-        }
-        else if (!i.type.equals("consumable")) return "You can't consume "+i.name+" .";
-        else return "You don't have "+i.name+" .";
-    }
+//    /**
+//     * Consume an consumable item
+//     * TODO: more function should be add. if the item has damage or what,should reset the monster.hp player's gold/xp etc.
+//     * TODO: item should be divided first and then play its function
+//     * @author: Yixiang Yin
+//     **/
+//    public String consume(Item i){
+//        if (i.type.equals("consumable") && bag.searchInBag(i)){
+//            HP+=i.properties.get("health").intValue();
+//            bag.drop(i);
+//            return "You've successfully consume "+i.name+" .";
+//        }
+//        else if (!i.type.equals("consumable")) return "You can't consume "+i.name+" .";
+//        else return "You don't have "+i.name+" .";
+//    }
 
     /**
      * Consume a consumable item, given a item name
      * - Consumable item increases the HP of player.
      * @param itemName item name in string
      * @return string of hint
+     * @author: Guanming Ou, modified by Yixiang Yin
      */
     public String consumeByItemName(String itemName){
         Item item = this.bag.getItemByName(itemName);
@@ -365,7 +366,7 @@ public class Player {
             return "You don't have "+ itemName +" in your bag.";
         else {
             if (item.type.equals("consumable")){
-                this.HP += item.properties.get("health").intValue();
+                this.healing(item.properties.get("health"));
                 this.bag.drop(item);
                 return "You've successfully consume "+itemName+" .";
             }
@@ -375,6 +376,14 @@ public class Player {
         }
     }
 
+    public void healing(int healingAmount){
+        if (healingAmount+this.HP>this.maxHP) {
+            this.HP = this.maxHP;
+        }
+        else {
+            this.HP +=healingAmount;
+        }
+    }
     /**
      * Check if this room has a monster,
      * - if yes, return the danger level and name of the monster
@@ -598,6 +607,7 @@ public class Player {
      */
     public void goToDirectionHelper(Coordinate nextCoord){
 //        HashMap<Coordinate, Place> map = this.getMapData();
+//        this.setMap_bagData(bag);
         HashMap<Coordinate, NPC_TALK> npc_t = this.map_npcTData;
         HashMap<Coordinate, NPC_MERCHANT> npc_m = this.map_npcMData;
 //        HashMap<Coordinate, Bag> bag = this.map_bagData;
@@ -626,17 +636,14 @@ public class Player {
 //        // update next coordinate inside json
 //        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
 //            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
-        int updated = 0;
+        boolean updated = true;
         Place nextPlace = new Place(nextCoord, "", 0,new Bag(100), new ArrayList<>());
         nextPlace.setAbnormalPoints(extractBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
         if (! nextPlace.getAbnormalPoints().isEmpty()) // check if operation did get npc
-            updated++;
-//        if (bag.containsKey(nextCoord)){ // try and get bag from json if any
-//            nextPlace.setBag(bag.get(nextCoord)); // update player's place's storage bag
-//            updated++;
-//        }
+            updated = true;
 
-        if (updated == 0){ // randomly generate place named wild area with random danger rate and monster
+
+        if (updated == false){ // randomly generate place named wild area with random danger rate and monster
             nextPlace.setDescription("Wild area");
             nextPlace.setDangerRate(randomGenerate(5));
             generateMonster();
@@ -645,7 +652,6 @@ public class Player {
         this.setPlace(nextPlace);
         this.setMap_npcTData(npc_t);
         this.setMap_npcMData(npc_m);
-//        this.setMap_bagData(bag);
     }
 
     /**

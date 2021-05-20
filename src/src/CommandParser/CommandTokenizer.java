@@ -35,6 +35,8 @@ public class CommandTokenizer {
      *  save the token to {@code currentToken}.
      */
     public void next() {
+        Boolean checkingItem = true; // make sure the while loop is working
+
         _buffer = _buffer.trim(); // remove whitespace
 
         if(_buffer.isEmpty()) {
@@ -110,11 +112,37 @@ public class CommandTokenizer {
             // TAKE_ACTION <pick | pick up>
             else if (createString.toString().equals("take") | createString.toString().equals("pick"))
                 currentToken = new Token(createString.toString(),Token.Type.TAKE_ACTION);
-
-            else if (isItem(this.ItemBook,createString.toString())) // TODO: make checkHasItem, return true if this is a valid item name (done by Yixiang Yin)
+            // ITEM
+            else if (isItem(this.ItemBook,  createString.toString()))
                 currentToken = new Token(createString.toString(),Token.Type.ITEM);
-//            if (checkHasItem(createString))
-//                currentToken = new Token(createString,Token.Type.ITEM);
+
+            else if (checkingItem){ // items may have multiple spaces
+                StringBuilder itemString = createString;
+                StringBuilder tempItemString = new StringBuilder();
+                int itemStringCount = count;
+                Boolean itemFound = false;
+
+                while (checkingItem){
+                    if (itemStringCount == _buffer.length())
+                        checkingItem = false;
+                    // check if the string is a item name
+                    if (isItem(this.ItemBook,  itemString.toString())){
+                        itemFound = true;
+                        break;
+                    }
+                    itemStringCount++; // skip the white space
+                    tempItemString = new StringBuilder();
+                    // add next word into string (define by space separation)
+                    while (itemStringCount < _buffer.length() && _buffer.charAt(itemStringCount) != ' ') { // get separate words
+                        tempItemString.append(_buffer.charAt(itemStringCount));
+                        itemStringCount++;
+                    }
+                    tempItemString.insert(0,' ');
+                    itemString.append(tempItemString);
+                }
+                if (itemFound)
+                    currentToken = new Token(itemString.toString(),Token.Type.ITEM);
+            }
 
             // DROP_ACTION <drop | put down | abandon>
             else if (createString.toString().equals("drop") | createString.toString().equals("abandon") | createString.toString().equals("put")){
