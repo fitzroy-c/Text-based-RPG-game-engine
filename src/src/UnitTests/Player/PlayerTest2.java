@@ -1,8 +1,6 @@
 package Player;
 
-import AbnormalPoints.AbnormalPoint;
-import AbnormalPoints.DialogTree;
-import AbnormalPoints.NPC_TALK;
+import AbnormalPoints.*;
 import Card.Element;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,8 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class PlayerTest2 {
 
@@ -62,19 +59,16 @@ public class PlayerTest2 {
     }
 
     @Test
-    public void testNewplayerWithJson() {
+    public void testNewPlayerNameWithJson() {
         Player player = new Player( "ddd");
         assertEquals("ddd",player.getName());
-//        assertEquals(false, player.getMap_bagData().get(new Coordinate(0,0)).isEmpty());
-
     }
 
     @Test
-    public void justTesting2(){
+    public void testLoading(){
         Player p1 = new Player("TestingLoad1");
         p1.save();
         Player p2 = Player.load("TestingLoad1");
-        int i = 0;
     }
 
     @Test
@@ -114,8 +108,6 @@ public class PlayerTest2 {
 
         int i = 0;
     }
-
-
 
     @Test
     public void createItemJson(){

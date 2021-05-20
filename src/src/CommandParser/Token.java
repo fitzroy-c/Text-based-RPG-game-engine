@@ -23,7 +23,7 @@ package CommandParser;
  * <bag>          := <backpack | bag>
  * <look-action> := look | view | see | browse
  * <attack-command> := attack
- * <retreat-command> := retreat | run away | escape
+ * <retreat-command> := retreat | run away | escape | back
  * <bribe-command> := bribe
  * <help-command> := help
  */

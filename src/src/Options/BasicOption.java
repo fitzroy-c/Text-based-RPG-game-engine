@@ -47,10 +47,11 @@ public class BasicOption {
         //this.printOut();
         String command = token.token();
         Token.Type type = token.type();
-
-        if (token.type()== Token.Type.ERROR)
+        if (type== Token.Type.ERROR)
             return true;
         if (tokenType.contains(type)) {
+            return true;
+        } else if (optionInterface.containsKey(command)) {
             return true;
         } else {
             System.out.println("I don't know what '" + command + "' means.");

@@ -1,12 +1,10 @@
 package Options;
 
-import AbnormalPoints.DialogTree;
-import AbnormalPoints.Monster;
-import AbnormalPoints.MonsterAttributes;
-import AbnormalPoints.NPC_TALK;
+import AbnormalPoints.*;
 import Card.Element;
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
+import CommandParser.Token;
 import Player.Player;
 
 import java.util.Scanner;
@@ -17,14 +15,17 @@ public class NMOptionTest {
 
     static private void initialize() {
 //        player = new Player("test");
-        MonsterAttributes ma = new MonsterAttributes("tt","tt",100,10,12,12,12,12,
+        MonsterAttributes ma = new MonsterAttributes("Monster","Monster",100,10,12,12,12,12,
                 12,12,12,12,12, Element.Normal);
         Monster monster = new Monster(ma, 5);
         player.getPlace().addAbnormalPoint(monster);
 
-        NPC_TALK npc = new NPC_TALK("npc","npc", 12, 12, 12, 12, 12, 12, 12, Element.Normal, new DialogTree(),
+        NPC_TALK npcTalk = new NPC_TALK("npcTalk","npcTalk", 12, 12, 12, 12, 12, 12, 12, Element.Normal, new DialogTree(),
                 12,12,12,null);
-        player.getPlace().addAbnormalPoint(npc);
+        player.getPlace().addAbnormalPoint(npcTalk);
+
+        NPC_MERCHANT npcMerchant = new NPC_MERCHANT("npcMerchant","npcMerchant",12,12,12,12,12,12,12,null);
+        player.getPlace().addAbnormalPoint(npcMerchant);
     }
 
     public static void main(String[] args) throws Exception {
@@ -51,8 +52,19 @@ public class NMOptionTest {
                     System.out.println("Here is all the players available");
                     PlayerOption playerOption = new PlayerOption(player);
                     playerOption.printOut();
-                    while (true) {
+                    boolean b = true;
+                    while (b) {
+                        if(playerOption.chooseOp(new Token(s.next(),null))) {
+                            player = playerOption.player;
+                            b = false;
+                        } else {
+                            System.out.println("I don't understand this command");
+                        }
                     }
+                    Control.death=false;
+                    Control cL = new Control(player);
+                    gameInteractionLoop(player, cL);
+                    break;
                 case 2:
                     System.exit(0);
                 default:
@@ -75,13 +87,20 @@ public class NMOptionTest {
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
                 continueOn = new Parser(cmdTok, player).parseCommand();
-                //c.setCurrentOption(monster);
-                //System.out.println("change Option");
                 c.printRightOption();
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
             }
-//            continueOn = new Parser(cmdTok, player).parseCommand();
         }
     }
+
+    public static void gameInteractionLoopParser(Player player) throws Exception {
+        boolean continueOn = true;
+        Scanner s = new Scanner(System.in);
+        while (continueOn){
+            cmdTok = new CommandTokenizer(s.nextLine());
+            continueOn = new Parser(cmdTok, player).parseCommand();
+        }
+    }
+
 }

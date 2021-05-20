@@ -416,9 +416,9 @@ public class Player {
      * @author Zihong Yuan
      */
     public void checkNPCs() {
+        Control.resetNPCs();
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             AbnormalPoint.AbnormalPointType current =  this.place.getAbnormalPoints().get(i).abnormalPointType;
-
             if (current == AbnormalPoint.AbnormalPointType.NPC_TALK
                 || current == AbnormalPoint.AbnormalPointType.NPC_MERCHANT){
                 ///change battleOption here bill
@@ -786,7 +786,7 @@ public class Player {
     public String talk(){
         // check if here can talk
         List<AbnormalPoint> currentPlace =  this.place.getAbnormalPoints();
-        if (currentPlace == null)
+        if (currentPlace.isEmpty())
             return "There is no one to talk to.";
         // check if there is npc that you can talk to
         NPC_TALK npc_t = null;
@@ -813,6 +813,7 @@ public class Player {
                 System.out.println("Your response(s):");
                 System.out.println(npc_t.getDialogTree().printAvailableDialog()); // show player available response
                 playerResponse = s.next(); // get player's response
+
 
                 // convert player's respond into integer
                 if (isAllInt(playerResponse)){
@@ -859,6 +860,8 @@ public class Player {
                         DialogTree newTree = new DialogTree();
                         newTree.setRoot(nextDialog);
                         npc_t.setDialogTree(newTree);
+                    }else{
+                        System.out.println("Invalid respond index, please try again");
                     }
                 }
                 else
@@ -871,7 +874,7 @@ public class Player {
     /**
      * Check a string is completely int, before using toInt method
      */
-    public boolean isAllInt(String input){
+    public static boolean isAllInt(String input){
         input = input.trim(); // remove white space
         if (input.isEmpty())
             return false;
@@ -879,12 +882,13 @@ public class Player {
         if (Character.isDigit(firstChar)){
             int count = 0;
             while (count < input.length()) {
-                if (! Character.isLetter(input.charAt(count)))
+                if (Character.isLetter(input.charAt(count)))
                     return false;
                 count++;
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -985,7 +989,7 @@ public class Player {
      * @author yitao chen
      * @return
      */
-    public String retreat(){
+/*    public String retreat(){
         String string = "Ready to retreat:\n";
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
@@ -1005,6 +1009,35 @@ public class Player {
         return string + "There is no monster for you to retreat\n";
 
 
+    }*/
+
+    /**
+     * Another retreat, testing.
+     * comment out old retreat by Yitao.
+     *
+     * @author Yitao Cheng, modified by ZIhong Yuan
+     * @return
+     */
+    public String retreat(){
+        String string = "";
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                while(this.HP>0){
+                    if (criticalCheck(0.8)){ //80% chance succeed
+                        monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                        return string + "Retreat successfully.\n";
+                    }else{
+                        this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
+                        string +="Retreat failed.\n";
+                    }
+                }
+                return string+"Your adventure journey ended here. The magic world will remember you\n";
+            } else {
+                return string + "Retreat successfully.\n";
+            }
+        }
+        return string + "There is no monster or npc for you to retreat\n";
     }
 
     /**
@@ -1147,6 +1180,8 @@ public class Player {
     public HashMap<Coordinate, Bag> getMap_bagData() {
         return map_bagData;
     }
+
+
 
     //    public void setMapData(HashMap<Coordinate, Place> mapData) {
 //        this.mapData = mapData;

@@ -120,15 +120,13 @@ public class Bag {
      * @return Guanming Ou
      */
     public Bag giveAllItemTo(Player player){
-        Bag tempBag = new Bag(100);;
+        Bag tempBag = new Bag(10000);
         for (Item npc_item : this.itemList){
-            if (player.bag.put(npc_item)){ // add to player's bag
-                this.drop(npc_item); // delete from npc's bag
-            } else {
+            if (!player.bag.put(npc_item)){ // add to player's bag
                 tempBag.put(npc_item);
             }
         }
-        if (!tempBag.isEmpty()){
+        if (!tempBag.isEmpty()){ // if player's bag cannot fit any more, put it to current place's bag
             List<Item> roomItem = player.place.getItems();
             for (Item placeItem : roomItem){
                 tempBag.put(placeItem);
@@ -173,7 +171,7 @@ public class Bag {
             System.out.println(i.name.equals(itemName));
             System.out.println(i.name.equals("Mushroom"));
 
-            if (i.name.equals(itemName))
+            if (i.name.toLowerCase().equals(itemName.toLowerCase()))
                 return i;
         }
         // did not find a item
@@ -256,6 +254,18 @@ public class Bag {
                 itemNames += ", "+this.itemList.get(i).name;
         }
         return itemNames+"]";
+    }
+
+    public void setCurrentWeight(int currentWeight) {
+        this.currentWeight = currentWeight;
+    }
+
+    public void setMaxWeight(int maxWeight) {
+        this.maxWeight = maxWeight;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
     }
 
 

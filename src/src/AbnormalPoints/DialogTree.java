@@ -48,7 +48,6 @@ public class DialogTree {
      */
     public Dialog matchDialog(int input){
         if (this.root == null | this.root.nextDialogs == null) return null;
-        Dialog result = null;
         List<Dialog> children = this.root.nextDialogs;
 
         // find the dialog with that index
