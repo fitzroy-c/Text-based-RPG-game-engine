@@ -77,7 +77,7 @@ public class autoTest {
         int j = 0; // number of win
         List<Long> result = new ArrayList<Long>();
         List<Long> resultWin = new ArrayList<Long>();
-        while(i<10){
+        while(i<100){
             long startTime=System.currentTimeMillis();
             Game g = new Game();
             g.initialize();
