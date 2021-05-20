@@ -158,6 +158,7 @@ public class PlayerTalkTests {
 
         Player player = new Player("testPlayer");
         player.place.addAbnormalPoint(guide);
+        player.talk();
         // manual test hp bless (chose 3 )
 //        player.setMaxHP(100);
 //        player.setHP(100);
@@ -170,10 +171,10 @@ public class PlayerTalkTests {
 //        System.out.println(player.getMoney()); // should be 10
 
         // manual test get item
-        player.setBag(new Bag(100));
-        guide.getDialogTree().getRoot().setNextDialogs(controlIntro12);
-        player.talk(); // try (1,1,1,1,1,1,1,1,1,1,1,1,1,1,3)
-        player.bag.showMyBag(); // should be 2 lesser health potion
+//        player.setBag(new Bag(100));
+//        guide.getDialogTree().getRoot().setNextDialogs(controlIntro12);
+//        player.talk(); // try (1,1,1,1,1,1,1,1,1,1,1,1,1,1,3)
+//        player.bag.showMyBag(); // should be 2 lesser health potion
     }
 
 
