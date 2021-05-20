@@ -98,6 +98,7 @@ public class Player {
         this.map_bagData = map_bagData;
     }
 
+    
     /**
      * Random generator, avoid declaring random inside player
      * @param i boundary
@@ -229,9 +230,6 @@ public class Player {
 
         Gson gson = new Gson();
         JsonReader jsonReader = null;
-
-        final Type CUS_LIST_TYPE = new TypeToken<Player>() {}.getType();
-
         try{
             jsonReader = new JsonReader(new FileReader(file));
         }catch (Exception e) {
