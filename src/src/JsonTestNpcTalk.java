@@ -102,11 +102,11 @@ public class JsonTestNpcTalk {
 
         for (String param : dialogParams) {
             if (!nullableParametersSet5.contains(param) & !optionalParametersSet5.contains(param)) {
-                throw new JSONException("bad param: " + param);
+                throw new JSONException("bad param on dialogTree: " + param);
             } else {
                 for (String para : nullableParametersSet5) {
                     if (!dialogParams.contains(para)) {
-                        throw new JSONException("no param: " + para);
+                        throw new JSONException("miss param on dialogTree: " + para);
                     }
                 }
             }
@@ -126,17 +126,17 @@ public class JsonTestNpcTalk {
 
         try {
             if (!dtypes.contains(jsonObject.getObject("dtype", String.class))) {
-                throw new JSONException("bad dtype: " + jsonObject.getObject("dtype", String.class));
+                throw new JSONException("bad dialogTree node dtype: " + jsonObject.getObject("dtype", String.class));
             }
         } catch (Exception e) {
-            throw new JSONException("bad dtype: " + jsonObject.getObject("dtype", String.class));
+            throw new JSONException("bad dialogTree node dtype: " + jsonObject.getObject("dtype", String.class));
         }
 
         if(dialogParams.contains("playerReply")){
             try {
                 jsonObject.getObject("playerReply", String.class);
             } catch (Exception e) {
-                throw new JSONException("bad playerReply: " + jsonObject.getObject("playerReply", String.class));
+                throw new JSONException("bad dialogTree node playerReply: " + jsonObject.getObject("playerReply", String.class));
             }
         }
 
@@ -159,7 +159,7 @@ public class JsonTestNpcTalk {
                 Integer.parseInt(coordinate.split(",")[0]);
                 Integer.parseInt(coordinate.split(",")[1]);
             } catch (NumberFormatException e) {
-                throw new JSONException("bad ordinate: " + coordinate);
+                throw new JSONException("bad coordinate: " + coordinate);
             }
         }
 
@@ -172,7 +172,7 @@ public class JsonTestNpcTalk {
                 } else {
                     for (String para : nullableParametersSet1) {
                         if (!params.contains(para)) {
-                            throw new JSONException("no param: " + para);
+                            throw new JSONException("miss coordinates param: " + para);
                         }
                     }
                 }
@@ -266,11 +266,11 @@ public class JsonTestNpcTalk {
                 Set<String> npcBagParams = npcBag.keySet();
                 for (String npcBagParam : npcBagParams) {
                     if (!nullableParametersSet2.contains(npcBagParam)) {
-                        throw new JSONException("bad param: " + npcBagParam);
+                        throw new JSONException("bad param in npcBag: " + npcBagParam);
                     } else {
                         for (String para : nullableParametersSet2) {
                             if (!npcBagParams.contains(para)) {
-                                throw new JSONException("no param: " + para);
+                                throw new JSONException("miss param in npcBag: " + para);
                             }
                         }
                     }
@@ -296,7 +296,7 @@ public class JsonTestNpcTalk {
                         } else {
                             for (String para : nullableParametersSet3) {
                                 if (!itemKeys.contains(para)) {
-                                    throw new JSONException("no param: " + para);
+                                    throw new JSONException("miss param on item: " + para);
                                 }
                             }
                         }
@@ -332,7 +332,7 @@ public class JsonTestNpcTalk {
                             } else {
                                 for (String para : nullableParametersSet4) {
                                     if (!propertiesKeys.contains(para)) {
-                                        throw new JSONException("no param: " + para);
+                                        throw new JSONException("miss param on properties: " + para);
                                     }
                                 }
                             }
@@ -363,7 +363,7 @@ public class JsonTestNpcTalk {
             Set<String> diagTreeParams = diagTree.keySet();
 
             if (diagTreeParams.isEmpty()) {
-                throw new JSONException("request param:  root");
+                throw new JSONException("request dialogTree param:  root");
             }
 
             for (String diagTreeParam :
