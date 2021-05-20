@@ -84,11 +84,11 @@ public class PlayerTest {
     @Test
     public void goToDirectionTest1(){
         Player player = new Player("test one");
-        assertEquals(false, player.goToDirection("south"));
-        assertEquals(true, player.goToDirection("north"));
-        assertEquals(false, player.goToDirection("west"));
-        assertEquals(true, player.goToDirection("east"));
-        assertEquals(true, player.goToDirection("wrongOrder"));
+        assertEquals("direction out of map's boundary", player.goToDirection("south"));
+        assertEquals("You've moved to north direction", player.goToDirection("north"));
+        assertEquals("direction out of map's boundary", player.goToDirection("west"));
+        assertEquals("You've moved to east direction", player.goToDirection("east"));
+        //assertEquals("You've moved to wrongOrder direction", player.goToDirection("wrongOrder"));
     }
     @Test
     public void goToDirectionTest2(){
@@ -100,7 +100,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void attackTest1(){
+    public void attackTest(){
         Player player = new Player("test one");
         System.out.println("show the before stat");
         System.out.println(player.showPlayerStat());
@@ -108,6 +108,46 @@ public class PlayerTest {
         MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
                 55,6, 0,3,12,2,
                 0.02,10, 3,0,5, Element.Normal);
+        Monster monster = new Monster(goblin,player.getLevel());
+        player.place.addAbnormalPoint(monster);
+
+        System.out.println(player.attack());
+
+        System.out.println("show the current stat");
+        System.out.println(player.showPlayerStat());
+    }
+
+    @Test
+    public void attackCriticalTest(){
+        Player player = new Player("test one");
+        System.out.println("show the before stat");
+        System.out.println(player.showPlayerStat());
+        System.out.println();
+        player.setCriticalChance(1);
+
+        MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
+                55,6, 0,3,12,2,
+                0.02,10, 3,0,5, Element.Normal);
+        Monster monster = new Monster(goblin,player.getLevel());
+        player.place.addAbnormalPoint(monster);
+
+        System.out.println(player.attack());
+
+        System.out.println("show the current stat");
+        System.out.println(player.showPlayerStat());
+    }
+
+    @Test
+    public void attackLoopTest(){
+        Player player = new Player("test one");
+        System.out.println("show the before stat");
+        System.out.println(player.showPlayerStat());
+        System.out.println();
+        player.setDamage(5);
+        MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
+                55,6, 5,3,12,2,
+                0.02,10, 3,0,5, Element.Normal);
+
         Monster monster = new Monster(goblin,player.getLevel());
         player.place.addAbnormalPoint(monster);
 
