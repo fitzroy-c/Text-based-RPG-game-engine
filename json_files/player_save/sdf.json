@@ -1,14 +1,14 @@
 {
-  "name": "s",
-  "HP": 137,
-  "maxHP": 137,
+  "name": "sdf",
+  "HP": 129,
+  "maxHP": 132,
   "money": 12,
   "xp": 0,
   "maxXP": 10,
   "xpPerLv": 10,
   "level": 1,
-  "armour": 7,
-  "damage": 16,
+  "armour": 4,
+  "damage": 12,
   "criticalChance": 0.02,
   "maxCriticalChance": 1.0,
   "bag": {
@@ -140,7 +140,7 @@
         "blessAddMaxHP": 3,
         "blessAddArmour": 3,
         "blessAddDamage": 3,
-        "hasEndedTalk": false,
+        "hasEndedTalk": true,
         "npcBag": {
           "currentWeight": 1,
           "maxWeight": 100,
@@ -183,7 +183,7 @@
       }
     ],
     "random": {
-      "seed": 168946758086272,
+      "seed": 168842516441887,
       "nextNextGaussian": 0.0,
       "haveNextNextGaussian": false
     }
@@ -214,7 +214,7 @@
       "blessAddMaxHP": 3,
       "blessAddArmour": 3,
       "blessAddDamage": 3,
-      "hasEndedTalk": false,
+      "hasEndedTalk": true,
       "npcBag": {
         "currentWeight": 1,
         "maxWeight": 100,
