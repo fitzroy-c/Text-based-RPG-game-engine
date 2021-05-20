@@ -67,10 +67,18 @@ public class PlayerTest2 {
         assertEquals("ddd",player.getName());
 //        assertEquals(false, player.getMap_bagData().get(new Coordinate(0,0)).isEmpty());
 
-
     }
 
-    public static void main(String[] args) {
+    @Test
+    public void justTesting2(){
+        Player p1 = new Player("TestingLoad1");
+        p1.save();
+        Player p2 = Player.load("TestingLoad1");
+        int i = 0;
+    }
+
+    @Test
+    public void justTesting() {
         Coordinate a = new Coordinate(0,0);
         Coordinate b = new Coordinate(0,0);
         Boolean f = a.equals(b);
@@ -102,8 +110,6 @@ public class PlayerTest2 {
 
         HashMap<Coordinate, Bag> jsonBag = new HashMap<>();
         jsonBag = player.map_bagData;
-
-
 
 
         int i = 0;
