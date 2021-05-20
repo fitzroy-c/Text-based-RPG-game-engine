@@ -814,11 +814,11 @@ public class Player {
      */
     public boolean criticalCheck(double criticalChance){
         Random random = new Random();
-        int chance = (int)criticalChance*100;
+        int chance = (int)(criticalChance*100);
         int randomInt = random.nextInt(100); //
         if (randomInt<=chance){
-            return true;}
-        else{
+            return true;
+        }else{
             return false;
         }
     }
@@ -1065,7 +1065,7 @@ public class Player {
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
                 Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
-                if (this.money>=monster.getGold()){
+                if (this.money >= monster.getGold()){
                     this.money -= monster.getGold();
                     monster.setHP(0); // you can check the monster's hp to see if it succeed as well
                     return string+"Bribe successfully.\n";
@@ -1096,8 +1096,8 @@ public class Player {
             if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
                 Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
                 while(this.HP>0){
-                    if (criticalCheck(0.8)){ //80% chance succeed
-                        monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                    if (criticalCheck(0.70)){ //80% chance succeed
+                        // monster.setHP(0);
                         Control.resetCurrent();
                         return string + "Retreat successfully.\n";
                     }else{
