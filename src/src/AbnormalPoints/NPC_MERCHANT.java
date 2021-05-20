@@ -4,6 +4,7 @@ import Player.Bag;
 import Player.Player;
 import Player.Item;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
 
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -72,13 +74,30 @@ public class NPC_MERCHANT extends AbnormalPoint{
      **/
     public String outputStrForBuyFromNPC(Player p, String itemName, boolean succ){
         System.out.println(p.money);
-        if (succ) return "You've successfully purchased "+itemName+" .Happy to see you soon again!";
+        if (succ) return "You've successfully purchased "+itemName+". Happy to see you soon again!";
         else {
             Item wanted = npcBag.getItemByName(itemName); // guarantee non-null
             int price = wanted.getProperty("value");
             if (p.money<price) return "You don't have enough money to purchase "+itemName+" .";
             return "Sorry, I don't have "+itemName+" .";
         }
+    }
+    public static HashMap<Coordinate, NPC_MERCHANT> JsonToNpcMerchantHashMapData(JsonObject jo) {
+        Gson gson = new Gson();
+        HashMap<Coordinate, NPC_MERCHANT> hp = new HashMap<>();
+
+        for (Map.Entry<String, JsonElement> entry : jo.entrySet()) {
+            String coor = entry.getKey();
+            JsonObject itemData = entry.getValue().getAsJsonObject();
+            JsonObject baginfo = itemData.get("npcBag").getAsJsonObject();
+
+            Bag bag = Bag.JsonToBag2(baginfo);
+            NPC_MERCHANT shop = new NPC_MERCHANT("Merchant 1","s",100,100,10,10,10,10,10,bag);
+            hp.put(Coordinate.fromStringToCoordinate(coor), shop);
+
+        }
+
+        return hp;
     }
     /**
      * print the content of the shop
@@ -137,29 +156,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
             JsonObject itemData = entry.getValue().getAsJsonObject();
             JsonObject baginfo = itemData.get("npcBag").getAsJsonObject();
 
-            String cw = String.valueOf(baginfo.get("currentWeight"));
-            String mw = String.valueOf(baginfo.get("maxWeight"));
-
-            JsonArray sProps = baginfo.get("itemList").getAsJsonArray();
-            List<Item> items = new LinkedList<Item>();
-            Item item = null;
-            for (JsonElement je : sProps) {
-                JsonObject itemJO = je.getAsJsonObject();
-                String id = itemJO.get("id").getAsString();
-//                System.out.println(id);
-                String type = itemJO.get("type").getAsString();
-                String name = itemJO.get("name").getAsString();
-                String description = itemJO.get("description").getAsString();
-                JsonObject props = itemJO.get("properties").getAsJsonObject();
-                Map<String, Integer> properties = new HashMap<>();
-                for (Map.Entry<String, JsonElement> entry2 : props.entrySet()) {
-                    Integer propValue = entry2.getValue().getAsInt();
-                    properties.put(entry2.getKey(), propValue);
-                }
-                item = new Item(id, type, name, description, properties);
-                items.add(item);
-            }
-            Bag bag = new Bag(Integer.parseInt(cw), Integer.parseInt(mw), items);
+            Bag bag = Bag.JsonToBag2(baginfo);
             NPC_MERCHANT shop = new NPC_MERCHANT("Merchant 1","s",100,100,10,10,10,10,10,bag);
             hp.put(Coordinate.fromStringToCoordinate(coor), shop);
 

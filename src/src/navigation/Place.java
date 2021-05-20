@@ -5,7 +5,11 @@ import AbnormalPoints.NPC_MERCHANT;
 import AbnormalPoints.NPC_TALK;
 import Player.Bag;
 import Player.Item;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -47,6 +51,13 @@ public class Place {
         this.abnormalPoints = abnormalPoints;
     }
 
+    public static Place JsonToPlace(JsonObject jo){
+        Gson gson = new Gson();
+
+        final Type LIST_TYPE = new TypeToken<Place>() {}.getType();
+
+        return gson.fromJson(jo,LIST_TYPE);
+    }
     /**
      * add AbnormalPoint
      * @param abnormalPoint

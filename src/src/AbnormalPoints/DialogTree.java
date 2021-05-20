@@ -22,7 +22,9 @@ public class DialogTree {
     public DialogTree() {
         root = new Dialog();
     }
-
+    public DialogTree(Dialog dialog) {
+        this.root = dialog;
+    }
     /**
      * Print all available option for player to continue on the dialog
      * @return all options
