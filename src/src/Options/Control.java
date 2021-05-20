@@ -71,6 +71,7 @@ public class Control extends BasicOption {
             Control.death = true;
             return;
         }
+        resetCurrent();
             System.out.println(current.getString());
         if (isMonster || isNpc) {
             System.out.println("Control: case is NM");
