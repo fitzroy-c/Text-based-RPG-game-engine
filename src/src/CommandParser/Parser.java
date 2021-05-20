@@ -107,6 +107,7 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
                 System.out.println(player.checkMonster());
+                this.player.detectNPCAroundPlayer();
                 if (player.getMap_bagData().get(player.getPlace().getCoordinate())==null) System.out.println("Nothing on the floor");
                 else player.getMap_bagData().get(player.getPlace().getCoordinate()).showPlaceBag2();
                 cmdExecuted = true;

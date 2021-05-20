@@ -98,7 +98,7 @@ public class Player {
         this.map_bagData = map_bagData;
     }
 
-    
+
     /**
      * Random generator, avoid declaring random inside player
      * @param i boundary
@@ -214,7 +214,21 @@ public class Player {
             e.printStackTrace();
         }
     }
-
+    /**
+     * detect NPC around the current location of the player, and inform the player if there is.
+     * @author  Yixiang Yin
+     */
+    public void detectNPCAroundPlayer(){
+        boolean Exist_npcm = SearchInNpc_MERCHANT_DATA()!=null;
+        boolean Exist_npct = SearchInNpc_TALK_DATA()!=null;
+        if (Exist_npcm){
+            System.out.println("You can see a guy was standing not far away.");
+        }
+        if (Exist_npct){
+            System.out.println("There is a Merchant around you. Go and look around what good stuff he has.");
+        }
+        if (Exist_npcm||Exist_npct) System.out.println("You are standing alone. The wind is a bit cold.");
+    }
 
     //TODO: test only, delete later
     public Player(){
@@ -285,7 +299,11 @@ public class Player {
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return gson.fromJson(jsonReader, HashMap.class);
+
+        JsonObject jo = gson.fromJson(jsonReader, JsonObject.class);
+        JsonToNpcTalkHashMapData(jo);
+        return JsonToNpcTalkHashMapData(jo);
+
     }
 
     /**
@@ -304,7 +322,13 @@ public class Player {
         }
         return null;
     }
-
+    public NPC_TALK SearchInNpc_TALK_DATA(){
+        Coordinate playerCoor = this.place.getCoordinate();
+        for (Coordinate coor : this.map_npcTData.keySet()){
+            if (coor.equals(playerCoor)) return this.map_npcTData.get(coor);
+        }
+        return null;
+    }
 
 //
 //    /**
