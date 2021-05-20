@@ -101,7 +101,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
     }
 
 
-    public static void saveMERCHANTNPC(List<NPC_MERCHANT> shops){
+    public static void saveMERCHANTNPC(HashMap<Coordinate, NPC_MERCHANT> shops){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         try(FileWriter fw = new FileWriter("json_files/original_data/MerchantNPC.json")){
@@ -170,12 +170,12 @@ public class NPC_MERCHANT extends AbnormalPoint{
     public static void main(String[] args) {
         Bag bag = new Bag(0,1000,Item.initializeItemBook());
         NPC_MERCHANT shop = new NPC_MERCHANT("Merchant 1","s",100,100,10,10,10,10,10,bag);
-//        HashMap<Coordinate,NPC_MERCHANT> hp = new HashMap<>();
-//        Coordinate coor = new Coordinate(1,1);
-//        hp.put(coor,shop);
-        List<NPC_MERCHANT> shops = new LinkedList<>();
-        shops.add(shop);
-        saveMERCHANTNPC(shops);
+        HashMap<Coordinate,NPC_MERCHANT> hp = new HashMap<>();
+        Coordinate coor = new Coordinate(0,0);
+        hp.put(coor,shop);
+//        List<NPC_MERCHANT> shops = new LinkedList<>();
+//        shops.add(shop);
+        saveMERCHANTNPC(hp);
     }
 
 }

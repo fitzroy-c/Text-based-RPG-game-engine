@@ -2,6 +2,8 @@ package Maps;
 
 import java.util.List;
 
+//this function is for future development
+
 public class Environment {
     String name;
     String description;

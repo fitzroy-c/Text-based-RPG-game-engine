@@ -44,7 +44,6 @@ public class Player {
     /**
      * Some variables
      */
-    Random random = new Random();
     PlayerAttributes pa = PlayerAttributes.loadPlayerAttributes();
 
     /**
@@ -52,15 +51,15 @@ public class Player {
      */
     public Player(String name){
         this.name = name;
-        this.maxHP = random.nextInt(pa.initRandomMaxHP) + pa.initBaseMaxHP;
+        this.maxHP = randomGenerate(pa.initRandomMaxHP) + pa.initBaseMaxHP;
         this.HP = maxHP;
-        this.money = random.nextInt(pa.initRandomMoney) + pa.initBaseMoney;
+        this.money = randomGenerate(pa.initRandomMoney) + pa.initBaseMoney;
         this.xp = 0; // default 0
         this.maxXP = pa.initMaxXP;
         this.xpPerLv = pa.initXPPerLv;
         this.level = 1;
-        this.armour = random.nextInt(pa.initRandomArmor)+ pa.initBaseArmor;
-        this.damage = random.nextInt(pa.initRandomDamage)+ pa.initBaseDamage;
+        this.armour = randomGenerate(pa.initRandomArmor)+ pa.initBaseArmor;
+        this.damage = randomGenerate(pa.initRandomDamage)+ pa.initBaseDamage;
         this.criticalChance = pa.initCriticalChance;
         this.maxCriticalChance = pa.initMaxCriticalChance;
         this.bag = new Bag(pa.initBagWeight);
@@ -78,12 +77,16 @@ public class Player {
 //        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
     }
 
-    public static Bag getForHashMap(Coordinate c , HashMap<Coordinate,Bag> hp){
-        for (Coordinate coord: hp.keySet()){
-            if (coord.equals(c)) return hp.get(coord);
-        }
-        return null;
+    /**
+     * Random generator, avoid declaring random inside player
+     * @param i boundary
+     * @return random generated int
+     */
+    public int randomGenerate(int i){
+        Random random = new Random();
+        return random.nextInt(i);
     }
+
     /**
      * call once each time you attack
      * calculate player's new attribute as level increases, given a player
@@ -510,7 +513,7 @@ public class Player {
                 }
                 nextCoord.goNorth();
                 goToDirectionHelper(nextCoord);
-                this.place.printPlace();
+                System.out.println("Coordinate: "+this.place.getCoordinate());
             break;
             case "east":
                 if (this.place.getCoordinate().x==maxX){
@@ -518,7 +521,7 @@ public class Player {
                 }
                 nextCoord.goEast();
                 goToDirectionHelper(nextCoord);
-                this.place.printPlace();
+                System.out.println("Coordinate: "+this.place.getCoordinate());
             break;
 
             case "south":
@@ -527,7 +530,7 @@ public class Player {
                 }
                 nextCoord.goSouth();
                 goToDirectionHelper(nextCoord);
-                this.place.printPlace();
+                System.out.println("Coordinate: "+this.place.getCoordinate());
             break;
 
             case "west":
@@ -536,7 +539,7 @@ public class Player {
                 }
                 nextCoord.goWest();
                 goToDirectionHelper(nextCoord);
-                this.place.printPlace();
+                System.out.println("Coordinate: "+this.place.getCoordinate());
             break;
         }
         return "You've moved to "+direction+" direction";
@@ -589,7 +592,7 @@ public class Player {
 
         if (updated == 0){ // randomly generate place named wild area with random danger rate and monster
             nextPlace.setDescription("Wild area");
-            nextPlace.setDangerRate(random.nextInt(5));
+            nextPlace.setDangerRate(randomGenerate(5));
             generateMonster();
         }
         // update all information
@@ -879,7 +882,7 @@ public class Player {
                 int monsterHP = monster.getHP();
                 while(monsterHP>0&&this.HP>0){
                     if (criticalCheck(this.criticalChance)){
-                        int realDamage = Math.max(this.damage*2 - monster.getArmour(),0);
+                        int realDamage = Math.max(Math.max(this.damage*2 - monster.getArmour(),0),1);
                         monsterHP = monsterHP - realDamage;
                         string += "Nice, you have made a critical hit. "+monster.getName()+" -"+realDamage+"HP\n";
                     }
@@ -887,11 +890,11 @@ public class Player {
                     monsterHP = monsterHP - realDamage;
                     string += "Normal hit."+monster.getName()+" -"+realDamage+"HP\n";
                     if (criticalCheck(monster.getCritChance())){
-                        int realDamage1 = Math.max(monster.getDamage()*2 - this.armour,0);
+                        int realDamage1 = Math.max(Math.max(monster.getDamage()*2 - this.armour,0),1);
                         this.HP = this.HP - realDamage1;
                         string += "Sadly. You got a critical hit. "+this.name+" -"+realDamage1+"HP\n";
                     }
-                    int realDamage1 = Math.max(monster.getDamage() - this.armour,0);
+                    int realDamage1 = Math.max(Math.max(monster.getDamage() - this.armour,0),1);
                     this.HP = this.HP - realDamage1;
                     string += "You got a hit. "+this.name+" -"+realDamage1+"HP\n";
                 }

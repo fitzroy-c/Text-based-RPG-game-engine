@@ -8,6 +8,8 @@ import java.util.ArrayList;
  * This room allow players to destroy (remove card) from their currently card pool
  *  - The first time enter this room is free (per card destroy room)
  *  - More card destroy require increase gold
+ *
+ *  this function is for future development
  */
 public class CardDestroyRoom extends Rooms{
     int currentNumberOfDestroy;  // this indicate how many times a player Destroy their cards.
