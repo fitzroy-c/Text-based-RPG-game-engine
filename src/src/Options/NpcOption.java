@@ -17,17 +17,18 @@ public class NpcOption extends BasicOption{
      * @author Zihong Yuan
      */
     private void buildMenu() {
-        if (npc.getString().equals("NPC_MERCHANT")) {
+        if (npc.getString().equals("NPC_TALK")) {
             this.option.add(new Option("talk", "Talk to NPC"));
-            this.option.add(new Option("back", "Go back"));
 
             this.tokenType.add(Token.Type.TAKE_ACTION);
-        } else if (npc.getString().equals("NPC_TALK")) {
+        } else if (npc.getString().equals("NPC_MERCHANT")) {
             this.option.add(new Option("shop", "trade with NPC"));
-            this.option.add(new Option("back", "Go back"));
 
             this.tokenType.add(Token.Type.SHOP);
         }
+
+        this.option.add(new Option("back", "Go back"));
+        this.tokenType.add(Token.Type.RETREAT_ACTION);
 
     }
 

@@ -29,6 +29,8 @@ public class Control extends BasicOption {
     public Control(Player player) throws Exception {
         current = new AbnormalPoint();
         this.player = player;
+        resetNPCs();
+        resetMonsters();
         printRightOption();
     }
 
@@ -58,31 +60,19 @@ public class Control extends BasicOption {
             while (b) {
                 Scanner s = new Scanner(System.in);
                 String input = s.nextLine();
-                if (nm.chooseOp(new Token(input, null))) {
-//                    CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
-//                    System.out.println(cmd.current().token());
-
+                CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
+                if (nm.chooseOp(cmd.current())) {
                     try {
                         int n = Integer.parseInt(input);
                         current = nm.verifyInt(n);
                         b = false;
                     } catch (Exception e) {
-                        CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
+//                        CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
                         if (! new Parser(cmd, player).parseCommand()) {
-                            System.out.println("I don't understand");
-                            System.out.println("Please choose correct one");
+                            System.out.println("Please choose correct command");
                         }
-
-
-//                        cmdTok = current.convert(cmdTok);
-//                        continueOn = new Parser(current.convert(cmdTok), player).parseCommand();
-//
-//
-//                        System.out.println("I don't understand");
-//                        System.out.println("Please input number!");
                     }
                 } else {
-                    System.out.println("I don't understand");
                     System.out.println("Please choose correct one");
                 }
             }
@@ -131,6 +121,11 @@ public class Control extends BasicOption {
         isMonster = true;
     }
 
+    static public void resetMonsters() {
+        monsters = new ArrayList<>();
+        isMonster = false;
+    }
+
     /**
      * The method can add NPC into npcs list.
      *
@@ -140,6 +135,11 @@ public class Control extends BasicOption {
     static public void addNPCs(AbnormalPoint npc) {
         npcs.add(npc);
         isNpc = true;
+    }
+
+    static public void resetNPCs() {
+        npcs = new ArrayList<>();
+        isNpc = false;
     }
 
     /**

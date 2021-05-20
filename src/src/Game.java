@@ -72,11 +72,8 @@ public class Game {
                 System.out.println("what is your name?");
                 String name = s.next();
                 player.setName(name);
-                /// test
-                //AbnormalPoint ab = new AbnormalPoint();
                 Control c = new Control(player);
                 gameInteractionLoop(player, c);
-//                gameInteractionLoopParser(player);
                 break;
             case 1:
                 System.out.println("Here is all the players available");
@@ -101,7 +98,6 @@ public class Game {
                 System.out.println("I don't understand this command");
             }
         }
-//        gameInteractionLoop(player);
     }
 
 

@@ -370,9 +370,9 @@ public class Player {
      * @author Zihong Yuan
      */
     public void checkNPCs() {
+        Control.resetNPCs();
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             AbnormalPoint.AbnormalPointType current =  this.place.getAbnormalPoints().get(i).abnormalPointType;
-
             if (current == AbnormalPoint.AbnormalPointType.NPC_TALK
                 || current == AbnormalPoint.AbnormalPointType.NPC_MERCHANT){
                 ///change battleOption here bill
@@ -941,7 +941,7 @@ public class Player {
      * @author yitao chen
      * @return
      */
-    public String retreat(){
+/*    public String retreat(){
         String string = "Ready to retreat:\n";
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
@@ -961,6 +961,35 @@ public class Player {
         return string + "There is no monster for you to retreat\n";
 
 
+    }*/
+
+    /**
+     * Another retreat, testing.
+     * comment out old retreat by Yitao.
+     *
+     * @author Yitao Cheng, modified by ZIhong Yuan
+     * @return
+     */
+    public String retreat(){
+        String string = "";
+        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
+                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
+                while(this.HP>0){
+                    if (criticalCheck(0.8)){ //80% chance succeed
+                        monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                        return string + "Retreat successfully.\n";
+                    }else{
+                        this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
+                        string +="Retreat failed.\n";
+                    }
+                }
+                return string+"Your adventure journey ended here. The magic world will remember you\n";
+            } else {
+                return string + "Retreat successfully.\n";
+            }
+        }
+        return string + "There is no monster or npc for you to retreat\n";
     }
 
     /**
