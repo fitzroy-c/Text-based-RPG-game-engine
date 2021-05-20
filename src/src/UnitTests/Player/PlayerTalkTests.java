@@ -177,6 +177,11 @@ public class PlayerTalkTests {
 //        player.bag.showMyBag(); // should be 2 lesser health potion
     }
 
+    @Test
+    public void testNPCGiveItem() {
+
+    }
+
 
     @Test
     public void testMultipleDialog(){

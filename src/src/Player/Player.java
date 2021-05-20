@@ -552,6 +552,7 @@ public class Player {
      */
     public void goToDirectionHelper(Coordinate nextCoord){
 //        HashMap<Coordinate, Place> map = this.getMapData();
+//        this.setMap_bagData(bag);
         HashMap<Coordinate, NPC_TALK> npc_t = this.map_npcTData;
         HashMap<Coordinate, NPC_MERCHANT> npc_m = this.map_npcMData;
 //        HashMap<Coordinate, Bag> bag = this.map_bagData;
@@ -580,17 +581,14 @@ public class Player {
 //        // update next coordinate inside json
 //        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
 //            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
-        int updated = 0;
+        boolean updated = true;
         Place nextPlace = new Place(nextCoord, "", 0,new Bag(100), new ArrayList<>());
         nextPlace.setAbnormalPoints(extractBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
         if (! nextPlace.getAbnormalPoints().isEmpty()) // check if operation did get npc
-            updated++;
-//        if (bag.containsKey(nextCoord)){ // try and get bag from json if any
-//            nextPlace.setBag(bag.get(nextCoord)); // update player's place's storage bag
-//            updated++;
-//        }
+            updated = true;
 
-        if (updated == 0){ // randomly generate place named wild area with random danger rate and monster
+
+        if (updated == false){ // randomly generate place named wild area with random danger rate and monster
             nextPlace.setDescription("Wild area");
             nextPlace.setDangerRate(randomGenerate(5));
             generateMonster();
@@ -599,7 +597,6 @@ public class Player {
         this.setPlace(nextPlace);
         this.setMap_npcTData(npc_t);
         this.setMap_npcMData(npc_m);
-//        this.setMap_bagData(bag);
     }
 
     /**
