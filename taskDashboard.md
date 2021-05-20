@@ -13,8 +13,8 @@ parameterized testing on NPC_Merchant: Yixiang is working on it.
 load method enable for hashmap
 1. enable for bag hashmap (done by xiang)
 2. enable for npc talk
-3. enable for npc merchant
-4. enable for player
+3. enable for npc merchant (done by xiang)
+4. enable for player 
 
 
 test talk()
