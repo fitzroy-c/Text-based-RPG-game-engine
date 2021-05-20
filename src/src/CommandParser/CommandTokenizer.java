@@ -160,8 +160,9 @@ public class CommandTokenizer {
             else if (createString.toString().equals("attack"))
                 currentToken = new Token(createString.toString(),Token.Type.ATTACK);
 
-            // RETREAT <retreat| run away | escape | escape away>
-            else if (createString.toString().equals("retreat") | createString.toString().equals("run") | createString.toString().equals("escape")){
+            // RETREAT <retreat| run away | escape | escape away | back>
+            else if (createString.toString().equals("retreat") | createString.toString().equals("run") | createString.toString().equals("escape")
+                    |createString.toString().equals("back")){
                 count++; // skip white space
                 while (count < _buffer.length() && Character.isLetter(_buffer.charAt(count))) {
                     createNextString.append(_buffer.charAt(count));

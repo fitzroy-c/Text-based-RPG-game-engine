@@ -72,11 +72,8 @@ public class Game {
                 System.out.println("what is your name?");
                 String name = s.next();
                 player.setName(name);
-                /// test
-                //AbnormalPoint ab = new AbnormalPoint();
                 Control c = new Control(player);
-//                gameInteractionLoop(player, c);
-                gameInteractionLoopParser(player);
+                gameInteractionLoop(player, c);
                 break;
             case 1:
                 System.out.println("Here is all the players available");
@@ -101,7 +98,6 @@ public class Game {
                 System.out.println("I don't understand this command");
             }
         }
-//        gameInteractionLoop(player);
     }
 
 
@@ -111,6 +107,7 @@ public class Game {
      * @param player
      */
     public static void gameInteractionLoop(Player player, Control c) throws Exception {
+        System.out.println(player.checkMonster());
         boolean continueOn = true;
         Scanner s = new Scanner(System.in);
         while (continueOn){
@@ -121,8 +118,16 @@ public class Game {
             player.checkNPCs();
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
+                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) {
+                    autoDetect();
+                    c.printRightOption();
+                }
                 continueOn = new Parser(cmdTok, player).parseCommand();
-                c.printRightOption();
+                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) { //TODO: no very good
+                    autoDetect();
+                    c.printRightOption();
+                }
+//                c.printRightOption();
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
             }
@@ -141,5 +146,10 @@ public class Game {
             cmdTok = new CommandTokenizer(s.nextLine());
             continueOn = new Parser(cmdTok, player).parseCommand();
         }
+    }
+
+    public static void autoDetect() {
+        CommandTokenizer detect = new CommandTokenizer("detect");
+        boolean result = new Parser(detect, player).parseCommand();
     }
 }

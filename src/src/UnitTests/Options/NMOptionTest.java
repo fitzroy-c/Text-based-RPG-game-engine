@@ -45,11 +45,8 @@ public class NMOptionTest {
                     System.out.println("what is your name?");
                     String name = s.next();
                     player.setName(name);
-                    /// test
-                    //AbnormalPoint ab = new AbnormalPoint();
                     Control c = new Control(player);
-//                gameInteractionLoop(player, c);
-                    gameInteractionLoopParser(player);
+                    gameInteractionLoop(player, c);
                     break;
                 case 1:
                     System.out.println("Here is all the players available");
@@ -90,13 +87,10 @@ public class NMOptionTest {
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
                 continueOn = new Parser(cmdTok, player).parseCommand();
-                //c.setCurrentOption(monster);
-                //System.out.println("change Option");
                 c.printRightOption();
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
             }
-//            continueOn = new Parser(cmdTok, player).parseCommand();
         }
     }
 

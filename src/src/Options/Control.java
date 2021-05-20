@@ -1,6 +1,9 @@
 package Options;
 
 import AbnormalPoints.AbnormalPoint;
+import CommandParser.CommandTokenizer;
+import CommandParser.Parser;
+import CommandParser.Token;
 import Player.Player;
 
 import java.util.ArrayList;
@@ -26,6 +29,8 @@ public class Control extends BasicOption {
     public Control(Player player) throws Exception {
         current = new AbnormalPoint();
         this.player = player;
+        resetNPCs();
+        resetMonsters();
         printRightOption();
     }
 
@@ -54,13 +59,21 @@ public class Control extends BasicOption {
             boolean b = true;
             while (b) {
                 Scanner s = new Scanner(System.in);
-                try {
-                    int n = s.nextInt();
-                    current = nm.verifyInt(n);
-                    b = false;
-                } catch (Exception e) {
-                    System.out.println("I don't understand");
-                    System.out.println("Please input number!");
+                String input = s.nextLine();
+                CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
+                if (nm.chooseOp(cmd.current())) {
+                    try {
+                        int n = Integer.parseInt(input);
+                        current = nm.verifyInt(n);
+                        b = false;
+                    } catch (Exception e) {
+//                        CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
+                        if (! new Parser(cmd, player).parseCommand()) {
+                            System.out.println("Please choose correct command");
+                        }
+                    }
+                } else {
+                    System.out.println("Please choose correct one");
                 }
             }
         }
@@ -108,6 +121,11 @@ public class Control extends BasicOption {
         isMonster = true;
     }
 
+    static public void resetMonsters() {
+        monsters = new ArrayList<>();
+        isMonster = false;
+    }
+
     /**
      * The method can add NPC into npcs list.
      *
@@ -117,6 +135,11 @@ public class Control extends BasicOption {
     static public void addNPCs(AbnormalPoint npc) {
         npcs.add(npc);
         isNpc = true;
+    }
+
+    static public void resetNPCs() {
+        npcs = new ArrayList<>();
+        isNpc = false;
     }
 
     /**
