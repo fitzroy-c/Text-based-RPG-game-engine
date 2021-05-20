@@ -39,7 +39,6 @@ public class Player {
     HashMap<Coordinate, NPC_TALK> map_npcTData;
     HashMap<Coordinate, NPC_MERCHANT> map_npcMData;
     HashMap<Coordinate, Bag> map_bagData;
-//    HashMap<Coordinate, Bag> map_bagData;
 
     /**
      * Some variables
@@ -457,12 +456,15 @@ public class Player {
      * @author: Guanming Ou
      */
     public String getItemFromRoom(String name){
-        Item item = this.place.getBag().getItemByName(name);
+       Bag hsBag =  map_bagData.get(this.place.getCoordinate());
+       Item item = hsBag.getItemByName(name);
+//        Item item = this.place.getBag().getItemByName(name);
+
         if (item == null){
             return "There is no item named "+name+" inside current room";
         } else {
             if (this.bag.put(item)){
-                this.place.getBag().drop(item);
+                hsBag.drop(item);
                 return item.name+" is added to your bag";
             }
             return "Can't add item to your bag as the weight of your bag will exceeded";
@@ -548,7 +550,7 @@ public class Player {
 //        HashMap<Coordinate, Place> map = this.getMapData();
         HashMap<Coordinate, NPC_TALK> npc_t = this.map_npcTData;
         HashMap<Coordinate, NPC_MERCHANT> npc_m = this.map_npcMData;
-        HashMap<Coordinate, Bag> bag = this.map_bagData;
+//        HashMap<Coordinate, Bag> bag = this.map_bagData;
         // update the npc merchant json of current coordinate
 //        if (npc_m.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
 //            NPC_MERCHANT npcm = extractNPCMerchant(); // find npc talk inside the abnormal point list
@@ -566,10 +568,10 @@ public class Player {
             }
         }
         // update the bag json of current coordinate
-        if (bag.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-            bag.remove(this.place.getCoordinate()); // remove current coordinate from map data
-            bag.put(this.place.getCoordinate(), this.place.getBag()); // insert current place to map data
-        }
+//        if (bag.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+//            bag.remove(this.place.getCoordinate()); // remove current coordinate from map data
+//            bag.put(this.place.getCoordinate(), this.place.getBag()); // insert current place to map data
+//        }
 
 //        // update next coordinate inside json
 //        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
@@ -579,10 +581,10 @@ public class Player {
         nextPlace.setAbnormalPoints(extractBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
         if (! nextPlace.getAbnormalPoints().isEmpty()) // check if operation did get npc
             updated++;
-        if (bag.containsKey(nextCoord)){ // try and get bag from json if any
-            nextPlace.setBag(bag.get(nextCoord)); // update player's place's storage bag
-            updated++;
-        }
+//        if (bag.containsKey(nextCoord)){ // try and get bag from json if any
+//            nextPlace.setBag(bag.get(nextCoord)); // update player's place's storage bag
+//            updated++;
+//        }
 
         if (updated == 0){ // randomly generate place named wild area with random danger rate and monster
             nextPlace.setDescription("Wild area");
@@ -593,7 +595,7 @@ public class Player {
         this.setPlace(nextPlace);
         this.setMap_npcTData(npc_t);
         this.setMap_npcMData(npc_m);
-        this.setMap_bagData(bag);
+//        this.setMap_bagData(bag);
     }
 
     /**

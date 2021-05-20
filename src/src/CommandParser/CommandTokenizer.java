@@ -21,11 +21,12 @@ public class CommandTokenizer {
     }
     /**
      * check if a given string is a valid item name in a list with all possible item
-     * @author: Yixiang Yin
+     * @author: Yixiang Yin, modified by Zihong Yuan
      **/
     public static boolean isItem(List<Item> reference, String nameToBeCheck){
         for (Item i: reference){
-            if (i.name.equals(nameToBeCheck)) return true;
+            String name = i.name.toLowerCase();
+            if (name.equals(nameToBeCheck.toLowerCase())) return true;
         }
         return false;
     }
@@ -41,7 +42,9 @@ public class CommandTokenizer {
             return;
         }
 
-        //user can input action index or corresponding text. (Bill)
+        // This allows user use corresponding digit
+        // to choose command.
+        // By Zihong Yuan
         if (_buffer.matches("^[0-9]+$")) {
             currentToken = new Token(_buffer,Token.Type.ERROR);}
 
@@ -136,6 +139,10 @@ public class CommandTokenizer {
             // TALK <talk | chat | speak>
             else if (createString.toString().equals("talk") | createString.toString().equals("chat") | createString.toString().equals("speak"))
                 currentToken = new Token(createString.toString(),Token.Type.TALK);
+
+            //SHOP := shop | buy | purchase | shopping | trade
+            else if (createString.toString().equals("shop") | createString.toString().equals("buy") | createString.toString().equals("purchase")|createString.toString().equals("shopping")|createString.toString().equals("trade"))
+                currentToken = new Token(createString.toString(),Token.Type.SHOP);
 
             // VIEW_ACTION
             else if (createString.toString().equals("look") | createString.toString().equals("view") | createString.toString().equals("see") | createString.toString().equals("browse"))

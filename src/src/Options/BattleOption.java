@@ -19,7 +19,7 @@ public class BattleOption extends BasicOption {
 
     }
 
-    public BattleOption(AbnormalPoint enemy,Player player) throws Exception {
+    public BattleOption(AbnormalPoint enemy,Player player) {
         if (player.getHP() <= 0) {
             System.out.println("YOU DIE");
             System.out.println("What would you like to do?");
