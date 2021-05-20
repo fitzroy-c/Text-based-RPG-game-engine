@@ -73,8 +73,8 @@ public class Game {
                 String name = s.next();
                 player.setName(name);
                 Control c = new Control(player);
-                gameInteractionLoop(player, c);
-//                gameInteractionLoopParser(player);
+//                gameInteractionLoop(player, c);
+                gameInteractionLoopParser(player);
                 break;
             case 1:
                 System.out.println("Here is all the players available");
