@@ -939,41 +939,15 @@ public class Player {
     }
 
     /**
-     * player retreat, which allow player to escape from current fight. hold the coordinate
-     * @author yitao chen
-     * @return
-     */
-/*    public String retreat(){
-        String string = "Ready to retreat:\n";
-        for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
-            if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
-                Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
-                while(this.HP>0){
-                    if (criticalCheck(0.8)){ //80% chance succeed
-                        monster.setHP(0); // you can check the monster's hp to see if it succeed as well
-                        return string + "Retreat successfully.\n";
-                    }else{
-                        this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
-                        string +="Retreat failed.\n";
-                    }
-                }
-                return string+"Your adventure journey ended here. The magic world will remember you\n";
-            }
-        }
-        return string + "There is no monster for you to retreat\n";
-
-
-    }*/
-
-    /**
      * Another retreat, testing.
      * comment out old retreat by Yitao.
      *
-     * @author Yitao Cheng, modified by ZIhong Yuan
+     * @author Yitao Chen,
+     * @author modified by ZIhong Yuan to add retreat function to npc, 100% successful rate
      * @return
      */
     public String retreat(){
-        String string = "";
+        String string = "Ready to retreat:\n";
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
                 Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
