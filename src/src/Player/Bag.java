@@ -1,7 +1,21 @@
 package Player;
 
-import java.util.ArrayList;
-import java.util.List;
+import AbnormalPoints.AbnormalPoint;
+import AbnormalPoints.DialogTree;
+import AbnormalPoints.NPC_MERCHANT;
+import AbnormalPoints.NPC_TALK;
+import Card.Element;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import navigation.Coordinate;
+
+import java.io.FileReader;
+import java.lang.reflect.Type;
+import java.util.*;
 
 public class Bag {
 
@@ -165,6 +179,41 @@ public class Bag {
         // did not find a item
         return null;
     }
+    public static Bag JsonToBag(JsonObject baginfo){
+
+        String cw = String.valueOf(baginfo.get("currentWeight"));
+        String mw = String.valueOf(baginfo.get("maxWeight"));
+
+        JsonArray sProps = baginfo.get("itemList").getAsJsonArray();
+        List<Item> items = new LinkedList<Item>();
+        Item item = null;
+        for (JsonElement je : sProps) {
+            JsonObject itemJO = je.getAsJsonObject();
+            String id = itemJO.get("id").getAsString();
+//                System.out.println(id);
+            String type = itemJO.get("type").getAsString();
+            String name = itemJO.get("name").getAsString();
+            String description = itemJO.get("description").getAsString();
+            JsonObject props = itemJO.get("properties").getAsJsonObject();
+            Map<String, Integer> properties = new HashMap<>();
+            for (Map.Entry<String, JsonElement> entry2 : props.entrySet()) {
+                Integer propValue = entry2.getValue().getAsInt();
+                properties.put(entry2.getKey(), propValue);
+            }
+            item = new Item(id, type, name, description, properties);
+            items.add(item);
+        }
+        Bag bag = new Bag(Integer.parseInt(cw), Integer.parseInt(mw), items);
+        return bag;
+    }
+    /// {current weight: ..., maxweight, item list} <- this format
+    public static Bag JsonToBag2(JsonObject baginfo){
+        Gson gson = new Gson();
+
+        final Type LIST_TYPE = new TypeToken<Bag>() {}.getType();
+
+        return gson.fromJson(baginfo,LIST_TYPE);
+    }
 
     public List<Item> getItems() {
         return this.itemList;
@@ -207,5 +256,62 @@ public class Bag {
                 itemNames += ", "+this.itemList.get(i).name;
         }
         return itemNames+"]";
+    }
+
+
+    public static DialogTree.Dialog JsonToDialog(JsonObject jo){
+        Gson gson = new Gson();
+
+        final Type LIST_TYPE = new TypeToken<DialogTree.Dialog>() {}.getType();
+
+        return gson.fromJson(jo,LIST_TYPE);
+    }
+    public static HashMap<Coordinate, NPC_TALK> JsonToNpcTalkHashMapData(JsonObject jo){
+        Gson gson = new Gson();
+        HashMap<Coordinate, NPC_TALK> hp = new HashMap<>();
+
+        for (Map.Entry<String, JsonElement> entry : jo.entrySet()) {
+            String coor = entry.getKey();
+            JsonObject dialogTree = entry.getValue().getAsJsonObject();
+            JsonObject root = dialogTree.get("dialogTree").getAsJsonObject();
+            JsonObject infoOfRoot = root.get("root").getAsJsonObject();
+            DialogTree.Dialog dialog = JsonToDialog(infoOfRoot);
+            DialogTree dt = new DialogTree(dialog);
+            int blessAddMaxHP = dialogTree.get("blessAddMaxHP").getAsInt();
+            int blessAddArmour = dialogTree.get("blessAddArmour").getAsInt();
+            int blessAddDamage = dialogTree.get("blessAddDamage").getAsInt();
+            boolean hasEndedTalk = dialogTree.get("hasEndedTalk").getAsBoolean();
+            Bag bag = JsonToBag2(dialogTree.get("npcBag").getAsJsonObject());
+            AbnormalPoint.AbnormalPointType abnormalPointType =AbnormalPoint.AbnormalPointType.valueOf(dialogTree.get("abnormalPointType").getAsString());
+            String name = dialogTree.get("name").getAsString();
+            String intro = dialogTree.get("intro").getAsString();
+            int maxHP = dialogTree.get("maxHP").getAsInt();
+            int HP = dialogTree.get("HP").getAsInt();
+            int damage = dialogTree.get("damage").getAsInt();
+            int armour = dialogTree.get("armour").getAsInt();
+            int gold = dialogTree.get("gold").getAsInt();
+            int xpGain = dialogTree.get("xpGain").getAsInt();
+            int critChance = dialogTree.get("critChance").getAsInt();
+            Element element = Element.valueOf(dialogTree.get("element").getAsString());
+
+            NPC_TALK npc = new NPC_TALK(name,intro,maxHP,HP,damage,armour,gold,xpGain,critChance,element,dt,blessAddMaxHP,blessAddArmour,blessAddDamage,bag);
+            hp.put(Coordinate.fromStringToCoordinate(coor), npc);
+        }
+
+        return hp;
+    }
+
+    public static HashMap<Coordinate, Bag> JsonToItemsOnTheMapHashMapData(JsonObject jo){
+        HashMap<Coordinate, Bag> hp = new HashMap<>();
+        for (Map.Entry<String, JsonElement> entry : jo.entrySet()) {
+            String coor = entry.getKey();
+            JsonObject itemData = entry.getValue().getAsJsonObject();
+            Bag bag = JsonToBag(itemData);
+
+            hp.put(Coordinate.fromStringToCoordinate(coor),bag);
+
+        }
+
+        return hp;
     }
 }

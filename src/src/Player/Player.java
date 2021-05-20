@@ -2,19 +2,19 @@ package Player;
 
 import AbnormalPoints.*;
 import Card.Element;
-import CommandParser.CommandTokenizer;
-import CommandParser.Parser;
 import Options.Control;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
-import navigation.Direction;
 import navigation.Place;
 
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
+
+import static Player.Bag.JsonToItemsOnTheMapHashMapData;
+import static Player.Bag.JsonToNpcTalkHashMapData;
 
 /**
  * similar to a extended class from entity
@@ -46,6 +46,7 @@ public class Player {
      */
     PlayerAttributes pa = PlayerAttributes.loadPlayerAttributes();
 
+
     /**
      * Constructor of new player by giving a name
      */
@@ -75,6 +76,26 @@ public class Player {
                 extractBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate),
                         this.getMap_npcTData(), this.getMap_npcMData()));
 //        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
+    }
+
+    public Player(String name, int HP, int maxHP, int money, int xp, int maxXP, int xpPerLv, int level, int armour, int damage, double criticalChance, double maxCriticalChance, Bag bag, Place place, HashMap<Coordinate, NPC_TALK> map_npcTData, HashMap<Coordinate, NPC_MERCHANT> map_npcMData, HashMap<Coordinate, Bag> map_bagData) {
+        this.name = name;
+        this.HP = HP;
+        this.maxHP = maxHP;
+        this.money = money;
+        this.xp = xp;
+        this.maxXP = maxXP;
+        this.xpPerLv = xpPerLv;
+        this.level = level;
+        this.armour = armour;
+        this.damage = damage;
+        this.criticalChance = criticalChance;
+        this.maxCriticalChance = maxCriticalChance;
+        this.bag= bag;
+        this.place = place;
+        this.map_npcTData = map_npcTData;
+        this.map_npcMData = map_npcMData;
+        this.map_bagData = map_bagData;
     }
 
     /**
@@ -201,7 +222,7 @@ public class Player {
     /**
      * load player from json
      * @param playerName the name of specific player
-     * @author Guanming Ou
+     * @author Guanming Ou and Yixiang Yin
      */
     public static Player load(String playerName) {
         File file = new File("json_files/player_save/"+ playerName +".json");
@@ -216,7 +237,32 @@ public class Player {
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return gson.fromJson(jsonReader, CUS_LIST_TYPE);
+
+        JsonObject jo = gson.fromJson(jsonReader, JsonObject.class);
+        String name = jo.get("name").getAsString();
+        int HP = jo.get("HP").getAsInt();
+        int maxHP = jo.get("maxHP").getAsInt();
+        int money = jo.get("money").getAsInt();
+        int xp = jo.get("xp").getAsInt();
+        int maxXP = jo.get("maxXP").getAsInt();
+        int xpPerLv = jo.get("xpPerLv").getAsInt();
+        int level = jo.get("level").getAsInt();
+        int armour = jo.get("armour").getAsInt();
+        int damage = jo.get("damage").getAsInt();
+        int criticalChance = jo.get("criticalChance").getAsInt();
+
+        int maxCriticalChance = jo.get("maxCriticalChance").getAsInt();
+        Bag playerBag = Bag.JsonToBag2(jo.get("bag").getAsJsonObject());
+        Place place = Place.JsonToPlace(jo.get("place").getAsJsonObject());
+        HashMap<Coordinate, NPC_TALK> map_npcTData = JsonToNpcTalkHashMapData(jo.get("map_npcTData").getAsJsonObject());
+        HashMap<Coordinate, NPC_MERCHANT> map_npcMData = NPC_MERCHANT.JsonToNpcMerchantHashMapData(jo.get("map_npcMData").getAsJsonObject());
+
+        // todo
+        HashMap<Coordinate, Bag> map_bagData = JsonToItemsOnTheMapHashMapData(jo.get("map_bagData").getAsJsonObject());
+
+
+        return new Player(name,HP,maxHP,money,xp,maxXP,xpPerLv,level,armour,damage,criticalChance,maxCriticalChance,playerBag,place,map_npcTData,map_npcMData,map_bagData);
+
     }
 
     /**
