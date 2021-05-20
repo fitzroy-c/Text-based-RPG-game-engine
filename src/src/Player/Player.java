@@ -303,7 +303,6 @@ public class Player {
         JsonObject jo = gson.fromJson(jsonReader, JsonObject.class);
         JsonToNpcTalkHashMapData(jo);
         return JsonToNpcTalkHashMapData(jo);
-
     }
 
     /**
@@ -478,7 +477,6 @@ public class Player {
                 //Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
                 ///this give NPC list to Option
                 Control.addNPCs(this.place.getAbnormalPoints().get(i));
-                ///
             }
         }
     }
