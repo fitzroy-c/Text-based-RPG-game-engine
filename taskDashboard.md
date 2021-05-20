@@ -1,10 +1,11 @@
 
 Tasks: 
 
-1. clean the project
+1. clean your own code
 2. wiki
 3. desgin document
 4. Quick_guide
+5. don't forget to complete originality and contribution form on wattle
 
 
 which one to use (zihong or guanming)
