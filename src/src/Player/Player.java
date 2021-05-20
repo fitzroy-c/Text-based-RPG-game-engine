@@ -652,7 +652,7 @@ public class Player {
         this.setMap_npcTData(npc_t);
         this.setMap_npcMData(npc_m);
 
-        if (!updated) //TODO: why here is always true?????????
+        if (!updated)
             generateMonster();
     }
     /**
@@ -660,6 +660,10 @@ public class Player {
      * @author Guanming Ou
      */
     public Boolean isMonsterExist(){
+        for (AbnormalPoint a : this.place.getAbnormalPoints()){
+
+        }
+
         return false;
     }
 

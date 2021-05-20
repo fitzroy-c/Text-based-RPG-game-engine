@@ -116,34 +116,6 @@ public class CommandTokenizer {
             else if (isItem(this.ItemBook,  createString.toString()))
                 currentToken = new Token(createString.toString(),Token.Type.ITEM);
 
-            else if (checkingItem){ // items may have multiple spaces
-                StringBuilder itemString = createString;
-                StringBuilder tempItemString = new StringBuilder();
-                int itemStringCount = count;
-                Boolean itemFound = false;
-
-                while (checkingItem){
-                    if (itemStringCount == _buffer.length())
-                        checkingItem = false;
-                    // check if the string is a item name
-                    if (isItem(this.ItemBook,  itemString.toString())){
-                        itemFound = true;
-                        break;
-                    }
-                    itemStringCount++; // skip the white space
-                    tempItemString = new StringBuilder();
-                    // add next word into string (define by space separation)
-                    while (itemStringCount < _buffer.length() && _buffer.charAt(itemStringCount) != ' ') { // get separate words
-                        tempItemString.append(_buffer.charAt(itemStringCount));
-                        itemStringCount++;
-                    }
-                    tempItemString.insert(0,' ');
-                    itemString.append(tempItemString);
-                }
-                if (itemFound)
-                    currentToken = new Token(itemString.toString(),Token.Type.ITEM);
-            }
-
             // DROP_ACTION <drop | put down | abandon>
             else if (createString.toString().equals("drop") | createString.toString().equals("abandon") | createString.toString().equals("put")){
                 count++; // skip white space
@@ -214,8 +186,37 @@ public class CommandTokenizer {
             else if (createString.toString().equals("help"))
                 currentToken = new Token(createString.toString(),Token.Type.HELP);
 
-            else
-                currentToken = new Token(createString.toString(),Token.Type.ERROR);
+            else{
+                if (checkingItem){ // items may have multiple spaces
+                    StringBuilder itemString = createString;
+                    int itemStringCount = count;
+                    Boolean itemFound = false;
+
+                    while (checkingItem){
+                        if (itemStringCount == _buffer.length())
+                            checkingItem = false;
+                        // check if the string is a item name
+                        if (isItem(this.ItemBook,  itemString.toString())){
+                            itemFound = true;
+                            break;
+                        }
+                        itemStringCount++; // skip the white space
+                        StringBuilder tempItemString = new StringBuilder();
+                        // add next word into string (define by space separation)
+                        while (itemStringCount < _buffer.length() && _buffer.charAt(itemStringCount) != ' ') { // get separate words
+                            tempItemString.append(_buffer.charAt(itemStringCount));
+                            itemStringCount++;
+                        }
+                        if (tempItemString.length() != 0)
+                            tempItemString.insert(0,' ');
+                        itemString.append(tempItemString);
+                    }
+                    if (itemFound)
+                        currentToken = new Token(itemString.toString(),Token.Type.ITEM);
+                }
+                if (currentToken != null && currentToken.type() != Token.Type.ITEM)
+                    currentToken = new Token(createString.toString(),Token.Type.ERROR);
+            }
         }
         // if there is no other type match, it is a unknown command
         if (currentToken == null){

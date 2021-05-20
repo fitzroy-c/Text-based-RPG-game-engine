@@ -389,7 +389,7 @@ public class Parser {
          * - take Lesser Healing Potion -> taked item
          */
         Player ply = new Player("testname");
-        String cmd = "take item";
+        String cmd = "eddede";
         CommandTokenizer mt = new CommandTokenizer(cmd);
         new Parser(mt, ply).parseCommand();
     }
