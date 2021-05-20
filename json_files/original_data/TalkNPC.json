@@ -3,30 +3,279 @@
     "dialogTree": {
       "root": {
         "index": 0,
-        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "npcDialog": "Hi, are you ok?  I am your guide to this land. What do you want to know about?",
         "nextDialogs": [
           {
             "index": 1,
-            "playerReply": "I want to increase my health",
-            "npcDialog": "as you wish...",
-            "dtype": "END_BLESS_HP"
+            "playerReply": "Who are you?",
+            "npcDialog": "I am your guide to this land, any question?",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to know about how to walk around here.",
+                "npcDialog": "Sure.  You can \u0027go north\u0027 or any of the north, east, west, south direction to move around the map",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "yeah, I know that, but where I can\u0027t go?.",
+                    "npcDialog": "You will find it out yourself, there is a invisible air wall that stop everyone here from walking outside the world.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Oh, like walking south at here?.",
+                        "npcDialog": "Yeah, you are smart dude.  You might also want to know that here is a dangerous place.",
+                        "nextDialogs": [
+                          {
+                            "index": 1,
+                            "playerReply": "Don\u0027t you dare to scare me!.",
+                            "npcDialog": "Hey, chill dude, if you don\u0027t trust me, you can try \u0027detect\u0027 once you walk to a new place",
+                            "nextDialogs": [
+                              {
+                                "index": 1,
+                                "playerReply": "That is a cool!",
+                                "npcDialog": "In that way, you can find out monster or any item in that coordinate",
+                                "nextDialogs": [
+                                  {
+                                    "index": 1,
+                                    "playerReply": "So I can \u0027attack\u0027 these monster?",
+                                    "npcDialog": "Of cause, if you are brave enough, you can gain xp and gold by defeating them.  But if you lose... I might never see you again.",
+                                    "nextDialogs": [
+                                      {
+                                        "index": 1,
+                                        "playerReply": "I am not easily defeated, I will never think of \u0027retreat\u0027 or \u0027bribe\u0027 from the monster",
+                                        "npcDialog": "I believe you won\u0027t, but there are items that you might want to \u0027pick\u0027 up if you found any.",
+                                        "nextDialogs": [
+                                          {
+                                            "index": 1,
+                                            "playerReply": "I can also \u0027drop\u0027 or \u0027consume\u0027 by item name right?",
+                                            "npcDialog": "Yes, you can, but be careful that your bag have a limited weight.",
+                                            "nextDialogs": [
+                                              {
+                                                "index": 1,
+                                                "playerReply": "How do I check the weight then?",
+                                                "npcDialog": "You can check by \u0027bag\u0027 or look at yours \u0027stat\u0027.",
+                                                "nextDialogs": [
+                                                  {
+                                                    "index": 1,
+                                                    "playerReply": "sounds cool, anything else?",
+                                                    "npcDialog": "If you see any people like me, you can \u0027talk\u0027 to them, or \u0027trade\u0027 with aby merchants.",
+                                                    "nextDialogs": [
+                                                      {
+                                                        "index": 1,
+                                                        "playerReply": "I can\u0027t remember all that you just said... sadly",
+                                                        "npcDialog": "Don\u0027t worry, you can see what can you do by calling \u0027help\u0027.",
+                                                        "nextDialogs": [
+                                                          {
+                                                            "index": 1,
+                                                            "playerReply": "Oh thanks!  You are nice",
+                                                            "npcDialog": "It is my pleasure to help you. Do you want some gold?.",
+                                                            "nextDialogs": [
+                                                              {
+                                                                "index": 1,
+                                                                "playerReply": "No thanks, I want to earn the gold myself",
+                                                                "npcDialog": "Okay, enjoy you adventure!.",
+                                                                "nextDialogs": [],
+                                                                "dtype": "END_NONE"
+                                                              },
+                                                              {
+                                                                "index": 2,
+                                                                "playerReply": "Sure, thanks again!",
+                                                                "npcDialog": "Here you go.",
+                                                                "nextDialogs": [],
+                                                                "dtype": "END_GIVE_GOLD"
+                                                              },
+                                                              {
+                                                                "index": 3,
+                                                                "playerReply": "Can I get something to eat during my adventure?",
+                                                                "npcDialog": "Sure, you can have this lesser health potion.",
+                                                                "nextDialogs": [],
+                                                                "dtype": "END_GIVE_ITEM"
+                                                              }
+                                                            ],
+                                                            "dtype": "CONTINUE"
+                                                          },
+                                                          {
+                                                            "index": 1,
+                                                            "playerReply": "Okay, I want to go now, bye...",
+                                                            "npcDialog": "Goodbye!.",
+                                                            "dtype": "END_NONE"
+                                                          }
+                                                        ],
+                                                        "dtype": "CONTINUE"
+                                                      }
+                                                    ],
+                                                    "dtype": "CONTINUE"
+                                                  }
+                                                ],
+                                                "dtype": "CONTINUE"
+                                              }
+                                            ],
+                                            "dtype": "CONTINUE"
+                                          }
+                                        ],
+                                        "dtype": "CONTINUE"
+                                      }
+                                    ],
+                                    "dtype": "CONTINUE"
+                                  }
+                                ],
+                                "dtype": "CONTINUE"
+                              }
+                            ],
+                            "dtype": "CONTINUE"
+                          }
+                        ],
+                        "dtype": "CONTINUE"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              }
+            ],
+            "dtype": "CONTINUE"
           },
           {
             "index": 2,
-            "playerReply": "I want to increase my armor",
-            "npcDialog": "as you wish...",
-            "dtype": "END_BLESS_ARMOR"
+            "playerReply": "I want to know about how to walk around here.",
+            "npcDialog": "Sure.  You can \u0027go north\u0027 or any of the north, east, west, south direction to move around the map",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "yeah, I know that, but where I can\u0027t go?.",
+                "npcDialog": "You will find it out yourself, there is a invisible air wall that stop everyone here from walking outside the world.",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Oh, like walking south at here?.",
+                    "npcDialog": "Yeah, you are smart dude.  You might also want to know that here is a dangerous place.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Don\u0027t you dare to scare me!.",
+                        "npcDialog": "Hey, chill dude, if you don\u0027t trust me, you can try \u0027detect\u0027 once you walk to a new place",
+                        "nextDialogs": [
+                          {
+                            "index": 1,
+                            "playerReply": "That is a cool!",
+                            "npcDialog": "In that way, you can find out monster or any item in that coordinate",
+                            "nextDialogs": [
+                              {
+                                "index": 1,
+                                "playerReply": "So I can \u0027attack\u0027 these monster?",
+                                "npcDialog": "Of cause, if you are brave enough, you can gain xp and gold by defeating them.  But if you lose... I might never see you again.",
+                                "nextDialogs": [
+                                  {
+                                    "index": 1,
+                                    "playerReply": "I am not easily defeated, I will never think of \u0027retreat\u0027 or \u0027bribe\u0027 from the monster",
+                                    "npcDialog": "I believe you won\u0027t, but there are items that you might want to \u0027pick\u0027 up if you found any.",
+                                    "nextDialogs": [
+                                      {
+                                        "index": 1,
+                                        "playerReply": "I can also \u0027drop\u0027 or \u0027consume\u0027 by item name right?",
+                                        "npcDialog": "Yes, you can, but be careful that your bag have a limited weight.",
+                                        "nextDialogs": [
+                                          {
+                                            "index": 1,
+                                            "playerReply": "How do I check the weight then?",
+                                            "npcDialog": "You can check by \u0027bag\u0027 or look at yours \u0027stat\u0027.",
+                                            "nextDialogs": [
+                                              {
+                                                "index": 1,
+                                                "playerReply": "sounds cool, anything else?",
+                                                "npcDialog": "If you see any people like me, you can \u0027talk\u0027 to them, or \u0027trade\u0027 with aby merchants.",
+                                                "nextDialogs": [
+                                                  {
+                                                    "index": 1,
+                                                    "playerReply": "I can\u0027t remember all that you just said... sadly",
+                                                    "npcDialog": "Don\u0027t worry, you can see what can you do by calling \u0027help\u0027.",
+                                                    "nextDialogs": [
+                                                      {
+                                                        "index": 1,
+                                                        "playerReply": "Oh thanks!  You are nice",
+                                                        "npcDialog": "It is my pleasure to help you. Do you want some gold?.",
+                                                        "nextDialogs": [
+                                                          {
+                                                            "index": 1,
+                                                            "playerReply": "No thanks, I want to earn the gold myself",
+                                                            "npcDialog": "Okay, enjoy you adventure!.",
+                                                            "nextDialogs": [],
+                                                            "dtype": "END_NONE"
+                                                          },
+                                                          {
+                                                            "index": 2,
+                                                            "playerReply": "Sure, thanks again!",
+                                                            "npcDialog": "Here you go.",
+                                                            "nextDialogs": [],
+                                                            "dtype": "END_GIVE_GOLD"
+                                                          },
+                                                          {
+                                                            "index": 3,
+                                                            "playerReply": "Can I get something to eat during my adventure?",
+                                                            "npcDialog": "Sure, you can have this lesser health potion.",
+                                                            "nextDialogs": [],
+                                                            "dtype": "END_GIVE_ITEM"
+                                                          }
+                                                        ],
+                                                        "dtype": "CONTINUE"
+                                                      },
+                                                      {
+                                                        "index": 1,
+                                                        "playerReply": "Okay, I want to go now, bye...",
+                                                        "npcDialog": "Goodbye!.",
+                                                        "dtype": "END_NONE"
+                                                      }
+                                                    ],
+                                                    "dtype": "CONTINUE"
+                                                  }
+                                                ],
+                                                "dtype": "CONTINUE"
+                                              }
+                                            ],
+                                            "dtype": "CONTINUE"
+                                          }
+                                        ],
+                                        "dtype": "CONTINUE"
+                                      }
+                                    ],
+                                    "dtype": "CONTINUE"
+                                  }
+                                ],
+                                "dtype": "CONTINUE"
+                              }
+                            ],
+                            "dtype": "CONTINUE"
+                          }
+                        ],
+                        "dtype": "CONTINUE"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 3,
+            "playerReply": "I already know what to do, bye.",
+            "npcDialog": "Bless you healthy!",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
           }
         ],
         "dtype": "CONTINUE"
       }
     },
-    "blessAddMaxHP": 3,
-    "blessAddArmour": 3,
-    "blessAddDamage": 3,
+    "blessAddMaxHP": 5,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
     "hasEndedTalk": false,
     "npcBag": {
-      "currentWeight": 1,
+      "currentWeight": 2,
       "maxWeight": 100,
       "itemList": [
         {
@@ -54,14 +303,14 @@
       ]
     },
     "abnormalPointType": "NPC_TALK",
-    "name": "Little_Fairy",
-    "intro": "Hi, I can permanent increase your power!",
+    "name": "Guide",
+    "intro": "A guide waiting for you",
     "maxHP": 100,
     "HP": 100,
-    "damage": 1,
-    "armour": 100,
-    "gold": 0,
-    "xpGain": 50,
+    "damage": 10,
+    "armour": 3,
+    "gold": 10,
+    "xpGain": 10,
     "critChance": 0.0,
     "element": "Normal"
   },
@@ -75,13 +324,941 @@
             "index": 1,
             "playerReply": "I want to increase my health",
             "npcDialog": "as you wish...",
+            "nextDialogs": [],
             "dtype": "END_BLESS_HP"
           },
           {
             "index": 2,
             "playerReply": "I want to increase my armor",
             "npcDialog": "as you wish...",
+            "nextDialogs": [],
             "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "0,3": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "14,13": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 2,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Some dude",
+    "intro": "Walk and walk",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 18,
+    "armour": 5,
+    "gold": 10,
+    "xpGain": 50,
+    "critChance": 0.02,
+    "element": "Normal"
+  },
+  "0,8": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "2,1": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "2,2": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 2,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Some dude",
+    "intro": "Walk and walk",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 18,
+    "armour": 5,
+    "gold": 10,
+    "xpGain": 50,
+    "critChance": 0.02,
+    "element": "Normal"
+  },
+  "2,3": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "28,27": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {}
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {}
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Treasure hunter",
+    "intro": "Walk and walk",
+    "maxHP": 1000,
+    "HP": 970,
+    "damage": 100,
+    "armour": 50,
+    "gold": 200,
+    "xpGain": 1000,
+    "critChance": 0.1,
+    "element": "Normal"
+  },
+  "23,21": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {}
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {}
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Treasure hunter",
+    "intro": "Walk and walk",
+    "maxHP": 1000,
+    "HP": 970,
+    "damage": 100,
+    "armour": 50,
+    "gold": 200,
+    "xpGain": 1000,
+    "critChance": 0.1,
+    "element": "Normal"
+  },
+  "18,12": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 2,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Some dude",
+    "intro": "Walk and walk",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 18,
+    "armour": 5,
+    "gold": 10,
+    "xpGain": 50,
+    "critChance": 0.02,
+    "element": "Normal"
+  },
+  "4,5": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
           }
         ],
         "dtype": "CONTINUE"
@@ -90,6 +1267,170 @@
     "blessAddMaxHP": 7,
     "blessAddArmour": 6,
     "blessAddDamage": 4,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Teenager_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 500,
+    "HP": 500,
+    "damage": 1,
+    "armour": 500,
+    "gold": 0,
+    "xpGain": 100,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "16,24": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 13,
+    "blessAddArmour": 10,
+    "blessAddDamage": 10,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Adult_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 1000,
+    "HP": 1000,
+    "damage": 1,
+    "armour": 1000,
+    "gold": 0,
+    "xpGain": 500,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "18,18": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
     "hasEndedTalk": false,
     "npcBag": {
       "currentWeight": 1,
@@ -116,6 +1457,875 @@
       ]
     },
     "abnormalPointType": "NPC_TALK",
+    "name": "Wander",
+    "intro": "Walk and walk",
+    "maxHP": 500,
+    "HP": 480,
+    "damage": 34,
+    "armour": 10,
+    "gold": 80,
+    "xpGain": 200,
+    "critChance": 0.08,
+    "element": "Normal"
+  },
+  "25,25": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 50,
+    "blessAddArmour": 30,
+    "blessAddDamage": 40,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Elder_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 10000,
+    "HP": 10000,
+    "damage": 1,
+    "armour": 2000,
+    "gold": 0,
+    "xpGain": 1000,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "29,12": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 1,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {}
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Wander",
+    "intro": "Walk and walk",
+    "maxHP": 500,
+    "HP": 480,
+    "damage": 34,
+    "armour": 10,
+    "gold": 80,
+    "xpGain": 200,
+    "critChance": 0.08,
+    "element": "Normal"
+  },
+  "29,15": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 50,
+    "blessAddArmour": 30,
+    "blessAddDamage": 40,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Elder_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 10000,
+    "HP": 10000,
+    "damage": 1,
+    "armour": 2000,
+    "gold": 0,
+    "xpGain": 1000,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "4,19": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 2,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Some dude",
+    "intro": "Walk and walk",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 18,
+    "armour": 5,
+    "gold": 10,
+    "xpGain": 50,
+    "critChance": 0.02,
+    "element": "Normal"
+  },
+  "1,1": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "1,3": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "26,3": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 13,
+    "blessAddArmour": 10,
+    "blessAddDamage": 10,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Adult_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 1000,
+    "HP": 1000,
+    "damage": 1,
+    "armour": 1000,
+    "gold": 0,
+    "xpGain": 500,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "1,8": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "24,16": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 13,
+    "blessAddArmour": 10,
+    "blessAddDamage": 10,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Adult_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 1000,
+    "HP": 1000,
+    "damage": 1,
+    "armour": 1000,
+    "gold": 0,
+    "xpGain": 500,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "3,5": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "10,10": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 2,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Some dude",
+    "intro": "Walk and walk",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 18,
+    "armour": 5,
+    "gold": 10,
+    "xpGain": 50,
+    "critChance": 0.02,
+    "element": "Normal"
+  },
+  "15,23": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 7,
+    "blessAddArmour": 6,
+    "blessAddDamage": 4,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
     "name": "Teenager_Fairy",
     "intro": "Hi, I can permanent increase your power!",
     "maxHP": 500,
@@ -125,6 +2335,345 @@
     "gold": 0,
     "xpGain": 100,
     "critChance": 0.0,
+    "element": "Normal"
+  },
+  "3,9": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 7,
+    "blessAddArmour": 6,
+    "blessAddDamage": 4,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Teenager_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 500,
+    "HP": 500,
+    "damage": 1,
+    "armour": 500,
+    "gold": 0,
+    "xpGain": 100,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "1,19": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 3,
+    "blessAddArmour": 3,
+    "blessAddDamage": 3,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Little_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 1,
+    "armour": 100,
+    "gold": 0,
+    "xpGain": 50,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "3,18": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 7,
+    "blessAddArmour": 6,
+    "blessAddDamage": 4,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Teenager_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 500,
+    "HP": 500,
+    "damage": 1,
+    "armour": 500,
+    "gold": 0,
+    "xpGain": 100,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "7,3": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I can bless you... to better prepare you for the fight",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "I want to increase my health",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_HP"
+          },
+          {
+            "index": 2,
+            "playerReply": "I want to increase my armor",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_ARMOR"
+          },
+          {
+            "index": 3,
+            "playerReply": "I want to increase my damage",
+            "npcDialog": "as you wish...",
+            "nextDialogs": [],
+            "dtype": "END_BLESS_DAMAGE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 7,
+    "blessAddArmour": 6,
+    "blessAddDamage": 4,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 10,
+      "itemList": []
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Teenager_Fairy",
+    "intro": "Hi, I can permanent increase your power!",
+    "maxHP": 500,
+    "HP": 500,
+    "damage": 1,
+    "armour": 500,
+    "gold": 0,
+    "xpGain": 100,
+    "critChance": 0.0,
+    "element": "Normal"
+  },
+  "19,19": {
+    "dialogTree": {
+      "root": {
+        "index": 0,
+        "npcDialog": "I am just someone wandering around here, whats up dude",
+        "nextDialogs": [
+          {
+            "index": 1,
+            "playerReply": "Hello, how are you sir?",
+            "npcDialog": "I am fine, it is a good day today (smiling)",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "True, I need to go now, to find some treasure",
+                "npcDialog": "You mean treasure!??",
+                "nextDialogs": [
+                  {
+                    "index": 1,
+                    "playerReply": "Yeah, i think it is around here",
+                    "npcDialog": "Tell me where it is, I can give you gold.",
+                    "nextDialogs": [
+                      {
+                        "index": 1,
+                        "playerReply": "Ok, I think it is here to the east",
+                        "npcDialog": "Much thanks, here you go your golds.",
+                        "nextDialogs": [],
+                        "dtype": "END_GIVE_GOLD"
+                      },
+                      {
+                        "index": 2,
+                        "playerReply": "Sorry, it is a secret",
+                        "npcDialog": "I should kill you then!",
+                        "nextDialogs": [],
+                        "dtype": "END_ATTACK"
+                      }
+                    ],
+                    "dtype": "CONTINUE"
+                  },
+                  {
+                    "index": 2,
+                    "playerReply": "Haha, just kidding. Bye!",
+                    "npcDialog": "Damn, I thought you mean it for real... ",
+                    "nextDialogs": [],
+                    "dtype": "END_NONE"
+                  }
+                ],
+                "dtype": "CONTINUE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Yeah, I know that. Bye!",
+                "npcDialog": "Bye.",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              }
+            ],
+            "dtype": "CONTINUE"
+          },
+          {
+            "index": 2,
+            "playerReply": "You stupid dude, what you doing here",
+            "npcDialog": "You are so rude!",
+            "nextDialogs": [],
+            "dtype": "END_ATTACK"
+          },
+          {
+            "index": 3,
+            "playerReply": "hey, I am poor, I need some food to survive",
+            "npcDialog": "You do look worry...",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "Give me some gold so I can purchase food at the merchant.",
+                "npcDialog": "Nah, go earn it yoursel!",
+                "nextDialogs": [],
+                "dtype": "END_NONE"
+              },
+              {
+                "index": 2,
+                "playerReply": "Please! Give me some food",
+                "npcDialog": "... lucky you meet me.",
+                "nextDialogs": [],
+                "dtype": "END_GIVE_ITEM"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        ],
+        "dtype": "CONTINUE"
+      }
+    },
+    "blessAddMaxHP": 0,
+    "blessAddArmour": 0,
+    "blessAddDamage": 0,
+    "hasEndedTalk": false,
+    "npcBag": {
+      "currentWeight": 1,
+      "maxWeight": 100,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {}
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_TALK",
+    "name": "Wander",
+    "intro": "Walk and walk",
+    "maxHP": 500,
+    "HP": 480,
+    "damage": 34,
+    "armour": 10,
+    "gold": 80,
+    "xpGain": 200,
+    "critChance": 0.08,
     "element": "Normal"
   }
 }

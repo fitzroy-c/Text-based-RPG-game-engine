@@ -1,14 +1,14 @@
 {
   "name": "TestingLoad1",
-  "HP": 133,
-  "maxHP": 133,
-  "money": 12,
+  "HP": 121,
+  "maxHP": 121,
+  "money": 14,
   "xp": 0,
   "maxXP": 10,
   "xpPerLv": 10,
   "level": 1,
   "armour": 7,
-  "damage": 15,
+  "damage": 14,
   "criticalChance": 0.02,
   "maxCriticalChance": 1.0,
   "bag": {
@@ -51,9 +51,139 @@
         }
       ]
     },
-    "abnormalPoints": [],
+    "abnormalPoints": [
+      {
+        "npcBag": {
+          "currentWeight": 0,
+          "maxWeight": 1000,
+          "itemList": [
+            {
+              "id": "C1",
+              "type": "consumable",
+              "name": "Mushroom",
+              "description": "Restores 15 health",
+              "properties": {
+                "health": 15,
+                "weight": 1,
+                "value": 10
+              }
+            },
+            {
+              "id": "C2",
+              "type": "consumable",
+              "name": "Lesser Healing Potion",
+              "description": "Restores 50 health",
+              "properties": {
+                "health": 50,
+                "weight": 1,
+                "value": 25
+              }
+            },
+            {
+              "id": "C3",
+              "type": "consumable",
+              "name": "Healing Potion",
+              "description": "Restores 100 health",
+              "properties": {
+                "health": 100,
+                "weight": 1,
+                "value": 50
+              }
+            },
+            {
+              "id": "C4",
+              "type": "consumable",
+              "name": "Greater Healing Potion",
+              "description": "Restores 150 health",
+              "properties": {
+                "health": 150,
+                "weight": 1,
+                "value": 100
+              }
+            }
+          ]
+        },
+        "abnormalPointType": "NPC_MERCHANT",
+        "name": "Merchant 1",
+        "intro": "s",
+        "maxHP": 100,
+        "HP": 100,
+        "damage": 10,
+        "armour": 10,
+        "gold": 10,
+        "xpGain": 10,
+        "critChance": 10.0,
+        "element": "Normal"
+      },
+      {
+        "dialogTree": {
+          "root": {
+            "index": 0,
+            "npcDialog": "I can bless you... to better prepare you for the fight",
+            "nextDialogs": [
+              {
+                "index": 1,
+                "playerReply": "I want to increase my health",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_HP"
+              },
+              {
+                "index": 2,
+                "playerReply": "I want to increase my armor",
+                "npcDialog": "as you wish...",
+                "dtype": "END_BLESS_ARMOR"
+              }
+            ],
+            "dtype": "CONTINUE"
+          }
+        },
+        "blessAddMaxHP": 3,
+        "blessAddArmour": 3,
+        "blessAddDamage": 3,
+        "hasEndedTalk": false,
+        "npcBag": {
+          "currentWeight": 1,
+          "maxWeight": 100,
+          "itemList": [
+            {
+              "id": "C1",
+              "type": "consumable",
+              "name": "Mushroom",
+              "description": "Restores 15 health",
+              "properties": {
+                "health": 100,
+                "weight": 1,
+                "value": 50
+              }
+            },
+            {
+              "id": "C1",
+              "type": "consumable",
+              "name": "Mushroom",
+              "description": "Restores 15 health",
+              "properties": {
+                "health": 100,
+                "weight": 1,
+                "value": 50
+              }
+            }
+          ]
+        },
+        "abnormalPointType": "NPC_TALK",
+        "name": "Little_Fairy",
+        "intro": "Hi, I can permanent increase your power!",
+        "maxHP": 100,
+        "HP": 100,
+        "damage": 1,
+        "armour": 100,
+        "gold": 0,
+        "xpGain": 50,
+        "critChance": 0.0,
+        "element": "Normal"
+      }
+    ],
     "random": {
-      "seed": 10947364861336,
+      "seed": 46332669498156,
       "nextNextGaussian": 0.0,
       "haveNextNextGaussian": false
     }
@@ -62,17 +192,17 @@
     "0,0": {
       "dialogTree": {
         "root": {
-          "index": 0.0,
+          "index": 0,
           "npcDialog": "I can bless you... to better prepare you for the fight",
           "nextDialogs": [
             {
-              "index": 1.0,
+              "index": 1,
               "playerReply": "I want to increase my health",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_HP"
             },
             {
-              "index": 2.0,
+              "index": 2,
               "playerReply": "I want to increase my armor",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_ARMOR"
@@ -81,13 +211,13 @@
           "dtype": "CONTINUE"
         }
       },
-      "blessAddMaxHP": 3.0,
-      "blessAddArmour": 3.0,
-      "blessAddDamage": 3.0,
+      "blessAddMaxHP": 3,
+      "blessAddArmour": 3,
+      "blessAddDamage": 3,
       "hasEndedTalk": false,
       "npcBag": {
-        "currentWeight": 1.0,
-        "maxWeight": 100.0,
+        "currentWeight": 1,
+        "maxWeight": 100,
         "itemList": [
           {
             "id": "C1",
@@ -95,9 +225,9 @@
             "name": "Mushroom",
             "description": "Restores 15 health",
             "properties": {
-              "health": 100.0,
-              "weight": 1.0,
-              "value": 50.0
+              "health": 100,
+              "weight": 1,
+              "value": 50
             }
           },
           {
@@ -106,9 +236,9 @@
             "name": "Mushroom",
             "description": "Restores 15 health",
             "properties": {
-              "health": 100.0,
-              "weight": 1.0,
-              "value": 50.0
+              "health": 100,
+              "weight": 1,
+              "value": 50
             }
           }
         ]
@@ -116,29 +246,29 @@
       "abnormalPointType": "NPC_TALK",
       "name": "Little_Fairy",
       "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 100.0,
-      "HP": 100.0,
-      "damage": 1.0,
-      "armour": 100.0,
-      "gold": 0.0,
-      "xpGain": 50.0,
+      "maxHP": 100,
+      "HP": 100,
+      "damage": 1,
+      "armour": 100,
+      "gold": 0,
+      "xpGain": 50,
       "critChance": 0.0,
       "element": "Normal"
     },
     "0,1": {
       "dialogTree": {
         "root": {
-          "index": 0.0,
+          "index": 0,
           "npcDialog": "I can bless you... to better prepare you for the fight",
           "nextDialogs": [
             {
-              "index": 1.0,
+              "index": 1,
               "playerReply": "I want to increase my health",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_HP"
             },
             {
-              "index": 2.0,
+              "index": 2,
               "playerReply": "I want to increase my armor",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_ARMOR"
@@ -147,13 +277,13 @@
           "dtype": "CONTINUE"
         }
       },
-      "blessAddMaxHP": 7.0,
-      "blessAddArmour": 6.0,
-      "blessAddDamage": 4.0,
+      "blessAddMaxHP": 7,
+      "blessAddArmour": 6,
+      "blessAddDamage": 4,
       "hasEndedTalk": false,
       "npcBag": {
-        "currentWeight": 1.0,
-        "maxWeight": 100.0,
+        "currentWeight": 1,
+        "maxWeight": 100,
         "itemList": [
           {
             "id": "C1",
@@ -161,9 +291,9 @@
             "name": "Mushroom",
             "description": "Restores 15 health",
             "properties": {
-              "health": 100.0,
-              "weight": 1.0,
-              "value": 50.0
+              "health": 100,
+              "weight": 1,
+              "value": 50
             }
           },
           {
@@ -178,12 +308,12 @@
       "abnormalPointType": "NPC_TALK",
       "name": "Teenager_Fairy",
       "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 500.0,
-      "HP": 500.0,
-      "damage": 1.0,
-      "armour": 500.0,
-      "gold": 0.0,
-      "xpGain": 100.0,
+      "maxHP": 500,
+      "HP": 500,
+      "damage": 1,
+      "armour": 500,
+      "gold": 0,
+      "xpGain": 100,
       "critChance": 0.0,
       "element": "Normal"
     }
@@ -236,6 +366,80 @@
               "health": 150,
               "weight": 1,
               "value": 100
+            }
+          }
+        ]
+      },
+      "abnormalPointType": "NPC_MERCHANT",
+      "name": "Merchant 1",
+      "intro": "s",
+      "maxHP": 100,
+      "HP": 100,
+      "damage": 10,
+      "armour": 10,
+      "gold": 10,
+      "xpGain": 10,
+      "critChance": 10.0,
+      "element": "Normal"
+    },
+    "1,1": {
+      "npcBag": {
+        "currentWeight": 0,
+        "maxWeight": 1000,
+        "itemList": [
+          {
+            "id": "C1",
+            "type": "consumable",
+            "name": "Mushroom",
+            "description": "Restores 15 health",
+            "properties": {
+              "health": 15,
+              "weight": 1,
+              "value": 10
+            }
+          },
+          {
+            "id": "C1",
+            "type": "consumable",
+            "name": "Mushroom",
+            "description": "Restores 15 health",
+            "properties": {
+              "health": 15,
+              "weight": 1,
+              "value": 10
+            }
+          },
+          {
+            "id": "C2",
+            "type": "consumable",
+            "name": "Lesser Healing Potion",
+            "description": "Restores 50 health",
+            "properties": {
+              "health": 50,
+              "weight": 1,
+              "value": 25
+            }
+          },
+          {
+            "id": "C3",
+            "type": "consumable",
+            "name": "Healing Potion",
+            "description": "Restores 100 health",
+            "properties": {
+              "health": 100,
+              "weight": 1,
+              "value": 40
+            }
+          },
+          {
+            "id": "C4",
+            "type": "consumable",
+            "name": "Greater Healing Potion",
+            "description": "Restores 150 health",
+            "properties": {
+              "health": 150,
+              "weight": 1,
+              "value": 5
             }
           }
         ]
