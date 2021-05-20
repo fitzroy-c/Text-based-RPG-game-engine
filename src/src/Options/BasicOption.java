@@ -47,8 +47,9 @@ public class BasicOption {
         //this.printOut();
         String command = token.token();
         Token.Type type = token.type();
+//        if (command.equals("back"))
 
-        if (token.type()== Token.Type.ERROR)
+        if (type== Token.Type.ERROR)
             return true;
         if (tokenType.contains(type)) {
             return true;
