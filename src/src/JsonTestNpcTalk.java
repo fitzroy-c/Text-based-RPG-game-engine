@@ -17,11 +17,11 @@ import com.alibaba.fastjson.JSONObject;
  *
  * A coordinate determines a object type (a)
  *
- * a must have the following characteristics: diagtree, blessaddmaxhp (positive integer), blessaddarmour (positive integer),
+ * a must have the following characteristics: diagtree, blessaddmaxhp (positive integer), blessaddarmour (integer),
  * blessadddamage (positive integer), hasendedtalk (Boolean), abnormalpointtype (must be NPC_Talk),
  * name (string), Intro (string), maxhp (positive integer), HP (positive integer),
- * damage (positive integer), armour (positive integer), gold (positive integer), xpgain (positive integer),
- * critchance ([0,1], up to two decimal places -- still need to work on), element (must be "normal"), possible characteristics: npcbag
+ * damage (positive integer), armour (integer), gold (integer), xpgain (integer),
+ * critchance ([0,1] not so restrict,just a double), element (must be "normal"), possible characteristics: npcbag
  *
  * Npcbag must have the following characteristics: currentweight (non negative integer),
  * maxweight (non negative integer), itemlist (unlimited length).
@@ -30,15 +30,17 @@ import com.alibaba.fastjson.JSONObject;
  * the object in npcbag should have the following characteristics:
  * ID (string), type (string), name (string), description (sring), properties (possibly empty, but should have),
  *
- * if any in properties, characteristics: health (integer), weight (integer), Value (integer))
+ * if any in properties, item characteristics: health (integer), weight (integer), Value (integer))
  *
  * diagtree must have the characteristic root,
  *
- * root must have index (non negative integer), npcdialog (string), nextdialogs (), dtype (must be one from
+ * root must have index (integer), npcdialog (string), nextdialogs (), dtype (must be one from
  * ATTACK,END_ GIVE_ GOLD，END_ GIVE_ ITEM, END_ NONE, CONTINUE,END_ BLESS_ HP,END_ BLESS_ ARMOR,END_ BLESS_ Damage )
  *
  * If nextdialogs exists must follow the similar structure with root，
  * with an potential added characteristic: playerReply (string)
+ *
+ * check the class first, some int range check remains undo
  *
  * @author yitao chen
  */
@@ -182,11 +184,28 @@ public class JsonTestNpcTalk {
         Set<String> coordinates = jsonMap.keySet();
 
         for (String coordinate : coordinates) {
+            if (coordinate.split(",").length!=2){
+                throw new JSONException("bad coordinate: " + coordinate);
+            }
+
             try {
+
                 Integer.parseInt(coordinate.split(",")[0]);
+
                 Integer.parseInt(coordinate.split(",")[1]);
+
             } catch (NumberFormatException e) {
                 throw new JSONException("bad coordinate: " + coordinate);
+            }
+
+            //the coordinate is designed in a limit range 31*31
+            Integer x = Integer.parseInt(coordinate.split(",")[0]);
+            if(x<0||x>30){
+                throw new JSONException("coordinate x out of range");
+            }
+            Integer y = Integer.parseInt(coordinate.split(",")[1]);
+            if(y<0||y>30){
+                throw new JSONException("coordinate y out of range");
             }
         }
 
@@ -210,21 +229,35 @@ public class JsonTestNpcTalk {
             } catch (Exception e) {
                 throw new JSONException("bad blessAddMaxHP: " + npc.getObject("blessAddMaxHP", String.class));
             }
+            // blessAddMaxHP must be positive
+            int blessAddMaxHP = npc.getObject("blessAddMaxHP", int.class);
+            if(blessAddMaxHP<0){
+                throw new JSONException("blessAddMaxHP out of range");
+            }
+
             try {
                 npc.getObject("blessAddDamage", int.class);
             } catch (Exception e) {
-                throw new JSONException("bad blessAddMaxHP: " + npc.getObject("blessAddMaxHP", String.class));
+                throw new JSONException("bad blessAddDamage: " + npc.getObject("blessAddDamage", String.class));
             }
+            // blessAddDamage must be positive
+            int blessAddDamage = npc.getObject("blessAddDamage", int.class);
+            if(blessAddDamage<0){
+                throw new JSONException("blessAddDamage out of range");
+            }
+
             try {
-                npc.getObject("blessAddMaxHP", int.class);
+                npc.getObject("blessAddArmour", int.class);
             } catch (Exception e) {
-                throw new JSONException("bad blessAddMaxHP: " + npc.getObject("blessAddMaxHP", String.class));
+                throw new JSONException("bad blessAddArmour: " + npc.getObject("blessAddArmour", String.class));
             }
+
             try {
                 npc.getObject("hasEndedTalk", boolean.class);
             } catch (Exception e) {
                 throw new JSONException("bad hasEndedTalk: " + npc.getObject("hasEndedTalk", String.class));
             }
+
             try {
                 if (!npc.getObject("abnormalPointType", String.class).equals("NPC_TALK")) {
                     throw new JSONException("bad abnormalPointType: " + npc.getObject("abnormalPointType", String.class));
@@ -238,46 +271,79 @@ public class JsonTestNpcTalk {
             } catch (Exception e) {
                 throw new JSONException("bad name: " + npc.getObject("name", String.class));
             }
+
             try {
                 npc.getObject("intro", String.class);
             } catch (Exception e) {
                 throw new JSONException("bad intro: " + npc.getObject("intro", String.class));
             }
+
             try {
                 npc.getObject("maxHP", int.class);
             } catch (Exception e) {
                 throw new JSONException("bad maxHP: " + npc.getObject("maxHP", String.class));
             }
+            // maxHP should be positive
+            int maxHP = npc.getObject("maxHP", int.class);
+            if(maxHP<0){
+                throw new JSONException("maxHP out of range");
+            }
+
             try {
                 npc.getObject("HP", int.class);
             } catch (Exception e) {
                 throw new JSONException("bad HP: " + npc.getObject("HP", String.class));
             }
+            // HP should be positive
+            int HP = npc.getObject("HP", int.class);
+            if(HP<0){
+                throw new JSONException("HP out of range");
+            }
+            // HP should be less than maxHP
+            if(HP>maxHP){
+                throw new JSONException("HP larger than maxHP");
+            }
+
             try {
                 npc.getObject("damage", int.class);
             } catch (Exception e) {
                 throw new JSONException("bad damage: " + npc.getObject("damage", String.class));
             }
+            // damage should be positive
+            int damage = npc.getObject("damage", int.class);
+            if(damage<=0){
+                throw new JSONException("damage out of range");
+            }
+
             try {
                 npc.getObject("armour", int.class);
             } catch (Exception e) {
                 throw new JSONException("bad armour: " + npc.getObject("armour", String.class));
             }
+
             try {
                 npc.getObject("gold", int.class);
             } catch (Exception e) {
                 throw new JSONException("bad gold: " + npc.getObject("gold", String.class));
             }
+
             try {
                 npc.getObject("xpGain", int.class);
             } catch (Exception e) {
                 throw new JSONException("bad xpGain: " + npc.getObject("xpGain", String.class));
             }
+
             try {
-                npc.getObject("critChance", int.class);
+                npc.getObject("critChance", double.class);
             } catch (Exception e) {
                 throw new JSONException("bad critChance: " + npc.getObject("critChance", String.class));
             }
+            //critChance should be not negative, i think the limit can be removed
+            double critChance = npc.getObject("critChance", double.class);
+            if(critChance<0){
+                throw new JSONException("critChance out of range");
+            }
+
             try {
                 if (!npc.getObject("element", String.class).equals("Normal")) {
                     throw new JSONException("bad element: " + npc.getObject("element", String.class));
@@ -308,11 +374,27 @@ public class JsonTestNpcTalk {
                 } catch (Exception e) {
                     throw new JSONException("bad currentWeight: " + npcBag.getObject("currentWeight", String.class));
                 }
+                //currentWeight should be not negative
+                int currentWeight = npcBag.getObject("currentWeight", int.class);
+                if(currentWeight<0){
+                    throw new JSONException("currentWeight out of range");
+                }
+
                 try {
                     npcBag.getObject("maxWeight", int.class);
                 } catch (Exception e) {
                     throw new JSONException("bad maxWeight: " + npcBag.getObject("maxWeight", String.class));
                 }
+                //maxWeight should be not negative
+                int maxWeight = npcBag.getObject("maxWeight", int.class);
+                if(maxWeight<0){
+                    throw new JSONException("maxWeight out of range");
+                }
+                //maxWeight should be larger than currentWeight
+                if (maxWeight<currentWeight){
+                    throw new JSONException("maxWeight less than currentWeight");
+                }
+
                 JSONArray itemList = npcBag.getJSONArray("itemList");
                 for (JSONObject item : itemList.toJavaList(JSONObject.class)) {
 
