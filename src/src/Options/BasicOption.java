@@ -53,6 +53,8 @@ public class BasicOption {
             return true;
         if (tokenType.contains(type)) {
             return true;
+        } else if (optionInterface.containsKey(command)) {
+            return true;
         } else {
             System.out.println("I don't know what '" + command + "' means.");
             return false;

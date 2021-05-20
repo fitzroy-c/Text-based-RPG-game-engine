@@ -5,16 +5,16 @@ import Player.Player;
 
 public class NormalOption extends BasicOption{
     private void buildMenu() {
-        this.option.add(new Option("detect", "Detect the room"));
+//        this.option.add(new Option("detect", "Detect the room"));
         this.option.add(new Option("pick", "Pick an item"));
         this.option.add(new Option("drop", "drop an item"));
         this.option.add(new Option("save", "Save game"));
         this.option.add(new Option("exit", "Exit game"));
-        this.option.add(new Option("north", "Go north"));
-        this.option.add(new Option("south", "Go south"));
-        this.option.add(new Option("east", "Go east"));
-        this.option.add(new Option("west", "Go west"));
         this.option.add(new Option("help", "get help"));
+//        this.option.add(new Option("north", "Go north"));
+//        this.option.add(new Option("south", "Go south"));
+//        this.option.add(new Option("east", "Go east"));
+//        this.option.add(new Option("west", "Go west"));
 
         this.tokenType.add(Token.Type.DETECT);
         this.tokenType.add(Token.Type.TAKE_ACTION);

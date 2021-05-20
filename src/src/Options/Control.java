@@ -1,6 +1,9 @@
 package Options;
 
 import AbnormalPoints.AbnormalPoint;
+import CommandParser.CommandTokenizer;
+import CommandParser.Parser;
+import CommandParser.Token;
 import Player.Player;
 
 import java.util.ArrayList;
@@ -54,13 +57,33 @@ public class Control extends BasicOption {
             boolean b = true;
             while (b) {
                 Scanner s = new Scanner(System.in);
-                try {
-                    int n = s.nextInt();
-                    current = nm.verifyInt(n);
-                    b = false;
-                } catch (Exception e) {
+                String input = s.nextLine();
+                if (nm.chooseOp(new Token(input, null))) {
+//                    CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
+//                    System.out.println(cmd.current().token());
+
+                    try {
+                        int n = Integer.parseInt(input);
+                        current = nm.verifyInt(n);
+                        b = false;
+                    } catch (Exception e) {
+                        CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
+                        if (! new Parser(cmd, player).parseCommand()) {
+                            System.out.println("I don't understand");
+                            System.out.println("Please choose correct one");
+                        }
+
+
+//                        cmdTok = current.convert(cmdTok);
+//                        continueOn = new Parser(current.convert(cmdTok), player).parseCommand();
+//
+//
+//                        System.out.println("I don't understand");
+//                        System.out.println("Please input number!");
+                    }
+                } else {
                     System.out.println("I don't understand");
-                    System.out.println("Please input number!");
+                    System.out.println("Please choose correct one");
                 }
             }
         }

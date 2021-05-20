@@ -75,8 +75,8 @@ public class Game {
                 /// test
                 //AbnormalPoint ab = new AbnormalPoint();
                 Control c = new Control(player);
-//                gameInteractionLoop(player, c);
-                gameInteractionLoopParser(player);
+                gameInteractionLoop(player, c);
+//                gameInteractionLoopParser(player);
                 break;
             case 1:
                 System.out.println("Here is all the players available");

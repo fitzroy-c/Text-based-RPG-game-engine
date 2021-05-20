@@ -24,18 +24,32 @@ public class NMOption extends BasicOption{
         for (AbnormalPoint npc : npcs) {
             this.option.add(new Option( npc.getName(), npc.getIntro()));
         }
+        this.option.add(new Option("pick", "Pick an item"));
+        this.option.add(new Option("drop", "drop an item"));
+        this.option.add(new Option("save", "Save game"));
+        this.option.add(new Option("exit", "Exit game"));
+        this.option.add(new Option("help", "get help"));
+
+        this.tokenType.add(Token.Type.DETECT);
+        this.tokenType.add(Token.Type.TAKE_ACTION);
+        this.tokenType.add(Token.Type.DROP_ACTION);
+        this.tokenType.add(Token.Type.SAVE);
+        this.tokenType.add(Token.Type.EXIT);
+        this.tokenType.add(Token.Type.DIRECTION);
+        this.tokenType.add(Token.Type.DIRECTION_ACTION);
 
     }
 
     public NMOption(List<AbnormalPoint> monsters, List<AbnormalPoint> npcs) {
         buildMenu(monsters,npcs);
+        showMenu();
     }
 
     @Override
     public void printOut() {
         System.out.print("Here are Monsters and NPCs. \n");
         System.out.println("Which one do you want to go first?");
-        for (int i = 1; i < option.size()+1; i++) {
+        for (int i = 1; i < total.size()+1; i++) {
             Option op = option.get(i - 1);
             if (op.getDescription() != null) {
                 System.out.println("[" + i + "] " + op.getCommand() + " : " + op.getDescription());
@@ -43,6 +57,16 @@ public class NMOption extends BasicOption{
                 System.out.println("[" + i + "] " + op.getCommand());
             }
         }
+        System.out.println("Or you can:");
+        for (int i = total.size()+1; i < option.size()+1; i++) {
+            Option op = option.get(i - 1);
+            if (op.getDescription() != null) {
+                System.out.println("[" + i + "] " + op.getCommand() + " : " + op.getDescription());
+            } else {
+                System.out.println("[" + i + "] " + op.getCommand());
+            }
+        }
+
     }
 
     public AbnormalPoint verifyInt(int n) {
