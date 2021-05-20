@@ -4,6 +4,7 @@ Tasks:
 1. clean the project
 2. wiki
 3. desgin document
+4. Quick_guide
 
 
 which one to use (zihong or guanming)
