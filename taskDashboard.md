@@ -1,7 +1,11 @@
 
 Tasks: 
 
-clean the project
+1. clean the project
+2. wiki
+3. desgin document
+
+
 which one to use (zihong or guanming)
 
 test consume
