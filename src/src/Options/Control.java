@@ -1,6 +1,8 @@
 package Options;
 
 import AbnormalPoints.AbnormalPoint;
+import AbnormalPoints.NPC_MERCHANT;
+import AbnormalPoints.NPC_TALK;
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
 import CommandParser.Token;
@@ -45,6 +47,15 @@ public class Control extends BasicOption {
         printRightOption();
     }
 
+    static public void resetCurrent() {
+        AbnormalPoint ab = new AbnormalPoint();
+        current = ab;
+    }
+
+    static public boolean isNPC() {
+        return (current.getClass()== NPC_MERCHANT.class || current.getClass()== NPC_TALK.class);
+    }
+
     /**
      * The method can print out correct option menu in the console.
      * It can choose from different Monsters and NPCs.
@@ -52,7 +63,16 @@ public class Control extends BasicOption {
      * @author Zihong Yuan
      */
     public void printRightOption() { //TODO make it can go back to the NMOption when use BACK
-        if (isMonster && isNpc) {
+        if (player.getHP() <= 0) {
+            System.out.println("YOU DIE");
+            System.out.println("What would you like to do?");
+            StartOption start = new StartOption();
+            start.printOut();
+            Control.death = true;
+            return;
+        }
+            System.out.println(current.getString());
+        if (isMonster || isNpc) {
             System.out.println("Control: case is NM");
             NMOption nm = new NMOption(monsters, npcs);
             nm.printOut();
@@ -71,6 +91,7 @@ public class Control extends BasicOption {
                         if (! new Parser(cmd, player).parseCommand()) {
                             System.out.println("Please choose correct command");
                         }
+                        b = false;
                     }
                 } else {
                     System.out.println("Please choose correct one");

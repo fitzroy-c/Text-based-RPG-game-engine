@@ -47,7 +47,15 @@ public class NMOption extends BasicOption{
 
     @Override
     public void printOut() {
-        System.out.print("Here are Monsters and NPCs. \n");
+        System.out.print("Here are ");
+        if (!monsters.isEmpty())
+            System.out.print("Monsters");
+        if (!(monsters.isEmpty() || npcs.isEmpty()))
+            System.out.print(" and ");
+        if (!npcs.isEmpty())
+            System.out.print("NPCs");
+        System.out.print(". \n");
+//        System.out.print("Here are Monsters and NPCs. \n");
         System.out.println("Which one do you want to go first?");
         for (int i = 1; i < total.size()+1; i++) {
             Option op = option.get(i - 1);

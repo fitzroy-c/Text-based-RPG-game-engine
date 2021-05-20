@@ -432,6 +432,7 @@ public class Player {
      */
 
     public String checkMonster() {
+        Control.resetMonsters();
         int dangerRate = this.place.getDangerRate();
         String string = "";
         if (dangerRate<=0){
@@ -444,14 +445,14 @@ public class Player {
             string+="Quite a danger zone, Run!\n";
         }
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
-            System.out.println(this.place.getAbnormalPoints());
-            System.out.println(this.place);
-            for (AbnormalPoint ap : this.place.getAbnormalPoints()){
-                System.out.println(ap);
-            }
+//            System.out.println(this.place.getAbnormalPoints());
+//            System.out.println(this.place);
+//            for (AbnormalPoint ap : this.place.getAbnormalPoints()){
+//                System.out.println(ap.getName());
+//            }
             if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER){
                 ///change battleOption here bill
-                Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
+//                Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
                 ///this give monster list to Option
                 Control.addMonsters(this.place.getAbnormalPoints().get(i));
                 ///

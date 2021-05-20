@@ -284,10 +284,10 @@ public class Parser {
             cmdExecuted = true;
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.retreat();
+                System.out.println(player.retreat());
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.retreat();
+                System.out.println(player.retreat());
                 cmdExecuted = true;
             }
         }

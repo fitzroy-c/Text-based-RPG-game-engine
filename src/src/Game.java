@@ -73,6 +73,9 @@ public class Game {
                 String name = s.next();
                 player.setName(name);
                 Control c = new Control(player);
+//                System.out.println("Hi, are you ok? I am your guide to this land.");
+//                System.out.println("What do you want to know");
+                //TODO: He wants guide NPC here.
 //                gameInteractionLoop(player, c);
                 gameInteractionLoopParser(player);
                 break;
@@ -123,15 +126,18 @@ public class Game {
 //                    autoDetect();
 //                    c.printRightOption();
 //                }
-//                System.out.println(cmdTok.current().token());
+//                CommandTokenizer cmdOld = cmdTok;
+//                System.out.println(cmdTok.current().type());
+
                 continueOn = new Parser(cmdTok, player).parseCommand();
-//                System.out.println(cmdTok.current().token());
-                autoDetect();
+
+                //autoDetect(cmdOld);
 //                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) { //TODO: no very good
 //                    autoDetect();
 //                    c.printRightOption();
 //                }
-//                c.printRightOption();
+                c.printRightOption();
+//                System.out.println("LLLLOOOOKKKKMMMMMEEEE");
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
             }
@@ -152,9 +158,16 @@ public class Game {
         }
     }
 
-    public static void autoDetect() {
-//        if ()
-//        CommandTokenizer detect = new CommandTokenizer("detect");
-//        boolean result = new Parser(detect, player).parseCommand();
+    public static void autoDetect(CommandTokenizer cmdOld) {
+        CommandTokenizer detect = new CommandTokenizer("detect");
+        if (cmdOld.hasNext()) {
+            if (cmdTok.current().type()== Token.Type.DIRECTION) {
+                boolean result = new Parser(detect, player).parseCommand();
+            }
+        } else {
+            if (cmdOld.current().type()== Token.Type.DIRECTION) {
+                boolean result = new Parser(detect, player).parseCommand();
+            }
+        }
     }
 }
