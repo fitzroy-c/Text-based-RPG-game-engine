@@ -13,6 +13,33 @@ import com.alibaba.fastjson.JSONObject;
  * I tried to build a jsonSchema once to do the same function, but I have trouble describing the tree structure.
  * I changed the way to operate on the string (from the very beginning)
  *
+ * Npcjson structure
+ *
+ * A coordinate determines a object type (a)
+ *
+ * a must have the following characteristics: diagtree, blessaddmaxhp (positive integer), blessaddarmour (positive integer),
+ * blessadddamage (positive integer), hasendedtalk (Boolean), abnormalpointtype (must be NPC_Talk),
+ * name (string), Intro (string), maxhp (positive integer), HP (positive integer),
+ * damage (positive integer), armour (positive integer), gold (positive integer), xpgain (positive integer),
+ * critchance ([0,1], up to two decimal places -- still need to work on), element (must be "normal"), possible characteristics: npcbag
+ *
+ * Npcbag must have the following characteristics: currentweight (non negative integer),
+ * maxweight (non negative integer), itemlist (unlimited length).
+ *
+ * If itemlist is not empty,
+ * the object in npcbag should have the following characteristics:
+ * ID (string), type (string), name (string), description (sring), properties (possibly empty, but should have),
+ *
+ * if any in properties, characteristics: health (integer), weight (integer), Value (integer))
+ *
+ * diagtree must have the characteristic root,
+ *
+ * root must have index (non negative integer), npcdialog (string), nextdialogs (), dtype (must be one from
+ * ATTACK,END_ GIVE_ GOLD，END_ GIVE_ ITEM, END_ NONE, CONTINUE,END_ BLESS_ HP,END_ BLESS_ ARMOR,END_ BLESS_ Damage )
+ *
+ * If nextdialogs exists must follow the similar structure with root，
+ * with an potential added characteristic: playerReply (string)
+ *
  * @author yitao chen
  */
 
