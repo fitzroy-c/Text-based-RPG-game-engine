@@ -138,7 +138,7 @@ public class PlayerTalkTests {
 
         Dialog1.add(new DialogTree.Dialog(1, "Who are you?", "I am your guide to this land, any question?", controlIntro, DialogTree.DialogType.CONTINUE));
         Dialog1.add(new DialogTree.Dialog(2, "I want to know about how to walk around here.", "Sure.  You can 'go north' or any of the north, east, west, south direction to move around the map", controlIntro2, DialogTree.DialogType.CONTINUE));
-        Dialog1.add(new DialogTree.Dialog(3, "I already know what to do, bye.", "Bless your healthy!", null, DialogTree.DialogType.END_BLESS_HP));
+        Dialog1.add(new DialogTree.Dialog(3, "I already know what to do, bye.", "Bless you healthy!", null, DialogTree.DialogType.END_BLESS_HP));
 
         guide_tree.getRoot().setNextDialogs(Dialog1);
 
@@ -149,6 +149,7 @@ public class PlayerTalkTests {
         Bag bag01 = new Bag(100); // 1 Lesser Healing Potion
         Item c2 = new Item("C2", "consumable", "Lesser Healing Potion", "Restores 50 health", c2P);
         bag01.put(c2);
+        bag01.put(c2);
 
         NPC_TALK guide = new NPC_TALK("Guide", "A guide waiting for you",
                 100,100,10,3,10,10,0, Element.Normal,
@@ -157,7 +158,22 @@ public class PlayerTalkTests {
 
         Player player = new Player("testPlayer");
         player.place.addAbnormalPoint(guide);
-        player.talk();
+        // manual test hp bless (chose 3 )
+//        player.setMaxHP(100);
+//        player.setHP(100);
+//        player.talk(); // try 3
+//        System.out.println(player.getMaxHP()); // should be 105
+
+        // manual test get gold
+//        player.setMoney(0);
+//        player.talk(); // try (1,1,1,1,1,1,1,1,1,1,1,1,1,1,2)
+//        System.out.println(player.getMoney()); // should be 10
+
+        // manual test get item
+        player.setBag(new Bag(100));
+        guide.getDialogTree().getRoot().setNextDialogs(controlIntro12);
+        player.talk(); // try (1,1,1,1,1,1,1,1,1,1,1,1,1,1,3)
+        player.bag.showMyBag(); // should be 2 lesser health potion
     }
 
 
@@ -237,27 +253,20 @@ public class PlayerTalkTests {
 
         Player player = new Player("testPlayer");
         player.place.addAbnormalPoint(guide);
-        player.talk();
 
-        //testHave
-//        int respondIndex = 1;
-//        DialogTree.Dialog testDialog = guide_tree.matchDialog(respondIndex);
-//        DialogTree.Dialog test1 = new DialogTree.Dialog(1, "I want to increase my health", "as you wish...", null, DialogTree.DialogType.END_BLESS_HP);
-//        assertEquals(test1.getPlayerReply(), testDialog.getPlayerReply());
-//        // test have
-//        respondIndex = 2;
-//        testDialog = guide_tree.matchDialog(respondIndex);
-//        test1 = new DialogTree.Dialog(2, "I want to increase my armor", "as you wish...", null, DialogTree.DialogType.END_BLESS_ARMOR);
-//        assertEquals(test1.getPlayerReply(), testDialog.getPlayerReply());
-//
-//        respondIndex = 3;
-//        testDialog = Bless_tree.matchDialog(respondIndex);
-//        test1 = new DialogTree.Dialog(3, "I want to increase my damage", "as you wish...", null, DialogTree.DialogType.END_BLESS_DAMAGE);
-//        assertEquals(test1.getPlayerReply(), testDialog.getPlayerReply());
-//        // test not have
-//        respondIndex = 4;
-//        testDialog = Bless_tree.matchDialog(respondIndex);
-//        assertEquals(null, testDialog);
+        DialogTree.Dialog nextDialog = guide.getDialogTree().matchDialog(1);
+        DialogTree newTree = new DialogTree();
+        newTree.setRoot(nextDialog);
+        guide.setDialogTree(newTree);
+
+        assertEquals(DialogTree.DialogType.CONTINUE, guide.getDialogTree().getRoot().getDtype());
+
+        nextDialog = guide_tree.matchDialog(3);
+        newTree = new DialogTree();
+        newTree.setRoot(nextDialog);
+        guide.setDialogTree(newTree);
+
+        assertEquals(DialogTree.DialogType.END_BLESS_HP, guide.getDialogTree().getRoot().getDtype());
     }
 
 

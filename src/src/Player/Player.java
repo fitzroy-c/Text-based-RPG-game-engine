@@ -814,6 +814,8 @@ public class Player {
                         DialogTree newTree = new DialogTree();
                         newTree.setRoot(nextDialog);
                         npc_t.setDialogTree(newTree);
+                    }else{
+                        System.out.println("Invalid respond index, please try again");
                     }
                 }
                 else
@@ -1132,6 +1134,8 @@ public class Player {
     public HashMap<Coordinate, Bag> getMap_bagData() {
         return map_bagData;
     }
+
+
 
     //    public void setMapData(HashMap<Coordinate, Place> mapData) {
 //        this.mapData = mapData;
