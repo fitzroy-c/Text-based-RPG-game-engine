@@ -28,12 +28,13 @@ public class autoTest {
     public void initialize() {
         itemBook = Item.initializeItemBook();
     }
-
+    /*
     public static void autoCaseTest() throws Exception {
         Game g = new Game();
         g.initialize();
         StartOption start = new StartOption();
-        while(true) {
+        boolean continueOn = true;
+        while(continueOn) {
             player = new Player("test player");
             Random random = new Random();
             int i = random.nextInt(3)+1;
@@ -62,9 +63,17 @@ public class autoTest {
                     System.exit(0);
                 default:
             }
+            if (player.getHP()<=0){
+                continueOn = false;
+            }
+            if (player.getLevel()>=10){
+                continueOn = false;
+            }
         }
 
     }
+
+     */
 
     /**
      * This continuously ask for player's input to keep the game running,
@@ -78,6 +87,13 @@ public class autoTest {
         commandList.add("go south");
         commandList.add("go west");
         commandList.add("go east");
+        commandList.add("detect");
+        commandList.add("detect");
+        commandList.add("attack");
+        commandList.add("attack");
+        commandList.add("detect");
+        commandList.add("detect");
+        commandList.add("attack");
         commandList.add("attack");
         Random random = new Random();
 
@@ -88,7 +104,7 @@ public class autoTest {
                 return;
             BasicOption current = c.currentOption;
 
-            cmdTok = new CommandTokenizer(commandList.get(random.nextInt(length)+1));
+            cmdTok = new CommandTokenizer(commandList.get(random.nextInt(length)));
             player.checkNPCs();
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
@@ -118,19 +134,43 @@ public class autoTest {
         commandList.add("go south");
         commandList.add("go west");
         commandList.add("go east");
+        commandList.add("detect");
+        commandList.add("detect");
+        commandList.add("attack");
+        commandList.add("attack");
+        commandList.add("detect");
+        commandList.add("detect");
+        commandList.add("attack");
         commandList.add("attack");
         int length = commandList.size();
         Random random = new Random();
 
         while (continueOn){
-            cmdTok = new CommandTokenizer(commandList.get(random.nextInt(length)+1));
+            cmdTok = new CommandTokenizer(commandList.get(random.nextInt(length)));
             continueOn = new Parser(cmdTok, player).parseCommand();
         }
     }
 
     public static void main(String[] args) throws Exception {
         long startTime=System.currentTimeMillis();
-        autoCaseTest();
+        Game g = new Game();
+        g.initialize();
+        StartOption start = new StartOption();
+        boolean continueOn = true;
+        while(continueOn) {
+            player = new Player("test player");
+            //Random random = new Random();
+            //int i = random.nextInt(3)+1;
+            Control.death=false;
+            Control c = new Control(player);
+            gameInteractionLoop(player, c);
+            if (player.getHP()<=0){
+                continueOn = false;
+            }
+            if (player.getLevel()>=5){
+                continueOn = false;
+            }
+        }
         long endTime=System.currentTimeMillis();
         System.out.println(endTime-startTime);
     }
