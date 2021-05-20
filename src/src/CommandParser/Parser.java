@@ -207,7 +207,7 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.SHOP){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                System.out.println(player.talk());
+                player.buyCommandHandler();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
                 System.out.println(player.talk());
