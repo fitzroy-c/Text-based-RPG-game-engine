@@ -1088,6 +1088,7 @@ public class Player {
      */
     public String retreat(){
         if (Control.isNPC()) {
+            Control.resetCurrent();
             return " ";
         }
         String string = "Ready to retreat:\n";
