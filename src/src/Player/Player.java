@@ -337,27 +337,28 @@ public class Player {
         return hashmap.get(coord);
     }
 
-    /**
-     * Consume an consumable item
-     * TODO: more function should be add. if the item has damage or what,should reset the monster.hp player's gold/xp etc.
-     * TODO: item should be divided first and then play its function
-     * @author: Yixiang Yin
-     **/
-    public String consume(Item i){
-        if (i.type.equals("consumable") && bag.searchInBag(i)){
-            HP+=i.properties.get("health").intValue();
-            bag.drop(i);
-            return "You've successfully consume "+i.name+" .";
-        }
-        else if (!i.type.equals("consumable")) return "You can't consume "+i.name+" .";
-        else return "You don't have "+i.name+" .";
-    }
+//    /**
+//     * Consume an consumable item
+//     * TODO: more function should be add. if the item has damage or what,should reset the monster.hp player's gold/xp etc.
+//     * TODO: item should be divided first and then play its function
+//     * @author: Yixiang Yin
+//     **/
+//    public String consume(Item i){
+//        if (i.type.equals("consumable") && bag.searchInBag(i)){
+//            HP+=i.properties.get("health").intValue();
+//            bag.drop(i);
+//            return "You've successfully consume "+i.name+" .";
+//        }
+//        else if (!i.type.equals("consumable")) return "You can't consume "+i.name+" .";
+//        else return "You don't have "+i.name+" .";
+//    }
 
     /**
      * Consume a consumable item, given a item name
      * - Consumable item increases the HP of player.
      * @param itemName item name in string
      * @return string of hint
+     * @author: Guanming Ou, modified by Yixiang Yin
      */
     public String consumeByItemName(String itemName){
         Item item = this.bag.getItemByName(itemName);
@@ -365,7 +366,7 @@ public class Player {
             return "You don't have "+ itemName +" in your bag.";
         else {
             if (item.type.equals("consumable")){
-                this.HP += item.properties.get("health").intValue();
+                this.healing(item.properties.get("health"));
                 this.bag.drop(item);
                 return "You've successfully consume "+itemName+" .";
             }
@@ -375,6 +376,14 @@ public class Player {
         }
     }
 
+    public void healing(int healingAmount){
+        if (healingAmount+this.HP>this.maxHP) {
+            this.HP = this.maxHP;
+        }
+        else {
+            this.HP +=healingAmount;
+        }
+    }
     /**
      * Check if this room has a monster,
      * - if yes, return the danger level and name of the monster
