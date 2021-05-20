@@ -113,7 +113,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
 
 
     /**
-     * load original items data(hashMap) from json_files/original_data/ in a way makes json satisfied
+     * load original NPC_MERCHANT data(hashMap) from json_files/original_data/ in a way makes json satisfied
      * @author Yixiang Yin
      */
     public static HashMap<Coordinate, NPC_MERCHANT> loadOriginalNPC_MER() {

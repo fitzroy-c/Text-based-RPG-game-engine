@@ -46,7 +46,9 @@ public class Item {
         }
         return Integer.valueOf(0);//in case some special item don't have weight(ability card)
     }
-
+    public int getValue(){
+        return this.getProperty("value");
+    }
     public Integer getDamage() {
         if (properties.containsKey("damage")) {
             return properties.get("damage");
