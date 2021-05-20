@@ -19,8 +19,8 @@ public class PlayerOption extends BasicOption{
         }
     }
 
-    public PlayerOption(Player player) {
-        this.player = player;
+    public PlayerOption(Player playerOld) {
+        this.player = playerOld;
         buildMenu();
         showMenu();
     }
@@ -30,7 +30,8 @@ public class PlayerOption extends BasicOption{
         String playerN = token.token();
         if (optionInterface.containsKey(playerN)) {
             playerN = optionInterface.get(playerN).getCommand();
-            this.player = Player.load(playerN);
+            player = Player.load(playerN);
+            System.out.println("player name is "+player.getName());
             return true;
         } else {return false;}
     }
