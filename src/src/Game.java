@@ -2,6 +2,7 @@
 
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
+import CommandParser.Token;
 import Options.BasicOption;
 import Options.Control;
 import Options.PlayerOption;
