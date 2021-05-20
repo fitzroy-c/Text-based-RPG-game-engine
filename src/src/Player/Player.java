@@ -310,10 +310,28 @@ public class Player {
      * load original merchant npc data from json_files/original_data/
      * @author Guanming Ou
      */
-    public static HashMap<Coordinate, NPC_MERCHANT> loadOriginalMerchantNPCs() {
+    public HashMap<Coordinate, NPC_MERCHANT> loadOriginalMerchantNPCs() {
     return NPC_MERCHANT.loadOriginalNPC_MER();
     }
 
+
+
+//    public NPC_MERCHANT SearchInNpc_MERCHANT_DATA(Coordinate c){
+//        Coordinate playerCoor = c;
+//        for (Coordinate coor : this.map_npcMData.keySet()){
+//            if (coor.equals(playerCoor)) return this.map_npcMData.get(coor);
+//        }
+//        return null;
+//    }
+//
+//
+//    public NPC_TALK SearchInNpc_TALK_DATA(Coordinate c){
+//        Coordinate playerCoor = c;
+//        for (Coordinate coor : this.map_npcTData.keySet()){
+//            if (coor.equals(playerCoor)) return this.map_npcTData.get(coor);
+//        }
+//        return null;
+//    }
 
     public NPC_MERCHANT SearchInNpc_MERCHANT_DATA(){
         Coordinate playerCoor = this.place.getCoordinate();
@@ -428,6 +446,10 @@ public class Player {
         }
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             System.out.println(this.place.getAbnormalPoints());
+            System.out.println(this.place);
+            for (AbnormalPoint ap : this.place.getAbnormalPoints()){
+                System.out.println(ap);
+            }
             if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER){
                 ///change battleOption here bill
                 Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
@@ -726,13 +748,13 @@ public class Player {
      */
     public List<AbnormalPoint> extractBothNPCs(Coordinate c, HashMap<Coordinate, NPC_TALK> npc_t, HashMap<Coordinate, NPC_MERCHANT> npc_m){
         List<AbnormalPoint> abpoints = new ArrayList<>();
-
-        if (npc_t.containsKey(c)) { // try to get npc merchant from json if any
+        if (npc_m.containsKey(c)) { // try to get npc merchant from json if any
             abpoints.add(npc_m.get(c));
         }
         if (npc_t.containsKey(c)){ // try to get npc talk from json if any
             abpoints.add(npc_t.get(c));
         }
+
         return abpoints;
     }
 
