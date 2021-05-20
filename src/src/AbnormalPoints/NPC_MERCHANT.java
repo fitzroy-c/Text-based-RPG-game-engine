@@ -74,7 +74,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
      **/
     public String outputStrForBuyFromNPC(Player p, String itemName, boolean succ){
         System.out.println(p.money);
-        if (succ) return "You've successfully purchased "+itemName+" .Happy to see you soon again!";
+        if (succ) return "You've successfully purchased "+itemName+". Happy to see you soon again!";
         else {
             Item wanted = npcBag.getItemByName(itemName); // guarantee non-null
             int price = wanted.getProperty("value");
