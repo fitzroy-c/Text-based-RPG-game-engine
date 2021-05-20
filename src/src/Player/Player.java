@@ -740,7 +740,7 @@ public class Player {
     public String talk(){
         // check if here can talk
         List<AbnormalPoint> currentPlace =  this.place.getAbnormalPoints();
-        if (currentPlace == null)
+        if (currentPlace.isEmpty())
             return "There is no one to talk to.";
         // check if there is npc that you can talk to
         NPC_TALK npc_t = null;
@@ -767,6 +767,7 @@ public class Player {
                 System.out.println("Your response(s):");
                 System.out.println(npc_t.getDialogTree().printAvailableDialog()); // show player available response
                 playerResponse = s.next(); // get player's response
+
 
                 // convert player's respond into integer
                 if (isAllInt(playerResponse)){
@@ -825,7 +826,7 @@ public class Player {
     /**
      * Check a string is completely int, before using toInt method
      */
-    public boolean isAllInt(String input){
+    public static boolean isAllInt(String input){
         input = input.trim(); // remove white space
         if (input.isEmpty())
             return false;
@@ -833,12 +834,13 @@ public class Player {
         if (Character.isDigit(firstChar)){
             int count = 0;
             while (count < input.length()) {
-                if (! Character.isLetter(input.charAt(count)))
+                if (Character.isLetter(input.charAt(count)))
                     return false;
                 count++;
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**

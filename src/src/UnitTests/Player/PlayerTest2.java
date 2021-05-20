@@ -1,8 +1,6 @@
 package Player;
 
-import AbnormalPoints.AbnormalPoint;
-import AbnormalPoints.DialogTree;
-import AbnormalPoints.NPC_TALK;
+import AbnormalPoints.*;
 import Card.Element;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,8 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class PlayerTest2 {
 
@@ -62,19 +59,16 @@ public class PlayerTest2 {
     }
 
     @Test
-    public void testNewplayerWithJson() {
+    public void testNewPlayerNameWithJson() {
         Player player = new Player( "ddd");
         assertEquals("ddd",player.getName());
-//        assertEquals(false, player.getMap_bagData().get(new Coordinate(0,0)).isEmpty());
-
     }
 
     @Test
-    public void justTesting2(){
+    public void testLoading(){
         Player p1 = new Player("TestingLoad1");
         p1.save();
         Player p2 = Player.load("TestingLoad1");
-        int i = 0;
     }
 
     @Test
@@ -115,6 +109,132 @@ public class PlayerTest2 {
         int i = 0;
     }
 
+//    @Test
+public static void main(String[] args) {
+
+//    public void testTalk(){
+        // test talk
+        HashMap<String, Integer> c1P = new HashMap<>();
+        c1P.put("health", +15);
+        c1P.put("weight", 1);
+        c1P.put("value", 10);
+        Item c1 = new Item("C1", "consumable", "Mushroom", "Restores 15 health", c1P);
+        HashMap<String, Integer> c2P = new HashMap<>();
+
+        c1P.put("health", +50);
+        c1P.put("weight", 1);
+        c1P.put("value", 25);
+        Item c2 = new Item("C2", "consumable", "Lesser Healing Potion", "Restores 50 health", c2P);
+        HashMap<String, Integer> c3P = new HashMap<>();
+        c1P.put("health", +100);
+        c1P.put("weight", 1);
+        c1P.put("value", 50);
+        Item c3 = new Item("C3", "consumable", "Healing Potion", "Restores 100 health", c3P);
+        Bag bag01 = new Bag(100); // has 4 mushroom
+        bag01.put(c1);
+        bag01.put(c1);
+        Bag bag02 = new Bag(100); // has 2 mushroom, 1 Lesser Healing Potion
+        bag02.put(c1);
+        bag02.put(c2);
+
+        DialogTree Bless_tree = new DialogTree();
+        Bless_tree.getRoot().setNpcDialog("I can bless you... to better prepare you for the fight");
+        Bless_tree.getRoot().setIndex(0);
+        Bless_tree.getRoot().setDtype(DialogTree.DialogType.CONTINUE);
+        List<DialogTree.Dialog> blesserDialog = new ArrayList<>();
+        blesserDialog.add(new DialogTree.Dialog(1, "I want to increase my health", "as you wish...", null, DialogTree.DialogType.END_BLESS_HP));
+        blesserDialog.add(new DialogTree.Dialog(2, "I want to increase my armor", "as you wish...", null, DialogTree.DialogType.END_BLESS_ARMOR));
+        blesserDialog.add(new DialogTree.Dialog(3, "I want to increase my damage", "as you wish...", null, DialogTree.DialogType.END_BLESS_DAMAGE));
+
+        Bless_tree.getRoot().setNextDialogs(blesserDialog);
+
+        NPC_TALK l_fairy = new NPC_TALK("Little_Fairy", "Hi, I can permanent increase your power!",
+                100,100,1,100,0,50,0, Element.Normal,
+                Bless_tree, 3,3,3,bag01);
+
+        NPC_TALK t_fairy = new NPC_TALK("Teenager_Fairy", "Hi, I can permanent increase your power!",
+                500,500,1,500,0,100,0, Element.Normal,
+                Bless_tree, 7,6,4,bag02);
+
+        MonsterAttributes giant = new MonsterAttributes("giant","A monster with high health and damage, but low armour.",
+                150, 8, 6, 3,40,3,
+                0.03,50, 3,15, 11, Element.Normal);
+
+
+//        // test reply of when abnormal point is empty
+        Player player = new Player("testPlayer");
+        String t = player.talk();
+        assertEquals("There is no one to talk to.", t);
+
+        player.place.addAbnormalPoint(new Monster(giant, 1));
+        String t2 = player.talk();
+        assertEquals("You can't talk to a monster or a merchant.", t2);
+
+        l_fairy.setHasEndedTalk(true);
+        player.place.addAbnormalPoint(l_fairy);
+        String t3 = player.talk();
+        assertEquals("You cannot talk to already talked npc.", t3);
+
+        player.place.removeAbnormalPoint(l_fairy);
+        player.place.addAbnormalPoint(t_fairy);
+//        player.talk();
+
+
+
+
+
+        int i = 0;
+    }
+
+    @Test
+    public void testMatchDialog(){
+        DialogTree Bless_tree = new DialogTree();
+        Bless_tree.getRoot().setNpcDialog("I can bless you... to better prepare you for the fight");
+        Bless_tree.getRoot().setIndex(0);
+        Bless_tree.getRoot().setDtype(DialogTree.DialogType.CONTINUE);
+        List<DialogTree.Dialog> blesserDialog = new ArrayList<>();
+        blesserDialog.add(new DialogTree.Dialog(1, "I want to increase my health", "as you wish...", null, DialogTree.DialogType.END_BLESS_HP));
+        blesserDialog.add(new DialogTree.Dialog(2, "I want to increase my armor", "as you wish...", null, DialogTree.DialogType.END_BLESS_ARMOR));
+        blesserDialog.add(new DialogTree.Dialog(3, "I want to increase my damage", "as you wish...", null, DialogTree.DialogType.END_BLESS_DAMAGE));
+        Bless_tree.getRoot().setNextDialogs(blesserDialog);
+
+        //testHave
+        int respondIndex = 1;
+        DialogTree.Dialog testDialog = Bless_tree.matchDialog(respondIndex);
+        DialogTree.Dialog test1 = new DialogTree.Dialog(1, "I want to increase my health", "as you wish...", null, DialogTree.DialogType.END_BLESS_HP);
+        assertEquals(test1.getPlayerReply(), testDialog.getPlayerReply());
+        // test have
+        respondIndex = 2;
+        testDialog = Bless_tree.matchDialog(respondIndex);
+        test1 = new DialogTree.Dialog(2, "I want to increase my armor", "as you wish...", null, DialogTree.DialogType.END_BLESS_ARMOR);
+        assertEquals(test1.getPlayerReply(), testDialog.getPlayerReply());
+
+        respondIndex = 3;
+        testDialog = Bless_tree.matchDialog(respondIndex);
+        test1 = new DialogTree.Dialog(3, "I want to increase my damage", "as you wish...", null, DialogTree.DialogType.END_BLESS_DAMAGE);
+        assertEquals(test1.getPlayerReply(), testDialog.getPlayerReply());
+        // test not have
+        respondIndex = 4;
+        testDialog = Bless_tree.matchDialog(respondIndex);
+        assertEquals(null, testDialog);
+    }
+
+    @Test
+    public void testIsAllInt(){
+        String playerResponse = "1";
+        assertTrue(Player.isAllInt(playerResponse));
+        playerResponse = "100";
+        assertTrue(Player.isAllInt(playerResponse));
+        playerResponse = "0";
+        assertTrue(Player.isAllInt(playerResponse));
+        playerResponse = "sds";
+        Boolean t = Player.isAllInt(playerResponse);
+        assertFalse(t);
+        playerResponse = "iav.;'!";
+        assertFalse(Player.isAllInt(playerResponse));
+        playerResponse = "-100";
+        assertFalse(Player.isAllInt(playerResponse));
+    }
 
 
     @Test
