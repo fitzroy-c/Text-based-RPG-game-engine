@@ -6,6 +6,8 @@ package Maps;
  * Player can select which room they go to, either enter combat, shops, found a threasure, or receive blessing from fairies
  * New options are draw everytime player exit a room, but old options are kept
  * while previous entered room is removed from the pool
+ *
+ * this function is for future development
  */
 public class Rooms {
     String name;

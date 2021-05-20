@@ -6,6 +6,8 @@ import AbnormalPoints.Monster;
  * Monster room is where player take combat with monsters
  * - There exist only 1 monster per room
  * - Gold is gain after defeating monsters (random amount of golds depends on monsters, difficulty and context)
+ *
+ * this function is for future development
  */
 public class MonsterRoom extends Rooms{
 

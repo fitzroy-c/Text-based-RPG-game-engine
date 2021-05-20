@@ -8,6 +8,8 @@ import java.util.List;
  * Shop sells cards that are in the "shop card pack"
  * - shop card pack contains some useful card for player and special cards
  * - Player need gold to buy these card
+ *
+ * this function is for future development
  */
 public class CardShops extends Rooms{
     List<Goods> cardsForSell;

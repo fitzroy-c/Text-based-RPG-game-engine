@@ -1,5 +1,6 @@
 package Card;
 
+// this function is for future development
 // Attributed by Guanming Ou
 public enum Element {
     // Basic Elements
@@ -27,6 +28,4 @@ public enum Element {
         // TODO: Finish this function to calculate is a counter by b.
         return false;
     }
-
-    //TODO: still need string to element? or override the equal function
 }

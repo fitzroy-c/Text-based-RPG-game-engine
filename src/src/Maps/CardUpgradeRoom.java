@@ -6,6 +6,8 @@ import Card.Cards;
  * This allow player to upgrade their cards
  * - The first time enter this room is free (per upgrade room)
  * - More upgrade require increase gold
+ *
+ * this function is for future development
  */
 public class CardUpgradeRoom extends Rooms{
     int currentNumberOfUpgrade;  // this indicate how many times a player upgrade their cards.
