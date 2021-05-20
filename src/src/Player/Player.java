@@ -882,7 +882,7 @@ public class Player {
                 int monsterHP = monster.getHP();
                 while(monsterHP>0&&this.HP>0){
                     if (criticalCheck(this.criticalChance)){
-                        int realDamage = Math.max(this.damage*2 - monster.getArmour(),0);
+                        int realDamage = Math.max(Math.max(this.damage*2 - monster.getArmour(),0),1);
                         monsterHP = monsterHP - realDamage;
                         string += "Nice, you have made a critical hit. "+monster.getName()+" -"+realDamage+"HP\n";
                     }
@@ -890,11 +890,11 @@ public class Player {
                     monsterHP = monsterHP - realDamage;
                     string += "Normal hit."+monster.getName()+" -"+realDamage+"HP\n";
                     if (criticalCheck(monster.getCritChance())){
-                        int realDamage1 = Math.max(monster.getDamage()*2 - this.armour,0);
+                        int realDamage1 = Math.max(Math.max(monster.getDamage()*2 - this.armour,0),1);
                         this.HP = this.HP - realDamage1;
                         string += "Sadly. You got a critical hit. "+this.name+" -"+realDamage1+"HP\n";
                     }
-                    int realDamage1 = Math.max(monster.getDamage() - this.armour,0);
+                    int realDamage1 = Math.max(Math.max(monster.getDamage() - this.armour,0),1);
                     this.HP = this.HP - realDamage1;
                     string += "You got a hit. "+this.name+" -"+realDamage1+"HP\n";
                 }
