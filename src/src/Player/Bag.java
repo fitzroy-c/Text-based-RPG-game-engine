@@ -159,7 +159,7 @@ public class Bag {
             System.out.println(i.name.equals(itemName));
             System.out.println(i.name.equals("Mushroom"));
 
-            if (i.name.equals(itemName))
+            if (i.name.toLowerCase().equals(itemName.toLowerCase()))
                 return i;
         }
         // did not find a item
