@@ -257,7 +257,6 @@ public class Player {
         HashMap<Coordinate, NPC_TALK> map_npcTData = JsonToNpcTalkHashMapData(jo.get("map_npcTData").getAsJsonObject());
         HashMap<Coordinate, NPC_MERCHANT> map_npcMData = NPC_MERCHANT.JsonToNpcMerchantHashMapData(jo.get("map_npcMData").getAsJsonObject());
 
-        // todo
         HashMap<Coordinate, Bag> map_bagData = JsonToItemsOnTheMapHashMapData(jo.get("map_bagData").getAsJsonObject());
 
 
@@ -503,7 +502,7 @@ public class Player {
      * Take a item from current room, given an item name
      * @param name
      * @return String
-     * @author: Guanming Ou
+     * @author: Guanming Ou, modified by Yixiang Yin
      */
     public String getItemFromRoom(String name){
        Bag hsBag =  map_bagData.get(this.place.getCoordinate());
@@ -525,14 +524,15 @@ public class Player {
      * Put back a item from player's bag to room, given an item name
      * @param name
      * @return true: successfully droped item, false: item not exist.
-     * @author: Guanming Ou
+     * @author: Guanming Ou, modified by Yixiang Yin
      */
     public boolean dropItemFromBag(String name) {
+        Bag hsBag =  map_bagData.get(this.place.getCoordinate());
         Item item = this.bag.getItemByName(name);
         if (item == null) {
             return false;
         } else {
-            this.place.getBag().put(item);
+            hsBag.put(item);
             this.bag.drop(item);
             return true;
         }

@@ -277,7 +277,6 @@ public class Bag {
         return gson.fromJson(jo,LIST_TYPE);
     }
     public static HashMap<Coordinate, NPC_TALK> JsonToNpcTalkHashMapData(JsonObject jo){
-        Gson gson = new Gson();
         HashMap<Coordinate, NPC_TALK> hp = new HashMap<>();
 
         for (Map.Entry<String, JsonElement> entry : jo.entrySet()) {
