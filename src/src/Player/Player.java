@@ -661,7 +661,7 @@ public class Player {
 //        }
 
         // update next coordinate inside json
-        boolean updated = true;
+        boolean updated = false;
         Place nextPlace = new Place(nextCoord, "have npc", 0,new Bag(100), new ArrayList<>());
         nextPlace.setAbnormalPoints(extractBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
         if (! nextPlace.getAbnormalPoints().isEmpty()) // check if operation did get npc
@@ -678,6 +678,17 @@ public class Player {
 
         if (!updated)
             generateMonster();
+    }
+    /**
+     * Check if there is monster inside the abnormal point list
+     * @author Guanming Ou
+     */
+    public Boolean isMonsterExist(){
+        for (AbnormalPoint a : this.place.getAbnormalPoints()){
+
+        }
+
+        return false;
     }
 
     /**
@@ -713,7 +724,7 @@ public class Player {
      * @author Guanming Ou
      */
     public List<AbnormalPoint> extractBothNPCs(Coordinate c, HashMap<Coordinate, NPC_TALK> npc_t, HashMap<Coordinate, NPC_MERCHANT> npc_m){
-        List<AbnormalPoint> abpoints = new ArrayList<AbnormalPoint>();
+        List<AbnormalPoint> abpoints = new ArrayList<>();
 
         if (npc_t.containsKey(c)) { // try to get npc merchant from json if any
             abpoints.add(npc_m.get(c));
@@ -723,6 +734,7 @@ public class Player {
         }
         return abpoints;
     }
+
     /**
      * Extract bag from hashmaps (load from json), and return a bag
      * @author Guanming Ou
