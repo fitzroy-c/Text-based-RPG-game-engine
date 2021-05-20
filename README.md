@@ -12,6 +12,8 @@ Project Summary:
 
 
 
+- to operate or test the game correctly, you need to add gson-2.8.6(from google) and fastjson-1.2.75(from alibaba)
+
 - The card package, map package, gui package and DesignForFutureExtension package are used for game's future extension.
 
 Summary on applications of knowledge in this course:
