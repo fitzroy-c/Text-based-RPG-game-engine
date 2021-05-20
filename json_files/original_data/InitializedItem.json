@@ -13,6 +13,17 @@
           "weight": 1,
           "value": 10
         }
+      },
+      {
+        "id": "C1",
+        "type": "consumable",
+        "name": "Mushroom",
+        "description": "Restores 15 health",
+        "properties": {
+          "health": 15,
+          "weight": 1,
+          "value": 10
+        }
       }
     ]
   },

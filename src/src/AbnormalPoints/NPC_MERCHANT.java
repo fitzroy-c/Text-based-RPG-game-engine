@@ -3,20 +3,27 @@ package AbnormalPoints;
 import Player.Bag;
 import Player.Player;
 import Player.Item;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This class mainly held npc that will trade with player
  */
 public class NPC_MERCHANT extends AbnormalPoint{
     public Bag npcBag;
+//    public Coordinate coor;
 //    player的bag, npc_merchant的bag,
+
     public NPC_MERCHANT(String name, String intro, int maxHP, int HP, int damage, int armour,
                         int gold, int xpGain, double critChance, Bag npcBag) {
         this.abnormalPointType = AbnormalPointType.NPC_MERCHANT;
@@ -30,6 +37,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
         this.setXpGain(xpGain);
         this.setCritChance(critChance);
         this.npcBag = npcBag;
+//        this.coor =coor;
     }
 
 
@@ -47,7 +55,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
         boolean npcHaveIt = npcBag.searchInBagByName(itemName);
         if (npcHaveIt) {
             Item wanted = npcBag.getItemByName(itemName); // guarantee non-null
-            int price = wanted.getProperty("price");
+            int price = wanted.getProperty("value");
             if (p.money>=price){
                 p.money-=price;
                 p.getBag().put(wanted);
@@ -63,10 +71,11 @@ public class NPC_MERCHANT extends AbnormalPoint{
      * @author: Yixiang Yin
      **/
     public String outputStrForBuyFromNPC(Player p, String itemName, boolean succ){
+        System.out.println(p.money);
         if (succ) return "You've successfully purchased "+itemName+" .Happy to see you soon again!";
         else {
             Item wanted = npcBag.getItemByName(itemName); // guarantee non-null
-            int price = wanted.getProperty("price");
+            int price = wanted.getProperty("value");
             if (p.money<price) return "You don't have enough money to purchase "+itemName+" .";
             return "Sorry, I don't have "+itemName+" .";
         }
@@ -82,7 +91,8 @@ public class NPC_MERCHANT extends AbnormalPoint{
         return false;}
         System.out.println("-----------------Shop------------------");
         for (int i = 0; i<npc.npcBag.getItems().size();i++){
-            System.out.println("["+i+"]"+" : "+npc.npcBag.getItems().get(i).getDescription());
+            Item item =npc.npcBag.getItems().get(i);
+            System.out.println("["+i+"]"+" : "+item.name+" : sdf"+item.getDescription()+" ("+item.getProperty("value")+" coins)");
             System.out.println();
         }
         System.out.println("-----------------End------------------");
@@ -91,21 +101,80 @@ public class NPC_MERCHANT extends AbnormalPoint{
     }
 
 
-    public static void saveMERCHANTNPC(HashMap<Coordinate,NPC_MERCHANT> hp){
+    public static void saveMERCHANTNPC(HashMap<Coordinate, NPC_MERCHANT> shops){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter("json_files/original_data/MerchantNPC.json")){ // name json file with player's name
-            gson.toJson(hp, fw);
+        try(FileWriter fw = new FileWriter("json_files/original_data/MerchantNPC.json")){
+            gson.toJson(shops, fw);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * load original NPC_MERCHANT data(hashMap) from json_files/original_data/ in a way makes json satisfied
+     * @author Yixiang Yin
+     */
+    public static HashMap<Coordinate, NPC_MERCHANT> loadOriginalNPC_MER() {
+        File file = new File("json_files/original_data/MerchantNPC.json");
+
+        Gson gson = new Gson();
+        JsonReader jsonReader = null;
+
+        try {
+            jsonReader = new JsonReader(new FileReader(file));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JsonObject jo = gson.fromJson(jsonReader, JsonObject.class);
+        HashMap<Coordinate, NPC_MERCHANT> hp = new HashMap<>();
+
+        for (Map.Entry<String, JsonElement> entry : jo.entrySet()) {
+            String coor = entry.getKey();
+            JsonObject itemData = entry.getValue().getAsJsonObject();
+            JsonObject baginfo = itemData.get("npcBag").getAsJsonObject();
+
+            String cw = String.valueOf(baginfo.get("currentWeight"));
+            String mw = String.valueOf(baginfo.get("maxWeight"));
+
+            JsonArray sProps = baginfo.get("itemList").getAsJsonArray();
+            List<Item> items = new LinkedList<Item>();
+            Item item = null;
+            for (JsonElement je : sProps) {
+                JsonObject itemJO = je.getAsJsonObject();
+                String id = itemJO.get("id").getAsString();
+//                System.out.println(id);
+                String type = itemJO.get("type").getAsString();
+                String name = itemJO.get("name").getAsString();
+                String description = itemJO.get("description").getAsString();
+                JsonObject props = itemJO.get("properties").getAsJsonObject();
+                Map<String, Integer> properties = new HashMap<>();
+                for (Map.Entry<String, JsonElement> entry2 : props.entrySet()) {
+                    Integer propValue = entry2.getValue().getAsInt();
+                    properties.put(entry2.getKey(), propValue);
+                }
+                item = new Item(id, type, name, description, properties);
+                items.add(item);
+            }
+            Bag bag = new Bag(Integer.parseInt(cw), Integer.parseInt(mw), items);
+            NPC_MERCHANT shop = new NPC_MERCHANT("Merchant 1","s",100,100,10,10,10,10,10,bag);
+            hp.put(Coordinate.fromStringToCoordinate(coor), shop);
+
+        }
+
+        return hp;
     }
     public static void main(String[] args) {
         Bag bag = new Bag(0,1000,Item.initializeItemBook());
         NPC_MERCHANT shop = new NPC_MERCHANT("Merchant 1","s",100,100,10,10,10,10,10,bag);
         HashMap<Coordinate,NPC_MERCHANT> hp = new HashMap<>();
-        Coordinate coor = new Coordinate(1,1);
+        Coordinate coor = new Coordinate(0,0);
         hp.put(coor,shop);
+//        List<NPC_MERCHANT> shops = new LinkedList<>();
+//        shops.add(shop);
         saveMERCHANTNPC(hp);
     }
 
