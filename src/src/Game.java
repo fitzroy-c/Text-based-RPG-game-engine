@@ -2,7 +2,6 @@
 
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
-import CommandParser.Token;
 import Options.BasicOption;
 import Options.Control;
 import Options.PlayerOption;
@@ -72,6 +71,8 @@ public class Game {
                 System.out.println("what is your name?");
                 String name = s.next();
                 player.setName(name);
+                /// test
+                //AbnormalPoint ab = new AbnormalPoint();
                 Control c = new Control(player);
                 gameInteractionLoop(player, c);
 //                gameInteractionLoopParser(player);

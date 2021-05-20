@@ -38,6 +38,7 @@ public class Player {
 //    HashMap<Coordinate, Place> mapData;
     HashMap<Coordinate, NPC_TALK> map_npcTData;
     HashMap<Coordinate, NPC_MERCHANT> map_npcMData;
+
     HashMap<Coordinate, Bag> map_bagData;
 
     /**
@@ -246,18 +247,18 @@ public class Player {
      * @author Guanming Ou
      */
     public static HashMap<Coordinate, NPC_MERCHANT> loadOriginalMerchantNPCs() {
-        File file = new File("json_files/original_data/MerchantNPC.json");
-
-        Gson gson = new Gson();
-        JsonReader jsonReader = null;
-
-        try{
-            jsonReader = new JsonReader(new FileReader(file));
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return gson.fromJson(jsonReader, HashMap.class);
+    return NPC_MERCHANT.loadOriginalNPC_MER();
     }
+
+
+    public NPC_MERCHANT SearchInNpc_MERCHANT_DATA(){
+        Coordinate playerCoor = this.place.getCoordinate();
+        for (Coordinate coor : this.map_npcMData.keySet()){
+            if (coor.equals(playerCoor)) return this.map_npcMData.get(coor);
+        }
+        return null;
+    }
+
 
 //
 //    /**
@@ -692,9 +693,12 @@ public class Player {
      */
 
     public void buyCommandHandler(){
-        NPC_MERCHANT shop = (NPC_MERCHANT) SearchInAbnormalPoints(AbnormalPoint.AbnormalPointType.NPC_MERCHANT);
+//        NPC_MERCHANT shop = (NPC_MERCHANT) SearchInAbnormalPoints(AbnormalPoint.AbnormalPointType.NPC_MERCHANT);
+        NPC_MERCHANT shop = SearchInNpc_MERCHANT_DATA();
+
         if (shop==null) {
             System.out.println("There is no one for you to buy things from");
+            return;
         }
         if (!NPC_MERCHANT.showTheShop(shop)) return; // indicating nothing to buy(shop is empty)
         else {
