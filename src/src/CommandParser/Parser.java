@@ -165,6 +165,7 @@ public class Parser {
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.ITEM){
                     System.out.println(player.getItemFromRoom(this._tokenizer.current().token()));
+                    System.out.println("ITEM recognised!");
                 } else {
                     callError();
                 }
@@ -388,7 +389,7 @@ public class Parser {
          * - go bribe -> error
          */
         Player ply = new Player("testname");
-        String cmd = "north";
+        String cmd = "take Lesser Healing Potion";
         CommandTokenizer mt = new CommandTokenizer(cmd);
         new Parser(mt, ply).parseCommand();
     }
