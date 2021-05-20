@@ -1079,7 +1079,7 @@ public class Player {
     }
 
     /**
-     * Another retreat, testing.
+     * player retreat, which allow player to escape from current fight. hold the coordinate.
      * comment out old retreat by Yitao.
      *
      * @author Yitao Chen,
@@ -1087,6 +1087,9 @@ public class Player {
      * @return
      */
     public String retreat(){
+        if (Control.isNPC()) {
+            return " ";
+        }
         String string = "Ready to retreat:\n";
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
@@ -1094,6 +1097,7 @@ public class Player {
                 while(this.HP>0){
                     if (criticalCheck(0.8)){ //80% chance succeed
                         monster.setHP(0); // you can check the monster's hp to see if it succeed as well
+                        Control.resetCurrent();
                         return string + "Retreat successfully.\n";
                     }else{
                         this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
@@ -1101,8 +1105,6 @@ public class Player {
                     }
                 }
                 return string+"Your adventure journey ended here. The magic world will remember you\n";
-            } else {
-                return string + "Retreat successfully.\n";
             }
         }
         return string + "There is no monster or npc for you to retreat\n";
@@ -1248,8 +1250,6 @@ public class Player {
     public HashMap<Coordinate, Bag> getMap_bagData() {
         return map_bagData;
     }
-
-
 
     //    public void setMapData(HashMap<Coordinate, Place> mapData) {
 //        this.mapData = mapData;
