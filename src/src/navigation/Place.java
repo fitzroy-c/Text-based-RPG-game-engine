@@ -101,24 +101,6 @@ public class Place {
     }
 
     /**
-     * Display the current coordinate description
-     * @return String description
-     * - coordinate
-     * - description
-     * - dangerRate
-     * - bag
-     * - abnormalPoints
-     * @author Guanming Ou
-     */
-    public void printPlace(){
-        String n = "Coordinate:"+this.getCoordinate()+"\n"+
-                "Danger rate:"+this.getDangerRate()+"\n"+
-                "Items: "+this.getBag().showPlaceBag()+"\n"+
-                "Monster | NPC: "+this.printAbnormalPoints() +"\n";
-        System.out.println(n);
-    }
-
-    /**
      * Print all abnormal points inside the abnormal point list
      * @return string of all the abnormal point name
      * @author Guanming Ou
