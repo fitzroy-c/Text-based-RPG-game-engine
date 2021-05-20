@@ -74,18 +74,26 @@ public class Game {
                 /// test
                 //AbnormalPoint ab = new AbnormalPoint();
                 Control c = new Control(player);
-                ///
-//                gameInteractionLoop(player, c);
-                gameInteractionLoopParser(player);
+                gameInteractionLoop(player, c);
+//                gameInteractionLoopParser(player);
                 break;
             case 1:
                 System.out.println("Here is all the players available");
-                PlayerOption playerOption = new PlayerOption();
+                PlayerOption playerOption = new PlayerOption(player);
                 playerOption.printOut();
-                while (true) {
-                    ///test purpose
+                boolean b = true;
+                while (b) {
+                    if(playerOption.chooseOp(new Token(s.next(),null))) {
+                        player = playerOption.player;
+                        b = false;
+                    } else {
+                        System.out.println("I don't understand this command");
+                    }
                 }
-                //break;
+                Control.death=false;
+                Control cL = new Control(player);
+                gameInteractionLoop(player, cL);
+                break;
             case 2:
                 System.exit(0);
             default:
