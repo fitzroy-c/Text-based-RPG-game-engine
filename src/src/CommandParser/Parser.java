@@ -220,10 +220,10 @@ public class Parser {
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.STAT){
             this._tokenizer.next();
             if (this._tokenizer.hasNext() == false){
-                player.showPlayerStat();
+                System.out.println(player.showPlayerStat());
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
-                player.showPlayerStat();
+                System.out.println(player.showPlayerStat());
                 cmdExecuted = true;
             }
         }
@@ -244,7 +244,7 @@ public class Parser {
             this._tokenizer.next();
             if (this._tokenizer.hasNext()){
                 if (this._tokenizer.current().type()==Token.Type.STAT){
-                    player.showPlayerStat();
+                    System.out.println(player.showPlayerStat());
                 }
                 else if (this._tokenizer.current().type()==Token.Type.BACKPACK){
                     player.getBag().showMyBag();

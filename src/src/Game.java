@@ -74,6 +74,7 @@ public class Game {
                 player.setName(name);
                 Control c = new Control(player);
                 gameInteractionLoop(player, c);
+//                gameInteractionLoopParser(player);
                 break;
             case 1:
                 System.out.println("Here is all the players available");
@@ -118,15 +119,18 @@ public class Game {
             player.checkNPCs();
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
-                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) {
-                    autoDetect();
-                    c.printRightOption();
-                }
+//                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) {
+//                    autoDetect();
+//                    c.printRightOption();
+//                }
+//                System.out.println(cmdTok.current().token());
                 continueOn = new Parser(cmdTok, player).parseCommand();
-                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) { //TODO: no very good
-                    autoDetect();
-                    c.printRightOption();
-                }
+//                System.out.println(cmdTok.current().token());
+                autoDetect();
+//                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) { //TODO: no very good
+//                    autoDetect();
+//                    c.printRightOption();
+//                }
 //                c.printRightOption();
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
@@ -149,7 +153,8 @@ public class Game {
     }
 
     public static void autoDetect() {
-        CommandTokenizer detect = new CommandTokenizer("detect");
-        boolean result = new Parser(detect, player).parseCommand();
+//        if ()
+//        CommandTokenizer detect = new CommandTokenizer("detect");
+//        boolean result = new Parser(detect, player).parseCommand();
     }
 }
