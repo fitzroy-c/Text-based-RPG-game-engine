@@ -37,7 +37,7 @@ public class NormalOptionTest {
                     break;
                 case 1:
                     System.out.println("Here is all the players available");
-                    PlayerOption playerOption = new PlayerOption();
+                    PlayerOption playerOption = new PlayerOption(player);
                     playerOption.printOut();
                     while (true) {
                     }

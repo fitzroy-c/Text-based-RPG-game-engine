@@ -114,7 +114,7 @@ public class Player {
     public void save() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        try(FileWriter fw = new FileWriter("json_files/player_save/" + this.name)){ // name json file with player's name
+        try(FileWriter fw = new FileWriter("json_files/player_save/" + this.name+".json")){ // name json file with player's name
             gson.toJson(this, fw);
         } catch (IOException e) {
             e.printStackTrace();
