@@ -15,6 +15,8 @@ public class NormalOption extends BasicOption{
         this.option.add(new Option("help", "get help"));
 
         this.tokenType.add(Token.Type.DETECT);
+        this.tokenType.add(Token.Type.ATTACK);
+        this.tokenType.add(Token.Type.TALK);
         this.tokenType.add(Token.Type.TAKE_ACTION);
         this.tokenType.add(Token.Type.DROP_ACTION);
         this.tokenType.add(Token.Type.SAVE);
