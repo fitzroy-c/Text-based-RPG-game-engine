@@ -107,7 +107,6 @@ public class JsonTestNpcTalk {
         dtypes.add("END_BLESS_ARMOR");
         dtypes.add("END_BLESS_DAMAGE");
 
-
     }
 
 
