@@ -1,13 +1,13 @@
 {
-  "name": "s",
-  "HP": 137,
-  "maxHP": 137,
-  "money": 12,
+  "name": "3",
+  "HP": 120,
+  "maxHP": 120,
+  "money": 14,
   "xp": 0,
   "maxXP": 10,
   "xpPerLv": 10,
   "level": 1,
-  "armour": 7,
+  "armour": 4,
   "damage": 16,
   "criticalChance": 0.02,
   "maxCriticalChance": 1.0,
@@ -183,7 +183,7 @@
       }
     ],
     "random": {
-      "seed": 168946758086272,
+      "seed": 169817334937650,
       "nextNextGaussian": 0.0,
       "haveNextNextGaussian": false
     }
