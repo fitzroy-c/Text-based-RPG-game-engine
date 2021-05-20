@@ -6,6 +6,7 @@ import Options.Control;
 import Options.PlayerOption;
 import Options.StartOption;
 import Player.Player;
+import Player.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +22,20 @@ import java.util.Scanner;
 public class autoTest {
     private static Player player;
     public static CommandTokenizer cmdTok;
-    private static Random random;
     public Parser parser;
-    //private List<Item> itemBook; // contain all possible items in the game(used for reference purposes)
+    private List<Item> itemBook; // contain all possible items in the game(used for reference purposes)
+
+    public void initialize() {
+        itemBook = Item.initializeItemBook();
+    }
 
     public static void autoCaseTest() throws Exception {
         Game g = new Game();
         g.initialize();
-
         StartOption start = new StartOption();
-
         while(true) {
             player = new Player("test player");
+            Random random = new Random();
             int i = random.nextInt(3)+1;
             switch (i){
                 case 0:
@@ -76,6 +79,7 @@ public class autoTest {
         commandList.add("go west");
         commandList.add("go east");
         commandList.add("attack");
+        Random random = new Random();
 
         int length = commandList.size();
 
@@ -108,9 +112,18 @@ public class autoTest {
      */
     public static void gameInteractionLoopParser(Player player) throws Exception {
         boolean continueOn = true;
-        Scanner s = new Scanner(System.in);
+        //Scanner s = new Scanner(System.in);
+        List<String> commandList = new ArrayList<String>();
+        commandList.add("go north");
+        commandList.add("go south");
+        commandList.add("go west");
+        commandList.add("go east");
+        commandList.add("attack");
+        int length = commandList.size();
+        Random random = new Random();
+
         while (continueOn){
-            cmdTok = new CommandTokenizer(s.nextLine());
+            cmdTok = new CommandTokenizer(commandList.get(random.nextInt(length)+1));
             continueOn = new Parser(cmdTok, player).parseCommand();
         }
     }
