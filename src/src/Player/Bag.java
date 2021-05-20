@@ -162,48 +162,43 @@ public class Bag {
      */
     public Item getItemByName(String itemName){
         // if the bag is empty
-        System.out.println(this.itemList.size());
         if (this.itemList.isEmpty())
             return null;
 
         for (Item i : this.itemList){
-            System.out.println(i.name);
-            System.out.println(i.name.equals(itemName));
-            System.out.println(i.name.equals("Mushroom"));
-
             if (i.name.toLowerCase().equals(itemName.toLowerCase()))
                 return i;
         }
         // did not find a item
         return null;
     }
-    public static Bag JsonToBag(JsonObject baginfo){
-
-        String cw = String.valueOf(baginfo.get("currentWeight"));
-        String mw = String.valueOf(baginfo.get("maxWeight"));
-
-        JsonArray sProps = baginfo.get("itemList").getAsJsonArray();
-        List<Item> items = new LinkedList<Item>();
-        Item item = null;
-        for (JsonElement je : sProps) {
-            JsonObject itemJO = je.getAsJsonObject();
-            String id = itemJO.get("id").getAsString();
-//                System.out.println(id);
-            String type = itemJO.get("type").getAsString();
-            String name = itemJO.get("name").getAsString();
-            String description = itemJO.get("description").getAsString();
-            JsonObject props = itemJO.get("properties").getAsJsonObject();
-            Map<String, Integer> properties = new HashMap<>();
-            for (Map.Entry<String, JsonElement> entry2 : props.entrySet()) {
-                Integer propValue = entry2.getValue().getAsInt();
-                properties.put(entry2.getKey(), propValue);
-            }
-            item = new Item(id, type, name, description, properties);
-            items.add(item);
-        }
-        Bag bag = new Bag(Integer.parseInt(cw), Integer.parseInt(mw), items);
-        return bag;
-    }
+//    public static Bag JsonToBag(JsonObject baginfo){
+//
+//        String cw = String.valueOf(baginfo.get("currentWeight"));
+//        String mw = String.valueOf(baginfo.get("maxWeight"));
+//
+//        JsonArray sProps = baginfo.get("itemList").getAsJsonArray();
+//        List<Item> items = new LinkedList<Item>();
+//        Item item = null;
+//        for (JsonElement je : sProps) {
+//            JsonObject itemJO = je.getAsJsonObject();
+//            String id = itemJO.get("id").getAsString();
+////                System.out.println(id);
+//            String type = itemJO.get("type").getAsString();
+//            String name = itemJO.get("name").getAsString();
+//            String description = itemJO.get("description").getAsString();
+//            JsonObject props = itemJO.get("properties").getAsJsonObject();
+//            Map<String, Integer> properties = new HashMap<>();
+//            for (Map.Entry<String, JsonElement> entry2 : props.entrySet()) {
+//                Integer propValue = entry2.getValue().getAsInt();
+//                properties.put(entry2.getKey(), propValue);
+//            }
+//            item = new Item(id, type, name, description, properties);
+//            items.add(item);
+//        }
+//        Bag bag = new Bag(Integer.parseInt(cw), Integer.parseInt(mw), items);
+//        return bag;
+//    }
     /// {current weight: ..., maxweight, item list} <- this format
     public static Bag JsonToBag2(JsonObject baginfo){
         Gson gson = new Gson();
@@ -315,7 +310,7 @@ public class Bag {
         for (Map.Entry<String, JsonElement> entry : jo.entrySet()) {
             String coor = entry.getKey();
             JsonObject itemData = entry.getValue().getAsJsonObject();
-            Bag bag = JsonToBag(itemData);
+            Bag bag = JsonToBag2(itemData);
 
             hp.put(Coordinate.fromStringToCoordinate(coor),bag);
 
