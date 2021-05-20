@@ -498,52 +498,77 @@ public class Player {
             //randomly choose 1 from 5 type
             //int randomInt2 = random.nextInt(6);
             int playerLevel = this.level;
-            switch (random.nextInt(5)) {
+            switch (random.nextInt(10)) {
                 case 0:
                     /**
                      * A monster with high health and damage, but low armour.
                      */
                     MonsterAttributes giant = new MonsterAttributes("giant","A monster with high health and damage, but low armour.",
-                            150, 8, 6, 3,40,3,
-                            0.03,50, 3,15, 11, Element.Normal);
+                            150, 8, 1, 1,8,3,
+                            0.03,15, 3,15, 11, Element.Normal);
                     //System.out.println("You are facing a giant");
                     this.place.addAbnormalPoint(new Monster(giant,playerLevel));
+                    break;
                 case 1:
                     /**
                      * A normal monster , with slight armour.
                      */
                     MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
-                            55,6, 0,3,12,2,
+                            55,6, 1,2,12,2,
                             0.02,10, 3,0,5, Element.Normal);
                     //System.out.println("You are facing a goblin");
                     this.place.addAbnormalPoint( new Monster(goblin,playerLevel));
+                    break;
                 case 2:
+                    /**
+                     * A normal monster , with slight armour.
+                     */
+                    MonsterAttributes goblin1 = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
+                            50,6, 1,2,12,2,
+                            0.02,10, 3,0,5, Element.Normal);
+                    //System.out.println("You are facing a goblin");
+                    this.place.addAbnormalPoint( new Monster(goblin1,playerLevel));
+                    break;
+                case 3:
                     /**
                      * A quite weak monster.
                      */
-                    MonsterAttributes skeleton = new MonsterAttributes("skeleton", "A quite weak monster.",
-                            50,3, 0, 1, 8,1,
+                    MonsterAttributes skeleton1 = new MonsterAttributes("skeleton", "A quite weak monster.",
+                            40,3, 0, 1, 8,1,
                             0.02,10, 3, 0,3,Element.Normal);
                     //System.out.println("You are facing a skeleton");
-                    this.place.addAbnormalPoint( new Monster(skeleton,playerLevel));
-                case 3:
+                    this.place.addAbnormalPoint( new Monster(skeleton1,playerLevel));
+                    break;
+                case 4:
+                    /**
+                     * A quite weak monster.
+                     */
+                    MonsterAttributes skeleton2 = new MonsterAttributes("skeleton", "A quite weak monster.",
+                            30,3, 0, 1, 8,1,
+                            0.02,10, 3, 0,3,Element.Normal);
+                    //System.out.println("You are facing a skeleton");
+                    this.place.addAbnormalPoint( new Monster(skeleton2,playerLevel));
+                    break;
+                case 5:
                     /**
                      * A monster without low damage, but high health and armour.
                      */
                     MonsterAttributes troll = new MonsterAttributes("troll", "A monster without low damage, but high health and armour.",
-                            70,11, 0,12,20,3,
-                            0.05,75, 3,25,10,Element.Normal);
+                            70,11, 3,3,15,3,
+                            0.05,15, 3,25,10,Element.Normal);
                     //System.out.println("You are facing a troll");
                     this.place.addAbnormalPoint( new Monster(troll,playerLevel));
+                    break;
                 default:
                     /**
                      * A normal wild creature
                      */
                     MonsterAttributes wolf = new MonsterAttributes("wolf", "A wolf as you see",
-                            35,3, 0,0,15,2,
-                            0.04,25, 3,0,2,Element.Normal);
+                            35,3, 1,1,5,2,
+                            0.04,5, 3,0,2,Element.Normal);
                     //System.out.println("You are facing a wolf");
                     this.place.addAbnormalPoint(new Monster(wolf,playerLevel));
+                    break;
             }
         }
         //System.out.println("You are in a safe place");
@@ -1001,7 +1026,7 @@ public class Player {
                         monsterHP = monsterHP - realDamage;
                         string += "Nice, you have made a critical hit. "+monster.getName()+" -"+realDamage+"HP\n";
                     }
-                    int realDamage = Math.max(this.damage - monster.getArmour(),0);
+                    int realDamage = Math.max(Math.max(this.damage - monster.getArmour(),0),1);
                     monsterHP = monsterHP - realDamage;
                     string += "Normal hit."+monster.getName()+" -"+realDamage+"HP\n";
                     if (criticalCheck(monster.getCritChance())){
