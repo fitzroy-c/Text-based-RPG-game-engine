@@ -91,12 +91,22 @@ public class Parser {
                 System.out.println("saving...");
                 player.save();
                 System.out.println("game exited");
+                System.out.println("Welcome to the world!\n" +
+                        "What would you like to do?\n" +
+                        "[1] new : start the new game\n" +
+                        "[2] load : load the game\n" +
+                        "[3] exit : exit the game");
                 cmdExecuted = true;
                 return false;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
                 System.out.println("saving...");
                 player.save();
                 System.out.println("game exited");
+                System.out.println("Welcome to the world!\n" +
+                        "What would you like to do?\n" +
+                        "[1] new : start the new game\n" +
+                        "[2] load : load the game\n" +
+                        "[3] exit : exit the game");
                 cmdExecuted = true;
                 return false;
             }
