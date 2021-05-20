@@ -427,6 +427,7 @@ public class Player {
             string+="Quite a danger zone, Run!\n";
         }
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
+            System.out.println(this.place.getAbnormalPoints());
             if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER){
                 ///change battleOption here bill
                 Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
