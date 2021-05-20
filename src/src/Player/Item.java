@@ -99,7 +99,7 @@ public class Item {
         return items;
     }
 
-//    String s = ""String"";
+    //    String s = ""String"";
     /**
      * used to generate Item on the map, and save that into a json file
      * @author: Yixiang Yin
