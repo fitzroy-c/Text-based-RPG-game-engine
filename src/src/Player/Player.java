@@ -568,6 +568,7 @@ public class Player {
                 }
                 nextCoord.goNorth();
                 goToDirectionHelper(nextCoord);
+
                 System.out.println("Coordinate: "+this.place.getCoordinate());
             break;
             case "east":
@@ -608,17 +609,21 @@ public class Player {
     public void goToDirectionHelper(Coordinate nextCoord){
 //        HashMap<Coordinate, Place> map = this.getMapData();
 //        this.setMap_bagData(bag);
+//        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
+//            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
+
         HashMap<Coordinate, NPC_TALK> npc_t = this.map_npcTData;
         HashMap<Coordinate, NPC_MERCHANT> npc_m = this.map_npcMData;
 //        HashMap<Coordinate, Bag> bag = this.map_bagData;
+
         // update the npc merchant json of current coordinate
-//        if (npc_m.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-//            NPC_MERCHANT npcm = extractNPCMerchant(); // find npc talk inside the abnormal point list
-//            if (npcm != null){
-//                npc_m.remove(this.place.getCoordinate()); // remove current coordinate from map data
-//                npc_m.put(this.place.getCoordinate(), npcm); // insert current place to map data (one npc talk only)
-//            }
-//        }
+        if (npc_m.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
+            NPC_MERCHANT npcm = extractNPCMerchant(); // find npc talk inside the abnormal point list
+            if (npcm != null){
+                npc_m.remove(this.place.getCoordinate()); // remove current coordinate from map data
+                npc_m.put(this.place.getCoordinate(), npcm); // insert current place to map data (one npc talk only)
+            }
+        }
         // update the npc talk json of current coordinate
         if (npc_t.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
             NPC_TALK npct = extractNPCTalk(); // find npc talk inside the abnormal point list
@@ -633,25 +638,24 @@ public class Player {
 //            bag.put(this.place.getCoordinate(), this.place.getBag()); // insert current place to map data
 //        }
 
-//        // update next coordinate inside json
-//        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
-//            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
+        // update next coordinate inside json
         boolean updated = true;
-        Place nextPlace = new Place(nextCoord, "", 0,new Bag(100), new ArrayList<>());
+        Place nextPlace = new Place(nextCoord, "have npc", 0,new Bag(100), new ArrayList<>());
         nextPlace.setAbnormalPoints(extractBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
         if (! nextPlace.getAbnormalPoints().isEmpty()) // check if operation did get npc
             updated = true;
 
-
         if (updated == false){ // randomly generate place named wild area with random danger rate and monster
             nextPlace.setDescription("Wild area");
             nextPlace.setDangerRate(randomGenerate(5));
-            generateMonster();
         }
         // update all information
         this.setPlace(nextPlace);
         this.setMap_npcTData(npc_t);
         this.setMap_npcMData(npc_m);
+
+        if (!updated)
+            generateMonster();
     }
 
     /**

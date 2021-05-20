@@ -386,9 +386,10 @@ public class Parser {
          * - go bribe
          * - save game exit game -> game saved
          * - go bribe -> error
+         * - take Lesser Healing Potion -> taked item
          */
         Player ply = new Player("testname");
-        String cmd = "north";
+        String cmd = "take item";
         CommandTokenizer mt = new CommandTokenizer(cmd);
         new Parser(mt, ply).parseCommand();
     }

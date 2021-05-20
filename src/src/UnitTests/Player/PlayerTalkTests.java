@@ -179,6 +179,15 @@ public class PlayerTalkTests {
 
     @Test
     public void testNPCGiveItem() {
+        DialogTree guide_tree = new DialogTree();
+        guide_tree.getRoot().setNpcDialog("Hi, are you ok?  I am your guide to this land. What do you want to know about?");
+        guide_tree.getRoot().setIndex(0);
+        guide_tree.getRoot().setDtype(DialogTree.DialogType.CONTINUE);
+        List<DialogTree.Dialog> Dialog1 = new ArrayList<>();
+
+//        Dialog1.add(new DialogTree.Dialog(1, "Who are you?", "I am your guide to this land, any question?", controlIntro, DialogTree.DialogType.CONTINUE));
+//        Dialog1.add(new DialogTree.Dialog(2, "I want to know about how to walk around here.", "Sure.  You can 'go north' or any of the north, east, west, south direction to move around the map", controlIntro2, DialogTree.DialogType.CONTINUE));
+//        Dialog1.add(new DialogTree.Dialog(3, "I already know what to do, bye.", "Bless your healthy!", null, DialogTree.DialogType.END_BLESS_HP));
 
     }
 
