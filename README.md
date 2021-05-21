@@ -10,7 +10,7 @@
 5. get all your needs from wandering merchants scattering on the map!
 6. and a lot more for you to explore!!!
 
-# Other documentatioin
+# Other documentation
 - development log is in Develop package.
 - project summary, game engine design, quick guide for player and game designer are all on Wiki page
 
