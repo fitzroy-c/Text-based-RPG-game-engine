@@ -52,7 +52,7 @@ Yitao Chen (u7004563):
 
 Zihong Yuan (u6714861):
 
-**Designed user interface as known as Option Menu.** 
+*Designed user interface as known as Option Menu.*
  - The Option Menu will gather player's input and display the corresponding options or information to players, it works with user command parser to achieve these functions.
  - Option Menu will switch between different situation
     - When encounter with NPCs or Monsters, player can choose the priority to interact with them.
