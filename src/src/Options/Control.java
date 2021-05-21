@@ -72,7 +72,6 @@ public class Control extends BasicOption {
             return;
         }
         resetCurrent();
-            System.out.println(current.getString());
         if (isMonster || isNpc) {
             System.out.println("Control: case is NM");
             NMOption nm = new NMOption(monsters, npcs);
@@ -82,21 +81,30 @@ public class Control extends BasicOption {
                 Scanner s = new Scanner(System.in);
                 String input = s.nextLine();
                 CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
-                if (nm.chooseOp(cmd.current())) {
-                    try {
-                        int n = Integer.parseInt(input);
-                        current = nm.verifyInt(n);
+//                if (nm.chooseOp(cmd.current())) {
+                try {
+                    int n = Integer.parseInt(input);
+                    current = nm.verifyInt(n);
+                    b = false;
+                } catch (Exception e) {
+                    if (nm.optionInterface.containsKey(input)) {
+                        for (AbnormalPoint abnormalPoint : nm.total) {
+                            if (abnormalPoint.getName().equals(nm.optionInterface.get(input)))
+                                current = abnormalPoint;
+                        }
                         b = false;
-                    } catch (Exception e) {
-//                        CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
+                    } else {
+                        if (cmd.current().type()== Token.Type.DIRECTION)
+                            b = false;// no valid choice
                         if (! new Parser(cmd, player).parseCommand()) {
                             System.out.println("Please choose correct command");
                         }
-                        b = false;
                     }
-                } else {
-                    System.out.println("Please choose correct one");
                 }
+//                    b = false;
+//                } else {
+//                    System.out.println("Please choose correct one");
+//                }
             }
         }
         switch (current.getString()) {

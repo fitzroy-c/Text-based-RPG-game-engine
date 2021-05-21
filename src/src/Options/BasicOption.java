@@ -48,6 +48,8 @@ public class BasicOption {
         String command = token.token();
         Token.Type type = token.type();
         if (type== Token.Type.ERROR)
+            return false;
+        if (type== Token.Type.UNKNOWN)
             return true;
         if (tokenType.contains(type)) {
             return true;
@@ -71,10 +73,13 @@ public class BasicOption {
     public CommandTokenizer convert(CommandTokenizer command){
         CommandTokenizer cmdTok;
         Token to = command.current();
-        if (optionInterface.containsKey(to.token()) && to.type()== Token.Type.ERROR) {
-            String cmd = optionInterface.get(to.token()).getCommand();
-            cmdTok = new CommandTokenizer(cmd);
-            return cmdTok;
+        if (to.type()==Token.Type.UNKNOWN) {
+            if (optionInterface.containsKey(to.token())) {
+                String cmd = optionInterface.get(to.token()).getCommand();
+                cmdTok = new CommandTokenizer(cmd);
+                return cmdTok;
+            } else
+                return new CommandTokenizer("Error");
         }
         return command;
     }

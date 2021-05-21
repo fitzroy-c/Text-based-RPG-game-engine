@@ -24,19 +24,27 @@ public class NMOption extends BasicOption{
         for (AbnormalPoint npc : npcs) {
             this.option.add(new Option( npc.getName(), npc.getIntro()));
         }
-        this.option.add(new Option("pick", "Pick an item"));
-        this.option.add(new Option("drop", "drop an item"));
+//        this.option.add(new Option("pick", "Pick an item"));
+//        this.option.add(new Option("drop", "drop an item"));
+        this.option.add(new Option("see stat", "see my state"));
+        this.option.add(new Option("look bag", "show my bag"));
         this.option.add(new Option("save", "Save game"));
         this.option.add(new Option("exit", "Exit game"));
         this.option.add(new Option("help", "get help"));
 
         this.tokenType.add(Token.Type.DETECT);
+        this.tokenType.add(Token.Type.ATTACK);
+        this.tokenType.add(Token.Type.TALK);
         this.tokenType.add(Token.Type.TAKE_ACTION);
         this.tokenType.add(Token.Type.DROP_ACTION);
         this.tokenType.add(Token.Type.SAVE);
         this.tokenType.add(Token.Type.EXIT);
         this.tokenType.add(Token.Type.DIRECTION);
         this.tokenType.add(Token.Type.DIRECTION_ACTION);
+        this.tokenType.add(Token.Type.VIEW_ACTION);
+        this.tokenType.add(Token.Type.CONSUME_ACTION);
+        this.tokenType.add(Token.Type.BACKPACK);
+        this.tokenType.add(Token.Type.STAT);
 
     }
 
@@ -77,7 +85,17 @@ public class NMOption extends BasicOption{
 
     }
 
-    public AbnormalPoint verifyInt(int n) {
+/*
+    @Override
+    public boolean chooseOp(Token token) {
+        Token.Type type = token.type();
+        if (type== Token.Type.TAKE_ACTION)
+            return false;
+        return true;
+    }
+*/
+
+        public AbnormalPoint verifyInt(int n) {
             return this.total.get(n-1);
     }
 }

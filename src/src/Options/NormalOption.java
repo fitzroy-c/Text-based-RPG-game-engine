@@ -6,8 +6,8 @@ import Player.Player;
 public class NormalOption extends BasicOption{
     private void buildMenu() {
 //        this.option.add(new Option("detect", "Detect the room"));
-        this.option.add(new Option("pick", "Pick an item"));
-        this.option.add(new Option("drop", "drop an item"));
+//        this.option.add(new Option("pick", "Pick an item"));
+//        this.option.add(new Option("drop", "drop an item"));
         this.option.add(new Option("see stat", "see my state"));
         this.option.add(new Option("look bag", "show my bag"));
         this.option.add(new Option("save", "Save game"));

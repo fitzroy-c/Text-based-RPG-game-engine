@@ -931,7 +931,6 @@ public class Player {
      */
     public String retreat(){
         if (Control.isNPC()) {
-            Control.resetCurrent();
             return " ";
         }
         StringBuilder string = new StringBuilder("Ready to retreat:\n");
@@ -941,7 +940,6 @@ public class Player {
                 while(this.HP>0){
                     if (criticalCheck(0.70)){ //80% chance succeed
                         // monster.setHP(0);
-                        Control.resetCurrent();
                         return string + "Retreat successfully.\n";
                     }else{
                         this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
