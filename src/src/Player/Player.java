@@ -13,11 +13,12 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 
+import static AbnormalPoints.NPC_TALK.JsonToNpcTalkHashMapData;
 import static Player.Bag.JsonToItemsOnTheMapHashMapData;
-import static Player.Bag.JsonToNpcTalkHashMapData;
 
 /**
  * similar to a extended class from entity
+ * @author all four
  */
 public class Player {
 
@@ -35,7 +36,6 @@ public class Player {
     private double maxCriticalChance;
     Bag bag;
     Place place; //Coordinate
-//    HashMap<Coordinate, Place> mapData;
     HashMap<Coordinate, NPC_TALK> map_npcTData;
     HashMap<Coordinate, NPC_MERCHANT> map_npcMData;
 
@@ -45,7 +45,6 @@ public class Player {
      * Some variables
      */
     PlayerAttributes pa = PlayerAttributes.loadPlayerAttributes();
-
 
     /**
      * Constructor of new player by giving a name
@@ -204,7 +203,7 @@ public class Player {
         int criticalChance = jo.get("criticalChance").getAsInt();
 
         int maxCriticalChance = jo.get("maxCriticalChance").getAsInt();
-        Bag playerBag = Bag.JsonToBag2(jo.get("bag").getAsJsonObject());
+        Bag playerBag = Bag.JsonToBag(jo.get("bag").getAsJsonObject());
         Place place = Place.JsonToPlace(jo.get("place").getAsJsonObject());
         HashMap<Coordinate, NPC_TALK> map_npcTData = JsonToNpcTalkHashMapData(jo.get("map_npcTData").getAsJsonObject());
         HashMap<Coordinate, NPC_MERCHANT> map_npcMData = NPC_MERCHANT.JsonToNpcMerchantHashMapData(jo.get("map_npcMData").getAsJsonObject());
@@ -278,21 +277,7 @@ public class Player {
     }
 
 
-//    /**
-//     * Consume an consumable item
-//     * TODO: more function should be add. if the item has damage or what,should reset the monster.hp player's gold/xp etc.
-//     * TODO: item should be divided first and then play its function
-//     * @author: Yixiang Yin
-//     **/
-//    public String consume(Item i){
-//        if (i.type.equals("consumable") && bag.searchInBag(i)){
-//            HP+=i.properties.get("health").intValue();
-//            bag.drop(i);
-//            return "You've successfully consume "+i.name+" .";
-//        }
-//        else if (!i.type.equals("consumable")) return "You can't consume "+i.name+" .";
-//        else return "You don't have "+i.name+" .";
-//    }
+
 
     /**
      * Consume a consumable item, given a item name
@@ -347,17 +332,10 @@ public class Player {
             string+="Quite a danger zone, Run!\n";
         }
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
-//            System.out.println(this.place.getAbnormalPoints());
-//            System.out.println(this.place);
-//            for (AbnormalPoint ap : this.place.getAbnormalPoints()){
-//                System.out.println(ap.getName());
-//            }
+
             if (this.place.getAbnormalPoints().get(i).abnormalPointType== AbnormalPoint.AbnormalPointType.MONSTER){
-                ///change battleOption here bill
-//                Control.setCurrentAb(this.place.getAbnormalPoints().get(i));
                 ///this give monster list to Option
                 Control.addMonsters(this.place.getAbnormalPoints().get(i));
-                ///
                 return string + "There is a monster: "+this.place.getAbnormalPoints().get(i).getName()+"\n";
             }
         }
@@ -709,9 +687,7 @@ public class Player {
      * (Assumption: user only can purchase one thing each time)
      * @author Yixiang Yin
      */
-
     public void buyCommandHandler(){
-//        NPC_MERCHANT shop = (NPC_MERCHANT) SearchInAbnormalPoints(AbnormalPoint.AbnormalPointType.NPC_MERCHANT);
         NPC_MERCHANT shop = SearchInNpc_MERCHANT_DATA();
 
         if (shop==null) {
@@ -732,8 +708,6 @@ public class Player {
             System.out.println(shop.outputStrForBuyFromNPC(this,itemPuchase.name,succ));
         }
     }
-
-
     /**
      * Description suggested by the name(include null case)
      * @return boolean: true, if found, else, false

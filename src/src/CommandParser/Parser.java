@@ -1,13 +1,6 @@
 package CommandParser;
 
-import AbnormalPoints.Monster;
-import Options.Control;
 import Player.Player;
-import Player.Bag;
-import Player.Item;
-import navigation.Coordinate;
-
-import java.util.List;
 
 /**
  * Grammar:
@@ -119,7 +112,7 @@ public class Parser {
                 System.out.println(player.checkMonster());
                 this.player.detectNPCAroundPlayer();
                 if (player.getMap_bagData().get(player.getPlace().getCoordinate())==null) System.out.println("Nothing on the floor");
-                else player.getMap_bagData().get(player.getPlace().getCoordinate()).showPlaceBag2();
+                else player.getMap_bagData().get(player.getPlace().getCoordinate()).showPlaceBagInTheGame();
                 cmdExecuted = true;
             } else if (this._tokenizer.hasNext() && !(this._tokenizer.current().type()==Token.Type.ERROR)){
                 System.out.println(player.checkMonster());

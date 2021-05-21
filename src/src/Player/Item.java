@@ -1,6 +1,5 @@
 package Player;
 
-import AbnormalPoints.NPC_MERCHANT;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -12,10 +11,10 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-// todo item.json
-// todo test for these functions in player, bag,item.class
-// todo weapon, considering onetime weapon first
-
+/**
+ * This class contains all the relevant info with items
+ * @author Yixiang Yin
+ */
 public class Item {
     public final String id;
     public final String type;
@@ -58,13 +57,6 @@ public class Item {
         }
         return properties.get(property);
     }
-    // redundant
-//    public Map<String, Integer> getProperties() {
-//        return Collections.unmodifiableMap(properties);// for safe reason unchangeable map
-//    }
-    public boolean containsProperty(String key) {
-        return properties.containsKey(key);
-    }
 
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -95,8 +87,6 @@ public class Item {
         List<Item> items = gson.fromJson(jr,LIST_TYPE);
         return items;
     }
-
-    //    String s = ""String"";
     /**
      * used to generate Item on the map, and save that into a json file
      * @author: Yixiang Yin
@@ -158,7 +148,6 @@ public class Item {
             for (JsonElement je : sProps){
                 JsonObject itemJO = je.getAsJsonObject();
                 String id =itemJO.get("id").getAsString();
-//                System.out.println(id);
                 String type = itemJO.get("type").getAsString();
                 String name = itemJO.get("name").getAsString();
                 String description = itemJO.get("description").getAsString();
@@ -178,12 +167,5 @@ public class Item {
         }
 
         return hp;
-    }
-    public void print() {
-        // TODO: need a function to print out all we have in this real location (name + description?)
-    }
-    public static void main(String[] args) {
-        // test initializeItems
-        generateItemOnTheMapJson("json_files/original_data/InitializedItem.json");
     }
 }
