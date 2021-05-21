@@ -69,7 +69,6 @@ public class NPC_MERCHANT extends AbnormalPoint{
      * @author: Yixiang Yin
      **/
     public String outputStrForBuyFromNPC(Player p, String itemName, boolean succ){
-        System.out.println(p.money);
         if (succ) return "You've successfully purchased "+itemName+". Happy to see you soon again!";
         else {
             Item wanted = npcBag.getItemByName(itemName); // guarantee non-null
@@ -107,7 +106,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
         System.out.println("-----------------Shop------------------");
         for (int i = 0; i<npc.npcBag.getItems().size();i++){
             Item item =npc.npcBag.getItems().get(i);
-            System.out.println("["+i+"]"+" : "+item.name+" : sdf"+item.getDescription()+" ("+item.getProperty("value")+" coins)");
+            System.out.println("["+i+"]"+" : "+item.name+" : "+item.getDescription()+" ("+item.getProperty("value")+" coins)");
             System.out.println();
         }
         System.out.println("-----------------End------------------");

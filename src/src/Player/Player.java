@@ -277,6 +277,7 @@ public class Player {
         return null;
     }
 
+
 //    /**
 //     * Consume an consumable item
 //     * TODO: more function should be add. if the item has damage or what,should reset the monster.hp player's gold/xp etc.
@@ -722,7 +723,10 @@ public class Player {
             System.out.println("Please type the corresponding item index to purchase corresponding item.");
             Scanner s = new Scanner(System.in);
             int userChoice = s.nextInt();
-            if (userChoice>=shop.npcBag.getItems().size()) System.out.println("Invalid item index, please try again.");
+            if (userChoice>=shop.npcBag.getItems().size()) {
+                System.out.println("Invalid item index, please try again.");
+                return;
+            }
             Item itemPuchase = shop.npcBag.getItems().get(userChoice);
             boolean succ = shop.buyFromNPC(this,itemPuchase.name);
             System.out.println(shop.outputStrForBuyFromNPC(this,itemPuchase.name,succ));
@@ -1103,7 +1107,7 @@ public class Player {
     }
 
     /**
-     * This is a subclass for enabling edit player's origianl generate atrributes via json
+     * This is a subclass for enabling edit player's original generate attributes via json
      * @author Guanming Ou
      */
     public static class PlayerAttributes {
