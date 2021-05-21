@@ -7,6 +7,7 @@ import Card.Rarity;
 /**
  * Gain mana by playing this card, either continously gain or instant gain mana.
  * Main purpose as to recover mana for spell cards.
+ * @author Guanming Ou
  */
 public class Mana_cards extends Cards {
     int instantGainMana;

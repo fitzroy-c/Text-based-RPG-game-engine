@@ -6,7 +6,7 @@ import Card.Element;
  * superclass for all entities (Monster and NPC)
  * - This means both NPC and Monster are allow to be attacked
  * - Main difference is NPC is passive to attack, but Monster will aggressively attack player
- * @author yitao chen
+ * @author yitao chen, slightly modify by Guanming Ou
  */
 public abstract class entity {
     private String name;
@@ -85,9 +85,7 @@ public abstract class entity {
         this.HP = HP;
     }
 
-    public int getDamage() {
-        return damage;
-    }
+    public int getDamage() { return damage; }
 
     public void setDamage(int damage) {
         this.damage = damage;

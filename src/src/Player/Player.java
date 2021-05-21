@@ -64,7 +64,6 @@ public class Player {
         this.criticalChance = pa.initCriticalChance;
         this.maxCriticalChance = pa.initMaxCriticalChance;
         this.bag = new Bag(pa.initBagWeight);
-//        this.setMapData(loadOriginalMapData());
 
         // load json files
         this.setMap_npcMData(loadOriginalMerchantNPCs());
@@ -75,7 +74,6 @@ public class Player {
                 extractBag(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), map_bagData),
                 extractBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate),
                         this.getMap_npcTData(), this.getMap_npcMData()));
-//        this.place = getMapData().get(new Coordinate(pa.initXCoordinate, pa.initYCoordinate));
     }
 
     public Player(String name, int HP, int maxHP, int money, int xp, int maxXP, int xpPerLv, int level, int armour, int damage, double criticalChance, double maxCriticalChance, Bag bag, Place place, HashMap<Coordinate, NPC_TALK> map_npcTData, HashMap<Coordinate, NPC_MERCHANT> map_npcMData, HashMap<Coordinate, Bag> map_bagData) {
@@ -148,60 +146,6 @@ public class Player {
     }
 
     /**
-     * Save item as json
-     * @author Guanming Ou
-     */
-    public void saveItem() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-        try (FileWriter fw = new FileWriter("json_files/original_data/Items.json")) { // name json file with player's name
-            gson.toJson(this.map_bagData, fw);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    /**
-     * Save talk npc as json
-     * @author Guanming Ou
-     */
-    public void saveTALKNPC(){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-        try(FileWriter fw = new FileWriter("json_files/original_data/TalkNPC.json")){ // name json file with player's name
-            gson.toJson(this.map_npcTData, fw);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    /**
-     * Save merchant npc as json
-     * @author Guanming Ou
-     */
-    public void saveMERCHANTNPC(){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-        try(FileWriter fw = new FileWriter("json_files/original_data/MerchantNPC.json")){ // name json file with player's name
-            gson.toJson(this.map_npcMData, fw);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-//    /**
-//     * Not used in normal gave, but is used for updating items in original json file
-//     * @author Guanming Ou
-//     */
-//    public void saveMap(){
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//
-//        try(FileWriter fw = new FileWriter("json_files/original_data/map.json")){ // name json file with player's name
-//            gson.toJson(this.mapData, fw);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-    /**
      * Not used in normal game, but is used for updating player attributes in original data json file
      * @author Guanming Ou
      */
@@ -228,10 +172,6 @@ public class Player {
             System.out.println("There is a Merchant around you. Go and look around what good stuff he has.");
         }
         if (Exist_npcm||Exist_npct) System.out.println("You are standing alone. The wind is a bit cold.");
-    }
-
-    //TODO: test only, delete later
-    public Player(){
     }
 
     /**
@@ -273,7 +213,6 @@ public class Player {
 
 
         return new Player(name,HP,maxHP,money,xp,maxXP,xpPerLv,level,armour,damage,criticalChance,maxCriticalChance,playerBag,place,map_npcTData,map_npcMData,map_bagData);
-
     }
 
     /**
@@ -313,25 +252,11 @@ public class Player {
     return NPC_MERCHANT.loadOriginalNPC_MER();
     }
 
-
-
-//    public NPC_MERCHANT SearchInNpc_MERCHANT_DATA(Coordinate c){
-//        Coordinate playerCoor = c;
-//        for (Coordinate coor : this.map_npcMData.keySet()){
-//            if (coor.equals(playerCoor)) return this.map_npcMData.get(coor);
-//        }
-//        return null;
-//    }
-//
-//
-//    public NPC_TALK SearchInNpc_TALK_DATA(Coordinate c){
-//        Coordinate playerCoor = c;
-//        for (Coordinate coor : this.map_npcTData.keySet()){
-//            if (coor.equals(playerCoor)) return this.map_npcTData.get(coor);
-//        }
-//        return null;
-//    }
-
+    /**
+     * Search if a merchant npc exist inside current coordinate
+     * @return a merchant npc
+     * @author Guanming Ou, Yixiang Yin
+     */
     public NPC_MERCHANT SearchInNpc_MERCHANT_DATA(){
         Coordinate playerCoor = this.place.getCoordinate();
         for (Coordinate coor : this.map_npcMData.keySet()){
@@ -339,6 +264,11 @@ public class Player {
         }
         return null;
     }
+    /**
+     * Search if a talk npc exist inside current coordinate
+     * @return a talk npc
+     * @author Guanming Ou, Yixiang Yin
+     */
     public NPC_TALK SearchInNpc_TALK_DATA(){
         Coordinate playerCoor = this.place.getCoordinate();
         for (Coordinate coor : this.map_npcTData.keySet()){
@@ -346,25 +276,6 @@ public class Player {
         }
         return null;
     }
-
-//
-//    /**
-//     * load original map data from json_files/original_data/
-//     * @author Guanming Ou
-//     */
-//    public static HashMap<Coordinate, Place> loadOriginalMapData() {
-//        File file = new File("json_files/original_data/map.json");
-//
-//        Gson gson = new Gson();
-//        JsonReader jsonReader = null;
-//
-//        try{
-//            jsonReader = new JsonReader(new FileReader(file));
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return gson.fromJson(jsonReader, HashMap.class);
-//    }
 
     /**
      * Given data from orginal_data, search hashmap's 'place' by coordinate keys
@@ -414,7 +325,7 @@ public class Player {
             }
         }
     }
-
+    // above method's helper
     public void healing(int healingAmount){
         if (healingAmount+this.HP>this.maxHP) {
             this.HP = this.maxHP;
@@ -585,7 +496,6 @@ public class Player {
     public String getItemFromRoom(String name){
        Bag hsBag =  map_bagData.get(this.place.getCoordinate());
        Item item = hsBag.getItemByName(name);
-//        Item item = this.place.getBag().getItemByName(name);
 
         if (item == null){
             return "There is no item named "+name+" inside current room";
@@ -676,32 +586,27 @@ public class Player {
      * @author Guanming Ou
      */
     public void goToDirectionHelper(Coordinate nextCoord){
-//        HashMap<Coordinate, Place> map = this.getMapData();
-//        this.setMap_bagData(bag);
-//        if (map.containsKey(nextCoord)) // if (there is next coordinate inside the map data)
-//            this.setPlace(map.get(nextCoord)); // update current place with the place inside the map data
-
         HashMap<Coordinate, NPC_TALK> npc_t = this.map_npcTData;
         HashMap<Coordinate, NPC_MERCHANT> npc_m = this.map_npcMData;
 //        HashMap<Coordinate, Bag> bag = this.map_bagData;
 
         // update the npc merchant json of current coordinate
         if (npc_m.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-            NPC_MERCHANT npcm = extractNPCMerchant(); // find npc talk inside the abnormal point list
+            NPC_MERCHANT npcm = extractNPCMerchant();       // find npc talk inside the abnormal point list
             if (npcm != null){
-                npc_m.remove(this.place.getCoordinate()); // remove current coordinate from map data
+                npc_m.remove(this.place.getCoordinate());    // remove current coordinate from map data
                 npc_m.put(this.place.getCoordinate(), npcm); // insert current place to map data (one npc talk only)
             }
         }
         // update the npc talk json of current coordinate
         if (npc_t.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-            NPC_TALK npct = extractNPCTalk(); // find npc talk inside the abnormal point list
+            NPC_TALK npct = extractNPCTalk();               // find npc talk inside the abnormal point list
             if (npct != null){
-                npc_t.remove(this.place.getCoordinate()); // remove current coordinate from map data
+                npc_t.remove(this.place.getCoordinate());    // remove current coordinate from map data
                 npc_t.put(this.place.getCoordinate(), npct); // insert current place to map data (one npc talk only)
             }
         }
-        // update the bag json of current coordinate
+        // update the bag json of current coordinate (commented, as bag is now updated in real-time)
 //        if (bag.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
 //            bag.remove(this.place.getCoordinate()); // remove current coordinate from map data
 //            bag.put(this.place.getCoordinate(), this.place.getBag()); // insert current place to map data
@@ -711,7 +616,7 @@ public class Player {
         boolean updated = false;
         Place nextPlace = new Place(nextCoord, "have npc", 0,new Bag(100), new ArrayList<>());
         nextPlace.setAbnormalPoints(extractBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
-        if (! nextPlace.getAbnormalPoints().isEmpty()) // check if operation did get npc
+        if (! nextPlace.getAbnormalPoints().isEmpty())  // check if operation did get npc
             updated = true;
 
         if (updated == false){ // randomly generate place named wild area with random danger rate and monster
@@ -723,19 +628,8 @@ public class Player {
         this.setMap_npcTData(npc_t);
         this.setMap_npcMData(npc_m);
 
-        if (!updated)
+        if (!updated) // generate monster if there is no npc here
             generateMonster();
-    }
-    /**
-     * Check if there is monster inside the abnormal point list
-     * @author Guanming Ou
-     */
-    public Boolean isMonsterExist(){
-        for (AbnormalPoint a : this.place.getAbnormalPoints()){
-
-        }
-
-        return false;
     }
 
     /**
@@ -873,7 +767,8 @@ public class Player {
     }
 
     /**
-     * This talk to the npc at the given coordinate
+     * This handles the talk command and talk to the npc at the given coordinate
+     * It create a small dialog window
      * @return string
      * @author Guanming Ou
      */
@@ -907,7 +802,6 @@ public class Player {
                 System.out.println("Your response(s):");
                 System.out.println(npc_t.getDialogTree().printAvailableDialog()); // show player available response
                 playerResponse = s.next(); // get player's response
-
 
                 // convert player's respond into integer
                 if (isAllInt(playerResponse)){
@@ -954,7 +848,7 @@ public class Player {
                             return this.attack(); // not sure what string place here, as attack may already outputted a string
                         }
                         // this is continue
-                        DialogTree newTree = new DialogTree();
+                        DialogTree newTree = new DialogTree(); // set the selected dialog as new root
                         newTree.setRoot(nextDialog);
                         npc_t.setDialogTree(newTree);
                     }else{
@@ -987,31 +881,6 @@ public class Player {
         }
         return false;
     }
-
-    /**
-     * Trace down the dialog tree, given the selection of reply by the player
-     * @param indexChoice the choice of the player (int)
-     * @return a new DialogTree with new npc dialog and children dialogs
-     * @author: Guanming Ou
-     */
-//    public DialogTree applyReply(int indexChoice){
-//        if (this.root == null | this.root.nextDialogs == null) return null;
-//
-//        DialogTree.Dialog currentNode = this.root;
-//        List<DialogTree.Dialog> children = currentNode.nextDialogs;
-//        //TODO: Make it so that it make to npc do such things following its type
-//        for (DialogTree.Dialog d : children){
-//            if (d.index == indexChoice){
-//                DialogTree t = new DialogTree();
-//                t.root = d;
-//                t.rootString = d.npcDialog;
-//                return t;
-//            }
-//        }
-//        return null;
-//    }
-
-
 
     /**
      * you should call generateMonster function before calling the attack function
@@ -1254,14 +1123,6 @@ public class Player {
     public HashMap<Coordinate, Bag> getMap_bagData() {
         return map_bagData;
     }
-
-    //    public void setMapData(HashMap<Coordinate, Place> mapData) {
-//        this.mapData = mapData;
-//    }
-//
-//    public HashMap<Coordinate, Place> getMapData() {
-//        return mapData;
-//    }
 
     /**
      * This is a subclass for enabling edit player's origianl generate atrributes via json

@@ -6,6 +6,7 @@ import Card.Rarity;
 
 /**
  * The attack card that deal damage to opponent with the cost of action points
+ * @author Guanming Ou
  */
 public class Normal_Attack_cards extends Cards {
     int normalDamage;                   // normal attack damage (positive)

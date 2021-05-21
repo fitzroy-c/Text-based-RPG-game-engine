@@ -1,8 +1,5 @@
 package AbnormalPoints;
 
-
-import Player.Player;
-
 /**
  * This is the class of monster where player will have their combat with
  * Use specific MonsterAttributes to generate varies monster

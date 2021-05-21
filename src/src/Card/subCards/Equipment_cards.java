@@ -6,6 +6,7 @@ import Card.Rarity;
 
 /**
  * The equipment that player can play to wear it during battle, enhance the player's attribute.
+ * @author Guanming Ou
  */
 public class Equipment_cards extends Cards {
     int armorGain; // increase the normalArmor of the character

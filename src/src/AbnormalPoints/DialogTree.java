@@ -2,6 +2,10 @@ package AbnormalPoints;
 
 import java.util.List;
 
+/**
+ * A class that support the talk functionality of npc
+ * @author Guanming ou
+ */
 public class DialogTree {
     Dialog root;
 
@@ -13,7 +17,7 @@ public class DialogTree {
         CONTINUE,
         END_BLESS_HP,
         END_BLESS_ARMOR,
-        END_BLESS_DAMAGE;
+        END_BLESS_DAMAGE
     }
 
     /**
@@ -25,20 +29,21 @@ public class DialogTree {
     public DialogTree(Dialog dialog) {
         this.root = dialog;
     }
+
     /**
-     * Print all available option for player to continue on the dialog
+     * Trace down the dialog tree and Print all available option for player to continue on the dialog
      * @return all options
      * @author Guanming Ou
      */
     public String printAvailableDialog(){
         if (this.root == null | this.root.nextDialogs == null) return "no option available";
         List<Dialog> children = this.root.nextDialogs;
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (Dialog d : children)
-            result += "["+d.index+"]: " + d.playerReply +"\n";
+            result.append("[").append(d.index).append("]: ").append(d.playerReply).append("\n");
 
-        return result;
+        return result.toString();
     }
 
     /**
@@ -67,7 +72,7 @@ public class DialogTree {
     }
 
     /**
-     * Dialog class that help information of player's reply, npc's dialog and next node
+     * Dialog class that help information of player's reply, npc dialog and next node
      */
     public static class Dialog {
         int    index;

@@ -7,6 +7,7 @@ import Card.Rarity;
 
 /**
  * Prayer cards require rounds to take effective, it might heal, deal damage or draw cards
+ * @author Guanming Ou
  */
 public class Prayer_cards extends Cards {
     int roundToBeEffective; // round for this prayer card to take effective

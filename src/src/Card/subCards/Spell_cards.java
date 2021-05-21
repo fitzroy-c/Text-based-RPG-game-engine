@@ -9,6 +9,7 @@ import Card.Rarity;
 /**
  * Deal burst damage to opponent with the cost of mana points
  * For element damages, it might deal increase or decrease damage to the enemy
+ * @author Guanming Ou
  */
 public class Spell_cards extends Cards {
     int magicDamage; // the value of element damage deal to opponent

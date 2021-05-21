@@ -1,6 +1,9 @@
 package Card;
 
-// Attributed by Guanming Ou
+/**
+ * Rarity of a card
+ * @author Guanming ou
+ */
 public enum Rarity {
     Common,
     Rare,

@@ -7,6 +7,7 @@ import Card.Rarity;
 /**
  * Action cards give buffs to player/instance, and or deal damage while gain action points
  * or draw cards with the cost of action points.
+ * @author Guanming Ou
  */
 public class Action_cards extends Cards {
     int normalDamage;
@@ -157,29 +158,3 @@ public class Action_cards extends Cards {
         this.effectiveRound = effectiveRound;
     }
 }
-
-
-
-
-//hand: [0,1,2]    size 5
-//DesignForFutureExtension.Deck: [0,1,2,3,4,5];
-//
-//hand: [0,1,2]    size 5;
-//DesignForFutureExtension.Deck: [0,1,2,3,4,5]   ;
-//
-//arraylist: []
-//arraylist.add(3);
-//
-//randome.toInt(0,5) = 3       ;
-//arraylist.add(3);
-//arraylist.remove(2);
-//
-//Card 1   id 1   Rarity Normal
-//Card 2   id 2   Rarity Leng
-//
-//
-//randome.toInt(cardset.length)
-//
-//Normal Card set {1,1,1,1,1,1,1,1,1,2}
-//Knight Card set {2,2,2,3,4}
-
