@@ -13,7 +13,7 @@ public class CommandTokenizer {
     /**
      *  Tokenizer class constructor
      *  The constructor extracts the first token and save it to currentToken
-     *  **** please do not modify this part ****
+     * @author Guanming Ou
      */
     public CommandTokenizer(String text) {
         _buffer = text;		// save input text (string)
@@ -33,6 +33,7 @@ public class CommandTokenizer {
     /**
      *  This function will find and extract a next token from {@code _buffer} and
      *  save the token to {@code currentToken}.
+     * @author Gunaming Ou
      */
     public void next() {
         Boolean checkingItem = true; // make sure the while loop is working
@@ -44,9 +45,7 @@ public class CommandTokenizer {
             return;
         }
 
-        // This allows user use corresponding digit
-        // to choose command.
-        // By Zihong Yuan
+        // This allows user use corresponding digit to choose command. (Zihong Yuan)
         if (_buffer.matches("^[0-9]+$")) {
             currentToken = new Token(_buffer,Token.Type.UNKNOWN);}
 

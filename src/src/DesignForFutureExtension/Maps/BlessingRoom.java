@@ -1,4 +1,4 @@
-package Maps;
+package DesignForFutureExtension.Maps;
 
 /**
  * Fairy blessing is passive effect given to player

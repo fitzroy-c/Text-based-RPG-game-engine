@@ -1,4 +1,4 @@
-package Maps;
+package DesignForFutureExtension.Maps;
 
 /**
  * Basically, player are given option to go which room out of three options

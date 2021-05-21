@@ -1,4 +1,4 @@
-package Maps;
+package DesignForFutureExtension.Maps;
 
 import AbnormalPoints.Monster;
 
