@@ -73,8 +73,8 @@ public class Game {
                 String name = s.next();
                 player.setName(name);
                 Control c = new Control(player);
-//                System.out.println("Hi, are you ok? I am your guide to this land.");
-//                System.out.println("What do you want to know");
+                System.out.println("****Welcome to this world****");
+                System.out.println();
                 //TODO: He wants guide NPC here.
 //                gameInteractionLoop(player, c);
                 gameInteractionLoopParser(player);

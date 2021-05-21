@@ -26,8 +26,4 @@ load method enable for hashmap (Completed by Xiang )
 1. enable for bag hashmap (done by xiang)
 2. enable for npc talk
 3. enable for npc merchant (done by xiang)
-4. enable for player 
-
-
-test talk()
-test goToDirection() (guanming working)
+4. enable for player
