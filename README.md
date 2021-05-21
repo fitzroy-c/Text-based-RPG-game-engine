@@ -59,7 +59,8 @@ Zihong Yuan (u6714861):
     - if player encounters with monsters, Option Menu will show corresponding options against the monster.
     - if player encounters with NPCs, Option Menu will show corresponding options that can interact with NPCs.
     - if player has died or won, Option Menu can jump to the start menu and allow player start a new game.
- - Option Menu can detect player's HP to control the game process. If player has died, it will cease the current player.
+ - Option Menu can detect player's HP to control the game process. If player has died, it will cease the current player and 
+ jump to starting option menu
  - Edited the main method inside the Game.java. This can start the whole program and initialize user interface
  - Option Menu can allow user to save and load player profile in the start option menu, this function use save and load 
    method in the logical layer. 
