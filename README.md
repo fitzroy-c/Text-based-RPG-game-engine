@@ -46,7 +46,7 @@ Yitao Chen (u7004563):
   - How they create
   - How can player react with them, the player's choice/data-change/result. All the related functions.
 - Designed autoTest.java
-- Designed the system to check whether the TalkNPC.json fits our game engine or not. (JsonTestNpcTalk.java)
+- Designed the system to check whether the json fits our game engine or not. (JsonTestNpcTalk.java, JsonTestPlayerAttribute.java)
 
 
 Bill yuan:

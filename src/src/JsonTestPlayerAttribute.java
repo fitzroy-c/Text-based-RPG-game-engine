@@ -1,5 +1,6 @@
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,7 +9,7 @@ import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 
-public class playerAttributeTest {
+public class JsonTestPlayerAttribute {
     private static final Set<String> nullableParametersSet = new HashSet<>();
     static {
         nullableParametersSet.add("maxHPIncreasePerLv");
@@ -174,7 +175,7 @@ public class playerAttributeTest {
 
 
     }
-
+    @Test
     public static void main(String[] args) throws FileNotFoundException {
         File file = new File("json_files/original_data/Player_original_attributes.json");
         checkJson(txt2String(file));

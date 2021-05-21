@@ -15,9 +15,9 @@ import java.util.Scanner;
 
 
 /**
- * before you use the function, you should test the originate_data format first
- * TalkNPC, MerchantNPC, item?
- * // TODO fix the monster generate at wrong place issue
+ * before you use the function, you should test the 5 originate_data format first
+ * using 5 related test.
+ *
  */
 public class autoTest {
     private static Player player;
