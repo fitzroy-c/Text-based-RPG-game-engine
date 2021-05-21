@@ -976,7 +976,7 @@ public class Player {
                 "Armor: "      + getArmour()+"\n"+
                 "Criticle Chance: " + getCriticalChance()+"/"+getMaxCriticalChance()+"\n"+
                 "Money: "      + getMoney()+"\n"+
-                "Coordinate"   + this.place.getCoordinate().toString()+"\n";
+                "Coordinate: "   + this.place.getCoordinate().toString()+"\n";
     }
 
     public String getName() {

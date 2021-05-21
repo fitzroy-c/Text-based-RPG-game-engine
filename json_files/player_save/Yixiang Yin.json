@@ -9,7 +9,7 @@
   "level": 1,
   "armour": 6,
   "damage": 12,
-  "criticalChance": 0.02,
+  "criticalChance": 0.0,
   "maxCriticalChance": 1.0,
   "bag": {
     "currentWeight": 0,
@@ -18,10 +18,10 @@
   },
   "place": {
     "coordinate": {
-      "x": 0,
-      "y": 0
+      "x": 1,
+      "y": 4
     },
-    "description": "",
+    "description": "Wild area",
     "dangerRate": 0,
     "bag": {
       "currentWeight": 0,
@@ -30,7 +30,7 @@
     },
     "abnormalPoints": [],
     "random": {
-      "seed": 50289538293605,
+      "seed": 69860383381611,
       "nextNextGaussian": 0.0,
       "haveNextNextGaussian": false
     }
@@ -39,23 +39,23 @@
     "0,0": {
       "dialogTree": {
         "root": {
-          "index": 0.0,
+          "index": 0,
           "npcDialog": "I can bless you... to better prepare you for the fight",
           "nextDialogs": [
             {
-              "index": 1.0,
+              "index": 1,
               "playerReply": "I want to increase my health",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_HP"
             },
             {
-              "index": 2.0,
+              "index": 2,
               "playerReply": "I want to increase my armor",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_ARMOR"
             },
             {
-              "index": 3.0,
+              "index": 3,
               "playerReply": "I want to increase my damage",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_DAMAGE"
@@ -64,341 +64,47 @@
           "dtype": "CONTINUE"
         }
       },
-      "blessAddMaxHP": 3.0,
-      "blessAddArmour": 3.0,
-      "blessAddDamage": 3.0,
+      "blessAddMaxHP": 3,
+      "blessAddArmour": 3,
+      "blessAddDamage": 3,
       "hasEndedTalk": false,
       "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
+        "currentWeight": 0,
+        "maxWeight": 10,
         "itemList": []
       },
       "abnormalPointType": "NPC_TALK",
       "name": "Little_Fairy",
       "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 100.0,
-      "HP": 100.0,
-      "damage": 1.0,
-      "armour": 100.0,
-      "gold": 0.0,
-      "xpGain": 50.0,
-      "critChance": 0.0,
-      "element": "Normal"
-    },
-    "0,1": {
-      "dialogTree": {
-        "root": {
-          "index": 0.0,
-          "npcDialog": "I can bless you... to better prepare you for the fight",
-          "nextDialogs": [
-            {
-              "index": 1.0,
-              "playerReply": "I want to increase my health",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_HP"
-            },
-            {
-              "index": 2.0,
-              "playerReply": "I want to increase my armor",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_ARMOR"
-            },
-            {
-              "index": 3.0,
-              "playerReply": "I want to increase my damage",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_DAMAGE"
-            }
-          ],
-          "dtype": "CONTINUE"
-        }
-      },
-      "blessAddMaxHP": 3.0,
-      "blessAddArmour": 3.0,
-      "blessAddDamage": 3.0,
-      "hasEndedTalk": false,
-      "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
-        "itemList": []
-      },
-      "abnormalPointType": "NPC_TALK",
-      "name": "Little_Fairy",
-      "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 100.0,
-      "HP": 100.0,
-      "damage": 1.0,
-      "armour": 100.0,
-      "gold": 0.0,
-      "xpGain": 50.0,
-      "critChance": 0.0,
-      "element": "Normal"
-    },
-    "1,0": {
-      "dialogTree": {
-        "root": {
-          "index": 0.0,
-          "npcDialog": "I can bless you... to better prepare you for the fight",
-          "nextDialogs": [
-            {
-              "index": 1.0,
-              "playerReply": "I want to increase my health",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_HP"
-            },
-            {
-              "index": 2.0,
-              "playerReply": "I want to increase my armor",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_ARMOR"
-            },
-            {
-              "index": 3.0,
-              "playerReply": "I want to increase my damage",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_DAMAGE"
-            }
-          ],
-          "dtype": "CONTINUE"
-        }
-      },
-      "blessAddMaxHP": 50.0,
-      "blessAddArmour": 30.0,
-      "blessAddDamage": 40.0,
-      "hasEndedTalk": false,
-      "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
-        "itemList": []
-      },
-      "abnormalPointType": "NPC_TALK",
-      "name": "Elder_Fairy",
-      "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 10000.0,
-      "HP": 10000.0,
-      "damage": 1.0,
-      "armour": 2000.0,
-      "gold": 0.0,
-      "xpGain": 1000.0,
-      "critChance": 0.0,
-      "element": "Normal"
-    },
-    "0,2": {
-      "dialogTree": {
-        "root": {
-          "index": 0.0,
-          "npcDialog": "I can bless you... to better prepare you for the fight",
-          "nextDialogs": [
-            {
-              "index": 1.0,
-              "playerReply": "I want to increase my health",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_HP"
-            },
-            {
-              "index": 2.0,
-              "playerReply": "I want to increase my armor",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_ARMOR"
-            },
-            {
-              "index": 3.0,
-              "playerReply": "I want to increase my damage",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_DAMAGE"
-            }
-          ],
-          "dtype": "CONTINUE"
-        }
-      },
-      "blessAddMaxHP": 13.0,
-      "blessAddArmour": 10.0,
-      "blessAddDamage": 10.0,
-      "hasEndedTalk": false,
-      "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
-        "itemList": []
-      },
-      "abnormalPointType": "NPC_TALK",
-      "name": "Adult_Fairy",
-      "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 1000.0,
-      "HP": 1000.0,
-      "damage": 1.0,
-      "armour": 1000.0,
-      "gold": 0.0,
-      "xpGain": 500.0,
-      "critChance": 0.0,
-      "element": "Normal"
-    },
-    "2,0": {
-      "dialogTree": {
-        "root": {
-          "index": 0.0,
-          "npcDialog": "I can bless you... to better prepare you for the fight",
-          "nextDialogs": [
-            {
-              "index": 1.0,
-              "playerReply": "I want to increase my health",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_HP"
-            },
-            {
-              "index": 2.0,
-              "playerReply": "I want to increase my armor",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_ARMOR"
-            },
-            {
-              "index": 3.0,
-              "playerReply": "I want to increase my damage",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_DAMAGE"
-            }
-          ],
-          "dtype": "CONTINUE"
-        }
-      },
-      "blessAddMaxHP": 3.0,
-      "blessAddArmour": 3.0,
-      "blessAddDamage": 3.0,
-      "hasEndedTalk": false,
-      "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
-        "itemList": []
-      },
-      "abnormalPointType": "NPC_TALK",
-      "name": "Little_Fairy",
-      "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 100.0,
-      "HP": 100.0,
-      "damage": 1.0,
-      "armour": 100.0,
-      "gold": 0.0,
-      "xpGain": 50.0,
-      "critChance": 0.0,
-      "element": "Normal"
-    },
-    "0,3": {
-      "dialogTree": {
-        "root": {
-          "index": 0.0,
-          "npcDialog": "I can bless you... to better prepare you for the fight",
-          "nextDialogs": [
-            {
-              "index": 1.0,
-              "playerReply": "I want to increase my health",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_HP"
-            },
-            {
-              "index": 2.0,
-              "playerReply": "I want to increase my armor",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_ARMOR"
-            },
-            {
-              "index": 3.0,
-              "playerReply": "I want to increase my damage",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_DAMAGE"
-            }
-          ],
-          "dtype": "CONTINUE"
-        }
-      },
-      "blessAddMaxHP": 3.0,
-      "blessAddArmour": 3.0,
-      "blessAddDamage": 3.0,
-      "hasEndedTalk": false,
-      "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
-        "itemList": []
-      },
-      "abnormalPointType": "NPC_TALK",
-      "name": "Little_Fairy",
-      "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 100.0,
-      "HP": 100.0,
-      "damage": 1.0,
-      "armour": 100.0,
-      "gold": 0.0,
-      "xpGain": 50.0,
-      "critChance": 0.0,
-      "element": "Normal"
-    },
-    "3,0": {
-      "dialogTree": {
-        "root": {
-          "index": 0.0,
-          "npcDialog": "I can bless you... to better prepare you for the fight",
-          "nextDialogs": [
-            {
-              "index": 1.0,
-              "playerReply": "I want to increase my health",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_HP"
-            },
-            {
-              "index": 2.0,
-              "playerReply": "I want to increase my armor",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_ARMOR"
-            },
-            {
-              "index": 3.0,
-              "playerReply": "I want to increase my damage",
-              "npcDialog": "as you wish...",
-              "dtype": "END_BLESS_DAMAGE"
-            }
-          ],
-          "dtype": "CONTINUE"
-        }
-      },
-      "blessAddMaxHP": 13.0,
-      "blessAddArmour": 10.0,
-      "blessAddDamage": 10.0,
-      "hasEndedTalk": false,
-      "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
-        "itemList": []
-      },
-      "abnormalPointType": "NPC_TALK",
-      "name": "Adult_Fairy",
-      "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 1000.0,
-      "HP": 1000.0,
-      "damage": 1.0,
-      "armour": 1000.0,
-      "gold": 0.0,
-      "xpGain": 500.0,
+      "maxHP": 100,
+      "HP": 100,
+      "damage": 1,
+      "armour": 100,
+      "gold": 0,
+      "xpGain": 50,
       "critChance": 0.0,
       "element": "Normal"
     },
     "4,0": {
       "dialogTree": {
         "root": {
-          "index": 0.0,
+          "index": 0,
           "npcDialog": "I can bless you... to better prepare you for the fight",
           "nextDialogs": [
             {
-              "index": 1.0,
+              "index": 1,
               "playerReply": "I want to increase my health",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_HP"
             },
             {
-              "index": 2.0,
+              "index": 2,
               "playerReply": "I want to increase my armor",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_ARMOR"
             },
             {
-              "index": 3.0,
+              "index": 3,
               "playerReply": "I want to increase my damage",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_DAMAGE"
@@ -407,47 +113,243 @@
           "dtype": "CONTINUE"
         }
       },
-      "blessAddMaxHP": 7.0,
-      "blessAddArmour": 6.0,
-      "blessAddDamage": 4.0,
+      "blessAddMaxHP": 7,
+      "blessAddArmour": 6,
+      "blessAddDamage": 4,
       "hasEndedTalk": false,
       "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
+        "currentWeight": 0,
+        "maxWeight": 10,
         "itemList": []
       },
       "abnormalPointType": "NPC_TALK",
       "name": "Teenager_Fairy",
       "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 500.0,
-      "HP": 500.0,
-      "damage": 1.0,
-      "armour": 500.0,
-      "gold": 0.0,
-      "xpGain": 100.0,
+      "maxHP": 500,
+      "HP": 500,
+      "damage": 1,
+      "armour": 500,
+      "gold": 0,
+      "xpGain": 100,
+      "critChance": 0.0,
+      "element": "Normal"
+    },
+    "0,1": {
+      "dialogTree": {
+        "root": {
+          "index": 0,
+          "npcDialog": "I can bless you... to better prepare you for the fight",
+          "nextDialogs": [
+            {
+              "index": 1,
+              "playerReply": "I want to increase my health",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_HP"
+            },
+            {
+              "index": 2,
+              "playerReply": "I want to increase my armor",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_ARMOR"
+            },
+            {
+              "index": 3,
+              "playerReply": "I want to increase my damage",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_DAMAGE"
+            }
+          ],
+          "dtype": "CONTINUE"
+        }
+      },
+      "blessAddMaxHP": 3,
+      "blessAddArmour": 3,
+      "blessAddDamage": 3,
+      "hasEndedTalk": false,
+      "npcBag": {
+        "currentWeight": 0,
+        "maxWeight": 10,
+        "itemList": []
+      },
+      "abnormalPointType": "NPC_TALK",
+      "name": "Little_Fairy",
+      "intro": "Hi, I can permanent increase your power!",
+      "maxHP": 100,
+      "HP": 100,
+      "damage": 1,
+      "armour": 100,
+      "gold": 0,
+      "xpGain": 50,
+      "critChance": 0.0,
+      "element": "Normal"
+    },
+    "0,2": {
+      "dialogTree": {
+        "root": {
+          "index": 0,
+          "npcDialog": "I can bless you... to better prepare you for the fight",
+          "nextDialogs": [
+            {
+              "index": 1,
+              "playerReply": "I want to increase my health",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_HP"
+            },
+            {
+              "index": 2,
+              "playerReply": "I want to increase my armor",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_ARMOR"
+            },
+            {
+              "index": 3,
+              "playerReply": "I want to increase my damage",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_DAMAGE"
+            }
+          ],
+          "dtype": "CONTINUE"
+        }
+      },
+      "blessAddMaxHP": 13,
+      "blessAddArmour": 10,
+      "blessAddDamage": 10,
+      "hasEndedTalk": false,
+      "npcBag": {
+        "currentWeight": 0,
+        "maxWeight": 10,
+        "itemList": []
+      },
+      "abnormalPointType": "NPC_TALK",
+      "name": "Adult_Fairy",
+      "intro": "Hi, I can permanent increase your power!",
+      "maxHP": 1000,
+      "HP": 1000,
+      "damage": 1,
+      "armour": 1000,
+      "gold": 0,
+      "xpGain": 500,
+      "critChance": 0.0,
+      "element": "Normal"
+    },
+    "0,3": {
+      "dialogTree": {
+        "root": {
+          "index": 0,
+          "npcDialog": "I can bless you... to better prepare you for the fight",
+          "nextDialogs": [
+            {
+              "index": 1,
+              "playerReply": "I want to increase my health",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_HP"
+            },
+            {
+              "index": 2,
+              "playerReply": "I want to increase my armor",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_ARMOR"
+            },
+            {
+              "index": 3,
+              "playerReply": "I want to increase my damage",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_DAMAGE"
+            }
+          ],
+          "dtype": "CONTINUE"
+        }
+      },
+      "blessAddMaxHP": 3,
+      "blessAddArmour": 3,
+      "blessAddDamage": 3,
+      "hasEndedTalk": false,
+      "npcBag": {
+        "currentWeight": 0,
+        "maxWeight": 10,
+        "itemList": []
+      },
+      "abnormalPointType": "NPC_TALK",
+      "name": "Little_Fairy",
+      "intro": "Hi, I can permanent increase your power!",
+      "maxHP": 100,
+      "HP": 100,
+      "damage": 1,
+      "armour": 100,
+      "gold": 0,
+      "xpGain": 50,
+      "critChance": 0.0,
+      "element": "Normal"
+    },
+    "1,0": {
+      "dialogTree": {
+        "root": {
+          "index": 0,
+          "npcDialog": "I can bless you... to better prepare you for the fight",
+          "nextDialogs": [
+            {
+              "index": 1,
+              "playerReply": "I want to increase my health",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_HP"
+            },
+            {
+              "index": 2,
+              "playerReply": "I want to increase my armor",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_ARMOR"
+            },
+            {
+              "index": 3,
+              "playerReply": "I want to increase my damage",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_DAMAGE"
+            }
+          ],
+          "dtype": "CONTINUE"
+        }
+      },
+      "blessAddMaxHP": 50,
+      "blessAddArmour": 30,
+      "blessAddDamage": 40,
+      "hasEndedTalk": false,
+      "npcBag": {
+        "currentWeight": 0,
+        "maxWeight": 10,
+        "itemList": []
+      },
+      "abnormalPointType": "NPC_TALK",
+      "name": "Elder_Fairy",
+      "intro": "Hi, I can permanent increase your power!",
+      "maxHP": 10000,
+      "HP": 10000,
+      "damage": 1,
+      "armour": 2000,
+      "gold": 0,
+      "xpGain": 1000,
       "critChance": 0.0,
       "element": "Normal"
     },
     "0,4": {
       "dialogTree": {
         "root": {
-          "index": 0.0,
+          "index": 0,
           "npcDialog": "I can bless you... to better prepare you for the fight",
           "nextDialogs": [
             {
-              "index": 1.0,
+              "index": 1,
               "playerReply": "I want to increase my health",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_HP"
             },
             {
-              "index": 2.0,
+              "index": 2,
               "playerReply": "I want to increase my armor",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_ARMOR"
             },
             {
-              "index": 3.0,
+              "index": 3,
               "playerReply": "I want to increase my damage",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_DAMAGE"
@@ -456,47 +358,47 @@
           "dtype": "CONTINUE"
         }
       },
-      "blessAddMaxHP": 13.0,
-      "blessAddArmour": 10.0,
-      "blessAddDamage": 10.0,
+      "blessAddMaxHP": 13,
+      "blessAddArmour": 10,
+      "blessAddDamage": 10,
       "hasEndedTalk": false,
       "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
+        "currentWeight": 0,
+        "maxWeight": 10,
         "itemList": []
       },
       "abnormalPointType": "NPC_TALK",
       "name": "Adult_Fairy",
       "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 1000.0,
-      "HP": 1000.0,
-      "damage": 1.0,
-      "armour": 1000.0,
-      "gold": 0.0,
-      "xpGain": 500.0,
+      "maxHP": 1000,
+      "HP": 1000,
+      "damage": 1,
+      "armour": 1000,
+      "gold": 0,
+      "xpGain": 500,
       "critChance": 0.0,
       "element": "Normal"
     },
     "5,0": {
       "dialogTree": {
         "root": {
-          "index": 0.0,
+          "index": 0,
           "npcDialog": "I can bless you... to better prepare you for the fight",
           "nextDialogs": [
             {
-              "index": 1.0,
+              "index": 1,
               "playerReply": "I want to increase my health",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_HP"
             },
             {
-              "index": 2.0,
+              "index": 2,
               "playerReply": "I want to increase my armor",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_ARMOR"
             },
             {
-              "index": 3.0,
+              "index": 3,
               "playerReply": "I want to increase my damage",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_DAMAGE"
@@ -505,47 +407,47 @@
           "dtype": "CONTINUE"
         }
       },
-      "blessAddMaxHP": 50.0,
-      "blessAddArmour": 30.0,
-      "blessAddDamage": 40.0,
+      "blessAddMaxHP": 50,
+      "blessAddArmour": 30,
+      "blessAddDamage": 40,
       "hasEndedTalk": false,
       "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
+        "currentWeight": 0,
+        "maxWeight": 10,
         "itemList": []
       },
       "abnormalPointType": "NPC_TALK",
       "name": "Elder_Fairy",
       "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 10000.0,
-      "HP": 10000.0,
-      "damage": 1.0,
-      "armour": 2000.0,
-      "gold": 0.0,
-      "xpGain": 1000.0,
+      "maxHP": 10000,
+      "HP": 10000,
+      "damage": 1,
+      "armour": 2000,
+      "gold": 0,
+      "xpGain": 1000,
       "critChance": 0.0,
       "element": "Normal"
     },
     "0,5": {
       "dialogTree": {
         "root": {
-          "index": 0.0,
+          "index": 0,
           "npcDialog": "I can bless you... to better prepare you for the fight",
           "nextDialogs": [
             {
-              "index": 1.0,
+              "index": 1,
               "playerReply": "I want to increase my health",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_HP"
             },
             {
-              "index": 2.0,
+              "index": 2,
               "playerReply": "I want to increase my armor",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_ARMOR"
             },
             {
-              "index": 3.0,
+              "index": 3,
               "playerReply": "I want to increase my damage",
               "npcDialog": "as you wish...",
               "dtype": "END_BLESS_DAMAGE"
@@ -554,24 +456,122 @@
           "dtype": "CONTINUE"
         }
       },
-      "blessAddMaxHP": 7.0,
-      "blessAddArmour": 6.0,
-      "blessAddDamage": 4.0,
+      "blessAddMaxHP": 7,
+      "blessAddArmour": 6,
+      "blessAddDamage": 4,
       "hasEndedTalk": false,
       "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 10.0,
+        "currentWeight": 0,
+        "maxWeight": 10,
         "itemList": []
       },
       "abnormalPointType": "NPC_TALK",
       "name": "Teenager_Fairy",
       "intro": "Hi, I can permanent increase your power!",
-      "maxHP": 500.0,
-      "HP": 500.0,
-      "damage": 1.0,
-      "armour": 500.0,
-      "gold": 0.0,
-      "xpGain": 100.0,
+      "maxHP": 500,
+      "HP": 500,
+      "damage": 1,
+      "armour": 500,
+      "gold": 0,
+      "xpGain": 100,
+      "critChance": 0.0,
+      "element": "Normal"
+    },
+    "2,0": {
+      "dialogTree": {
+        "root": {
+          "index": 0,
+          "npcDialog": "I can bless you... to better prepare you for the fight",
+          "nextDialogs": [
+            {
+              "index": 1,
+              "playerReply": "I want to increase my health",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_HP"
+            },
+            {
+              "index": 2,
+              "playerReply": "I want to increase my armor",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_ARMOR"
+            },
+            {
+              "index": 3,
+              "playerReply": "I want to increase my damage",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_DAMAGE"
+            }
+          ],
+          "dtype": "CONTINUE"
+        }
+      },
+      "blessAddMaxHP": 3,
+      "blessAddArmour": 3,
+      "blessAddDamage": 3,
+      "hasEndedTalk": false,
+      "npcBag": {
+        "currentWeight": 0,
+        "maxWeight": 10,
+        "itemList": []
+      },
+      "abnormalPointType": "NPC_TALK",
+      "name": "Little_Fairy",
+      "intro": "Hi, I can permanent increase your power!",
+      "maxHP": 100,
+      "HP": 100,
+      "damage": 1,
+      "armour": 100,
+      "gold": 0,
+      "xpGain": 50,
+      "critChance": 0.0,
+      "element": "Normal"
+    },
+    "3,0": {
+      "dialogTree": {
+        "root": {
+          "index": 0,
+          "npcDialog": "I can bless you... to better prepare you for the fight",
+          "nextDialogs": [
+            {
+              "index": 1,
+              "playerReply": "I want to increase my health",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_HP"
+            },
+            {
+              "index": 2,
+              "playerReply": "I want to increase my armor",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_ARMOR"
+            },
+            {
+              "index": 3,
+              "playerReply": "I want to increase my damage",
+              "npcDialog": "as you wish...",
+              "dtype": "END_BLESS_DAMAGE"
+            }
+          ],
+          "dtype": "CONTINUE"
+        }
+      },
+      "blessAddMaxHP": 13,
+      "blessAddArmour": 10,
+      "blessAddDamage": 10,
+      "hasEndedTalk": false,
+      "npcBag": {
+        "currentWeight": 0,
+        "maxWeight": 10,
+        "itemList": []
+      },
+      "abnormalPointType": "NPC_TALK",
+      "name": "Adult_Fairy",
+      "intro": "Hi, I can permanent increase your power!",
+      "maxHP": 1000,
+      "HP": 1000,
+      "damage": 1,
+      "armour": 1000,
+      "gold": 0,
+      "xpGain": 500,
       "critChance": 0.0,
       "element": "Normal"
     }
@@ -579,8 +579,8 @@
   "map_npcMData": {
     "1,1": {
       "npcBag": {
-        "currentWeight": 0.0,
-        "maxWeight": 1000.0,
+        "currentWeight": 0,
+        "maxWeight": 1000,
         "itemList": [
           {
             "id": "C1",
@@ -588,9 +588,9 @@
             "name": "Mushroom",
             "description": "Restores 15 health",
             "properties": {
-              "health": 15.0,
-              "weight": 1.0,
-              "value": 10.0
+              "health": 15,
+              "weight": 1,
+              "value": 10
             }
           },
           {
@@ -599,9 +599,9 @@
             "name": "Lesser Healing Potion",
             "description": "Restores 50 health",
             "properties": {
-              "health": 50.0,
-              "weight": 1.0,
-              "value": 25.0
+              "health": 50,
+              "weight": 1,
+              "value": 25
             }
           },
           {
@@ -610,9 +610,9 @@
             "name": "Healing Potion",
             "description": "Restores 100 health",
             "properties": {
-              "health": 100.0,
-              "weight": 1.0,
-              "value": 50.0
+              "health": 100,
+              "weight": 1,
+              "value": 50
             }
           },
           {
@@ -621,9 +621,9 @@
             "name": "Greater Healing Potion",
             "description": "Restores 150 health",
             "properties": {
-              "health": 150.0,
-              "weight": 1.0,
-              "value": 100.0
+              "health": 150,
+              "weight": 1,
+              "value": 100
             }
           }
         ]
@@ -631,2497 +631,917 @@
       "abnormalPointType": "NPC_MERCHANT",
       "name": "Merchant 1",
       "intro": "s",
-      "maxHP": 100.0,
-      "HP": 100.0,
-      "damage": 10.0,
-      "armour": 10.0,
-      "gold": 10.0,
-      "xpGain": 10.0,
+      "maxHP": 100,
+      "HP": 100,
+      "damage": 10,
+      "armour": 10,
+      "gold": 10,
+      "xpGain": 10,
       "critChance": 10.0,
       "element": "Normal"
     }
   },
   "map_bagData": {
-    "8,18": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "8,16": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "10,10": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "10,12": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "8,10": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "8,14": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "8,12": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "2,28": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "10,14": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "10,16": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "10,18": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "8,28": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "8,26": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "10,20": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "10,22": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
     "10,24": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "8,20": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "8,24": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "8,22": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "10,26": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "6,0": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "10,28": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "6,2": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "6,4": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "6,6": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "6,8": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "28,8": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "28,6": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "26,12": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "20,4": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,14": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "20,2": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "26,16": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "20,0": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,18": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "28,4": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "28,2": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "28,0": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "20,8": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,10": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "20,6": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "16,8": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,22": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,24": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "26,26": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,28": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "16,6": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "16,4": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "16,2": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "16,0": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,20": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "14,12": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,12": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "14,10": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "20,18": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,14": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "14,16": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "20,16": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "4,16": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "14,14": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "20,14": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,18": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,10": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "20,12": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "14,18": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "20,10": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,22": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "14,24": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,24": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "14,22": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "20,28": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "4,26": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "14,28": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "20,26": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,28": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "14,26": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "20,24": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "14,20": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,20": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "4,0": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "20,22": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,2": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "20,20": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "4,4": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "4,6": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "4,8": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,8": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "26,6": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,4": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "26,2": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "26,0": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "14,0": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "14,8": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "14,6": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "14,4": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "14,2": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "18,18": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "18,14": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "18,16": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "18,10": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "0,14": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,18": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "18,12": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "0,12": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "0,10": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,10": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,12": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "24,14": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,16": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "18,26": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "18,28": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "0,24": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "24,28": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "18,22": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "0,22": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "18,24": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "0,20": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "18,20": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,20": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "24,22": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,24": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "0,18": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "2,0": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,26": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "0,16": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "2,2": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "2,4": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "2,6": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "2,8": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "6,14": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "6,16": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "12,10": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "6,18": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "12,12": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "12,14": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "6,10": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "6,12": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,0": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "0,28": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "0,26": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "12,16": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "24,8": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "12,18": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,6": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "24,4": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "24,2": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "12,20": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "6,24": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "12,22": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "6,26": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "12,24": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "6,28": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "12,26": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "6,20": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "6,22": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "12,2": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "12,0": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "12,28": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "12,8": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "12,6": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "12,4": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "28,16": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "28,14": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "28,18": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "28,12": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "28,10": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "28,26": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "28,24": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
     },
     "0,0": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
     "0,2": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "28,28": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "10,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
     "0,4": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
     },
     "0,6": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
     },
     "0,8": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "28,22": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "0,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "8,0": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "0,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "28,20": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "0,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "8,2": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "0,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "8,4": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "0,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "16,14": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "0,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "8,6": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "0,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "16,12": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "0,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "22,18": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "0,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "8,8": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "0,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "16,18": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "26,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "22,16": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "26,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "16,16": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "26,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "2,16": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "26,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "2,14": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "26,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "2,12": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "26,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "26,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "26,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "26,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "26,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "26,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "26,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "26,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "16,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "26,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "16,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "26,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "16,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "16,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "16,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
     "16,10": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "2,10": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "16,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "22,2": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "16,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "22,0": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "16,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "22,14": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "22,12": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "22,8": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "22,10": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "22,6": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "22,4": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "16,26": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "16,24": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "18,8": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "22,28": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "16,28": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "18,6": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "22,26": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "2,26": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
-    },
-    "2,24": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "16,22": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
-    },
-    "2,22": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "16,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
     "16,20": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "2,20": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "16,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "10,4": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "6,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "10,2": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "16,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "10,0": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "6,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "2,18": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "16,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "18,4": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "6,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "22,24": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "16,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "18,2": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "6,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "22,22": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+    "6,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "18,0": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "6,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "6,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "6,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "6,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "6,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "6,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "6,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "6,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "6,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "6,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
     "22,20": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
     },
-    "10,8": {
-      "id": "C3",
-      "type": "consumable",
-      "name": "Healing Potion",
-      "description": "Restores 100 health",
-      "properties": {
-        "health": 100.0,
-        "weight": 1.0,
-        "value": 50.0
-      }
+    "22,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "22,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "12,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "2,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "28,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "18,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "8,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "24,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "14,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "4,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,6": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,24": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,0": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,26": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,2": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "20,28": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,4": {
+      "currentWeight": 0,
+      "maxWeight": 0
     },
     "10,6": {
-      "id": "C1",
-      "type": "consumable",
-      "name": "Mushroom",
-      "description": "Restores 15 health",
-      "properties": {
-        "health": 15.0,
-        "weight": 1.0,
-        "value": 10.0
-      }
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,8": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,10": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,12": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,14": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,16": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,18": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,20": {
+      "currentWeight": 0,
+      "maxWeight": 0
+    },
+    "10,22": {
+      "currentWeight": 0,
+      "maxWeight": 0
     }
-  },
-  "random": {
-    "seed": 34778343510559,
-    "nextNextGaussian": 0.0,
-    "haveNextNextGaussian": false
   },
   "pa": {
     "maxHPIncreasePerLv": 15,
