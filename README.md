@@ -1,12 +1,13 @@
-# Comp2100 group project WIKI
-Contributer: Yixiang Yin, Yitao Chen, Guanming Ou, Aureliano Yuan
-
 # We created a exciting game with the following feature
 
 
 
 
 
+
+
+development log is in Develop package.
+project summary, game engine design, quick guide for player and game designer are all on Wiki page
 
 
 # Team structure and role
