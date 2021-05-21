@@ -1,1 +1,2 @@
-áxóª< Ê8³z6!W8]ŽHëÉ¼Ù£9Ô9$Ê©³k7Êû9ŸÍÜqŠ
+#Comp2100 group project WIKI
+###Contributer: Yixiang Yin, Yitao Chen, Guanming Ou, Aureliano Yuan
