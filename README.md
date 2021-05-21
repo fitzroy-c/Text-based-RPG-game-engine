@@ -11,8 +11,8 @@
 6. and a lot more for you to explore!!!
 
 # Other documentation
-- development log is in Develop package.
-- project summary, game engine design, quick guide for player and game designer are all on Wiki page
+- Development log is in Develop package.
+- Project summary, game engine design, quick guide for player and game designer are all on Wiki page
 - The card package, map package, gui package and DesignForFutureExtension package are used for game's future extension.
 - The auto test needed jar file(add it to lib) is in wiki
 
@@ -25,7 +25,7 @@ npc talk class, which can do conversation with player.  Active in modifying and 
 framework and class structure, involves in discussion with group mates.
 
 Yixiang Yin:
-- allow the player to load the old game from corresponding json file(see load in player.class)…
+- Allow the player to load the old game from corresponding json file(see load in player.class)…
 - Allow the player to change the map or other initalisations of the game by editing json file.
 - Initialize the merchant and items on the map by loading the corresponding json file.
 - Allow the player to interact with item(see item.class). For instance, use item to heal
