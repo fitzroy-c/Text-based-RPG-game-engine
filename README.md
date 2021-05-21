@@ -13,6 +13,7 @@
 # Other documentation
 - development log is in Develop package.
 - project summary, game engine design, quick guide for player and game designer are all on Wiki page
+- The card package, map package, gui package and DesignForFutureExtension package are used for game's future extension.
 
 
 # Team structure and role
