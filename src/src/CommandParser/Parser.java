@@ -271,7 +271,6 @@ public class Parser {
                 cmdExecuted = true;
             }
         }
-        //  Todo need fix
         //  * <retreat-command> := <retreat-action>
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.RETREAT_ACTION){
             cmdExecuted = true;
@@ -285,7 +284,6 @@ public class Parser {
             }
         }
 
-        // Todo need fix
         // <bribe-command> := bribe
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.BRIBE){
             this._tokenizer.next();
@@ -297,7 +295,6 @@ public class Parser {
                 cmdExecuted = true;
             }
         }
-
 
         // <help-command> := help
         if (cmdExecuted==false && this._tokenizer.hasNext() && this._tokenizer.current().type()==Token.Type.HELP){
@@ -318,8 +315,6 @@ public class Parser {
 
         return true;
     }
-
-
 
     public void callError() {
         System.out.println("message not recognised, please try again or use 'help'");
@@ -351,7 +346,7 @@ public class Parser {
                 "<help>: Prints this info\n");
     }
 
-    // test only, delete later
+    // manual test only
     public static void main(String[] args) {
         /**
          * tests done
@@ -387,7 +382,7 @@ public class Parser {
          * //- defence    -> player defenced
          * //- defence de -> error
          * - retreat defence -> error
-         * - go bribe
+         * - go bribe   -> error
          * - save game exit game -> game saved
          * - go bribe -> error
          * - take Lesser Healing Potion -> taked item

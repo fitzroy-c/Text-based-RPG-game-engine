@@ -1,33 +1,9 @@
 package CommandParser;
 
 /**
- * <command> := <save>|<exit>|<detect>|<move-command>|<take-command>|<shop-command>|<drop command>|<talk-command>|
- *              <consume-command>|<attack-command>|<retreat-command>|<defence-command>|<view-command>|<help-command>
- * <save>    := save | save game
- * <exit>    := exit | exit game
- * <detect>  := detect
- * <move-command> := <move_action> <direction> | <direction>
- * <move_action> := go | move | head
- * <direction> := north | south | east | west
- * <consume-command> := <consume-action> <item-name>
- * <consume-action> := consume | eat | drink | use
- * <take-command> := <take_action> <item-name> | <take_action> <gold | golds | money>
- * <shop-command> := shop | buy | purchase | shopping | trade
- * <item-name> := "item inside the room"
- * <take_action> := take | pick
- * <drop-command> := <drop_action> <item-name>
- * <drop_action> := drop | put down | abandon
- * <talk-command> := talk | chat | speak
- * <view-command> := <look-action> <stat> | <look-action> <bag> | <stat> | <bag>
- * <stat>         := stat | stats | statistic
- * <bag>          := <backpack | bag>
- * <look-action> := look | view | see | browse
- * <attack-command> := attack
- * <retreat-command> := retreat | run away | escape | back
- * <bribe-command> := bribe
- * <help-command> := help
+ * Declaring types of command, a subclass for tokenizer
+ * @author Guanming Ou
  */
-
 public class Token {
     public enum Type {UNKNOWN, ERROR, SAVE, EXIT, DETECT, DIRECTION_ACTION, DIRECTION, CONSUME_ACTION, TAKE_ACTION, DROP_ACTION,
         ITEM, TALK, SHOP, VIEW_ACTION, STAT, BACKPACK, ATTACK, RETREAT_ACTION, BRIBE, HELP};
