@@ -1,3 +1,14 @@
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.HashSet;
+import java.util.Set;
+
 import java.io.*;
 import java.util.*;
 
@@ -5,6 +16,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import org.junit.Test;
+
 
 /**
  *
@@ -18,11 +30,10 @@ import org.junit.Test;
  *
  * A coordinate determines a object type (a)
  *
- * a must have the following characteristics: diagtree, blessaddmaxhp (positive integer), blessaddarmour (integer),
- * blessadddamage (positive integer), hasendedtalk (Boolean), abnormalpointtype (must be NPC_Talk),
+ * a must have the following characteristics: abnormalpointtype (must be NPC_MERCHANT),
  * name (string), Intro (string), maxhp (positive integer), HP (positive integer),
  * damage (positive integer), armour (integer), gold (integer), xpgain (integer),
- * critchance ([0,1] not so restrict,just a double), element (must be "normal"), possible characteristics: npcbag
+ * critchance ([0,1] not so restrict,just a double), possible characteristics: npcbag
  *
  * Npcbag must have the following characteristics: currentweight (non negative integer),
  * maxweight (non negative integer), itemlist (unlimited length).
@@ -33,38 +44,19 @@ import org.junit.Test;
  *
  * if any in properties, item characteristics: health (integer), weight (integer), Value (integer))
  *
- * diagtree must have the characteristic root,
- *
- * root must have index (integer), npcdialog (string), nextdialogs (), dtype (must be one from
- * ATTACK,END_ GIVE_ GOLD，END_ GIVE_ ITEM, END_ NONE, CONTINUE,END_ BLESS_ HP,END_ BLESS_ ARMOR,END_ BLESS_ Damage )
- *
- * If nextdialogs exists must follow the similar structure with root，
- * with an potential added characteristic: playerReply (string)
  *
  * check the class first, some int range check remains undo
  *
- * @author yitao chen
+ * @author Guanming Ou, modify on code from yitao chen's JsonTestNpcTalk
  */
-
-
-
-public class JsonTestNpcTalk {
-
+public class JsonTestNpcMerchant {
     private static final Set<String> nullableParametersSet1 = new HashSet<>();
     private static final Set<String> optionalParametersSet1 = new HashSet<>();
     private static final Set<String> nullableParametersSet2 = new HashSet<>();
     private static final Set<String> nullableParametersSet3 = new HashSet<>();
     private static final Set<String> nullableParametersSet4 = new HashSet<>();
-    private static final Set<String> nullableParametersSet5 = new HashSet<>();
-    private static final Set<String> optionalParametersSet5 = new HashSet<>();
-    private static final Set<String> dtypes = new HashSet<>();
 
     static {
-        nullableParametersSet1.add("dialogTree");
-        nullableParametersSet1.add("blessAddMaxHP");
-        nullableParametersSet1.add("blessAddArmour");
-        nullableParametersSet1.add("blessAddDamage");
-        nullableParametersSet1.add("hasEndedTalk");
         nullableParametersSet1.add("abnormalPointType");
         nullableParametersSet1.add("name");
         nullableParametersSet1.add("intro");
@@ -92,22 +84,6 @@ public class JsonTestNpcTalk {
         nullableParametersSet4.add("weight");
         nullableParametersSet4.add("value");
 
-        nullableParametersSet5.add("index");
-        nullableParametersSet5.add("npcDialog");
-        nullableParametersSet5.add("dtype");
-
-        optionalParametersSet5.add("nextDialogs");
-        optionalParametersSet5.add("playerReply");
-
-        dtypes.add("END_ATTACK");
-        dtypes.add("END_GIVE_GOLD");
-        dtypes.add("END_GIVE_ITEM");
-        dtypes.add("END_NONE");
-        dtypes.add("CONTINUE");
-        dtypes.add("END_BLESS_HP");
-        dtypes.add("END_BLESS_ARMOR");
-        dtypes.add("END_BLESS_DAMAGE");
-
     }
 
 
@@ -124,59 +100,6 @@ public class JsonTestNpcTalk {
             e.printStackTrace();
         }
         return result;
-    }
-
-    private static void checkDialog(JSONObject jsonObject) throws JSONException{
-        Set<String> dialogParams = jsonObject.keySet();
-
-        for (String param : dialogParams) {
-            if (!nullableParametersSet5.contains(param) & !optionalParametersSet5.contains(param)) {
-                throw new JSONException("bad param on dialogTree: " + param);
-            } else {
-                for (String para : nullableParametersSet5) {
-                    if (!dialogParams.contains(para)) {
-                        throw new JSONException("miss param on dialogTree: " + para);
-                    }
-                }
-            }
-        }
-
-        try {
-            jsonObject.getObject("index", int.class);
-        } catch (Exception e) {
-            throw new JSONException("bad index: " + jsonObject.getObject("index", String.class));
-        }
-
-        try {
-            jsonObject.getObject("npcDialog", String.class);
-        } catch (Exception e) {
-            throw new JSONException("bad npcDialog: " + jsonObject.getObject("npcDialog", String.class));
-        }
-
-        try {
-            if (!dtypes.contains(jsonObject.getObject("dtype", String.class))) {
-                throw new JSONException("bad dialogTree node dtype: " + jsonObject.getObject("dtype", String.class));
-            }
-        } catch (Exception e) {
-            throw new JSONException("bad dialogTree node dtype: " + jsonObject.getObject("dtype", String.class));
-        }
-
-        if(dialogParams.contains("playerReply")){
-            try {
-                jsonObject.getObject("playerReply", String.class);
-            } catch (Exception e) {
-                throw new JSONException("bad dialogTree node playerReply: " + jsonObject.getObject("playerReply", String.class));
-            }
-        }
-
-        //recursion
-        if(dialogParams.contains("nextDialogs")){
-            for (JSONObject obj:
-                    jsonObject.getJSONArray("nextDialogs").toJavaList(JSONObject.class)) {
-                checkDialog(obj);
-            }
-        }
-
     }
 
     public static void checkJson(String json) throws JSONException {
@@ -225,41 +148,7 @@ public class JsonTestNpcTalk {
             }
 
             try {
-                npc.getObject("blessAddMaxHP", int.class);
-            } catch (Exception e) {
-                throw new JSONException("bad blessAddMaxHP: " + npc.getObject("blessAddMaxHP", String.class));
-            }
-            // blessAddMaxHP must be positive
-            int blessAddMaxHP = npc.getObject("blessAddMaxHP", int.class);
-            if(blessAddMaxHP<0){
-                throw new JSONException("blessAddMaxHP out of range");
-            }
-
-            try {
-                npc.getObject("blessAddDamage", int.class);
-            } catch (Exception e) {
-                throw new JSONException("bad blessAddDamage: " + npc.getObject("blessAddDamage", String.class));
-            }
-            // blessAddDamage must be positive
-            int blessAddDamage = npc.getObject("blessAddDamage", int.class);
-            if(blessAddDamage<0){
-                throw new JSONException("blessAddDamage out of range");
-            }
-
-            try {
-                npc.getObject("blessAddArmour", int.class);
-            } catch (Exception e) {
-                throw new JSONException("bad blessAddArmour: " + npc.getObject("blessAddArmour", String.class));
-            }
-
-            try {
-                npc.getObject("hasEndedTalk", boolean.class);
-            } catch (Exception e) {
-                throw new JSONException("bad hasEndedTalk: " + npc.getObject("hasEndedTalk", String.class));
-            }
-
-            try {
-                if (!npc.getObject("abnormalPointType", String.class).equals("NPC_TALK")) {
+                if (!npc.getObject("abnormalPointType", String.class).equals("NPC_MERCHANT")) {
                     throw new JSONException("bad abnormalPointType: " + npc.getObject("abnormalPointType", String.class));
                 }
             } catch (Exception e) {
@@ -343,15 +232,6 @@ public class JsonTestNpcTalk {
             if(critChance<0){
                 throw new JSONException("critChance out of range");
             }
-
-            try {
-                if (!npc.getObject("element", String.class).equals("Normal")) {
-                    throw new JSONException("bad element: " + npc.getObject("element", String.class));
-                }
-            } catch (Exception e) {
-                throw new JSONException("bad element: " + npc.getObject("element", String.class));
-            }
-
 
             if (params.contains("npcBag")) {
 
@@ -467,27 +347,13 @@ public class JsonTestNpcTalk {
                 }
 
             }
-
-            JSONObject diagTree = npc.getJSONObject("dialogTree");
-            Set<String> diagTreeParams = diagTree.keySet();
-
-            if (diagTreeParams.isEmpty()) {
-                throw new JSONException("request dialogTree param:  root");
-            }
-
-            for (String diagTreeParam :
-                    diagTreeParams) {
-                if (!diagTreeParam.equals("root")) {
-                    throw new JSONException("bad param: " + diagTreeParam);
-                }
-            }
-            checkDialog(diagTree.getJSONObject("root"));
         }
     }
 
     @Test
     public void testIfJsonValid() {
-        File file = new File("json_files/original_data/TalkNPC.json");
-        JsonTestNpcTalk.checkJson(txt2String(file));
+        File file = new File("json_files/original_data/MerchantNPC.json");
+        JsonTestNpcMerchant.checkJson(txt2String(file));
     }
 }
+
