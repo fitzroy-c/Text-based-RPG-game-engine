@@ -49,7 +49,9 @@ public class Coordinate {
     public int getY() {
         return y;
     }
-
+    /**
+     * @author Yixiang Yin
+     */
     public void goNorth(){
         y+=1;
     }
@@ -62,17 +64,13 @@ public class Coordinate {
     public void goWest(){
         x-=1;
     }
+
+    /**
+     * @author create by Yitao Chen, modified by Yixiang Yin
+     */
     @Override
     public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        Coordinate target = (Coordinate) o;
-//
-//        if (x != target.x) return false;
-//        if (y != target.y) return false;
-//        return true;
-                Coordinate target = (Coordinate) o;
+        Coordinate target = (Coordinate) o;
 
         if (this.x==target.x | this.y == target.y) return true;
         return false;

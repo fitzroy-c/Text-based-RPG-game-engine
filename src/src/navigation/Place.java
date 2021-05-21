@@ -51,6 +51,10 @@ public class Place {
         this.abnormalPoints = abnormalPoints;
     }
 
+    /**
+     * convert jsonObject into a place
+     * @author Yixiang Yin
+     */
     public static Place JsonToPlace(JsonObject jo){
         Gson gson = new Gson();
 
