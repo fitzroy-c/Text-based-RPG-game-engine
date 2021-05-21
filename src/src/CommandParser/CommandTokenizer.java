@@ -48,7 +48,7 @@ public class CommandTokenizer {
         // to choose command.
         // By Zihong Yuan
         if (_buffer.matches("^[0-9]+$")) {
-            currentToken = new Token(_buffer,Token.Type.ERROR);}
+            currentToken = new Token(_buffer,Token.Type.UNKNOWN);}
 
         char firstChar = _buffer.charAt(0);
         StringBuilder createString = new StringBuilder();

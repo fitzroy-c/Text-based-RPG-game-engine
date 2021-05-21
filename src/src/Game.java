@@ -72,12 +72,12 @@ public class Game {
                 System.out.println("what is your name?");
                 String name = s.next();
                 player.setName(name);
-                Control c = new Control(player);
                 System.out.println("****Welcome to this world****");
-                System.out.println();
+                Control c = new Control(player);
+//                System.out.println();
                 //TODO: He wants guide NPC here.
-//                gameInteractionLoop(player, c);
-                gameInteractionLoopParser(player);
+                gameInteractionLoop(player, c);
+//                gameInteractionLoopParser(player);
                 break;
             case 1:
                 System.out.println("Here is all the players available");
@@ -111,7 +111,7 @@ public class Game {
      * @param player
      */
     public static void gameInteractionLoop(Player player, Control c) throws Exception {
-        System.out.println(player.checkMonster());
+        //System.out.println(player.checkMonster());
         boolean continueOn = true;
         Scanner s = new Scanner(System.in);
         while (continueOn){
@@ -119,25 +119,27 @@ public class Game {
                 return;
             BasicOption current = c.currentOption;
             cmdTok = new CommandTokenizer(s.nextLine());
-            player.checkNPCs();
+//            player.checkNPCs();
+            Control.resetNPCs();
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
 //                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) {
 //                    autoDetect();
 //                    c.printRightOption();
 //                }
-//                CommandTokenizer cmdOld = cmdTok;
-//                System.out.println(cmdTok.current().type());
-
+                Token.Type typeOld = cmdTok.current().type();
                 continueOn = new Parser(cmdTok, player).parseCommand();
-
-                //autoDetect(cmdOld);
+                try {autoDetect(typeOld, c);}
+                catch (Exception e) {
+//                    Control.resetMonsters();
+//                    Control.resetNPCs();
+                    c.printRightOption();
+                }
 //                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) { //TODO: no very good
 //                    autoDetect();
 //                    c.printRightOption();
 //                }
-                c.printRightOption();
-//                System.out.println("LLLLOOOOKKKKMMMMMEEEE");
+//                c.printRightOption();
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
             }
@@ -158,15 +160,16 @@ public class Game {
         }
     }
 
-    public static void autoDetect(CommandTokenizer cmdOld) {
-        CommandTokenizer detect = new CommandTokenizer("detect");
-        if (cmdOld.hasNext()) {
-            if (cmdTok.current().type()== Token.Type.DIRECTION) {
-                boolean result = new Parser(detect, player).parseCommand();
+    public static void autoDetect(Token.Type typeOld, Control c) {
+        if (cmdTok.hasNext()) {
+            if (cmdTok.current().type()== Token.Type.DIRECTION || cmdTok.current().type()== Token.Type.RETREAT_ACTION
+                    || cmdTok.current().type()== Token.Type.DETECT) {
+                c.printRightOption();
             }
         } else {
-            if (cmdOld.current().type()== Token.Type.DIRECTION) {
-                boolean result = new Parser(detect, player).parseCommand();
+            if (typeOld== Token.Type.DIRECTION || typeOld== Token.Type.RETREAT_ACTION
+                    || typeOld== Token.Type.DETECT) {
+                c.printRightOption();
             }
         }
     }

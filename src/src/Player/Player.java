@@ -71,8 +71,7 @@ public class Player {
         // get data from json to generate the initial place (if any)
         this.place = new Place(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), "", 0,
                 extractBag(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), map_bagData),
-                extractBothNPCs(new Coordinate(pa.initXCoordinate, pa.initYCoordinate),
-                        this.getMap_npcTData(), this.getMap_npcMData()));
+                extractBothNPCByCoord(new Coordinate(pa.initXCoordinate, pa.initYCoordinate)));
     }
 
     public Player(String name, int HP, int maxHP, int money, int xp, int maxXP, int xpPerLv, int level, int armour, int damage, double criticalChance, double maxCriticalChance, Bag bag, Place place, HashMap<Coordinate, NPC_TALK> map_npcTData, HashMap<Coordinate, NPC_MERCHANT> map_npcMData, HashMap<Coordinate, Bag> map_bagData) {
@@ -164,6 +163,7 @@ public class Player {
     public void detectNPCAroundPlayer(){
         boolean Exist_npcm = SearchInNpc_MERCHANT_DATA()!=null;
         boolean Exist_npct = SearchInNpc_TALK_DATA()!=null;
+        checkNPCs();
         if (Exist_npcm){
             System.out.println("You can see a guy was standing not far away.");
         }
@@ -254,7 +254,7 @@ public class Player {
     /**
      * Search if a merchant npc exist inside current coordinate
      * @return a merchant npc
-     * @author Guanming Ou, Yixiang Yin
+     * @author Guanming Ou
      */
     public NPC_MERCHANT SearchInNpc_MERCHANT_DATA(){
         Coordinate playerCoor = this.place.getCoordinate();
@@ -263,15 +263,30 @@ public class Player {
         }
         return null;
     }
+    // same as above, but with coordinate as input
+    public NPC_MERCHANT SearchNpc_MERCHANT_Coord(Coordinate coordinate){
+        for (Coordinate coor : this.map_npcMData.keySet()){
+            if (coor.equals(coordinate)) return this.map_npcMData.get(coor);
+        }
+        return null;
+    }
+
     /**
      * Search if a talk npc exist inside current coordinate
      * @return a talk npc
-     * @author Guanming Ou, Yixiang Yin
+     * @author Guanming Ou
      */
     public NPC_TALK SearchInNpc_TALK_DATA(){
         Coordinate playerCoor = this.place.getCoordinate();
         for (Coordinate coor : this.map_npcTData.keySet()){
             if (coor.equals(playerCoor)) return this.map_npcTData.get(coor);
+        }
+        return null;
+    }
+    // same as above, but with coordinate as input
+    public NPC_TALK SearchNpc_TALK_Coord(Coordinate coordinate){
+        for (Coordinate coor : this.map_npcMData.keySet()){
+            if (coor.equals(coordinate)) return this.map_npcTData.get(coor);
         }
         return null;
     }
@@ -321,6 +336,7 @@ public class Player {
     public String checkMonster() {
         Control.resetMonsters();
         int dangerRate = this.place.getDangerRate();
+        System.out.println("\n");
         String string = "";
         if (dangerRate<=0){
             string+="This place is safe.\n";
@@ -350,6 +366,7 @@ public class Player {
      */
     public void checkNPCs() {
         Control.resetNPCs();
+/*
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             AbnormalPoint.AbnormalPointType current =  this.place.getAbnormalPoints().get(i).abnormalPointType;
             if (current == AbnormalPoint.AbnormalPointType.NPC_TALK
@@ -360,6 +377,9 @@ public class Player {
                 Control.addNPCs(this.place.getAbnormalPoints().get(i));
             }
         }
+*/
+        Control.addNPCs(SearchInNpc_MERCHANT_DATA());
+        Control.addNPCs(SearchInNpc_TALK_DATA());
     }
 
     /**
@@ -561,10 +581,10 @@ public class Player {
 
         // update the npc merchant json of current coordinate
         if (npc_m.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-            NPC_MERCHANT npcm = extractNPCMerchant();       // find npc talk inside the abnormal point list
+            NPC_MERCHANT npcm = extractNPCMerchant();       // find npc merchant inside the abnormal point list
             if (npcm != null){
                 npc_m.remove(this.place.getCoordinate());    // remove current coordinate from map data
-                npc_m.put(this.place.getCoordinate(), npcm); // insert current place to map data (one npc talk only)
+                npc_m.put(this.place.getCoordinate(), npcm); // insert current place to map data (one npc merchant only)
             }
         }
         // update the npc talk json of current coordinate
@@ -584,7 +604,7 @@ public class Player {
         // update next coordinate inside json
         boolean updated = false;
         Place nextPlace = new Place(nextCoord, "have npc", 0,new Bag(100), new ArrayList<>());
-        nextPlace.setAbnormalPoints(extractBothNPCs(nextCoord, npc_t, npc_m)); // update player place's abnormal point
+        nextPlace.setAbnormalPoints(extractBothNPCByCoord(nextCoord)); // update player place's abnormal point
         if (! nextPlace.getAbnormalPoints().isEmpty())  // check if operation did get npc
             updated = true;
 
@@ -631,19 +651,23 @@ public class Player {
 
     /**
      * Extract npcs from hashmaps (load from json), and return as Abnormalpoint List
+     * @param coordinate the coordinate you want to search
      * @author Guanming Ou
      */
-    public List<AbnormalPoint> extractBothNPCs(Coordinate c, HashMap<Coordinate, NPC_TALK> npc_t, HashMap<Coordinate, NPC_MERCHANT> npc_m){
+    public List<AbnormalPoint> extractBothNPCByCoord(Coordinate coordinate){
+        NPC_MERCHANT npcm = SearchNpc_MERCHANT_Coord(coordinate);
+        NPC_TALK npct = SearchNpc_TALK_Coord(coordinate);
+
         List<AbnormalPoint> abpoints = new ArrayList<>();
-        if (npc_m.containsKey(c)) { // try to get npc merchant from json if any
-            abpoints.add(npc_m.get(c));
-        }
-        if (npc_t.containsKey(c)){ // try to get npc talk from json if any
-            abpoints.add(npc_t.get(c));
-        }
+        if (npcm != null)
+            abpoints.add(npcm);
+        if (npct != null)
+            abpoints.add(npct);
 
         return abpoints;
     }
+
+
 
     /**
      * Extract bag from hashmaps (load from json), and return a bag
@@ -913,7 +937,6 @@ public class Player {
      */
     public String retreat(){
         if (Control.isNPC()) {
-            Control.resetCurrent();
             return " ";
         }
         StringBuilder string = new StringBuilder("Ready to retreat:\n");
@@ -923,7 +946,6 @@ public class Player {
                 while(this.HP>0){
                     if (criticalCheck(0.70)){ //80% chance succeed
                         // monster.setHP(0);
-                        Control.resetCurrent();
                         return string + "Retreat successfully.\n";
                     }else{
                         this.HP = this.HP - Math.max(monster.getDamage() -this.armour,0);
