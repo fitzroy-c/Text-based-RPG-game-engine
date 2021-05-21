@@ -809,18 +809,15 @@ public class Player {
                             this.money += npc_t.getGold(); // npc give gold
                             npc_t.setGold(0); // clear npc gold
                             npc_t.setHasEndedTalk(true);
-                            System.out.println(nextDialog.getNpcDialog());
                             return nextDialog.getNpcDialog(); // return final npc dialog
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_GIVE_ITEM){
                             npc_t.getNpcBag().giveAllItemTo(this); // npc give all item
                             npc_t.setHasEndedTalk(true); // npc ended
-                            System.out.println(nextDialog.getNpcDialog());
                             return nextDialog.getNpcDialog();  // return final npc dialog
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_NONE){
                             npc_t.setHasEndedTalk(true); // npc ended
-                            System.out.println(nextDialog.getNpcDialog());
                             return nextDialog.getNpcDialog(); // return final npc dialog
                         }
                         else if (nextDialog.getDtype() == DialogTree.DialogType.END_ATTACK){
