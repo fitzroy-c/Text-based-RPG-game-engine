@@ -14,7 +14,6 @@
 - Development log is in Develop package.
 - Project summary, game engine design, quick guide for player and game designer are all on Wiki page
 - The card package, map package, gui package and DesignForFutureExtension package are used for game's future extension.
-- The auto test needed jar file(add it to lib) is in wiki directory
 
 
 # Team structure and role
