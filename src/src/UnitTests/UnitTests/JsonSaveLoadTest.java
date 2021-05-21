@@ -2,9 +2,9 @@ package UnitTests;
 
 import AbnormalPoints.MonsterAttributes;
 import Card.subCards.Normal_Attack_cards;
-import Maps.Environment;
-import Maps.MonsterRoom;
-import Maps.Rooms;
+import DesignForFutureExtension.Maps.Environment;
+import DesignForFutureExtension.Maps.MonsterRoom;
+import DesignForFutureExtension.Maps.Rooms;
 import AbnormalPoints.Monster;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

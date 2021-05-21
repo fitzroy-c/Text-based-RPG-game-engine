@@ -1,6 +1,4 @@
-package Maps;
-
-import Card.Cards;
+package DesignForFutureExtension.Maps;
 
 import java.util.List;
 

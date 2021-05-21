@@ -69,7 +69,7 @@ public class Player {
         this.setMap_npcTData(loadOriginalTalkNPCs());
         this.setMap_bagData(loadOriginalItems());
         // get data from json to generate the initial place (if any)
-        this.place = new Place(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), "", 0,
+        this.place = new Place(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), "spawn point", 0,
                 extractBag(new Coordinate(pa.initXCoordinate, pa.initYCoordinate), map_bagData),
                 extractBothNPCByCoord(new Coordinate(pa.initXCoordinate, pa.initYCoordinate)));
     }
@@ -291,9 +291,6 @@ public class Player {
         return null;
     }
 
-
-
-
     /**
      * Consume a consumable item, given a item name
      * - Consumable item increases the HP of player.
@@ -383,7 +380,7 @@ public class Player {
     }
 
     /**
-     * call once each time player moves its place//TODO need add
+     * call once each time player moves its place
      * The MonsterGenerator generates random monsters appropriately according
      * to the player's level and place
      * @author yitao chen
@@ -577,7 +574,6 @@ public class Player {
     public void goToDirectionHelper(Coordinate nextCoord){
         HashMap<Coordinate, NPC_TALK> npc_t = this.map_npcTData;
         HashMap<Coordinate, NPC_MERCHANT> npc_m = this.map_npcMData;
-//        HashMap<Coordinate, Bag> bag = this.map_bagData;
 
         // update the npc merchant json of current coordinate
         if (npc_m.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
@@ -595,11 +591,6 @@ public class Player {
                 npc_t.put(this.place.getCoordinate(), npct); // insert current place to map data (one npc talk only)
             }
         }
-        // update the bag json of current coordinate (commented, as bag is now updated in real-time)
-//        if (bag.containsKey(this.place.getCoordinate())){ // if there is current coordinate exist in map data
-//            bag.remove(this.place.getCoordinate()); // remove current coordinate from map data
-//            bag.put(this.place.getCoordinate(), this.place.getBag()); // insert current place to map data
-//        }
 
         // update next coordinate inside json
         boolean updated = false;
@@ -666,8 +657,6 @@ public class Player {
 
         return abpoints;
     }
-
-
 
     /**
      * Extract bag from hashmaps (load from json), and return a bag
