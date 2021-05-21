@@ -73,7 +73,7 @@ public class Control extends BasicOption {
         }
         resetCurrent();
         if (isMonster || isNpc) {
-            System.out.println("Control: case is NM");
+            System.out.print("\n");
             NMOption nm = new NMOption(monsters, npcs);
             nm.printOut();
             boolean b = true;
@@ -81,7 +81,6 @@ public class Control extends BasicOption {
                 Scanner s = new Scanner(System.in);
                 String input = s.nextLine();
                 CommandTokenizer cmd = nm.convert(new CommandTokenizer(input));
-//                if (nm.chooseOp(cmd.current())) {
                 try {
                     int n = Integer.parseInt(input);
                     current = nm.verifyInt(n);
@@ -94,8 +93,11 @@ public class Control extends BasicOption {
                         }
                         b = false;
                     } else {
-                        if (cmd.current().type()== Token.Type.DIRECTION)
+                        if (cmd.current().type()== Token.Type.DIRECTION) {
                             b = false;// no valid choice
+                            resetNPCs();
+                            resetMonsters();
+                        }
                         if (! new Parser(cmd, player).parseCommand()) {
                             System.out.println("Please choose correct command");
                         }
@@ -110,19 +112,19 @@ public class Control extends BasicOption {
         switch (current.getString()) {
             case "NPC_TALK" :
             case "NPC_MERCHANT" :
-                System.out.println("Control: case is NPC");
+                System.out.print("\n");
                 NpcOption p = new NpcOption(current, player);
                 this.currentOption = p;
                 p.printOut();
                 break;
             case "MONSTER" :
-                System.out.println("Control: case is Monster");
+                System.out.print("\n");
                 BattleOption b = new BattleOption(current, player);
                 this.currentOption = b;
                 b.printOut();
                 break;
             default:
-                System.out.println("Control: case is normal");
+                System.out.print("\n");
                 NormalOption n = new NormalOption(player);
                 this.currentOption = n;
                 n.printOut();
@@ -163,6 +165,8 @@ public class Control extends BasicOption {
      * @param npc
      */
     static public void addNPCs(AbnormalPoint npc) {
+        if (npc==null)
+            return;
         npcs.add(npc);
         isNpc = true;
     }

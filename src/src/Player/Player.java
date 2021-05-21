@@ -163,6 +163,7 @@ public class Player {
     public void detectNPCAroundPlayer(){
         boolean Exist_npcm = SearchInNpc_MERCHANT_DATA()!=null;
         boolean Exist_npct = SearchInNpc_TALK_DATA()!=null;
+        checkNPCs();
         if (Exist_npcm){
             System.out.println("You can see a guy was standing not far away.");
         }
@@ -335,6 +336,7 @@ public class Player {
     public String checkMonster() {
         Control.resetMonsters();
         int dangerRate = this.place.getDangerRate();
+        System.out.println("\n");
         String string = "";
         if (dangerRate<=0){
             string+="This place is safe.\n";
@@ -364,6 +366,7 @@ public class Player {
      */
     public void checkNPCs() {
         Control.resetNPCs();
+/*
         for (int i = 0; i < this.place.getAbnormalPoints().size(); i++) {
             AbnormalPoint.AbnormalPointType current =  this.place.getAbnormalPoints().get(i).abnormalPointType;
             if (current == AbnormalPoint.AbnormalPointType.NPC_TALK
@@ -374,6 +377,9 @@ public class Player {
                 Control.addNPCs(this.place.getAbnormalPoints().get(i));
             }
         }
+*/
+        Control.addNPCs(SearchInNpc_MERCHANT_DATA());
+        Control.addNPCs(SearchInNpc_TALK_DATA());
     }
 
     /**

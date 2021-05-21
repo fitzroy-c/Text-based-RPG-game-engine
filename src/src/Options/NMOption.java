@@ -24,15 +24,14 @@ public class NMOption extends BasicOption{
         for (AbnormalPoint npc : npcs) {
             this.option.add(new Option( npc.getName(), npc.getIntro()));
         }
-//        this.option.add(new Option("pick", "Pick an item"));
-//        this.option.add(new Option("drop", "drop an item"));
+//        this.option.add(new Option("detect", "Detect the room"));
         this.option.add(new Option("see stat", "see my state"));
         this.option.add(new Option("look bag", "show my bag"));
         this.option.add(new Option("save", "Save game"));
         this.option.add(new Option("exit", "Exit game"));
         this.option.add(new Option("help", "get help"));
 
-        this.tokenType.add(Token.Type.DETECT);
+//        this.tokenType.add(Token.Type.DETECT);
         this.tokenType.add(Token.Type.ATTACK);
         this.tokenType.add(Token.Type.TALK);
         this.tokenType.add(Token.Type.TAKE_ACTION);
@@ -45,6 +44,7 @@ public class NMOption extends BasicOption{
         this.tokenType.add(Token.Type.CONSUME_ACTION);
         this.tokenType.add(Token.Type.BACKPACK);
         this.tokenType.add(Token.Type.STAT);
+        this.tokenType.add(Token.Type.SHOP);
 
     }
 
@@ -73,7 +73,7 @@ public class NMOption extends BasicOption{
                 System.out.println("[" + i + "] " + op.getCommand());
             }
         }
-        System.out.println("Or you can:");
+        System.out.println("\nOr you can:");
         for (int i = total.size()+1; i < option.size()+1; i++) {
             Option op = option.get(i - 1);
             if (op.getDescription() != null) {
