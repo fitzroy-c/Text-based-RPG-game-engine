@@ -1,6 +1,9 @@
 package Card;
 
-// Attributed by Guanming Ou
+/**
+ * Card class that declare the attributes of Card
+ * @author Guanming Ou
+ */
 public class Cards {
 
     // variables for each cards

@@ -51,33 +51,22 @@
       ]
     },
     "abnormalPointType": "NPC_MERCHANT",
-    "name": "Merchant 1",
-    "intro": "s",
+    "name": "Merchant",
+    "intro": "I am a merchant",
     "maxHP": 100,
     "HP": 100,
     "damage": 10,
     "armour": 10,
-    "gold": 10,
+    "gold": 250,
     "xpGain": 10,
-    "critChance": 10.0,
+    "critChance": 1.0,
     "element": "Normal"
   },
-  "1,1": {
+  "15,5": {
     "npcBag": {
       "currentWeight": 0,
       "maxWeight": 1000,
       "itemList": [
-        {
-          "id": "C1",
-          "type": "consumable",
-          "name": "Mushroom",
-          "description": "Restores 15 health",
-          "properties": {
-            "health": 15,
-            "weight": 1,
-            "value": 10
-          }
-        },
         {
           "id": "C1",
           "type": "consumable",
@@ -108,7 +97,7 @@
           "properties": {
             "health": 100,
             "weight": 1,
-            "value": 40
+            "value": 50
           }
         },
         {
@@ -119,21 +108,1155 @@
           "properties": {
             "health": 150,
             "weight": 1,
-            "value": 5
+            "value": 100
           }
         }
       ]
     },
     "abnormalPointType": "NPC_MERCHANT",
-    "name": "Merchant 2",
-    "intro": "s",
+    "name": "Merchant",
+    "intro": "I am a merchant",
     "maxHP": 100,
     "HP": 100,
     "damage": 10,
     "armour": 10,
-    "gold": 10,
+    "gold": 250,
     "xpGain": 10,
-    "critChance": 10.0,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "29,15": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "18,28": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "1,4": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "8,8": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "23,12": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "2,2": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "0,11": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "4,29": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "9,9": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "12,0": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "22,24": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "16,19": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "20,4": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "23,25": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "30,30": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "27,13": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "21,9": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
+    "element": "Normal"
+  },
+  "23,3": {
+    "npcBag": {
+      "currentWeight": 0,
+      "maxWeight": 1000,
+      "itemList": [
+        {
+          "id": "C1",
+          "type": "consumable",
+          "name": "Mushroom",
+          "description": "Restores 15 health",
+          "properties": {
+            "health": 15,
+            "weight": 1,
+            "value": 10
+          }
+        },
+        {
+          "id": "C2",
+          "type": "consumable",
+          "name": "Lesser Healing Potion",
+          "description": "Restores 50 health",
+          "properties": {
+            "health": 50,
+            "weight": 1,
+            "value": 25
+          }
+        },
+        {
+          "id": "C3",
+          "type": "consumable",
+          "name": "Healing Potion",
+          "description": "Restores 100 health",
+          "properties": {
+            "health": 100,
+            "weight": 1,
+            "value": 50
+          }
+        },
+        {
+          "id": "C4",
+          "type": "consumable",
+          "name": "Greater Healing Potion",
+          "description": "Restores 150 health",
+          "properties": {
+            "health": 150,
+            "weight": 1,
+            "value": 100
+          }
+        }
+      ]
+    },
+    "abnormalPointType": "NPC_MERCHANT",
+    "name": "Merchant",
+    "intro": "I am a merchant",
+    "maxHP": 100,
+    "HP": 100,
+    "damage": 10,
+    "armour": 10,
+    "gold": 250,
+    "xpGain": 10,
+    "critChance": 1.0,
     "element": "Normal"
   }
 }

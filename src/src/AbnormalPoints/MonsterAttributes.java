@@ -2,6 +2,11 @@ package AbnormalPoints;
 
 import Card.Element;
 
+/**
+ * This monster attribute is to create monster in a easier way
+ * This can be improve by json enabling
+ * @author Guanming Ou
+ */
 public class MonsterAttributes {
     String setMonsterName;
     String setMonsterIntro;

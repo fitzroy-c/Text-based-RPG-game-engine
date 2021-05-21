@@ -1,7 +1,9 @@
 package Card;
 
-// this function is for future development
-// Attributed by Guanming Ou
+/**
+ * Element effect of a card or monster, a potential future development
+ * @author Guanming Ou
+ */
 public enum Element {
     // Basic Elements
     Normal,     // Counters:                      Counter by: None

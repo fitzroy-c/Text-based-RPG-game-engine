@@ -115,7 +115,10 @@ public class NPC_MERCHANT extends AbnormalPoint{
 
     }
 
-
+    /**
+     * Save merchant npc as json
+     * @author Yixiang Yin and Guanming Ou
+     */
     public static void saveMERCHANTNPC(HashMap<Coordinate, NPC_MERCHANT> shops){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -160,14 +163,37 @@ public class NPC_MERCHANT extends AbnormalPoint{
 
         return hp;
     }
+
+    /**
+     * Create json file by instanlising and execute save command inside java
+     * @param args
+     * @author Yixiang Yin, add more merchant to more coordinate by Guanming Ou
+     */
     public static void main(String[] args) {
         Bag bag = new Bag(0,1000,Item.initializeItemBook());
-        NPC_MERCHANT shop = new NPC_MERCHANT("Merchant 1","s",100,100,10,10,10,10,10,bag);
+        NPC_MERCHANT shop = new NPC_MERCHANT("Merchant","I am a merchant",100,100,10,10,250,10,1,bag);
         HashMap<Coordinate,NPC_MERCHANT> hp = new HashMap<>();
-        Coordinate coor = new Coordinate(0,0);
-        hp.put(coor,shop);
-//        List<NPC_MERCHANT> shops = new LinkedList<>();
-//        shops.add(shop);
+        hp.put(new Coordinate(0,0), shop);
+        hp.put(new Coordinate(0,11), shop);
+        hp.put(new Coordinate(1,4), shop);
+        hp.put(new Coordinate(2,2), shop);
+        hp.put(new Coordinate(4,29), shop);
+        hp.put(new Coordinate(8,8), shop);
+        hp.put(new Coordinate(9,9), shop);
+        hp.put(new Coordinate(12,0), shop);
+        hp.put(new Coordinate(15,5), shop);
+        hp.put(new Coordinate(16,19), shop);
+        hp.put(new Coordinate(18,28), shop);
+        hp.put(new Coordinate(20,4), shop);
+        hp.put(new Coordinate(21,9), shop);
+        hp.put(new Coordinate(22,24), shop);
+        hp.put(new Coordinate(23,25), shop);
+        hp.put(new Coordinate(23,12), shop);
+        hp.put(new Coordinate(23,3), shop);
+        hp.put(new Coordinate(27,13), shop);
+        hp.put(new Coordinate(29,15), shop);
+        hp.put(new Coordinate(30,30), shop);
+        // save to json file
         saveMERCHANTNPC(hp);
     }
 
