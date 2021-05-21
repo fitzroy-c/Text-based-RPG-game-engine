@@ -147,7 +147,7 @@ public class Game {
     }
 
     /**
-     * This a second gameloop, using just parser
+     * This a second game loop, using just parser
      * It terminate when player input a 'exit | exit game' command
      * @param player
      */
