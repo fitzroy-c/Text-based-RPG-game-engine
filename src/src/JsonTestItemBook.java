@@ -46,8 +46,9 @@ public class JsonTestItemBook {
     }
 
     public static void checkJson(String json) throws JSONException {
-        JSONArray itemList = bag.getJSONArray("json");
-        for (JSONObject item : itemList.toJavaList(JSONObject.class)) {
+        JSONArray jsonArray = JSON.parseArray(json);
+
+        for (JSONObject item : jsonArray.toJavaList(JSONObject.class)) {
 
             Set<String> itemKeys = item.keySet();
             for (String itemKey : itemKeys) {
@@ -114,9 +115,6 @@ public class JsonTestItemBook {
                     throw new JSONException("bad value: " + properties.getObject("value", String.class));
                 }
             }
-
-        }
-
         }
     }
 
