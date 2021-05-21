@@ -1,2 +1,3 @@
-# Comp2100 group project WIKI
-Contributer: Yixiang Yin, Yitao Chen, Guanming Ou, Aureliano Yuan
+
+‰©Û]4‚º.¦šèç-X‚ˆ
+‰í®&îµêØ‹š"ˆ­j€¡zq®jy¢®êŞ–&§¡‹šgœ­æ­yÖ­{[jÇiÛŞÛ«z¦{­†Ø^~‰e£§÷š¶êŞjYhÂØ^¦V²z»hÁ©djº.Ú'k`Ìjœ"¶½éíº·¬Áè§r[y×b}÷«z{Z²—œ¶‡Ú§oz{n­è™íUj¸¨ºÈ­zkÛky«.­ë,q«mz·¢{azf©Ø K+-zmÏ£«~éf¢{-z»Öè²Ç¬Á©dŠx(Ø^™ªx…éi~ég¥
