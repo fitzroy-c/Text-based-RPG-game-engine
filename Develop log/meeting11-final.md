@@ -6,9 +6,9 @@ Tasks:
 3. desgin document
 4. Quick_guide
 5. don't forget to complete originality and contribution form on wattle
+6. write auto test
 
 
-which one to use (zihong or guanming)
 
 test consume
 no monster issue
@@ -17,7 +17,6 @@ test if buy command is functioning : tick Yixiang Yin
 test if pick command is functioning : tick Yixiang Yin
 remove bag in place? (remove redundancy) 
 show the item in the place where player is in : completed by Yixiang Yin
-
 
 parameterized testing on NPC_Merchant: Yixiang is working on it.
 
