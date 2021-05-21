@@ -4,7 +4,6 @@ import Player.Bag;
 import Player.Player;
 import Player.Item;
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import navigation.Coordinate;
 
@@ -84,7 +83,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
             JsonObject itemData = entry.getValue().getAsJsonObject();
             JsonObject baginfo = itemData.get("npcBag").getAsJsonObject();
 
-            Bag bag = Bag.JsonToBag2(baginfo);
+            Bag bag = Bag.JsonToBag(baginfo);
             NPC_MERCHANT shop = new NPC_MERCHANT("Merchant 1","s",100,100,10,10,10,10,10,bag);
             hp.put(Coordinate.fromStringToCoordinate(coor), shop);
 
@@ -152,7 +151,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
             JsonObject itemData = entry.getValue().getAsJsonObject();
             JsonObject baginfo = itemData.get("npcBag").getAsJsonObject();
 
-            Bag bag = Bag.JsonToBag2(baginfo);
+            Bag bag = Bag.JsonToBag(baginfo);
             NPC_MERCHANT shop = new NPC_MERCHANT("Merchant 1","s",100,100,10,10,10,10,10,bag);
             hp.put(Coordinate.fromStringToCoordinate(coor), shop);
 
