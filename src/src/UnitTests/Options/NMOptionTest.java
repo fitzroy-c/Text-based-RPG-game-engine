@@ -9,6 +9,11 @@ import Player.Player;
 
 import java.util.Scanner;
 
+/**
+ * The class is used to test the NMOption when
+ * player encounter with multiple Monsters
+ * and NPCs.
+ */
 public class NMOptionTest {
     private static Player player;
     public static CommandTokenizer cmdTok;
@@ -29,7 +34,6 @@ public class NMOptionTest {
     }
 
     public static void main(String[] args) throws Exception {
-//        initialize();
         Scanner s=new Scanner(System.in);
         System.out.print("Welcome to the world!"+"\n");
         System.out.println("What would you like to do?");

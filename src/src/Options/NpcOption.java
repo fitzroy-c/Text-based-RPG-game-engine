@@ -1,7 +1,6 @@
 package Options;
 
 import AbnormalPoints.AbnormalPoint;
-import AbnormalPoints.NPC_MERCHANT;
 import CommandParser.Token;
 import Player.Player;
 
@@ -13,7 +12,14 @@ import Player.Player;
  */
 public class NpcOption extends BasicOption{
     AbnormalPoint npc;
+
     /**
+     * The method will add some general command to the menu.
+     * If the current NPC belongs tp NPC_TALK, then it will
+     * display talk option.
+     * If the current NPC belongs tp NPC_MERCHANT, then it will
+     * display trade option.
+     *
      * @author Zihong Yuan
      */
     private void buildMenu() {
@@ -33,15 +39,16 @@ public class NpcOption extends BasicOption{
     }
 
     /**
+     * The constructor method initialize NPCOption class.
      *
-     * @param npc
-     * @param player
+     * @author Zihong Yuan
+     * @param npc current npc which player can interact with.
+     * @param player current player.
      */
     public NpcOption(AbnormalPoint npc, Player player) {
         this.npc = npc;
         buildMenu();
         showMenu();
-        //...//
     }
 
 }

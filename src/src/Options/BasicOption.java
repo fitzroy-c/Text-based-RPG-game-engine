@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * The class is used to construct basic option menu.
+ * Other more advanced option menus will extend it.
  *
  * @author Zihong Yuan
  */

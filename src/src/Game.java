@@ -20,41 +20,20 @@ public class Game {
     private List<Item> itemBook; // contain all possible items in the game(used for reference purposes)
 
     /**
-     * initial pre-game
+     * This method wrap all the initialization and run them before
+     * the user interface starts.
      */
     public void initialize() {
         itemBook = Item.initializeItemBook();
     }
 
-/*    Test
-        public static void loaditem() {
-        File item = new File("json_files/Item2.json");
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        Item itemNew = createItem();
-        String json = gson.toJson(itemNew);
-
-        try (FileWriter writer = new FileWriter("json_files/Item2.json")) {
-            gson.toJson(itemNew,writer);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static Item createItem() {
-        HashMap<String,Integer> map = new HashMap();
-        map.put("lala",12);
-        Item item = new Item("c1", "test1", "fire", "lalala", map);
-        return item;
-    }*/
-
-
-
-/**
-     * Is this our main game?
+    /**
+     * This method is where user can start our game and it will display
+     * user-interface in the console.
+     * It loads various function in order to cleverly interact with user.
      *
-     * @param args
+     * @author Zihong Yuan, and modefied by Guanming Ou; Yitao Chen and Yixiang Yin.
      */
-
     public static void main(String[] args) throws Exception {
         Game g = new Game();
         g.initialize();
@@ -74,7 +53,6 @@ public class Game {
                 player.setName(name);
                 System.out.println("****Welcome to this world****");
                 Control c = new Control(player);
-//                System.out.println();
                 //TODO: He wants guide NPC here.
                 gameInteractionLoop(player, c);
 //                gameInteractionLoopParser(player);
@@ -104,14 +82,15 @@ public class Game {
         }
     }
 
-
     /**
      * This continuously ask for player's input to keep the game running,
      * It terminate when player input a 'exit | exit game' command
-     * @param player
+     *
+     * @author Guanming Ou, and modefied by Zihong Yuan
+     * @param player the current player.
+     * @param c the menu control method.
      */
     public static void gameInteractionLoop(Player player, Control c) throws Exception {
-        //System.out.println(player.checkMonster());
         boolean continueOn = true;
         Scanner s = new Scanner(System.in);
         while (continueOn){
@@ -119,27 +98,15 @@ public class Game {
                 return;
             BasicOption current = c.currentOption;
             cmdTok = new CommandTokenizer(s.nextLine());
-//            player.checkNPCs();
             Control.resetNPCs();
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
-//                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) {
-//                    autoDetect();
-//                    c.printRightOption();
-//                }
                 Token.Type typeOld = cmdTok.current().type();
                 continueOn = new Parser(cmdTok, player).parseCommand();
                 try {autoDetect(typeOld, c);}
                 catch (Exception e) {
-//                    Control.resetMonsters();
-//                    Control.resetNPCs();
                     c.printRightOption();
                 }
-//                if (cmdTok.current()!=null && cmdTok.current().type()== Token.Type.DIRECTION) { //TODO: no very good
-//                    autoDetect();
-//                    c.printRightOption();
-//                }
-//                c.printRightOption();
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
             }
@@ -149,6 +116,7 @@ public class Game {
     /**
      * This a second game loop, using just parser
      * It terminate when player input a 'exit | exit game' command
+     *
      * @param player
      */
     public static void gameInteractionLoopParser(Player player) throws Exception {
@@ -160,6 +128,15 @@ public class Game {
         }
     }
 
+    /**
+     * The method can detect player's input and decide whether should
+     * print out the option menu. This can reduce redundant information
+     * for player.
+     *
+     * @author Zihong Yuan
+     * @param typeOld User's input in form of token type.
+     * @param c the menu control method.
+     */
     public static void autoDetect(Token.Type typeOld, Control c) {
         if (cmdTok.hasNext()) {
             if (cmdTok.current().type()== Token.Type.DIRECTION || cmdTok.current().type()== Token.Type.RETREAT_ACTION

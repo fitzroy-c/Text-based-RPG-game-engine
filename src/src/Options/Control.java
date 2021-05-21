@@ -47,11 +47,24 @@ public class Control extends BasicOption {
         printRightOption();
     }
 
+    /**
+     * The method can initialize current
+     * abnormal point.
+     *
+     * @author Zihong Yuan
+     */
     static public void resetCurrent() {
         AbnormalPoint ab = new AbnormalPoint();
         current = ab;
     }
 
+    /**
+     * The method can detect whether the current
+     * abnormal point is a NPC or Monster.
+     *
+     * @author Zihong Yuan
+     * @return true if it is NPC.
+     */
     static public boolean isNPC() {
         return (current.getClass()== NPC_MERCHANT.class || current.getClass()== NPC_TALK.class);
     }
@@ -62,7 +75,7 @@ public class Control extends BasicOption {
      *
      * @author Zihong Yuan
      */
-    public void printRightOption() { //TODO make it can go back to the NMOption when use BACK
+    public void printRightOption() {
         if (player.getHP() <= 0) {
             System.out.println("YOU DIE");
             System.out.println("What would you like to do?");
@@ -93,8 +106,8 @@ public class Control extends BasicOption {
                         }
                         b = false;
                     } else {
-                        if (cmd.current().type()== Token.Type.DIRECTION) {
-                            b = false;// no valid choice
+                        if (cmd.current().type()== Token.Type.DIRECTION) { // if command is go to other coordinate.
+                            b = false;
                             resetNPCs();
                             resetMonsters();
                         }
@@ -103,10 +116,6 @@ public class Control extends BasicOption {
                         }
                     }
                 }
-//                    b = false;
-//                } else {
-//                    System.out.println("Please choose correct one");
-//                }
             }
         }
         switch (current.getString()) {
@@ -119,7 +128,7 @@ public class Control extends BasicOption {
                 break;
             case "MONSTER" :
                 System.out.print("\n");
-                BattleOption b = new BattleOption(current, player);
+                BattleOption b = new BattleOption(player);
                 this.currentOption = b;
                 b.printOut();
                 break;
@@ -146,23 +155,28 @@ public class Control extends BasicOption {
      * The method can add monster into monsters list.
      *
      * @author Zihong Yuan
-     * @param monster
+     * @param monster monster
      */
     static public void addMonsters(AbnormalPoint monster) {
         monsters.add(monster);
         isMonster = true;
     }
 
+    /**
+     * The method can initialize monster list.
+     *
+     * @author Zihong Yuan
+     */
     static public void resetMonsters() {
         monsters = new ArrayList<>();
         isMonster = false;
     }
 
     /**
-     * The method can add NPC into npcs list.
+     * The method can add NPC into NPCs list.
      *
      * @author Zihong Yuan
-     * @param npc
+     * @param npc npc
      */
     static public void addNPCs(AbnormalPoint npc) {
         if (npc==null)
@@ -171,6 +185,11 @@ public class Control extends BasicOption {
         isNpc = true;
     }
 
+    /**
+     * The method can initialize NPCs list.
+     *
+     * @author Zihong Yuan
+     */
     static public void resetNPCs() {
         npcs = new ArrayList<>();
         isNpc = false;
@@ -180,7 +199,7 @@ public class Control extends BasicOption {
      * The method can set the death to wanted boolean.
      *
      * @author Zihong Yuan
-     * @param b
+     * @param b It is died or not.
      */
     static public void setDeath(boolean b) {
         death = b;

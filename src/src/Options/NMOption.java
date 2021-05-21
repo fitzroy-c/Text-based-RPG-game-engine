@@ -6,12 +6,25 @@ import CommandParser.Token;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class is the multiple monsters and npc choosing option menu.
+ * It allows players choose between different monsters or npc.
+ *
+ * @author Zihong Yuan
+ */
 public class NMOption extends BasicOption{
     List<AbnormalPoint> monsters = new ArrayList<>();
     List<AbnormalPoint> npcs = new ArrayList<>();
     List<AbnormalPoint> total = new ArrayList<>();
 
-
+    /**
+     * The method will add some general command to the menu.
+     * Also add monsters and NPCs which are in the current coordinate.
+     *
+     * @author Zihong Yuan
+     * @param monsters a list of monsters that existing in the current coordinate.
+     * @param npcs a list of NPCs that existing in the current coordinate.
+     */
     private void buildMenu(List<AbnormalPoint> monsters, List<AbnormalPoint> npcs) {
         this.monsters = monsters;
         this.npcs = npcs;
@@ -48,11 +61,23 @@ public class NMOption extends BasicOption{
 
     }
 
+    /**
+     * The constructor method initialize NMOption class.
+     *
+     * @author Zihong Yuan
+     * @param monsters a list of monsters that existing in the current coordinate.
+     * @param npcs a list of NPCs that existing in the current coordinate.
+     */
     public NMOption(List<AbnormalPoint> monsters, List<AbnormalPoint> npcs) {
         buildMenu(monsters,npcs);
         showMenu();
     }
 
+    /**
+     * The method display the readable interface to player.
+     *
+     * @author Zihong Yuan
+     */
     @Override
     public void printOut() {
         System.out.print("Here are ");
@@ -85,16 +110,14 @@ public class NMOption extends BasicOption{
 
     }
 
-/*
-    @Override
-    public boolean chooseOp(Token token) {
-        Token.Type type = token.type();
-        if (type== Token.Type.TAKE_ACTION)
-            return false;
-        return true;
-    }
-*/
-
+    /**
+     * The method return the monster or npc in the
+     * monster-npc list according to the index.
+     *
+     * @author Zihong Yuan
+     * @param n index
+     * @return the corresponding monster or npc.
+     */
         public AbnormalPoint verifyInt(int n) {
             return this.total.get(n-1);
     }

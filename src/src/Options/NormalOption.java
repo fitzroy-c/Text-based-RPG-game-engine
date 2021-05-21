@@ -3,7 +3,20 @@ package Options;
 import CommandParser.Token;
 import Player.Player;
 
+/**
+ * The class is the usual Option Menu. When player enter the game, this Option Menu
+ * will be displayed to him.
+ *
+ * @author Zihong Yuan
+ */
 public class NormalOption extends BasicOption{
+
+    /**
+     * The method will add some general command to the menu.
+     * Allowing players choose their next step.
+     *
+     * @author Zihong Yuan
+     */
     private void buildMenu() {
         this.option.add(new Option("detect", "Detect the room"));
         this.option.add(new Option("see stat", "see my state"));
@@ -29,6 +42,14 @@ public class NormalOption extends BasicOption{
 
     }
 
+    /**
+     * The constructor method initialize NormalOption class.
+     * It will check player's HP and print out message
+     * when player died.
+     *
+     * @author Zihong Yuan
+     * @param player
+     */
     public NormalOption(Player player) {
         buildMenu();
         showMenu();
@@ -39,12 +60,5 @@ public class NormalOption extends BasicOption{
 
         }
     }
-
-    ///testOnly
-//    public static void main(String[] args) throws Exception {
-//        Player p = new Player("P");
-//        NormalOption b = new NormalOption(p);
-//        b.printOut(b.option);
-//    }
 
 }

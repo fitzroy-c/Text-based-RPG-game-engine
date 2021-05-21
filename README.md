@@ -49,4 +49,16 @@ Yitao Chen (u7004563):
 - Designed the system to check whether the json fits our game engine or not. (JsonTestNpcTalk.java, JsonTestPlayerAttribute.java)
 
 
-Bill yuan:
+Zihong Yuan (u6714861):
+
+**Designed user interface as known as Option Menu.** 
+ - The Option Menu will gather player's input and display the corresponding options or information to players, it works with user command parser to achieve these functions.
+ - Option Menu will switch between different situation
+    - When encounter with NPCs or Monsters, player can choose the priority to interact with them.
+    - if player encounters with monsters, Option Menu will show corresponding options against the monster.
+    - if player encounters with NPCs, Option Menu will show corresponding options that can interact with NPCs.
+    - if player has died or won, Option Menu can jump to the start menu and allow player start a new game.
+ - Option Menu can detect player's HP to control the game process. If player has died, it will cease the current player.
+ - Edited the main method inside the Game.java. This can start the whole program and initialize user interface
+ - Option Menu can allow user to save and load player profile in the start option menu, this function use save and load 
+   method in the logical layer. 

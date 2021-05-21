@@ -3,22 +3,22 @@ package Options;
 import CommandParser.CommandTokenizer;
 import CommandParser.Parser;
 import Player.Player;
-import org.junit.Before;
-import org.junit.Test;
 
 import java.util.Scanner;
 
+/**
+ * The class is used to test the general Option Menu.
+ */
 public class NormalOptionTest {
     private static Player player;
     public static CommandTokenizer cmdTok;
 
-    @Before
-    public void initialize() {
+    public static void initialize() {
         player = new Player("test");
     }
 
-    @Test
-    public void run() throws Exception {
+    public static void main(String[] args) throws Exception {
+        initialize();
         Scanner s=new Scanner(System.in);
         System.out.print("Welcome to the world!"+"\n");
         System.out.println("What would you like to do?");
@@ -62,13 +62,10 @@ public class NormalOptionTest {
             if (current.chooseOp(cmdTok.current())) {
                 cmdTok = current.convert(cmdTok);
                 continueOn = new Parser(cmdTok, player).parseCommand();
-                //c.setCurrentOption(monster);
-                //System.out.println("change Option");
                 c.printRightOption();
             } else {
                 continueOn = new Parser(new CommandTokenizer("error"), player).parseCommand();
             }
-//            continueOn = new Parser(cmdTok, player).parseCommand();
         }
     }
 }

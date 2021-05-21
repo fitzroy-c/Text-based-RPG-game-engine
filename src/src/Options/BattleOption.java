@@ -1,12 +1,20 @@
 package Options;
 
-import AbnormalPoints.Monster;
 import CommandParser.Token;
 import Player.Player;
-import AbnormalPoints.AbnormalPoint;
 
+/**
+ * The class is the option menu to display when player
+ * encounter with monster and in the battle.
+ *
+ * @author Zihong Yuan
+ */
 public class BattleOption extends BasicOption {
-
+    /**
+     * The method add options to menu.
+     *
+     * @author Zihong Yuan
+     */
     private void buildMenu() {
         this.option.add(new Option("attack", "Attack enemy"));
         this.option.add(new Option("retreat", "Retreat from here"));
@@ -19,7 +27,15 @@ public class BattleOption extends BasicOption {
 
     }
 
-    public BattleOption(AbnormalPoint enemy,Player player) {
+    /**
+     * The constructor method for BattleOption class.
+     * It will check player's HP and print out message
+     * when player died.
+     *
+     * @author Zihong Yuan
+     * @param player the current player
+     */
+    public BattleOption(Player player) {
         if (player.getHP() <= 0) {
             System.out.println("YOU DIE");
             System.out.println("What would you like to do?");
@@ -32,12 +48,4 @@ public class BattleOption extends BasicOption {
         }
     }
 
-    ///testOnly
-    public static void main(String[] args) throws Exception {
-        Player p = new Player("P");
-        AbnormalPoint a = new AbnormalPoint();
-        Monster m = new Monster(null, 12);
-        BattleOption b = new BattleOption(m, p);
-        b.printOut();
-    }
 }
