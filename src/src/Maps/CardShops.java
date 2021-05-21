@@ -9,7 +9,8 @@ import java.util.List;
  * - shop card pack contains some useful card for player and special cards
  * - Player need gold to buy these card
  *
- * this function is for future development
+ * this class is for future development
+ * @author Guanming Ou
  */
 public class CardShops extends Rooms{
     List<Goods> cardsForSell;

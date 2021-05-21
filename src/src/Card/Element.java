@@ -2,6 +2,7 @@ package Card;
 
 /**
  * Element effect of a card or monster, a potential future development
+ * this class is for future development
  * @author Guanming Ou
  */
 public enum Element {

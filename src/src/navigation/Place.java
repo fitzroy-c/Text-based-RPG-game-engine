@@ -147,11 +147,6 @@ public class Place {
         return dangerRate;
     }
 
-    /*
-    place danger rate 1-5 consider the the plan is to make dangerRate 1(easy)-5(danger)
-    6 definite have a monster -- test only
-    0 or less definite no monster
-     */
     public void setDangerRate(int dangerRate) {
         this.dangerRate = dangerRate;
     }

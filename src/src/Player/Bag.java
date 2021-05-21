@@ -116,8 +116,10 @@ public class Bag {
     /**
      * give all item from a bag to player's bag, if a player's bag cannot hold it as max weight reached,
      * it will then transfer rest of the npc's item into the room
+     * npc's bag is garentee to be cleared
      * @param player
-     * @return Guanming Ou
+     * @return null if nothing can be done
+     * @author Guanming Ou
      */
     public Bag giveAllItemTo(Player player){
         Bag tempBag = new Bag(10000);

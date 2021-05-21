@@ -7,7 +7,8 @@ package Maps;
  * - There are good fairy, which will only hand out positive passives
  * - There are bad fairy, which will give good blessing that comes with a cost.
  *
- * this function is for future development
+ * this class is for future development
+ * @author Guanming Ou
  */
 public class BlessingRoom extends Rooms {
     int[] blessingSet;

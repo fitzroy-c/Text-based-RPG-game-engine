@@ -34,8 +34,8 @@ public class Coordinate {
 
     /**
      * put a direction
-     * @param direction
-     * @return
+     * @param direction the direction that play want to move
+     * @return A coordinate
      */
 
     public Coordinate getBorderCoordinate(Direction direction) {
@@ -86,6 +86,12 @@ public class Coordinate {
         return result;
     }
 
+    /**
+     * Transform from string to coordinate
+     * @param string the coordinate in string form e.g. "x,y"
+     * @return A coordinate
+     * @author Guanming Ou
+     */
     public static Coordinate fromStringToCoordinate(String string){
         String[] parts = string.split(",");
         int x = Integer.parseInt(parts[0]);

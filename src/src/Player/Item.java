@@ -14,11 +14,8 @@ import java.util.List;
 import java.util.Map;
 // todo item.json
 // todo test for these functions in player, bag,item.class
-
-
-
 // todo weapon, considering onetime weapon first
-// i
+
 public class Item {
     public final String id;
     public final String type;
@@ -128,10 +125,6 @@ public class Item {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
-        // test initializeItems
-        generateItemOnTheMapJson("json_files/original_data/InitializedItem.json");
-    }
     /**
      * load original items data(hashMap) from json_files/original_data/ in a way makes json satisfied
      * @author Yixiang Yin
@@ -188,5 +181,9 @@ public class Item {
     }
     public void print() {
         // TODO: need a function to print out all we have in this real location (name + description?)
+    }
+    public static void main(String[] args) {
+        // test initializeItems
+        generateItemOnTheMapJson("json_files/original_data/InitializedItem.json");
     }
 }
