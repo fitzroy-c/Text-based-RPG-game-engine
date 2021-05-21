@@ -111,7 +111,7 @@ public class PlayerTest2 {
 
     @Test
     public void createItemJson(){
-        Player player = new Player();
+        Player player = new Player("s");
 
         HashMap<Coordinate, Bag> testBag = new HashMap<>();
         HashMap<String, Integer> c1P = new HashMap<>();
@@ -175,7 +175,7 @@ public class PlayerTest2 {
 
     @Test
     public void createNPCJson(){
-        Player player = new Player();
+        Player player = new Player("s");
         HashMap<Coordinate, NPC_TALK> testNPC = new HashMap<>();
 
         DialogTree Bless_tree = new DialogTree();
