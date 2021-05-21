@@ -2,6 +2,7 @@ package Card;
 
 /**
  * Card class that declare the attributes of Card
+ * this class is for future development
  * @author Guanming Ou
  */
 public class Cards {

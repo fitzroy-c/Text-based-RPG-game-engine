@@ -2,7 +2,12 @@ package Maps;
 
 import java.util.List;
 
-//this function is for future development
+/**
+ * Summarise all room and to a big json file
+ *
+ * this class is for future development
+ * @author Guanming Ou
+ */
 
 public class Environment {
     String name;

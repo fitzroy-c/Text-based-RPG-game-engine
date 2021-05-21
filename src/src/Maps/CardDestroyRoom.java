@@ -9,7 +9,8 @@ import java.util.ArrayList;
  *  - The first time enter this room is free (per card destroy room)
  *  - More card destroy require increase gold
  *
- *  this function is for future development
+ *  this class is for future development
+ *  @author Guanming Ou
  */
 public class CardDestroyRoom extends Rooms{
     int currentNumberOfDestroy;  // this indicate how many times a player Destroy their cards.

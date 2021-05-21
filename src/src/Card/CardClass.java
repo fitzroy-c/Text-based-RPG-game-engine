@@ -2,6 +2,7 @@ package Card;
 
 /**
  * Card class type
+ * this class is for future development
  * @author Guanming Ou
  */
 public enum CardClass {

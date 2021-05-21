@@ -7,7 +7,8 @@ package Maps;
  * New options are draw everytime player exit a room, but old options are kept
  * while previous entered room is removed from the pool
  *
- * this function is for future development
+ * this class is for future development
+ * @author Guanming Ou
  */
 public class Rooms {
     String name;
