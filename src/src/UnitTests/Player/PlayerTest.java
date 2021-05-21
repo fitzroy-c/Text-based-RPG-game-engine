@@ -3,6 +3,7 @@ package Player;
 import AbnormalPoints.Monster;
 import AbnormalPoints.MonsterAttributes;
 import Card.Element;
+import Options.Control;
 import navigation.Coordinate;
 import navigation.Place;
 import org.junit.Test;
@@ -60,6 +61,7 @@ public class PlayerTest {
     @Test
     public void checkMonsterTest1(){
         Coordinate coordinate = new Coordinate(1, 1);
+        System.out.println("--------------------\n safe zone test\n");
         String description = "Safe house";
         Place place1 = new Place(coordinate, description);
         place1.setDangerRate(1);
@@ -71,6 +73,7 @@ public class PlayerTest {
     @Test
     public void checkMonsterTest2(){
         Coordinate coordinate = new Coordinate(1, 1);
+        System.out.println("--------------------\n check monster test\n");
         String description = "Danger zone";
         Place place2 = new Place(coordinate, description);
         Player player = new Player("test one");
@@ -102,6 +105,7 @@ public class PlayerTest {
     @Test
     public void attackTest(){
         Player player = new Player("test one");
+        System.out.println("--------------------\n attack test\n");
         System.out.println("show the before stat");
         System.out.println(player.showPlayerStat());
         System.out.println();
@@ -120,6 +124,7 @@ public class PlayerTest {
     @Test
     public void attackCriticalTest(){
         Player player = new Player("test one");
+        System.out.println("--------------------\n critical attack test\n");
         System.out.println("show the before stat");
         System.out.println(player.showPlayerStat());
         System.out.println();
@@ -140,6 +145,7 @@ public class PlayerTest {
     @Test
     public void attackLoopTest(){
         Player player = new Player("test one");
+        System.out.println("--------------------\n attack loop test\n");
         System.out.println("show the before stat");
         System.out.println(player.showPlayerStat());
         System.out.println();
@@ -152,6 +158,68 @@ public class PlayerTest {
         player.place.addAbnormalPoint(monster);
 
         System.out.println(player.attack());
+
+        System.out.println("show the current stat");
+        System.out.println(player.showPlayerStat());
+    }
+
+    @Test
+    public void retreatTest() throws Exception {
+        Player player = new Player("test one");
+        System.out.println("--------------------\n retreat test\n");
+        System.out.println("show the before stat");
+        System.out.println(player.showPlayerStat());
+        System.out.println();
+        MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
+                55,6, 5,3,12,2,
+                0.02,10, 3,0,5, Element.Normal);
+
+        Monster monster = new Monster(goblin,player.getLevel());
+        player.place.addAbnormalPoint(monster);
+        Control control = new Control(player);
+
+        System.out.println(player.retreat());
+        System.out.println("show the current stat");
+        System.out.println(player.showPlayerStat());
+    }
+
+    @Test
+    public void bribeTest1() {
+        Player player = new Player("test one");
+        System.out.println("--------------------\n bribe success test\n");
+        System.out.println("show the before stat");
+        System.out.println(player.showPlayerStat());
+        System.out.println();
+        MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
+                55,6, 5,3,12,2,
+                0.02,10, 3,0,5, Element.Normal);
+
+        Monster monster = new Monster(goblin,player.getLevel());
+        player.place.addAbnormalPoint(monster);
+
+
+        System.out.println(player.bribe());
+
+        System.out.println("show the current stat");
+        System.out.println(player.showPlayerStat());
+    }
+
+    @Test
+    public void bribeTest2() {
+        Player player = new Player("test one");
+        System.out.println("--------------------\n bribe fail test\n");
+        System.out.println("show the before stat");
+        System.out.println(player.showPlayerStat());
+        System.out.println();
+        MonsterAttributes goblin = new MonsterAttributes("goblin", "A normal monster , with slight armour.",
+                55,6, 5,3,12,2,
+                0.02,10, 3,0,5, Element.Normal);
+
+        Monster monster = new Monster(goblin,player.getLevel());
+        player.place.addAbnormalPoint(monster);
+        player.setMoney(0);//no money
+
+        System.out.println(player.bribe());
 
         System.out.println("show the current stat");
         System.out.println(player.showPlayerStat());

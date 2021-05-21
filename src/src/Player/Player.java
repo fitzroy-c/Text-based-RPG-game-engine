@@ -944,7 +944,7 @@ public class Player {
             if (this.place.getAbnormalPoints().get(i).getClass()==Monster.class) {
                 Monster monster = (Monster)this.place.getAbnormalPoints().get(i);
                 while(this.HP>0){
-                    if (criticalCheck(0.70)){ //80% chance succeed
+                    if (criticalCheck(0.60)){ //60% chance succeed
                         // monster.setHP(0);
                         return string + "Retreat successfully.\n";
                     }else{
