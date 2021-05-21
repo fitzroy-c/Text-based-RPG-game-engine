@@ -17,7 +17,11 @@ import java.util.Scanner;
 /**
  * before you use the function, you should test the 5 originate_data format first
  * using 5 related test.
- *
+ * - JsonTestInitializedItem
+ * - JsonTestitemBook
+ * - JsonTestNPCMerchant
+ * - JsonTestNPCTalk
+ * - JsonTestPlayerAttribute
  */
 public class autoTest {
     private static Player player;
