@@ -1,11 +1,15 @@
-# We created a exciting game with the following feature
+# 2100 Group Project
 
+# We created a Java text based, single player adventure game.
+## In the game, you can:
+- walk around freely on our map!
+- explore different items and treasure on our map!
+- defeat powerful monsters and bosses to make you stronger!
+- talk to the guide if you get lost and don't know where to start.
+- get all your needs from wandering merchants scattering on the map!
+- and a lot more for you to explore!!!
 
-
-
-
-
-
+# Other documentatioin
 development log is in Develop package.
 project summary, game engine design, quick guide for player and game designer are all on Wiki page
 
