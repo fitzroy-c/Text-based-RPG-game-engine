@@ -10,7 +10,8 @@
 5. get all your needs from wandering merchants scattering on the map!
 6. and a lot more for you to explore!!!
 
-## For automatic game tester, check out "How to test the game" link in wiki
+## For more detailed information about the program, please go to gitlab wiki page
+
 # Other documentation
 - Development log is in Develop package.
 - Project summary, game engine design, quick guide for player and game designer, references and required additonal library are all on **Wiki** page
