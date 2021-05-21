@@ -2,12 +2,13 @@
 
 # We created a Java text based, single player adventure game.
 ## In the game, you can:
-- walk around freely on our map!
-- explore different items and treasure on our map!
-- defeat powerful monsters and bosses to make you stronger!
-- talk to the guide if you get lost and don't know where to start.
-- get all your needs from wandering merchants scattering on the map!
-- and a lot more for you to explore!!!
+
+1. walk around freely on our map!
+2. explore different items and treasure on our map!
+3. defeat powerful monsters and bosses to make you stronger!
+4. talk to the guide if you get lost and don't know where to start.
+5. get all your needs from wandering merchants scattering on the map!
+6. and a lot more for you to explore!!!
 
 # Other documentatioin
 development log is in Develop package.
