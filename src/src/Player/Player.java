@@ -845,7 +845,10 @@ public class Player {
             System.out.println("Please type the corresponding item index to purchase corresponding item.");
             Scanner s = new Scanner(System.in);
             int userChoice = s.nextInt();
-            if (userChoice>=shop.npcBag.getItems().size()) System.out.println("Invalid item index, please try again.");;
+            if (userChoice>=shop.npcBag.getItems().size()) {
+                System.out.println("Invalid item index, please try again.");
+                return;
+            }
             Item itemPuchase = shop.npcBag.getItems().get(userChoice);
             boolean succ = shop.buyFromNPC(this,itemPuchase.name);
             System.out.println(shop.outputStrForBuyFromNPC(this,itemPuchase.name,succ));
