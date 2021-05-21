@@ -17,12 +17,10 @@ import java.util.Map;
 
 /**
  * This class mainly held npc that will trade with player
+ * @author: Yixiang Yin and Guanming Ou
  */
 public class NPC_MERCHANT extends AbnormalPoint{
     public Bag npcBag;
-//    public Coordinate coor;
-//    player的bag, npc_merchant的bag,
-
     public NPC_MERCHANT(String name, String intro, int maxHP, int HP, int damage, int armour,
                         int gold, int xpGain, double critChance, Bag npcBag) {
         this.abnormalPointType = AbnormalPointType.NPC_MERCHANT;
@@ -38,16 +36,11 @@ public class NPC_MERCHANT extends AbnormalPoint{
         this.npcBag = npcBag;
     }
 
-
-    //Todo 买卖交互
-    //todo initialize npc shop
     /**
      * Player buy items from NPC
      * return true if successful, otherwise, false
      * @author: Yixiang Yin
      **/
-    //todo:  show my shop
-    //todo:  限制行动
     public boolean buyFromNPC(Player p, String itemName){
         // assume itemName is valid
         boolean npcHaveIt = npcBag.searchInBagByName(itemName);
@@ -64,6 +57,7 @@ public class NPC_MERCHANT extends AbnormalPoint{
         }
         return false; // npc don't have it
     }
+
     /** (companion with the function above)
      * output the possible str for different circumstances when purchasing
      * @author: Yixiang Yin
@@ -77,8 +71,12 @@ public class NPC_MERCHANT extends AbnormalPoint{
             return "Sorry, I don't have "+itemName+" .";
         }
     }
+    /**
+     * Convert NPC Merchant hashMap json object to actual hashMap
+     * @author Yixiang Yin
+     */
+
     public static HashMap<Coordinate, NPC_MERCHANT> JsonToNpcMerchantHashMapData(JsonObject jo) {
-        Gson gson = new Gson();
         HashMap<Coordinate, NPC_MERCHANT> hp = new HashMap<>();
 
         for (Map.Entry<String, JsonElement> entry : jo.entrySet()) {
