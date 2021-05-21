@@ -171,7 +171,7 @@ public class Player {
         if (Exist_npct){
             System.out.println("There is a Merchant around you. Go and look around what good stuff he has.");
         }
-        if (Exist_npcm||Exist_npct) System.out.println("You are standing alone. The wind is a bit cold.");
+        if (!Exist_npcm&&!Exist_npct) System.out.println("You are standing alone. The wind is a bit cold.");
     }
 
     /**
