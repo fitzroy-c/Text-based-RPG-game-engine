@@ -11,8 +11,8 @@
 6. and a lot more for you to explore!!!
 
 # Other documentatioin
-development log is in Develop package.
-project summary, game engine design, quick guide for player and game designer are all on Wiki page
+- development log is in Develop package.
+- project summary, game engine design, quick guide for player and game designer are all on Wiki page
 
 
 # Team structure and role
